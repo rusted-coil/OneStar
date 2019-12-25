@@ -1,6 +1,7 @@
 ﻿using System;
 using OneStarCalculator;
 using System.Windows.Forms;
+using System.Threading.Tasks;
 
 namespace OneStar
 {
@@ -49,6 +50,11 @@ namespace OneStar
 		}
 
 		private void ButtonStartSearch_Click(object sender, EventArgs e)
+		{
+			SeedSeach();
+		}
+
+		async void SeedSeach()
 		{
 			bool isCheckFailed = false;
 			string errorText = "";
@@ -105,7 +111,27 @@ namespace OneStar
 			SeedSearcher searcher = new SeedSearcher();
 			SeedSearcher.SetFirstCondition(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5], ability1, nature1);
 			SeedSearcher.SetNextCondition(ivs[6], ivs[7], ivs[8], ivs[9], ivs[10], ivs[11], ability2, nature2);
-			searcher.Calculate();
+
+			// ボタンを無効化
+			f_ButtonStartSearch.Enabled = false;
+			f_ButtonStartSearch.Text = "検索中";
+			f_ButtonStartSearch.BackColor = System.Drawing.Color.WhiteSmoke;
+
+			// 時間計測
+//			var sw = new System.Diagnostics.Stopwatch();
+//			sw.Start();
+
+			await Task.Run(() =>
+			{
+				searcher.Calculate();
+			});
+
+//			sw.Stop();
+//			MessageBox.Show($"{sw.ElapsedMilliseconds}[ms]");
+
+			f_ButtonStartSearch.Enabled = true;
+			f_ButtonStartSearch.Text = "検索開始";
+			f_ButtonStartSearch.BackColor = System.Drawing.Color.GreenYellow;
 
 			// 結果が見つからなかったらエラー
 			if (searcher.Result.Count == 0)

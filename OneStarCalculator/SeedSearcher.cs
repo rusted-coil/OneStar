@@ -29,9 +29,6 @@ namespace OneStarCalculator
 
 		public void Calculate()
 		{
-//			var sw = new System.Diagnostics.Stopwatch();
-//			sw.Start();
-
 			// 探索範囲
 			int searchLower = 0;
 			int searchUpper = 0xFFFFFFF;
@@ -40,9 +37,6 @@ namespace OneStarCalculator
 
 			// 並列探索
 			Parallel.For(searchLower, searchUpper, Method);
-
-//			sw.Stop();
-//			Console.WriteLine($" in {sw.ElapsedMilliseconds} milliseconds");
 		}
 
 		// 並列計算タスク
