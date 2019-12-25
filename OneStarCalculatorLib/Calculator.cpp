@@ -6,6 +6,7 @@
 #include "Data.h"
 
 // 検索条件設定
+static int g_Rerolls;
 static int g_Ivs[6];
 static int g_Ability;
 static int g_FixedIndex;
@@ -28,7 +29,7 @@ const int* g_IvsRef[30] = {
 	&g_Ivs[0], &g_Ivs[1], &g_Ivs[2], &g_Ivs[3], &g_Ivs[4]
 };
 
-#define LENGTH (57)
+#define LENGTH_BASE (57)
 
 void SetFirstCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature)
 {
@@ -71,59 +72,82 @@ void SetNextCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int 
 	g_isNextNoGender = isNoGender;
 }
 
-void Prepare()
+void Prepare(int rerolls)
 {
+	g_Rerolls = rerolls;
+	const int length = LENGTH_BASE + (rerolls > 0 ? 6 : 0);
+
 	// 使用する行列値をセット
 	// 使用する定数ベクトルをセット
 	g_ConstantTermVector = 0;
-	for (int i = 0; i < LENGTH - 1; ++i)
+	for (int i = 0; i < length - 1; ++i)
 	{
-		g_InputMatrix[i] = Const::c_Matrix[i];
-		if (Const::c_ConstList[i] > 0)
+		int index = 0; // r[3]からr[3+rerolls]をV箇所、r[4+rerolls]からr[8+rerolls]を個体値として使う
+		if (rerolls > 0)
 		{
-			g_ConstantTermVector |= (1ull << (LENGTH - 1 - i));
+			index = (i < 12 ? 2 + (rerolls - 1) * 10 + (i / 3) * 5 + i % 3 : i - 12 + (rerolls + 1) * 10);
+		}
+		else
+		{
+			index = (i < 6 ? 2 + (i / 3) * 5 + i % 3 : i + 4);
+		}
+		g_InputMatrix[i] = Const::c_Matrix[index];
+		if (Const::c_ConstList[index] > 0)
+		{
+			g_ConstantTermVector |= (1ull << (length - 1 - i));
 		}
 	}
-	// Abilityは2つを圧縮 r[9]
-	g_InputMatrix[LENGTH - 1] = Const::c_Matrix[60] ^ Const::c_Matrix[65];
-	if ((Const::c_ConstList[60] ^ Const::c_ConstList[65]) != 0)
+	// Abilityは2つを圧縮 r[9+rerolls]
+	int index = (rerolls + 6) * 10 + 4;
+	g_InputMatrix[length - 1] = Const::c_Matrix[index] ^ Const::c_Matrix[index + 5];
+	if ((Const::c_ConstList[index] ^ Const::c_ConstList[index + 5]) != 0)
 	{
 		g_ConstantTermVector |= 1;
 	}
 
 	// 行基本変形で求める
-	CalculateInverseMatrix(LENGTH);
+	CalculateInverseMatrix(length);
 
 	// 事前データを計算
-	CalculateCoefficientData(LENGTH);
+	CalculateCoefficientData(length);
 }
 
-_u64 Search(int ivs)
+_u64 Search(_u64 ivs)
 {
+	const int length = LENGTH_BASE + (g_Rerolls > 0 ? 6 : 0);
+
 	XoroshiroState xoroshiro;
 	
-	_u64 ivs64 = (_u64)ivs;
-
 	_u64 target = g_Ability;
 
+	// reroll箇所
+	if (g_Rerolls > 0)
+	{
+		// 最上位 = 6か7か
+		int rerollbit = 6 + (ivs >> 31);
+		// その次の3bit = reroll箇所
+		target |= (ivs & 0x70000000ul) << 32;
+		target |= ((8ul + rerollbit - ((ivs & 0x70000000ul) >> 28)) & 7) << 57;
+	}
+
 	// 上位3bit = V箇所決定
-	target |= (ivs64 & 0xE000000ul) << 29; // fixedIndex0
+	target |= (ivs & 0xE000000ul) << 29; // fixedIndex0
 
 	// 下位25bit = 個体値
-	target |= (ivs64 & 0x1F00000ul) << 26; // iv0_0
-	target |= (ivs64 &   0xF8000ul) << 21; // iv1_0
-	target |= (ivs64 &    0x7C00ul) << 16; // iv2_0
-	target |= (ivs64 &     0x3E0ul) << 11; // iv3_0
-	target |= (ivs64 &      0x1Ful) <<  6; // iv4_0
+	target |= (ivs & 0x1F00000ul) << 26; // iv0_0
+	target |= (ivs &   0xF8000ul) << 21; // iv1_0
+	target |= (ivs &    0x7C00ul) << 16; // iv2_0
+	target |= (ivs &     0x3E0ul) << 11; // iv3_0
+	target |= (ivs &      0x1Ful) <<  6; // iv4_0
 
 	// 隠された値を推定
-	target |= ((8ul + g_FixedIndex - ((ivs64 & 0xE000000ul) >> 25)) & 7) << 51;
+	target |= ((8ul + g_FixedIndex - ((ivs & 0xE000000ul) >> 25)) & 7) << 51;
 
-	target |= ((32ul + *g_IvsRef[g_FixedIndex * 5    ] - ((ivs64 & 0x1F00000ul) >> 20)) & 0x1F) << 41;
-	target |= ((32ul + *g_IvsRef[g_FixedIndex * 5 + 1] - ((ivs64 &   0xF8000ul) >> 15)) & 0x1F) << 31;
-	target |= ((32ul + *g_IvsRef[g_FixedIndex * 5 + 2] - ((ivs64 &    0x7C00ul) >> 10)) & 0x1F) << 21;
-	target |= ((32ul + *g_IvsRef[g_FixedIndex * 5 + 3] - ((ivs64 &     0x3E0ul) >> 5)) & 0x1F) << 11;
-	target |= ((32ul + *g_IvsRef[g_FixedIndex * 5 + 4] -  (ivs64 &      0x1Ful)) & 0x1F) << 1;
+	target |= ((32ul + *g_IvsRef[g_FixedIndex * 5    ] - ((ivs & 0x1F00000ul) >> 20)) & 0x1F) << 41;
+	target |= ((32ul + *g_IvsRef[g_FixedIndex * 5 + 1] - ((ivs &   0xF8000ul) >> 15)) & 0x1F) << 31;
+	target |= ((32ul + *g_IvsRef[g_FixedIndex * 5 + 2] - ((ivs &    0x7C00ul) >> 10)) & 0x1F) << 21;
+	target |= ((32ul + *g_IvsRef[g_FixedIndex * 5 + 3] - ((ivs &     0x3E0ul) >> 5)) & 0x1F) << 11;
+	target |= ((32ul + *g_IvsRef[g_FixedIndex * 5 + 4] -  (ivs &      0x1Ful)) & 0x1F) << 1;
 
 	// targetベクトル入力完了
 
@@ -131,16 +155,16 @@ _u64 Search(int ivs)
 
 	// 57bit側の計算結果キャッシュ
 	_u64 processedTarget = 0;
-	for (int i = 0; i < LENGTH; ++i)
+	for (int i = 0; i < length; ++i)
 	{
-		processedTarget |= (GetSignature(g_AnswerFlag[i] & target) << (LENGTH - 1 - i));
+		processedTarget |= (GetSignature(g_AnswerFlag[i] & target) << (length - 1 - i));
 	}
 
 	// 下位7bitを決める
-	_u64 max = ((1 << (64 - LENGTH)) - 1);
+	_u64 max = ((1 << (64 - length)) - 1);
 	for (_u64 search = 0; search <= max; ++search)
 	{
-		_u64 seed = ((processedTarget ^ g_CoefficientData[search]) << (64 - LENGTH)) | search;
+		_u64 seed = ((processedTarget ^ g_CoefficientData[search]) << (64 - length)) | search;
 
 		// ここから絞り込み
 		{
@@ -148,7 +172,19 @@ _u64 Search(int ivs)
 			xoroshiro.Next(); // EC
 			xoroshiro.Next(); // OTID
 			xoroshiro.Next(); // PID
-			xoroshiro.Next(); // V箇所
+
+			// V箇所
+			int offset = -1;
+			int fixedIndex = 0;
+			do {
+				fixedIndex = xoroshiro.Next(7); // V箇所
+				++offset;
+			} while (fixedIndex >= 6);
+			if (offset != g_Rerolls)
+			{
+				continue;
+			}
+
 			xoroshiro.Next(); // 個体値1
 			xoroshiro.Next(); // 個体値2
 			xoroshiro.Next(); // 個体値3

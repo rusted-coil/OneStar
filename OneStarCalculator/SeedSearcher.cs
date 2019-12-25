@@ -10,7 +10,7 @@ namespace OneStarCalculator
 		public List<ulong> Result { get; } = new List<ulong>();
 
 		[DllImport("OneStarCalculatorLib.dll")]
-		static extern void Prepare();
+		static extern void Prepare(int rerolls);
 
 		[DllImport("OneStarCalculatorLib.dll")]
 		public static extern void SetFirstCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature);
@@ -19,7 +19,7 @@ namespace OneStarCalculator
 		public static extern void SetNextCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, bool noGender);
 
 		[DllImport("OneStarCalculatorLib.dll")]
-		static extern ulong Search(int ivs);
+		static extern ulong Search(ulong ivs);
 
 		// テスト
 		[DllImport("OneStarCalculatorLib.dll")]
@@ -33,24 +33,32 @@ namespace OneStarCalculator
 
 		public SeedSearcher()
 		{
-			// C++ライブラリ側の事前計算
-			Prepare();
 		}
 
 		public void Calculate(bool isEnableStop)
 		{
 			// 探索範囲
 			int searchLower = 0;
-			int searchUpper = 0xFFFFFFF;
+			int searchUpper = 0x7FFFFFFF;
 
 			Result.Clear();
+
+			// C++ライブラリ側の事前計算
+			Prepare(2);
 
 			// 並列探索
 			if (isEnableStop)
 			{
 				// 中断あり
 				Parallel.For(searchLower, searchUpper, (ivs, state) => {
-					ulong result = Search(ivs);
+					ulong ivs64 = (ulong)ivs;
+					ulong result = Search(ivs64);
+					if (result != 0)
+					{
+						Result.Add(result);
+						state.Stop();
+					}
+					result = Search(ivs64 | (1ul << 31));
 					if (result != 0)
 					{
 						Result.Add(result);
@@ -62,7 +70,7 @@ namespace OneStarCalculator
 			{
 				// 中断なし
 				Parallel.For(searchLower, searchUpper, (ivs) => {
-					ulong result = Search(ivs);
+					ulong result = Search((ulong)ivs);
 					if (result != 0)
 					{
 						Result.Add(result);
