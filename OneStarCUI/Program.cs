@@ -26,13 +26,26 @@ namespace OneStarCUI
 			string[] str = Console.ReadLine().Split(' ');
 			SeedSearcher.SetSixCondition(int.Parse(str[0]), int.Parse(str[1]), int.Parse(str[2]), int.Parse(str[3]), int.Parse(str[4]), int.Parse(str[5]), int.Parse(str[6]), int.Parse(str[7]), int.Parse(str[8]));
 
-			// 計算
-			searcher.Calculate(true);
+			Console.WriteLine("2匹目: ");
+			string[] str2 = Console.ReadLine().Split(' ');
 
+			Console.WriteLine("計算中...");
+
+			// 時間計測
+			var sw = new System.Diagnostics.Stopwatch();
+			sw.Start();
+
+			// 計算
+			searcher.CalculateSix();
+
+			sw.Stop();
+
+			Console.WriteLine($"{searcher.Result.Count} results");
 			foreach (ulong result in searcher.Result)
 			{
 				Console.WriteLine($"0x{result:X}");
-			}			
+			}
+			Console.WriteLine($"{sw.ElapsedMilliseconds}[ms]");
 		}
 	}
 }

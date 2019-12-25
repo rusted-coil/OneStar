@@ -26,6 +26,9 @@ namespace OneStarCalculator
 		public static extern void SetSixCondition(int fixed1, int fixed2, int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int nature);
 
 		[DllImport("OneStarCalculatorLib.dll")]
+		static extern void PrepareSix(int ivOffset);
+
+		[DllImport("OneStarCalculatorLib.dll")]
 		static extern ulong SearchSix(int ivs);
 
 		public SeedSearcher()
@@ -76,13 +79,15 @@ namespace OneStarCalculator
 
 			Result.Clear();
 
+			PrepareSix(0);
+
 			// 中断あり
 			Parallel.For(searchLower, searchUpper, (ivs, state) => {
 				ulong result = SearchSix(ivs);
 				if (result != 0)
 				{
 					Result.Add(result);
-					state.Stop();
+//					state.Stop();
 				}
 			});
 		}

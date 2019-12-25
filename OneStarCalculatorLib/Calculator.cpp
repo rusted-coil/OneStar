@@ -6,17 +6,17 @@
 #include "Data.h"
 
 // 検索条件設定
-int g_Ivs[6];
-int g_Ability;
-int g_FixedIndex;
+static int g_Ivs[6];
+static int g_Ability;
+static int g_FixedIndex;
 
 // 絞り込み条件設定
-int g_Nature;
-int g_NextIvs[6];
-int g_NextAbility;
-int g_NextNature;
-bool g_isNextNoGender;
-int g_VCount;
+static int g_Nature;
+static int g_NextIvs[6];
+static int g_NextAbility;
+static int g_NextNature;
+static bool g_isNextNoGender;
+static int g_VCount;
 
 // V確定用参照
 const int* g_IvsRef[30] = {
@@ -131,16 +131,16 @@ _u64 Search(int ivs)
 
 	// 57bit側の計算結果キャッシュ
 	_u64 processedTarget = 0;
-	for (int i = 0; i < 57; ++i)
+	for (int i = 0; i < LENGTH; ++i)
 	{
-//		processedTarget |= (GetSignature(Const::c_FormulaAnswerFlag[i] & target) << (56 - i));
-		processedTarget |= (GetSignature(g_AnswerFlag[i] & target) << (56 - i));
+		processedTarget |= (GetSignature(g_AnswerFlag[i] & target) << (LENGTH - 1 - i));
 	}
 
 	// 下位7bitを決める
-	for (_u64 search = 0; search <= 0x7F; ++search)
+	_u64 max = ((1 << (64 - LENGTH)) - 1);
+	for (_u64 search = 0; search <= max; ++search)
 	{
-		_u64 seed = ((processedTarget ^ g_CoefficientData[search]) << 7) | search;
+		_u64 seed = ((processedTarget ^ g_CoefficientData[search]) << (64 - LENGTH)) | search;
 
 		// ここから絞り込み
 		{
