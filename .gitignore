@@ -1,0 +1,15 @@
+/.vs
+/Debug
+/OneStar/bin
+/OneStar/obj
+*.exp
+*.iobj
+*.ipdb
+/Release
+/x64
+/OneStarCalculatorLib/x64
+/OneStarCUI/bin
+/OneStarCUI/obj
+*.user
+/OneStarCalculator/bin
+/OneStarCalculator/obj
