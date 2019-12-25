@@ -2,6 +2,7 @@
 using OneStarCalculator;
 using System.Windows.Forms;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace OneStar
 {
@@ -31,8 +32,11 @@ namespace OneStar
 			PokemonFormUtility.SetNatureComboBox(f_ComboBoxNature_2);
 			PokemonFormUtility.SetAbilityComboBox(f_ComboBoxAbility_1);
 			PokemonFormUtility.SetAbilityComboBox(f_ComboBoxAbility_2);
+			f_ComboBoxAbility_2.Items.Add("不明");
 
 			f_TextBoxMaxFrame.Text = "1000";
+
+			f_CheckBoxStop.Checked = true;
 
 			// 扱いやすいようにキャッシュ
 			m_TextBoxIvsList[0] = f_TextBoxIv0_1;
@@ -102,15 +106,38 @@ namespace OneStar
 				MessageBox.Show("1匹目のポケモンは個体値31が1箇所でなければいけません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
+			// 2匹目はVが1箇所以上じゃないとエラー
+			c = 0;
+			for (int i = 6; i < 12; ++i)
+			{
+				if (ivs[i] == 31)
+				{
+					++c;
+				}
+			}
+			if (c < 1)
+			{
+				// エラー
+				MessageBox.Show("2匹目のポケモンは個体値31が1箇所以上でなければいけません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
 			int ability1 = f_ComboBoxAbility_1.SelectedIndex;
 			int ability2 = f_ComboBoxAbility_2.SelectedIndex;
+			if (ability2 == 2)
+			{
+				ability2 = -1;
+			}
 			int nature1 = f_ComboBoxNature_1.SelectedIndex;
 			int nature2 = f_ComboBoxNature_2.SelectedIndex;
+
+			bool noGender2 = f_CheckBoxNoGender_2.Checked;
+
+			bool isEnableStop = f_CheckBoxStop.Checked;
 
 			// 計算開始
 			SeedSearcher searcher = new SeedSearcher();
 			SeedSearcher.SetFirstCondition(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5], ability1, nature1);
-			SeedSearcher.SetNextCondition(ivs[6], ivs[7], ivs[8], ivs[9], ivs[10], ivs[11], ability2, nature2);
+			SeedSearcher.SetNextCondition(ivs[6], ivs[7], ivs[8], ivs[9], ivs[10], ivs[11], ability2, nature2, noGender2);
 
 			// ボタンを無効化
 			f_ButtonStartSearch.Enabled = false;
@@ -123,7 +150,7 @@ namespace OneStar
 
 			await Task.Run(() =>
 			{
-				searcher.Calculate();
+				searcher.Calculate(isEnableStop);
 			});
 
 //			sw.Stop();
@@ -142,6 +169,19 @@ namespace OneStar
 			}
 			else
 			{
+				if (searcher.Result.Count > 1)
+				{
+					using (StreamWriter sw = new StreamWriter("seeds.txt"))
+					{
+						for (int i = 0; i < searcher.Result.Count; ++i)
+						{
+							sw.WriteLine($"{searcher.Result[i]:X}");
+						}
+					}
+
+					MessageBox.Show("複数のDen Seedが見つかりました。\n全ての候補はseeds.txtをご確認ください。", "結果", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
+
 				f_TextBoxResultSeed.Text = $"{searcher.Result[0]:X}";
 
 				// 見つかったらリスト出力

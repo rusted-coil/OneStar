@@ -26,4 +26,10 @@ struct XoroshiroState
 		m_S1 = RotateLeft(m_S1, 37);
 		return value;
 	}
+	void Next()
+	{
+		m_S1 = m_S0 ^ m_S1;
+		m_S0 = RotateLeft(m_S0, 24) ^ m_S1 ^ (m_S1 << 16);
+		m_S1 = RotateLeft(m_S1, 37);
+	}
 };

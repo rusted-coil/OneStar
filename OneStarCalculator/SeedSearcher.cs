@@ -16,7 +16,7 @@ namespace OneStarCalculator
 		public static extern void SetFirstCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature);
 
 		[DllImport("OneStarCalculatorLib.dll")]
-		public static extern void SetNextCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature);
+		public static extern void SetNextCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, bool noGender);
 
 		[DllImport("OneStarCalculatorLib.dll")]
 		static extern ulong Search(int ivs);
@@ -27,7 +27,7 @@ namespace OneStarCalculator
 			Prepare();
 		}
 
-		public void Calculate()
+		public void Calculate(bool isEnableStop)
 		{
 			// 探索範囲
 			int searchLower = 0;
@@ -36,16 +36,28 @@ namespace OneStarCalculator
 			Result.Clear();
 
 			// 並列探索
-			Parallel.For(searchLower, searchUpper, Method);
-		}
-
-		// 並列計算タスク
-		void Method(int ivs)
-		{
-			ulong result = Search(ivs);
-			if (result != 0)
+			if (isEnableStop)
 			{
-				Result.Add(result);
+				// 中断あり
+				Parallel.For(searchLower, searchUpper, (ivs, state) => {
+					ulong result = Search(ivs);
+					if (result != 0)
+					{
+						Result.Add(result);
+						state.Stop();
+					}
+				});
+			}
+			else
+			{
+				// 中断なし
+				Parallel.For(searchLower, searchUpper, (ivs) => {
+					ulong result = Search(ivs);
+					if (result != 0)
+					{
+						Result.Add(result);
+					}
+				});
 			}
 		}
 	}

@@ -12,8 +12,9 @@ int g_FixedIndex;
 int g_Nature;
 int g_NextIvs[6];
 int g_NextAbility;
-int g_NextFixedIndex;
 int g_NextNature;
+bool g_isNextNoGender;
+int g_VCount;
 
 // V確定用参照
 const int* g_IvsRef[30] = {
@@ -23,14 +24,6 @@ const int* g_IvsRef[30] = {
 	&g_Ivs[0], &g_Ivs[1], &g_Ivs[2], &g_Ivs[4], &g_Ivs[5],
 	&g_Ivs[0], &g_Ivs[1], &g_Ivs[2], &g_Ivs[3], &g_Ivs[5],
 	&g_Ivs[0], &g_Ivs[1], &g_Ivs[2], &g_Ivs[3], &g_Ivs[4]
-};
-const int* g_NextIvsRef[30] = {
-	&g_NextIvs[1], &g_NextIvs[2], &g_NextIvs[3], &g_NextIvs[4], &g_NextIvs[5],
-	&g_NextIvs[0], &g_NextIvs[2], &g_NextIvs[3], &g_NextIvs[4], &g_NextIvs[5],
-	&g_NextIvs[0], &g_NextIvs[1], &g_NextIvs[3], &g_NextIvs[4], &g_NextIvs[5],
-	&g_NextIvs[0], &g_NextIvs[1], &g_NextIvs[2], &g_NextIvs[4], &g_NextIvs[5],
-	&g_NextIvs[0], &g_NextIvs[1], &g_NextIvs[2], &g_NextIvs[3], &g_NextIvs[5],
-	&g_NextIvs[0], &g_NextIvs[1], &g_NextIvs[2], &g_NextIvs[3], &g_NextIvs[4]
 };
 
 // 事前計算データ
@@ -73,7 +66,7 @@ void SetFirstCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int
 	g_Nature = nature;
 }
 
-void SetNextCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature)
+void SetNextCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, bool isNoGender)
 {
 	g_NextIvs[0] = iv0;
 	g_NextIvs[1] = iv1;
@@ -81,16 +74,17 @@ void SetNextCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int 
 	g_NextIvs[3] = iv3;
 	g_NextIvs[4] = iv4;
 	g_NextIvs[5] = iv5;
-	g_NextFixedIndex = 0;
+	g_VCount = 0;
 	for (int i = 0; i < 6; ++i)
 	{
 		if (g_NextIvs[i] == 31)
 		{
-			g_NextFixedIndex = i;
+			++g_VCount;
 		}
 	}
 	g_NextAbility = ability;
 	g_NextNature = nature;
+	g_isNextNoGender = isNoGender;
 }
 
 void Prepare()
@@ -163,80 +157,110 @@ _u64 Search(int ivs)
 		_u64 seed = ((processedTarget ^ g_CoefficientData[search]) << 7) | search;
 
 		// ここから絞り込み
-		xoroshiro.SetSeed(seed);
-		xoroshiro.Next(1); // EC
-		xoroshiro.Next(1); // OTID
-		xoroshiro.Next(1); // PID
-		xoroshiro.Next(1); // V箇所
-		xoroshiro.Next(1); // 個体値1
-		xoroshiro.Next(1); // 個体値2
-		xoroshiro.Next(1); // 個体値3
-		xoroshiro.Next(1); // 個体値4
-		xoroshiro.Next(1); // 個体値5
-		xoroshiro.Next(1); // 特性
-		xoroshiro.Next(1); // 性別値
-
-		int nature = 0;
-		do {
-			nature = xoroshiro.Next(0x1F); // 性格
-		} while (nature >= 25);
-
-		if (nature != g_Nature)
 		{
-			continue;
+			xoroshiro.SetSeed(seed);
+			xoroshiro.Next(); // EC
+			xoroshiro.Next(); // OTID
+			xoroshiro.Next(); // PID
+			xoroshiro.Next(); // V箇所
+			xoroshiro.Next(); // 個体値1
+			xoroshiro.Next(); // 個体値2
+			xoroshiro.Next(); // 個体値3
+			xoroshiro.Next(); // 個体値4
+			xoroshiro.Next(); // 個体値5
+			xoroshiro.Next(); // 特性
+
+			int gender = 0;
+			do {
+				gender = xoroshiro.Next(0xFF); // 性別値
+			} while (gender >= 253);
+
+			int nature = 0;
+			do {
+				nature = xoroshiro.Next(0x1F); // 性格
+			} while (nature >= 25);
+
+			if (nature != g_Nature)
+			{
+				continue;
+			}
 		}
 
 		// 2匹目
 		_u64 nextSeed = seed + 0x82a2b175229d6a5bull;
-		xoroshiro.SetSeed(nextSeed);
-		xoroshiro.Next(1); // EC
-		xoroshiro.Next(1); // OTID
-		xoroshiro.Next(1); // PID
-		int fixedIndex = 0;
-		do {
-			fixedIndex = xoroshiro.Next(7); // V箇所
-		} while (fixedIndex >= 6);
-
-		if (g_NextFixedIndex != fixedIndex)
+		for(int ivVCount = g_VCount; ivVCount >= 1; --ivVCount)
 		{
-			continue;
-		}
+			xoroshiro.SetSeed(nextSeed);
+			xoroshiro.Next(); // EC
+			xoroshiro.Next(); // OTID
+			xoroshiro.Next(); // PID
 
-		// 個体値
-		bool isPassed = true;
-		for (int i = 0; i < 5; ++i)
-		{
-			if ((*g_NextIvsRef[g_NextFixedIndex * 5 + i]) != xoroshiro.Next(0x1F))// 個体値1
+			int ivs[6] = { -1, -1, -1, -1, -1, -1 };
+			int fixedCount = 0;
+			do {
+				int fixedIndex = 0;
+				do {
+					fixedIndex = xoroshiro.Next(7); // V箇所
+				} while (fixedIndex >= 6);
+
+				if (ivs[fixedIndex] == -1)
+				{
+					ivs[fixedIndex] = 31;
+					++fixedCount;
+				}
+			} while (fixedCount < ivVCount);
+
+			// 個体値
+			bool isPassed = true;
+			for (int i = 0; i < 6; ++i)
 			{
-				isPassed = false;
-				break;
+				if (ivs[i] == 31)
+				{
+					if (g_NextIvs[i] != 31)
+					{
+						isPassed = false;
+						break;
+					}
+				}
+				else if(g_NextIvs[i] != xoroshiro.Next(0x1F))
+				{
+					isPassed = false;
+					break;
+				}
 			}
-		}
-		if (!isPassed)
-		{
-			continue;
-		}
-		
-		// 特性
-		if (g_NextAbility != xoroshiro.Next(1))
-		{
-			continue;
-		}
+			if (!isPassed)
+			{
+				continue;
+			}
 
-		// 性別値
-		xoroshiro.Next(1);
+			// 特性
+			if (g_NextAbility >= 0 && g_NextAbility != xoroshiro.Next(1))
+			{
+				continue;
+			}
 
-		nature = 0;
-		do {
-			nature = xoroshiro.Next(0x1F); // 性格
-		} while (nature >= 25);
+			// 性別値
+			if (!g_isNextNoGender)
+			{
+				int gender = 0;
+				do {
+					gender = xoroshiro.Next(0xFF);
+				} while (gender >= 253);
+			}
 
-		if (nature != g_NextNature)
-		{
-			continue;
+			// 性格
+			int nature = 0;
+			do {
+				nature = xoroshiro.Next(0x1F);
+			} while (nature >= 25);
+
+			if (nature != g_NextNature)
+			{
+				continue;
+			}
+
+			return seed;
 		}
-
-		return seed;
 	}
 	return 0;
 }

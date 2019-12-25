@@ -28,7 +28,7 @@ namespace OneStarCalculator
 			UInt32 gender;
 			UInt32 nature;
 
-			using (StreamWriter sw = new StreamWriter("result.txt"))
+			using (StreamWriter sw = new StreamWriter("list.txt"))
 			{
 				sw.WriteLine("消費数,H,A,B,C,D,S,特性,性格,色違い");
 
@@ -95,7 +95,7 @@ namespace OneStarCalculator
 			}
 
 			Process ps = new Process();
-			ps.StartInfo.FileName = "result.txt";
+			ps.StartInfo.FileName = "list.txt";
 			ps.Start();
 		}
 	}

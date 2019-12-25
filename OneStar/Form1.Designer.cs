@@ -73,9 +73,12 @@
 			this.f_CheckBoxListShiny = new System.Windows.Forms.CheckBox();
 			this.f_TextBoxMaxFrame = new System.Windows.Forms.TextBox();
 			this.label18 = new System.Windows.Forms.Label();
+			this.f_CheckBoxStop = new System.Windows.Forms.CheckBox();
+			this.eventLog1 = new System.Diagnostics.EventLog();
 			this.groupBox1.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			this.groupBox2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.eventLog1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -298,7 +301,6 @@
 			this.f_CheckBoxNoGender_2.TabIndex = 16;
 			this.f_CheckBoxNoGender_2.Text = "性別固定/不明";
 			this.f_CheckBoxNoGender_2.UseVisualStyleBackColor = true;
-			this.f_CheckBoxNoGender_2.Visible = false;
 			// 
 			// f_ComboBoxAbility_2
 			// 
@@ -528,11 +530,28 @@
 			this.label18.TabIndex = 22;
 			this.label18.Text = "最大消費数：";
 			// 
+			// f_CheckBoxStop
+			// 
+			this.f_CheckBoxStop.AutoSize = true;
+			this.f_CheckBoxStop.BackColor = System.Drawing.SystemColors.Control;
+			this.f_CheckBoxStop.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_CheckBoxStop.Location = new System.Drawing.Point(367, 257);
+			this.f_CheckBoxStop.Name = "f_CheckBoxStop";
+			this.f_CheckBoxStop.Size = new System.Drawing.Size(111, 16);
+			this.f_CheckBoxStop.TabIndex = 23;
+			this.f_CheckBoxStop.Text = "1つ見つけたら終了";
+			this.f_CheckBoxStop.UseVisualStyleBackColor = false;
+			// 
+			// eventLog1
+			// 
+			this.eventLog1.SynchronizingObject = this;
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(515, 397);
+			this.Controls.Add(this.f_CheckBoxStop);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.f_ButtonStartSearch);
 			this.Controls.Add(this.groupBox3);
@@ -549,7 +568,9 @@
 			this.groupBox3.PerformLayout();
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.eventLog1)).EndInit();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -599,6 +620,8 @@
 		private System.Windows.Forms.CheckBox f_CheckBoxListShiny;
 		private System.Windows.Forms.TextBox f_TextBoxMaxFrame;
 		private System.Windows.Forms.Label label18;
+		private System.Windows.Forms.CheckBox f_CheckBoxStop;
+		private System.Diagnostics.EventLog eventLog1;
 	}
 }
 
