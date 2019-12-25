@@ -1,7 +1,9 @@
 #include <iostream>
+#include "Util.h"
 #include "Calculator.h"
 #include "Const.h"
 #include "XoroshiroState.h"
+#include "Data.h"
 
 // 検索条件設定
 int g_Ivs[6];
@@ -26,25 +28,7 @@ const int* g_IvsRef[30] = {
 	&g_Ivs[0], &g_Ivs[1], &g_Ivs[2], &g_Ivs[3], &g_Ivs[4]
 };
 
-// 事前計算データ
-_u64 g_CoefficientData[0x80];
-
-inline _u64 GetSignature(_u64 value)
-{
-	unsigned int a = (unsigned int)(value ^ (value >> 32));
-	a = a ^ (a >> 16);
-	a = a ^ (a >> 8);
-	a = a ^ (a >> 4);
-	a = a ^ (a >> 2);
-	return (a ^ (a >> 1)) & 1;
-}
-
-inline _u64 GetSignature7(unsigned short value)
-{
-	value = value ^ (value >> 4);
-	value = value ^ (value >> 2);
-	return (value ^ (value >> 1)) & 1;
-}
+#define LENGTH (57)
 
 void SetFirstCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature)
 {
@@ -89,28 +73,29 @@ void SetNextCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int 
 
 void Prepare()
 {
-	// データを作る
-	for (unsigned short search = 0; search <= 0x7F; ++search)
+	// 使用する行列値をセット
+	// 使用する定数ベクトルをセット
+	g_ConstantTermVector = 0;
+	for (int i = 0; i < LENGTH - 1; ++i)
 	{
-		g_CoefficientData[search] = 0;
-		for (int i = 0; i < 57; ++i)
+		g_InputMatrix[i] = Const::c_Matrix[i];
+		if (Const::c_ConstList[i] > 0)
 		{
-			g_CoefficientData[search] |= (GetSignature7(Const::c_FormulaCoefficient[i] & search) << (56 - i));
+			g_ConstantTermVector |= (1ull << (LENGTH - 1 - i));
 		}
 	}
-}
+	// Abilityは2つを圧縮 r[9]
+	g_InputMatrix[LENGTH - 1] = Const::c_Matrix[60] ^ Const::c_Matrix[65];
+	if ((Const::c_ConstList[60] ^ Const::c_ConstList[65]) != 0)
+	{
+		g_ConstantTermVector |= 1;
+	}
 
-int GetHiddenValue(int start, int end, _u64 seed)
-{
-	int value = 0;
-	for (int i = start; i <= end; ++i)
-	{
-		if ((GetSignature(Const::c_Matrix[i] & seed) ^ Const::c_ConstList[i]) != 0)
-		{
-			value |= (1 << (end - i));
-		}
-	}
-	return value;
+	// 行基本変形で求める
+	CalculateInverseMatrix(LENGTH);
+
+	// 事前データを計算
+	CalculateCoefficientData(LENGTH);
 }
 
 _u64 Search(int ivs)
@@ -142,13 +127,14 @@ _u64 Search(int ivs)
 
 	// targetベクトル入力完了
 
-	target ^= Const::c_Const;
+	target ^= g_ConstantTermVector;
 
 	// 57bit側の計算結果キャッシュ
 	_u64 processedTarget = 0;
 	for (int i = 0; i < 57; ++i)
 	{
-		processedTarget |= (GetSignature(Const::c_FormulaAnswerFlag[i] & target) << (56 - i));
+//		processedTarget |= (GetSignature(Const::c_FormulaAnswerFlag[i] & target) << (56 - i));
+		processedTarget |= (GetSignature(g_AnswerFlag[i] & target) << (56 - i));
 	}
 
 	// 下位7bitを決める

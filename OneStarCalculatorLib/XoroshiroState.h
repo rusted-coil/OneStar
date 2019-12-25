@@ -1,6 +1,5 @@
 #pragma once
-
-typedef unsigned long long _u64;
+#include "Type.h"
 
 inline _u64 RotateLeft(_u64 value, int amount)
 {

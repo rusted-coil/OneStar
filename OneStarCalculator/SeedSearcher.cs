@@ -21,6 +21,13 @@ namespace OneStarCalculator
 		[DllImport("OneStarCalculatorLib.dll")]
 		static extern ulong Search(int ivs);
 
+		// テスト
+		[DllImport("OneStarCalculatorLib.dll")]
+		public static extern void SetSixCondition(int fixed1, int fixed2, int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int nature);
+
+		[DllImport("OneStarCalculatorLib.dll")]
+		static extern ulong SearchSix(int ivs);
+
 		public SeedSearcher()
 		{
 			// C++ライブラリ側の事前計算
@@ -59,6 +66,25 @@ namespace OneStarCalculator
 					}
 				});
 			}
+		}
+
+		public void CalculateSix()
+		{
+			// 探索範囲
+			int searchLower = 0;
+			int searchUpper = 0x3FFFFFFF;
+
+			Result.Clear();
+
+			// 中断あり
+			Parallel.For(searchLower, searchUpper, (ivs, state) => {
+				ulong result = SearchSix(ivs);
+				if (result != 0)
+				{
+					Result.Add(result);
+					state.Stop();
+				}
+			});
 		}
 	}
 }

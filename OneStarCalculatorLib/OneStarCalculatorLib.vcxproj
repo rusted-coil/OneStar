@@ -121,10 +121,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Calculator.cpp" />
+    <ClCompile Include="Data.cpp" />
+    <ClCompile Include="SixivCalculator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Calculator.h" />
     <ClInclude Include="Const.h" />
+    <ClInclude Include="Data.h" />
+    <ClInclude Include="SixivCalculator.h" />
+    <ClInclude Include="Type.h" />
+    <ClInclude Include="Util.h" />
     <ClInclude Include="XoroshiroState.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
