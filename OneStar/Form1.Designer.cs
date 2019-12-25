@@ -30,23 +30,23 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.label1 = new System.Windows.Forms.Label();
-			this.label2 = new System.Windows.Forms.Label();
-			this.f_TextBoxIv0_1 = new System.Windows.Forms.TextBox();
-			this.f_TextBoxIv1_1 = new System.Windows.Forms.TextBox();
-			this.label3 = new System.Windows.Forms.Label();
-			this.f_TextBoxIv2_1 = new System.Windows.Forms.TextBox();
-			this.label4 = new System.Windows.Forms.Label();
-			this.f_TextBoxIv3_1 = new System.Windows.Forms.TextBox();
-			this.label5 = new System.Windows.Forms.Label();
-			this.f_TextBoxIv4_1 = new System.Windows.Forms.TextBox();
-			this.label6 = new System.Windows.Forms.Label();
+			this.f_CheckBoxNoGender_1 = new System.Windows.Forms.CheckBox();
+			this.f_ComboBoxAbility_1 = new System.Windows.Forms.ComboBox();
+			this.label8 = new System.Windows.Forms.Label();
+			this.f_ComboBoxNature_1 = new System.Windows.Forms.ComboBox();
 			this.f_TextBoxIv5_1 = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
-			this.f_ComboBoxNature_1 = new System.Windows.Forms.ComboBox();
-			this.label8 = new System.Windows.Forms.Label();
-			this.f_ComboBoxAbility_1 = new System.Windows.Forms.ComboBox();
-			this.f_CheckBoxNoGender_1 = new System.Windows.Forms.CheckBox();
+			this.f_TextBoxIv4_1 = new System.Windows.Forms.TextBox();
+			this.label6 = new System.Windows.Forms.Label();
+			this.f_TextBoxIv3_1 = new System.Windows.Forms.TextBox();
+			this.label5 = new System.Windows.Forms.Label();
+			this.f_TextBoxIv2_1 = new System.Windows.Forms.TextBox();
+			this.label4 = new System.Windows.Forms.Label();
+			this.f_TextBoxIv1_1 = new System.Windows.Forms.TextBox();
+			this.label3 = new System.Windows.Forms.Label();
+			this.f_TextBoxIv0_1 = new System.Windows.Forms.TextBox();
+			this.label2 = new System.Windows.Forms.Label();
+			this.label1 = new System.Windows.Forms.Label();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.f_CheckBoxNoGender_2 = new System.Windows.Forms.CheckBox();
 			this.f_ComboBoxAbility_2 = new System.Windows.Forms.ComboBox();
@@ -70,9 +70,9 @@
 			this.f_TextBoxResultSeed = new System.Windows.Forms.TextBox();
 			this.f_ButtonListGenerate = new System.Windows.Forms.Button();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.label18 = new System.Windows.Forms.Label();
-			this.f_TextBoxMaxFrame = new System.Windows.Forms.TextBox();
 			this.f_CheckBoxListShiny = new System.Windows.Forms.CheckBox();
+			this.f_TextBoxMaxFrame = new System.Windows.Forms.TextBox();
+			this.label18 = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -104,105 +104,50 @@
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "1匹目";
 			// 
-			// label1
+			// f_CheckBoxNoGender_1
 			// 
-			this.label1.AutoSize = true;
-			this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label1.Location = new System.Drawing.Point(6, 25);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(47, 12);
-			this.label1.TabIndex = 0;
-			this.label1.Text = "個体値：";
+			this.f_CheckBoxNoGender_1.AutoSize = true;
+			this.f_CheckBoxNoGender_1.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_CheckBoxNoGender_1.Location = new System.Drawing.Point(276, 59);
+			this.f_CheckBoxNoGender_1.Name = "f_CheckBoxNoGender_1";
+			this.f_CheckBoxNoGender_1.Size = new System.Drawing.Size(102, 16);
+			this.f_CheckBoxNoGender_1.TabIndex = 16;
+			this.f_CheckBoxNoGender_1.Text = "性別固定/不明";
+			this.f_CheckBoxNoGender_1.UseVisualStyleBackColor = true;
+			this.f_CheckBoxNoGender_1.Visible = false;
 			// 
-			// label2
+			// f_ComboBoxAbility_1
 			// 
-			this.label2.AutoSize = true;
-			this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label2.Location = new System.Drawing.Point(55, 25);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(13, 12);
-			this.label2.TabIndex = 1;
-			this.label2.Text = "H";
+			this.f_ComboBoxAbility_1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.f_ComboBoxAbility_1.FormattingEnabled = true;
+			this.f_ComboBoxAbility_1.Location = new System.Drawing.Point(192, 57);
+			this.f_ComboBoxAbility_1.Name = "f_ComboBoxAbility_1";
+			this.f_ComboBoxAbility_1.Size = new System.Drawing.Size(64, 20);
+			this.f_ComboBoxAbility_1.TabIndex = 15;
 			// 
-			// f_TextBoxIv0_1
+			// label8
 			// 
-			this.f_TextBoxIv0_1.Location = new System.Drawing.Point(75, 22);
-			this.f_TextBoxIv0_1.MaxLength = 2;
-			this.f_TextBoxIv0_1.Name = "f_TextBoxIv0_1";
-			this.f_TextBoxIv0_1.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv0_1.TabIndex = 2;
+			this.label8.AutoSize = true;
+			this.label8.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.label8.Location = new System.Drawing.Point(6, 60);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(35, 12);
+			this.label8.TabIndex = 14;
+			this.label8.Text = "性格：";
 			// 
-			// f_TextBoxIv1_1
+			// f_ComboBoxNature_1
 			// 
-			this.f_TextBoxIv1_1.Location = new System.Drawing.Point(145, 22);
-			this.f_TextBoxIv1_1.Name = "f_TextBoxIv1_1";
-			this.f_TextBoxIv1_1.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv1_1.TabIndex = 4;
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label3.Location = new System.Drawing.Point(125, 25);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(13, 12);
-			this.label3.TabIndex = 3;
-			this.label3.Text = "A";
-			// 
-			// f_TextBoxIv2_1
-			// 
-			this.f_TextBoxIv2_1.Location = new System.Drawing.Point(215, 22);
-			this.f_TextBoxIv2_1.Name = "f_TextBoxIv2_1";
-			this.f_TextBoxIv2_1.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv2_1.TabIndex = 6;
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label4.Location = new System.Drawing.Point(195, 25);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(13, 12);
-			this.label4.TabIndex = 5;
-			this.label4.Text = "B";
-			// 
-			// f_TextBoxIv3_1
-			// 
-			this.f_TextBoxIv3_1.Location = new System.Drawing.Point(285, 22);
-			this.f_TextBoxIv3_1.Name = "f_TextBoxIv3_1";
-			this.f_TextBoxIv3_1.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv3_1.TabIndex = 8;
-			// 
-			// label5
-			// 
-			this.label5.AutoSize = true;
-			this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label5.Location = new System.Drawing.Point(265, 25);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(13, 12);
-			this.label5.TabIndex = 7;
-			this.label5.Text = "C";
-			// 
-			// f_TextBoxIv4_1
-			// 
-			this.f_TextBoxIv4_1.Location = new System.Drawing.Point(355, 22);
-			this.f_TextBoxIv4_1.Name = "f_TextBoxIv4_1";
-			this.f_TextBoxIv4_1.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv4_1.TabIndex = 10;
-			// 
-			// label6
-			// 
-			this.label6.AutoSize = true;
-			this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label6.Location = new System.Drawing.Point(335, 25);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(13, 12);
-			this.label6.TabIndex = 9;
-			this.label6.Text = "D";
+			this.f_ComboBoxNature_1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.f_ComboBoxNature_1.FormattingEnabled = true;
+			this.f_ComboBoxNature_1.Location = new System.Drawing.Point(47, 57);
+			this.f_ComboBoxNature_1.Name = "f_ComboBoxNature_1";
+			this.f_ComboBoxNature_1.Size = new System.Drawing.Size(111, 20);
+			this.f_ComboBoxNature_1.TabIndex = 13;
 			// 
 			// f_TextBoxIv5_1
 			// 
 			this.f_TextBoxIv5_1.Location = new System.Drawing.Point(425, 22);
+			this.f_TextBoxIv5_1.MaxLength = 2;
 			this.f_TextBoxIv5_1.Name = "f_TextBoxIv5_1";
 			this.f_TextBoxIv5_1.Size = new System.Drawing.Size(34, 19);
 			this.f_TextBoxIv5_1.TabIndex = 12;
@@ -217,45 +162,105 @@
 			this.label7.TabIndex = 11;
 			this.label7.Text = "S";
 			// 
-			// f_ComboBoxNature_1
+			// f_TextBoxIv4_1
 			// 
-			this.f_ComboBoxNature_1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.f_ComboBoxNature_1.FormattingEnabled = true;
-			this.f_ComboBoxNature_1.Location = new System.Drawing.Point(47, 57);
-			this.f_ComboBoxNature_1.Name = "f_ComboBoxNature_1";
-			this.f_ComboBoxNature_1.Size = new System.Drawing.Size(111, 20);
-			this.f_ComboBoxNature_1.TabIndex = 13;
+			this.f_TextBoxIv4_1.Location = new System.Drawing.Point(355, 22);
+			this.f_TextBoxIv4_1.MaxLength = 2;
+			this.f_TextBoxIv4_1.Name = "f_TextBoxIv4_1";
+			this.f_TextBoxIv4_1.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxIv4_1.TabIndex = 10;
 			// 
-			// label8
+			// label6
 			// 
-			this.label8.AutoSize = true;
-			this.label8.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label8.Location = new System.Drawing.Point(6, 60);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(35, 12);
-			this.label8.TabIndex = 14;
-			this.label8.Text = "性格：";
+			this.label6.AutoSize = true;
+			this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.label6.Location = new System.Drawing.Point(335, 25);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(13, 12);
+			this.label6.TabIndex = 9;
+			this.label6.Text = "D";
 			// 
-			// f_ComboBoxAbility_1
+			// f_TextBoxIv3_1
 			// 
-			this.f_ComboBoxAbility_1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.f_ComboBoxAbility_1.FormattingEnabled = true;
-			this.f_ComboBoxAbility_1.Location = new System.Drawing.Point(192, 57);
-			this.f_ComboBoxAbility_1.Name = "f_ComboBoxAbility_1";
-			this.f_ComboBoxAbility_1.Size = new System.Drawing.Size(64, 20);
-			this.f_ComboBoxAbility_1.TabIndex = 15;
+			this.f_TextBoxIv3_1.Location = new System.Drawing.Point(285, 22);
+			this.f_TextBoxIv3_1.MaxLength = 2;
+			this.f_TextBoxIv3_1.Name = "f_TextBoxIv3_1";
+			this.f_TextBoxIv3_1.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxIv3_1.TabIndex = 8;
 			// 
-			// f_CheckBoxNoGender_1
+			// label5
 			// 
-			this.f_CheckBoxNoGender_1.AutoSize = true;
-			this.f_CheckBoxNoGender_1.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_CheckBoxNoGender_1.Location = new System.Drawing.Point(276, 59);
-			this.f_CheckBoxNoGender_1.Name = "f_CheckBoxNoGender_1";
-			this.f_CheckBoxNoGender_1.Size = new System.Drawing.Size(102, 16);
-			this.f_CheckBoxNoGender_1.TabIndex = 16;
-			this.f_CheckBoxNoGender_1.Text = "性別固定/不明";
-			this.f_CheckBoxNoGender_1.UseVisualStyleBackColor = true;
-			this.f_CheckBoxNoGender_1.Visible = false;
+			this.label5.AutoSize = true;
+			this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.label5.Location = new System.Drawing.Point(265, 25);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(13, 12);
+			this.label5.TabIndex = 7;
+			this.label5.Text = "C";
+			// 
+			// f_TextBoxIv2_1
+			// 
+			this.f_TextBoxIv2_1.Location = new System.Drawing.Point(215, 22);
+			this.f_TextBoxIv2_1.MaxLength = 2;
+			this.f_TextBoxIv2_1.Name = "f_TextBoxIv2_1";
+			this.f_TextBoxIv2_1.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxIv2_1.TabIndex = 6;
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.label4.Location = new System.Drawing.Point(195, 25);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(13, 12);
+			this.label4.TabIndex = 5;
+			this.label4.Text = "B";
+			// 
+			// f_TextBoxIv1_1
+			// 
+			this.f_TextBoxIv1_1.Location = new System.Drawing.Point(145, 22);
+			this.f_TextBoxIv1_1.MaxLength = 2;
+			this.f_TextBoxIv1_1.Name = "f_TextBoxIv1_1";
+			this.f_TextBoxIv1_1.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxIv1_1.TabIndex = 4;
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.label3.Location = new System.Drawing.Point(125, 25);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(13, 12);
+			this.label3.TabIndex = 3;
+			this.label3.Text = "A";
+			// 
+			// f_TextBoxIv0_1
+			// 
+			this.f_TextBoxIv0_1.Location = new System.Drawing.Point(75, 22);
+			this.f_TextBoxIv0_1.MaxLength = 2;
+			this.f_TextBoxIv0_1.Name = "f_TextBoxIv0_1";
+			this.f_TextBoxIv0_1.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxIv0_1.TabIndex = 2;
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.label2.Location = new System.Drawing.Point(55, 25);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(13, 12);
+			this.label2.TabIndex = 1;
+			this.label2.Text = "H";
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.label1.Location = new System.Drawing.Point(6, 25);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(47, 12);
+			this.label1.TabIndex = 0;
+			this.label1.Text = "個体値：";
 			// 
 			// groupBox3
 			// 
@@ -326,6 +331,7 @@
 			// f_TextBoxIv5_2
 			// 
 			this.f_TextBoxIv5_2.Location = new System.Drawing.Point(425, 22);
+			this.f_TextBoxIv5_2.MaxLength = 2;
 			this.f_TextBoxIv5_2.Name = "f_TextBoxIv5_2";
 			this.f_TextBoxIv5_2.Size = new System.Drawing.Size(34, 19);
 			this.f_TextBoxIv5_2.TabIndex = 12;
@@ -343,6 +349,7 @@
 			// f_TextBoxIv4_2
 			// 
 			this.f_TextBoxIv4_2.Location = new System.Drawing.Point(355, 22);
+			this.f_TextBoxIv4_2.MaxLength = 2;
 			this.f_TextBoxIv4_2.Name = "f_TextBoxIv4_2";
 			this.f_TextBoxIv4_2.Size = new System.Drawing.Size(34, 19);
 			this.f_TextBoxIv4_2.TabIndex = 10;
@@ -360,6 +367,7 @@
 			// f_TextBoxIv3_2
 			// 
 			this.f_TextBoxIv3_2.Location = new System.Drawing.Point(285, 22);
+			this.f_TextBoxIv3_2.MaxLength = 2;
 			this.f_TextBoxIv3_2.Name = "f_TextBoxIv3_2";
 			this.f_TextBoxIv3_2.Size = new System.Drawing.Size(34, 19);
 			this.f_TextBoxIv3_2.TabIndex = 8;
@@ -377,6 +385,7 @@
 			// f_TextBoxIv2_2
 			// 
 			this.f_TextBoxIv2_2.Location = new System.Drawing.Point(215, 22);
+			this.f_TextBoxIv2_2.MaxLength = 2;
 			this.f_TextBoxIv2_2.Name = "f_TextBoxIv2_2";
 			this.f_TextBoxIv2_2.Size = new System.Drawing.Size(34, 19);
 			this.f_TextBoxIv2_2.TabIndex = 6;
@@ -394,6 +403,7 @@
 			// f_TextBoxIv1_2
 			// 
 			this.f_TextBoxIv1_2.Location = new System.Drawing.Point(145, 22);
+			this.f_TextBoxIv1_2.MaxLength = 2;
 			this.f_TextBoxIv1_2.Name = "f_TextBoxIv1_2";
 			this.f_TextBoxIv1_2.Size = new System.Drawing.Size(34, 19);
 			this.f_TextBoxIv1_2.TabIndex = 4;
@@ -490,23 +500,6 @@
 			this.groupBox2.TabIndex = 22;
 			this.groupBox2.TabStop = false;
 			// 
-			// label18
-			// 
-			this.label18.AutoSize = true;
-			this.label18.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label18.Location = new System.Drawing.Point(14, 59);
-			this.label18.Name = "label18";
-			this.label18.Size = new System.Drawing.Size(71, 12);
-			this.label18.TabIndex = 22;
-			this.label18.Text = "最大消費数：";
-			// 
-			// f_TextBoxMaxFrame
-			// 
-			this.f_TextBoxMaxFrame.Location = new System.Drawing.Point(91, 56);
-			this.f_TextBoxMaxFrame.Name = "f_TextBoxMaxFrame";
-			this.f_TextBoxMaxFrame.Size = new System.Drawing.Size(67, 19);
-			this.f_TextBoxMaxFrame.TabIndex = 23;
-			// 
 			// f_CheckBoxListShiny
 			// 
 			this.f_CheckBoxListShiny.AutoSize = true;
@@ -518,6 +511,23 @@
 			this.f_CheckBoxListShiny.Text = "色違いのみ";
 			this.f_CheckBoxListShiny.UseVisualStyleBackColor = true;
 			// 
+			// f_TextBoxMaxFrame
+			// 
+			this.f_TextBoxMaxFrame.Location = new System.Drawing.Point(91, 56);
+			this.f_TextBoxMaxFrame.Name = "f_TextBoxMaxFrame";
+			this.f_TextBoxMaxFrame.Size = new System.Drawing.Size(67, 19);
+			this.f_TextBoxMaxFrame.TabIndex = 23;
+			// 
+			// label18
+			// 
+			this.label18.AutoSize = true;
+			this.label18.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.label18.Location = new System.Drawing.Point(14, 59);
+			this.label18.Name = "label18";
+			this.label18.Size = new System.Drawing.Size(71, 12);
+			this.label18.TabIndex = 22;
+			this.label18.Text = "最大消費数：";
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -528,7 +538,9 @@
 			this.Controls.Add(this.groupBox3);
 			this.Controls.Add(this.groupBox1);
 			this.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.MaximizeBox = false;
 			this.Name = "MainForm";
 			this.Text = "1-Star Seed Search v0.00";
 			this.groupBox1.ResumeLayout(false);
