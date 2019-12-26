@@ -58,7 +58,7 @@ void PrepareSix(int ivOffset)
 	CalculateCoefficientData(LENGTH);
 }
 
-_u64 SearchSix(int ivs)
+_u64 SearchSix(_u64 ivs)
 {
 	XoroshiroState xoroshiro;
 

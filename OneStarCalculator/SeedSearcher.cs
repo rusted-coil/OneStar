@@ -6,9 +6,17 @@ namespace OneStarCalculator
 {
 	public class SeedSearcher
 	{
+		// モード
+		public enum Mode {
+			Star12,
+			Star35
+		};
+		Mode m_Mode;
+
 		// 結果
 		public List<ulong> Result { get; } = new List<ulong>();
 
+		// ★1～2検索
 		[DllImport("OneStarCalculatorLib.dll")]
 		static extern void Prepare(int rerolls);
 
@@ -21,83 +29,97 @@ namespace OneStarCalculator
 		[DllImport("OneStarCalculatorLib.dll")]
 		static extern ulong Search(ulong ivs);
 
-		// テスト
-		[DllImport("OneStarCalculatorLib.dll")]
-		public static extern void SetSixCondition(int fixed1, int fixed2, int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int nature);
-
+		// ★3～5検索
 		[DllImport("OneStarCalculatorLib.dll")]
 		static extern void PrepareSix(int ivOffset);
 
 		[DllImport("OneStarCalculatorLib.dll")]
-		static extern ulong SearchSix(int ivs);
+		public static extern void SetSixCondition(int fixed1, int fixed2, int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int nature);
 
-		public SeedSearcher()
+		[DllImport("OneStarCalculatorLib.dll")]
+		static extern ulong SearchSix(ulong ivs);
+
+		public SeedSearcher(Mode mode)
 		{
+			m_Mode = mode;
 		}
 
 		public void Calculate(bool isEnableStop)
 		{
-			// 探索範囲
-			int searchLower = 0;
-			int searchUpper = 0x7FFFFFFF;
-
 			Result.Clear();
 
-			// C++ライブラリ側の事前計算
-			Prepare(2);
-
-			// 並列探索
-			if (isEnableStop)
+			if (m_Mode == Mode.Star12)
 			{
-				// 中断あり
-				Parallel.For(searchLower, searchUpper, (ivs, state) => {
-					ulong ivs64 = (ulong)ivs;
-					ulong result = Search(ivs64);
-					if (result != 0)
-					{
-						Result.Add(result);
-						state.Stop();
-					}
-					result = Search(ivs64 | (1ul << 31));
-					if (result != 0)
-					{
-						Result.Add(result);
-						state.Stop();
-					}
-				});
-			}
-			else
-			{
-				// 中断なし
-				Parallel.For(searchLower, searchUpper, (ivs) => {
-					ulong result = Search((ulong)ivs);
-					if (result != 0)
-					{
-						Result.Add(result);
-					}
-				});
-			}
-		}
+				// 探索範囲
+				int searchLower = 0;
+				int searchUpper = 0xFFFFFFF;
 
-		public void CalculateSix()
-		{
-			// 探索範囲
-			int searchLower = 0;
-			int searchUpper = 0x3FFFFFFF;
+				// C++ライブラリ側の事前計算
+				Prepare(0);
 
-			Result.Clear();
-
-			PrepareSix(0);
-
-			// 中断あり
-			Parallel.For(searchLower, searchUpper, (ivs, state) => {
-				ulong result = SearchSix(ivs);
-				if (result != 0)
+				// 並列探索
+				if (isEnableStop)
 				{
-					Result.Add(result);
-//					state.Stop();
+					// 中断あり
+					Parallel.For(searchLower, searchUpper, (ivs, state) =>
+					{
+						ulong result = Search((ulong)ivs);
+						if (result != 0)
+						{
+							Result.Add(result);
+							state.Stop();
+						}
+					});
 				}
-			});
+				else
+				{
+					// 中断なし
+					Parallel.For(searchLower, searchUpper, (ivs) =>
+					{
+						ulong result = Search((ulong)ivs);
+						if (result != 0)
+						{
+							Result.Add(result);
+						}
+					});
+				}
+			}
+			else if (m_Mode == Mode.Star35)
+			{
+				// 探索範囲
+				int searchLower = 0;
+				int searchUpper = 0x3FFFFFFF;
+
+				Result.Clear();
+
+				// C++ライブラリ側の事前計算
+				PrepareSix(0);
+
+				// 並列探索
+				if (isEnableStop)
+				{
+					// 中断あり
+					Parallel.For(searchLower, searchUpper, (ivs, state) => {
+						ulong result = SearchSix((ulong)ivs);
+						if (result != 0)
+						{
+							Result.Add(result);
+							state.Stop();
+						}
+					});
+				}
+				else
+				{
+					// 中断なし
+					Parallel.For(searchLower, searchUpper, (ivs) => {
+						ulong result = SearchSix((ulong)ivs);
+						if (result != 0)
+						{
+							Result.Add(result);
+						}
+					});
+				}
+			}
 		}
 	}
 }

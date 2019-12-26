@@ -50,11 +50,7 @@ void CalculateInverseMatrix(int length)
 	}
 
 	// ŒW”•”•ª‚¾‚¯”²‚«o‚µ
-	_u64 mask = 0;
-	for (int i = 0; i < 64 - length; ++i)
-	{
-		mask |= (1ull << i);
-	}
+	_u64 mask = (1ull << (64 - length)) - 1;
 	for (int i = 0; i < length; ++i)
 	{
 		g_Coefficient[i] = g_InputMatrix[i] & mask;
