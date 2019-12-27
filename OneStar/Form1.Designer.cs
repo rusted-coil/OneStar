@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.f_CheckBoxNoGender_1 = new System.Windows.Forms.CheckBox();
@@ -140,6 +141,17 @@
 			this.label44 = new System.Windows.Forms.Label();
 			this.label45 = new System.Windows.Forms.Label();
 			this.f_TextBoxRerolls = new System.Windows.Forms.TextBox();
+			this.tabPage3 = new System.Windows.Forms.TabPage();
+			this.f_CheckBoxDream_351 = new System.Windows.Forms.CheckBox();
+			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+			this.f_ComboBoxCharacteristic_351 = new System.Windows.Forms.ComboBox();
+			this.f_CheckBoxDream_352 = new System.Windows.Forms.CheckBox();
+			this.f_ComboBoxCharacteristic_352 = new System.Windows.Forms.ComboBox();
+			this.f_ComboBoxCharacteristic_353 = new System.Windows.Forms.ComboBox();
+			this.f_CheckBoxDream_353 = new System.Windows.Forms.CheckBox();
+			this.f_CheckBoxDream_List = new System.Windows.Forms.CheckBox();
+			this.f_CheckBoxNoGender_List = new System.Windows.Forms.CheckBox();
+			this.f_CheckBoxShowSeed = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -150,6 +162,8 @@
 			this.groupBox5.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			this.tabPage2.SuspendLayout();
+			this.tabPage3.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -522,7 +536,7 @@
 			// 
 			this.f_ButtonStartSearch.BackColor = System.Drawing.Color.GreenYellow;
 			this.f_ButtonStartSearch.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_ButtonStartSearch.Location = new System.Drawing.Point(183, 428);
+			this.f_ButtonStartSearch.Location = new System.Drawing.Point(179, 481);
 			this.f_ButtonStartSearch.Name = "f_ButtonStartSearch";
 			this.f_ButtonStartSearch.Size = new System.Drawing.Size(176, 42);
 			this.f_ButtonStartSearch.TabIndex = 18;
@@ -550,9 +564,9 @@
 			// f_ButtonListGenerate
 			// 
 			this.f_ButtonListGenerate.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_ButtonListGenerate.Location = new System.Drawing.Point(354, 33);
+			this.f_ButtonListGenerate.Location = new System.Drawing.Point(327, 92);
 			this.f_ButtonListGenerate.Name = "f_ButtonListGenerate";
-			this.f_ButtonListGenerate.Size = new System.Drawing.Size(105, 38);
+			this.f_ButtonListGenerate.Size = new System.Drawing.Size(154, 52);
 			this.f_ButtonListGenerate.TabIndex = 21;
 			this.f_ButtonListGenerate.Text = "リスト出力";
 			this.f_ButtonListGenerate.UseVisualStyleBackColor = true;
@@ -560,6 +574,9 @@
 			// 
 			// groupBox2
 			// 
+			this.groupBox2.Controls.Add(this.f_CheckBoxShowSeed);
+			this.groupBox2.Controls.Add(this.f_CheckBoxNoGender_List);
+			this.groupBox2.Controls.Add(this.f_CheckBoxDream_List);
 			this.groupBox2.Controls.Add(this.f_TextBoxListVCount);
 			this.groupBox2.Controls.Add(this.label46);
 			this.groupBox2.Controls.Add(this.f_CheckBoxListShiny);
@@ -568,15 +585,15 @@
 			this.groupBox2.Controls.Add(this.label17);
 			this.groupBox2.Controls.Add(this.f_ButtonListGenerate);
 			this.groupBox2.Controls.Add(this.f_TextBoxResultSeed);
-			this.groupBox2.Location = new System.Drawing.Point(11, 482);
+			this.groupBox2.Location = new System.Drawing.Point(8, 2);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(522, 93);
+			this.groupBox2.Size = new System.Drawing.Size(522, 162);
 			this.groupBox2.TabIndex = 22;
 			this.groupBox2.TabStop = false;
 			// 
 			// f_TextBoxListVCount
 			// 
-			this.f_TextBoxListVCount.Location = new System.Drawing.Point(303, 18);
+			this.f_TextBoxListVCount.Location = new System.Drawing.Point(157, 51);
 			this.f_TextBoxListVCount.Name = "f_TextBoxListVCount";
 			this.f_TextBoxListVCount.Size = new System.Drawing.Size(30, 19);
 			this.f_TextBoxListVCount.TabIndex = 26;
@@ -585,7 +602,7 @@
 			// 
 			this.label46.AutoSize = true;
 			this.label46.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label46.Location = new System.Drawing.Point(250, 23);
+			this.label46.Location = new System.Drawing.Point(104, 56);
 			this.label46.Name = "label46";
 			this.label46.Size = new System.Drawing.Size(55, 12);
 			this.label46.TabIndex = 25;
@@ -595,7 +612,7 @@
 			// 
 			this.f_CheckBoxListShiny.AutoSize = true;
 			this.f_CheckBoxListShiny.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_CheckBoxListShiny.Location = new System.Drawing.Point(177, 58);
+			this.f_CheckBoxListShiny.Location = new System.Drawing.Point(177, 91);
 			this.f_CheckBoxListShiny.Name = "f_CheckBoxListShiny";
 			this.f_CheckBoxListShiny.Size = new System.Drawing.Size(79, 16);
 			this.f_CheckBoxListShiny.TabIndex = 24;
@@ -604,7 +621,7 @@
 			// 
 			// f_TextBoxMaxFrame
 			// 
-			this.f_TextBoxMaxFrame.Location = new System.Drawing.Point(91, 56);
+			this.f_TextBoxMaxFrame.Location = new System.Drawing.Point(91, 89);
 			this.f_TextBoxMaxFrame.Name = "f_TextBoxMaxFrame";
 			this.f_TextBoxMaxFrame.Size = new System.Drawing.Size(67, 19);
 			this.f_TextBoxMaxFrame.TabIndex = 23;
@@ -613,7 +630,7 @@
 			// 
 			this.label18.AutoSize = true;
 			this.label18.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label18.Location = new System.Drawing.Point(14, 59);
+			this.label18.Location = new System.Drawing.Point(14, 92);
 			this.label18.Name = "label18";
 			this.label18.Size = new System.Drawing.Size(71, 12);
 			this.label18.TabIndex = 22;
@@ -624,7 +641,7 @@
 			this.f_CheckBoxStop.AutoSize = true;
 			this.f_CheckBoxStop.BackColor = System.Drawing.SystemColors.Control;
 			this.f_CheckBoxStop.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_CheckBoxStop.Location = new System.Drawing.Point(377, 456);
+			this.f_CheckBoxStop.Location = new System.Drawing.Point(373, 509);
 			this.f_CheckBoxStop.Name = "f_CheckBoxStop";
 			this.f_CheckBoxStop.Size = new System.Drawing.Size(111, 16);
 			this.f_CheckBoxStop.TabIndex = 23;
@@ -639,10 +656,11 @@
 			// 
 			this.f_TabControlMain.Controls.Add(this.tabPage1);
 			this.f_TabControlMain.Controls.Add(this.tabPage2);
+			this.f_TabControlMain.Controls.Add(this.tabPage3);
 			this.f_TabControlMain.Location = new System.Drawing.Point(12, 12);
 			this.f_TabControlMain.Name = "f_TabControlMain";
 			this.f_TabControlMain.SelectedIndex = 0;
-			this.f_TabControlMain.Size = new System.Drawing.Size(525, 402);
+			this.f_TabControlMain.Size = new System.Drawing.Size(547, 457);
 			this.f_TabControlMain.TabIndex = 24;
 			// 
 			// tabPage1
@@ -656,7 +674,7 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(517, 376);
+			this.tabPage1.Size = new System.Drawing.Size(539, 431);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "★3～5";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -664,7 +682,7 @@
 			// f_ButtonIvsCheck
 			// 
 			this.f_ButtonIvsCheck.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_ButtonIvsCheck.Location = new System.Drawing.Point(136, 118);
+			this.f_ButtonIvsCheck.Location = new System.Drawing.Point(174, 135);
 			this.f_ButtonIvsCheck.Name = "f_ButtonIvsCheck";
 			this.f_ButtonIvsCheck.Size = new System.Drawing.Size(115, 31);
 			this.f_ButtonIvsCheck.TabIndex = 30;
@@ -676,7 +694,7 @@
 			// 
 			this.f_LabelCheckResult.AutoSize = true;
 			this.f_LabelCheckResult.ForeColor = System.Drawing.Color.Blue;
-			this.f_LabelCheckResult.Location = new System.Drawing.Point(296, 127);
+			this.f_LabelCheckResult.Location = new System.Drawing.Point(334, 144);
 			this.f_LabelCheckResult.Name = "f_LabelCheckResult";
 			this.f_LabelCheckResult.Size = new System.Drawing.Size(94, 12);
 			this.f_LabelCheckResult.TabIndex = 29;
@@ -686,7 +704,7 @@
 			// 
 			this.label43.AutoSize = true;
 			this.label43.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label43.Location = new System.Drawing.Point(264, 127);
+			this.label43.Location = new System.Drawing.Point(302, 144);
 			this.label43.Name = "label43";
 			this.label43.Size = new System.Drawing.Size(35, 12);
 			this.label43.TabIndex = 28;
@@ -694,6 +712,8 @@
 			// 
 			// groupBox6
 			// 
+			this.groupBox6.Controls.Add(this.f_CheckBoxDream_353);
+			this.groupBox6.Controls.Add(this.f_ComboBoxCharacteristic_353);
 			this.groupBox6.Controls.Add(this.f_CheckBoxNoGender_353);
 			this.groupBox6.Controls.Add(this.f_ComboBoxAbility_353);
 			this.groupBox6.Controls.Add(this.label35);
@@ -711,9 +731,9 @@
 			this.groupBox6.Controls.Add(this.f_TextBoxIv0_353);
 			this.groupBox6.Controls.Add(this.label41);
 			this.groupBox6.Controls.Add(this.label42);
-			this.groupBox6.Location = new System.Drawing.Point(12, 265);
+			this.groupBox6.Location = new System.Drawing.Point(11, 308);
 			this.groupBox6.Name = "groupBox6";
-			this.groupBox6.Size = new System.Drawing.Size(491, 98);
+			this.groupBox6.Size = new System.Drawing.Size(513, 117);
 			this.groupBox6.TabIndex = 27;
 			this.groupBox6.TabStop = false;
 			this.groupBox6.Text = "5匹目";
@@ -722,10 +742,10 @@
 			// 
 			this.f_CheckBoxNoGender_353.AutoSize = true;
 			this.f_CheckBoxNoGender_353.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_CheckBoxNoGender_353.Location = new System.Drawing.Point(276, 59);
+			this.f_CheckBoxNoGender_353.Location = new System.Drawing.Point(405, 84);
 			this.f_CheckBoxNoGender_353.Name = "f_CheckBoxNoGender_353";
 			this.f_CheckBoxNoGender_353.Size = new System.Drawing.Size(102, 16);
-			this.f_CheckBoxNoGender_353.TabIndex = 16;
+			this.f_CheckBoxNoGender_353.TabIndex = 10;
 			this.f_CheckBoxNoGender_353.Text = "性別固定/不明";
 			this.f_CheckBoxNoGender_353.UseVisualStyleBackColor = true;
 			// 
@@ -733,16 +753,16 @@
 			// 
 			this.f_ComboBoxAbility_353.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.f_ComboBoxAbility_353.FormattingEnabled = true;
-			this.f_ComboBoxAbility_353.Location = new System.Drawing.Point(192, 57);
+			this.f_ComboBoxAbility_353.Location = new System.Drawing.Point(285, 82);
 			this.f_ComboBoxAbility_353.Name = "f_ComboBoxAbility_353";
-			this.f_ComboBoxAbility_353.Size = new System.Drawing.Size(64, 20);
-			this.f_ComboBoxAbility_353.TabIndex = 15;
+			this.f_ComboBoxAbility_353.Size = new System.Drawing.Size(108, 20);
+			this.f_ComboBoxAbility_353.TabIndex = 9;
 			// 
 			// label35
 			// 
 			this.label35.AutoSize = true;
 			this.label35.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label35.Location = new System.Drawing.Point(6, 60);
+			this.label35.Location = new System.Drawing.Point(6, 85);
 			this.label35.Name = "label35";
 			this.label35.Size = new System.Drawing.Size(35, 12);
 			this.label35.TabIndex = 14;
@@ -752,24 +772,24 @@
 			// 
 			this.f_ComboBoxNature_353.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.f_ComboBoxNature_353.FormattingEnabled = true;
-			this.f_ComboBoxNature_353.Location = new System.Drawing.Point(47, 57);
+			this.f_ComboBoxNature_353.Location = new System.Drawing.Point(47, 82);
 			this.f_ComboBoxNature_353.Name = "f_ComboBoxNature_353";
-			this.f_ComboBoxNature_353.Size = new System.Drawing.Size(111, 20);
-			this.f_ComboBoxNature_353.TabIndex = 13;
+			this.f_ComboBoxNature_353.Size = new System.Drawing.Size(74, 20);
+			this.f_ComboBoxNature_353.TabIndex = 7;
 			// 
 			// f_TextBoxIv5_353
 			// 
-			this.f_TextBoxIv5_353.Location = new System.Drawing.Point(425, 22);
+			this.f_TextBoxIv5_353.Location = new System.Drawing.Point(425, 51);
 			this.f_TextBoxIv5_353.MaxLength = 2;
 			this.f_TextBoxIv5_353.Name = "f_TextBoxIv5_353";
 			this.f_TextBoxIv5_353.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv5_353.TabIndex = 12;
+			this.f_TextBoxIv5_353.TabIndex = 6;
 			// 
 			// label36
 			// 
 			this.label36.AutoSize = true;
 			this.label36.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label36.Location = new System.Drawing.Point(405, 25);
+			this.label36.Location = new System.Drawing.Point(405, 54);
 			this.label36.Name = "label36";
 			this.label36.Size = new System.Drawing.Size(12, 12);
 			this.label36.TabIndex = 11;
@@ -777,17 +797,17 @@
 			// 
 			// f_TextBoxIv4_353
 			// 
-			this.f_TextBoxIv4_353.Location = new System.Drawing.Point(355, 22);
+			this.f_TextBoxIv4_353.Location = new System.Drawing.Point(355, 51);
 			this.f_TextBoxIv4_353.MaxLength = 2;
 			this.f_TextBoxIv4_353.Name = "f_TextBoxIv4_353";
 			this.f_TextBoxIv4_353.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv4_353.TabIndex = 10;
+			this.f_TextBoxIv4_353.TabIndex = 5;
 			// 
 			// label37
 			// 
 			this.label37.AutoSize = true;
 			this.label37.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label37.Location = new System.Drawing.Point(335, 25);
+			this.label37.Location = new System.Drawing.Point(335, 54);
 			this.label37.Name = "label37";
 			this.label37.Size = new System.Drawing.Size(13, 12);
 			this.label37.TabIndex = 9;
@@ -795,17 +815,17 @@
 			// 
 			// f_TextBoxIv3_353
 			// 
-			this.f_TextBoxIv3_353.Location = new System.Drawing.Point(285, 22);
+			this.f_TextBoxIv3_353.Location = new System.Drawing.Point(285, 51);
 			this.f_TextBoxIv3_353.MaxLength = 2;
 			this.f_TextBoxIv3_353.Name = "f_TextBoxIv3_353";
 			this.f_TextBoxIv3_353.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv3_353.TabIndex = 8;
+			this.f_TextBoxIv3_353.TabIndex = 4;
 			// 
 			// label38
 			// 
 			this.label38.AutoSize = true;
 			this.label38.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label38.Location = new System.Drawing.Point(265, 25);
+			this.label38.Location = new System.Drawing.Point(265, 54);
 			this.label38.Name = "label38";
 			this.label38.Size = new System.Drawing.Size(13, 12);
 			this.label38.TabIndex = 7;
@@ -813,17 +833,17 @@
 			// 
 			// f_TextBoxIv2_353
 			// 
-			this.f_TextBoxIv2_353.Location = new System.Drawing.Point(215, 22);
+			this.f_TextBoxIv2_353.Location = new System.Drawing.Point(215, 51);
 			this.f_TextBoxIv2_353.MaxLength = 2;
 			this.f_TextBoxIv2_353.Name = "f_TextBoxIv2_353";
 			this.f_TextBoxIv2_353.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv2_353.TabIndex = 6;
+			this.f_TextBoxIv2_353.TabIndex = 3;
 			// 
 			// label39
 			// 
 			this.label39.AutoSize = true;
 			this.label39.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label39.Location = new System.Drawing.Point(195, 25);
+			this.label39.Location = new System.Drawing.Point(195, 54);
 			this.label39.Name = "label39";
 			this.label39.Size = new System.Drawing.Size(13, 12);
 			this.label39.TabIndex = 5;
@@ -831,17 +851,17 @@
 			// 
 			// f_TextBoxIv1_353
 			// 
-			this.f_TextBoxIv1_353.Location = new System.Drawing.Point(145, 22);
+			this.f_TextBoxIv1_353.Location = new System.Drawing.Point(145, 51);
 			this.f_TextBoxIv1_353.MaxLength = 2;
 			this.f_TextBoxIv1_353.Name = "f_TextBoxIv1_353";
 			this.f_TextBoxIv1_353.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv1_353.TabIndex = 4;
+			this.f_TextBoxIv1_353.TabIndex = 2;
 			// 
 			// label40
 			// 
 			this.label40.AutoSize = true;
 			this.label40.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label40.Location = new System.Drawing.Point(125, 25);
+			this.label40.Location = new System.Drawing.Point(125, 54);
 			this.label40.Name = "label40";
 			this.label40.Size = new System.Drawing.Size(13, 12);
 			this.label40.TabIndex = 3;
@@ -849,17 +869,17 @@
 			// 
 			// f_TextBoxIv0_353
 			// 
-			this.f_TextBoxIv0_353.Location = new System.Drawing.Point(75, 22);
+			this.f_TextBoxIv0_353.Location = new System.Drawing.Point(75, 51);
 			this.f_TextBoxIv0_353.MaxLength = 2;
 			this.f_TextBoxIv0_353.Name = "f_TextBoxIv0_353";
 			this.f_TextBoxIv0_353.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv0_353.TabIndex = 2;
+			this.f_TextBoxIv0_353.TabIndex = 1;
 			// 
 			// label41
 			// 
 			this.label41.AutoSize = true;
 			this.label41.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label41.Location = new System.Drawing.Point(55, 25);
+			this.label41.Location = new System.Drawing.Point(55, 54);
 			this.label41.Name = "label41";
 			this.label41.Size = new System.Drawing.Size(13, 12);
 			this.label41.TabIndex = 1;
@@ -869,7 +889,7 @@
 			// 
 			this.label42.AutoSize = true;
 			this.label42.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label42.Location = new System.Drawing.Point(6, 25);
+			this.label42.Location = new System.Drawing.Point(6, 54);
 			this.label42.Name = "label42";
 			this.label42.Size = new System.Drawing.Size(47, 12);
 			this.label42.TabIndex = 0;
@@ -877,6 +897,8 @@
 			// 
 			// groupBox5
 			// 
+			this.groupBox5.Controls.Add(this.f_ComboBoxCharacteristic_352);
+			this.groupBox5.Controls.Add(this.f_CheckBoxDream_352);
 			this.groupBox5.Controls.Add(this.f_CheckBoxNoGender_352);
 			this.groupBox5.Controls.Add(this.f_ComboBoxAbility_352);
 			this.groupBox5.Controls.Add(this.label27);
@@ -894,9 +916,9 @@
 			this.groupBox5.Controls.Add(this.f_TextBoxIv0_352);
 			this.groupBox5.Controls.Add(this.label33);
 			this.groupBox5.Controls.Add(this.label34);
-			this.groupBox5.Location = new System.Drawing.Point(12, 161);
+			this.groupBox5.Location = new System.Drawing.Point(11, 183);
 			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(491, 98);
+			this.groupBox5.Size = new System.Drawing.Size(513, 117);
 			this.groupBox5.TabIndex = 26;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "4匹目-3V～4V";
@@ -905,10 +927,10 @@
 			// 
 			this.f_CheckBoxNoGender_352.AutoSize = true;
 			this.f_CheckBoxNoGender_352.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_CheckBoxNoGender_352.Location = new System.Drawing.Point(276, 59);
+			this.f_CheckBoxNoGender_352.Location = new System.Drawing.Point(405, 84);
 			this.f_CheckBoxNoGender_352.Name = "f_CheckBoxNoGender_352";
 			this.f_CheckBoxNoGender_352.Size = new System.Drawing.Size(102, 16);
-			this.f_CheckBoxNoGender_352.TabIndex = 16;
+			this.f_CheckBoxNoGender_352.TabIndex = 10;
 			this.f_CheckBoxNoGender_352.Text = "性別固定/不明";
 			this.f_CheckBoxNoGender_352.UseVisualStyleBackColor = true;
 			// 
@@ -916,16 +938,16 @@
 			// 
 			this.f_ComboBoxAbility_352.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.f_ComboBoxAbility_352.FormattingEnabled = true;
-			this.f_ComboBoxAbility_352.Location = new System.Drawing.Point(192, 57);
+			this.f_ComboBoxAbility_352.Location = new System.Drawing.Point(285, 82);
 			this.f_ComboBoxAbility_352.Name = "f_ComboBoxAbility_352";
-			this.f_ComboBoxAbility_352.Size = new System.Drawing.Size(64, 20);
-			this.f_ComboBoxAbility_352.TabIndex = 15;
+			this.f_ComboBoxAbility_352.Size = new System.Drawing.Size(108, 20);
+			this.f_ComboBoxAbility_352.TabIndex = 9;
 			// 
 			// label27
 			// 
 			this.label27.AutoSize = true;
 			this.label27.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label27.Location = new System.Drawing.Point(6, 60);
+			this.label27.Location = new System.Drawing.Point(6, 85);
 			this.label27.Name = "label27";
 			this.label27.Size = new System.Drawing.Size(35, 12);
 			this.label27.TabIndex = 14;
@@ -935,24 +957,24 @@
 			// 
 			this.f_ComboBoxNature_352.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.f_ComboBoxNature_352.FormattingEnabled = true;
-			this.f_ComboBoxNature_352.Location = new System.Drawing.Point(47, 57);
+			this.f_ComboBoxNature_352.Location = new System.Drawing.Point(47, 82);
 			this.f_ComboBoxNature_352.Name = "f_ComboBoxNature_352";
-			this.f_ComboBoxNature_352.Size = new System.Drawing.Size(111, 20);
-			this.f_ComboBoxNature_352.TabIndex = 13;
+			this.f_ComboBoxNature_352.Size = new System.Drawing.Size(74, 20);
+			this.f_ComboBoxNature_352.TabIndex = 7;
 			// 
 			// f_TextBoxIv5_352
 			// 
-			this.f_TextBoxIv5_352.Location = new System.Drawing.Point(425, 22);
+			this.f_TextBoxIv5_352.Location = new System.Drawing.Point(425, 51);
 			this.f_TextBoxIv5_352.MaxLength = 2;
 			this.f_TextBoxIv5_352.Name = "f_TextBoxIv5_352";
 			this.f_TextBoxIv5_352.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv5_352.TabIndex = 12;
+			this.f_TextBoxIv5_352.TabIndex = 6;
 			// 
 			// label28
 			// 
 			this.label28.AutoSize = true;
 			this.label28.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label28.Location = new System.Drawing.Point(405, 25);
+			this.label28.Location = new System.Drawing.Point(405, 54);
 			this.label28.Name = "label28";
 			this.label28.Size = new System.Drawing.Size(12, 12);
 			this.label28.TabIndex = 11;
@@ -960,17 +982,17 @@
 			// 
 			// f_TextBoxIv4_352
 			// 
-			this.f_TextBoxIv4_352.Location = new System.Drawing.Point(355, 22);
+			this.f_TextBoxIv4_352.Location = new System.Drawing.Point(355, 51);
 			this.f_TextBoxIv4_352.MaxLength = 2;
 			this.f_TextBoxIv4_352.Name = "f_TextBoxIv4_352";
 			this.f_TextBoxIv4_352.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv4_352.TabIndex = 10;
+			this.f_TextBoxIv4_352.TabIndex = 5;
 			// 
 			// label29
 			// 
 			this.label29.AutoSize = true;
 			this.label29.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label29.Location = new System.Drawing.Point(335, 25);
+			this.label29.Location = new System.Drawing.Point(335, 54);
 			this.label29.Name = "label29";
 			this.label29.Size = new System.Drawing.Size(13, 12);
 			this.label29.TabIndex = 9;
@@ -978,17 +1000,17 @@
 			// 
 			// f_TextBoxIv3_352
 			// 
-			this.f_TextBoxIv3_352.Location = new System.Drawing.Point(285, 22);
+			this.f_TextBoxIv3_352.Location = new System.Drawing.Point(285, 51);
 			this.f_TextBoxIv3_352.MaxLength = 2;
 			this.f_TextBoxIv3_352.Name = "f_TextBoxIv3_352";
 			this.f_TextBoxIv3_352.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv3_352.TabIndex = 8;
+			this.f_TextBoxIv3_352.TabIndex = 4;
 			// 
 			// label30
 			// 
 			this.label30.AutoSize = true;
 			this.label30.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label30.Location = new System.Drawing.Point(265, 25);
+			this.label30.Location = new System.Drawing.Point(265, 54);
 			this.label30.Name = "label30";
 			this.label30.Size = new System.Drawing.Size(13, 12);
 			this.label30.TabIndex = 7;
@@ -996,17 +1018,17 @@
 			// 
 			// f_TextBoxIv2_352
 			// 
-			this.f_TextBoxIv2_352.Location = new System.Drawing.Point(215, 22);
+			this.f_TextBoxIv2_352.Location = new System.Drawing.Point(215, 51);
 			this.f_TextBoxIv2_352.MaxLength = 2;
 			this.f_TextBoxIv2_352.Name = "f_TextBoxIv2_352";
 			this.f_TextBoxIv2_352.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv2_352.TabIndex = 6;
+			this.f_TextBoxIv2_352.TabIndex = 3;
 			// 
 			// label31
 			// 
 			this.label31.AutoSize = true;
 			this.label31.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label31.Location = new System.Drawing.Point(195, 25);
+			this.label31.Location = new System.Drawing.Point(195, 54);
 			this.label31.Name = "label31";
 			this.label31.Size = new System.Drawing.Size(13, 12);
 			this.label31.TabIndex = 5;
@@ -1014,17 +1036,17 @@
 			// 
 			// f_TextBoxIv1_352
 			// 
-			this.f_TextBoxIv1_352.Location = new System.Drawing.Point(145, 22);
+			this.f_TextBoxIv1_352.Location = new System.Drawing.Point(145, 51);
 			this.f_TextBoxIv1_352.MaxLength = 2;
 			this.f_TextBoxIv1_352.Name = "f_TextBoxIv1_352";
 			this.f_TextBoxIv1_352.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv1_352.TabIndex = 4;
+			this.f_TextBoxIv1_352.TabIndex = 2;
 			// 
 			// label32
 			// 
 			this.label32.AutoSize = true;
 			this.label32.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label32.Location = new System.Drawing.Point(125, 25);
+			this.label32.Location = new System.Drawing.Point(125, 54);
 			this.label32.Name = "label32";
 			this.label32.Size = new System.Drawing.Size(13, 12);
 			this.label32.TabIndex = 3;
@@ -1032,17 +1054,17 @@
 			// 
 			// f_TextBoxIv0_352
 			// 
-			this.f_TextBoxIv0_352.Location = new System.Drawing.Point(75, 22);
+			this.f_TextBoxIv0_352.Location = new System.Drawing.Point(75, 51);
 			this.f_TextBoxIv0_352.MaxLength = 2;
 			this.f_TextBoxIv0_352.Name = "f_TextBoxIv0_352";
 			this.f_TextBoxIv0_352.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv0_352.TabIndex = 2;
+			this.f_TextBoxIv0_352.TabIndex = 1;
 			// 
 			// label33
 			// 
 			this.label33.AutoSize = true;
 			this.label33.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label33.Location = new System.Drawing.Point(55, 25);
+			this.label33.Location = new System.Drawing.Point(55, 54);
 			this.label33.Name = "label33";
 			this.label33.Size = new System.Drawing.Size(13, 12);
 			this.label33.TabIndex = 1;
@@ -1052,7 +1074,7 @@
 			// 
 			this.label34.AutoSize = true;
 			this.label34.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label34.Location = new System.Drawing.Point(6, 25);
+			this.label34.Location = new System.Drawing.Point(6, 54);
 			this.label34.Name = "label34";
 			this.label34.Size = new System.Drawing.Size(47, 12);
 			this.label34.TabIndex = 0;
@@ -1060,6 +1082,8 @@
 			// 
 			// groupBox4
 			// 
+			this.groupBox4.Controls.Add(this.f_ComboBoxCharacteristic_351);
+			this.groupBox4.Controls.Add(this.f_CheckBoxDream_351);
 			this.groupBox4.Controls.Add(this.f_CheckBoxNoGender_351);
 			this.groupBox4.Controls.Add(this.f_ComboBoxAbility_351);
 			this.groupBox4.Controls.Add(this.label19);
@@ -1079,7 +1103,7 @@
 			this.groupBox4.Controls.Add(this.label26);
 			this.groupBox4.Location = new System.Drawing.Point(12, 6);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(491, 98);
+			this.groupBox4.Size = new System.Drawing.Size(513, 117);
 			this.groupBox4.TabIndex = 25;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "4匹目-2V";
@@ -1088,10 +1112,10 @@
 			// 
 			this.f_CheckBoxNoGender_351.AutoSize = true;
 			this.f_CheckBoxNoGender_351.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_CheckBoxNoGender_351.Location = new System.Drawing.Point(276, 59);
+			this.f_CheckBoxNoGender_351.Location = new System.Drawing.Point(405, 84);
 			this.f_CheckBoxNoGender_351.Name = "f_CheckBoxNoGender_351";
 			this.f_CheckBoxNoGender_351.Size = new System.Drawing.Size(102, 16);
-			this.f_CheckBoxNoGender_351.TabIndex = 16;
+			this.f_CheckBoxNoGender_351.TabIndex = 10;
 			this.f_CheckBoxNoGender_351.Text = "性別固定/不明";
 			this.f_CheckBoxNoGender_351.UseVisualStyleBackColor = true;
 			// 
@@ -1099,16 +1123,16 @@
 			// 
 			this.f_ComboBoxAbility_351.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.f_ComboBoxAbility_351.FormattingEnabled = true;
-			this.f_ComboBoxAbility_351.Location = new System.Drawing.Point(192, 57);
+			this.f_ComboBoxAbility_351.Location = new System.Drawing.Point(284, 82);
 			this.f_ComboBoxAbility_351.Name = "f_ComboBoxAbility_351";
-			this.f_ComboBoxAbility_351.Size = new System.Drawing.Size(64, 20);
-			this.f_ComboBoxAbility_351.TabIndex = 15;
+			this.f_ComboBoxAbility_351.Size = new System.Drawing.Size(108, 20);
+			this.f_ComboBoxAbility_351.TabIndex = 9;
 			// 
 			// label19
 			// 
 			this.label19.AutoSize = true;
 			this.label19.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label19.Location = new System.Drawing.Point(6, 60);
+			this.label19.Location = new System.Drawing.Point(6, 85);
 			this.label19.Name = "label19";
 			this.label19.Size = new System.Drawing.Size(35, 12);
 			this.label19.TabIndex = 14;
@@ -1118,24 +1142,24 @@
 			// 
 			this.f_ComboBoxNature_351.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.f_ComboBoxNature_351.FormattingEnabled = true;
-			this.f_ComboBoxNature_351.Location = new System.Drawing.Point(47, 57);
+			this.f_ComboBoxNature_351.Location = new System.Drawing.Point(47, 82);
 			this.f_ComboBoxNature_351.Name = "f_ComboBoxNature_351";
-			this.f_ComboBoxNature_351.Size = new System.Drawing.Size(111, 20);
-			this.f_ComboBoxNature_351.TabIndex = 13;
+			this.f_ComboBoxNature_351.Size = new System.Drawing.Size(74, 20);
+			this.f_ComboBoxNature_351.TabIndex = 7;
 			// 
 			// f_TextBoxIv5_351
 			// 
-			this.f_TextBoxIv5_351.Location = new System.Drawing.Point(425, 22);
+			this.f_TextBoxIv5_351.Location = new System.Drawing.Point(425, 51);
 			this.f_TextBoxIv5_351.MaxLength = 2;
 			this.f_TextBoxIv5_351.Name = "f_TextBoxIv5_351";
 			this.f_TextBoxIv5_351.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv5_351.TabIndex = 12;
+			this.f_TextBoxIv5_351.TabIndex = 6;
 			// 
 			// label20
 			// 
 			this.label20.AutoSize = true;
 			this.label20.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label20.Location = new System.Drawing.Point(405, 25);
+			this.label20.Location = new System.Drawing.Point(405, 54);
 			this.label20.Name = "label20";
 			this.label20.Size = new System.Drawing.Size(12, 12);
 			this.label20.TabIndex = 11;
@@ -1143,17 +1167,17 @@
 			// 
 			// f_TextBoxIv4_351
 			// 
-			this.f_TextBoxIv4_351.Location = new System.Drawing.Point(355, 22);
+			this.f_TextBoxIv4_351.Location = new System.Drawing.Point(355, 51);
 			this.f_TextBoxIv4_351.MaxLength = 2;
 			this.f_TextBoxIv4_351.Name = "f_TextBoxIv4_351";
 			this.f_TextBoxIv4_351.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv4_351.TabIndex = 10;
+			this.f_TextBoxIv4_351.TabIndex = 5;
 			// 
 			// label21
 			// 
 			this.label21.AutoSize = true;
 			this.label21.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label21.Location = new System.Drawing.Point(335, 25);
+			this.label21.Location = new System.Drawing.Point(335, 54);
 			this.label21.Name = "label21";
 			this.label21.Size = new System.Drawing.Size(13, 12);
 			this.label21.TabIndex = 9;
@@ -1161,17 +1185,17 @@
 			// 
 			// f_TextBoxIv3_351
 			// 
-			this.f_TextBoxIv3_351.Location = new System.Drawing.Point(285, 22);
+			this.f_TextBoxIv3_351.Location = new System.Drawing.Point(285, 51);
 			this.f_TextBoxIv3_351.MaxLength = 2;
 			this.f_TextBoxIv3_351.Name = "f_TextBoxIv3_351";
 			this.f_TextBoxIv3_351.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv3_351.TabIndex = 8;
+			this.f_TextBoxIv3_351.TabIndex = 4;
 			// 
 			// label22
 			// 
 			this.label22.AutoSize = true;
 			this.label22.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label22.Location = new System.Drawing.Point(265, 25);
+			this.label22.Location = new System.Drawing.Point(265, 54);
 			this.label22.Name = "label22";
 			this.label22.Size = new System.Drawing.Size(13, 12);
 			this.label22.TabIndex = 7;
@@ -1179,17 +1203,17 @@
 			// 
 			// f_TextBoxIv2_351
 			// 
-			this.f_TextBoxIv2_351.Location = new System.Drawing.Point(215, 22);
+			this.f_TextBoxIv2_351.Location = new System.Drawing.Point(215, 51);
 			this.f_TextBoxIv2_351.MaxLength = 2;
 			this.f_TextBoxIv2_351.Name = "f_TextBoxIv2_351";
 			this.f_TextBoxIv2_351.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv2_351.TabIndex = 6;
+			this.f_TextBoxIv2_351.TabIndex = 3;
 			// 
 			// label23
 			// 
 			this.label23.AutoSize = true;
 			this.label23.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label23.Location = new System.Drawing.Point(195, 25);
+			this.label23.Location = new System.Drawing.Point(195, 54);
 			this.label23.Name = "label23";
 			this.label23.Size = new System.Drawing.Size(13, 12);
 			this.label23.TabIndex = 5;
@@ -1197,17 +1221,17 @@
 			// 
 			// f_TextBoxIv1_351
 			// 
-			this.f_TextBoxIv1_351.Location = new System.Drawing.Point(145, 22);
+			this.f_TextBoxIv1_351.Location = new System.Drawing.Point(145, 51);
 			this.f_TextBoxIv1_351.MaxLength = 2;
 			this.f_TextBoxIv1_351.Name = "f_TextBoxIv1_351";
 			this.f_TextBoxIv1_351.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv1_351.TabIndex = 4;
+			this.f_TextBoxIv1_351.TabIndex = 2;
 			// 
 			// label24
 			// 
 			this.label24.AutoSize = true;
 			this.label24.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label24.Location = new System.Drawing.Point(125, 25);
+			this.label24.Location = new System.Drawing.Point(125, 54);
 			this.label24.Name = "label24";
 			this.label24.Size = new System.Drawing.Size(13, 12);
 			this.label24.TabIndex = 3;
@@ -1215,17 +1239,17 @@
 			// 
 			// f_TextBoxIv0_351
 			// 
-			this.f_TextBoxIv0_351.Location = new System.Drawing.Point(75, 22);
+			this.f_TextBoxIv0_351.Location = new System.Drawing.Point(75, 51);
 			this.f_TextBoxIv0_351.MaxLength = 2;
 			this.f_TextBoxIv0_351.Name = "f_TextBoxIv0_351";
 			this.f_TextBoxIv0_351.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv0_351.TabIndex = 2;
+			this.f_TextBoxIv0_351.TabIndex = 1;
 			// 
 			// label25
 			// 
 			this.label25.AutoSize = true;
 			this.label25.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label25.Location = new System.Drawing.Point(55, 25);
+			this.label25.Location = new System.Drawing.Point(55, 54);
 			this.label25.Name = "label25";
 			this.label25.Size = new System.Drawing.Size(13, 12);
 			this.label25.TabIndex = 1;
@@ -1235,7 +1259,7 @@
 			// 
 			this.label26.AutoSize = true;
 			this.label26.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label26.Location = new System.Drawing.Point(6, 25);
+			this.label26.Location = new System.Drawing.Point(6, 54);
 			this.label26.Name = "label26";
 			this.label26.Size = new System.Drawing.Size(47, 12);
 			this.label26.TabIndex = 0;
@@ -1248,7 +1272,7 @@
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(517, 376);
+			this.tabPage2.Size = new System.Drawing.Size(539, 431);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "★1～2";
 			this.tabPage2.UseVisualStyleBackColor = true;
@@ -1257,7 +1281,7 @@
 			// 
 			this.label44.AutoSize = true;
 			this.label44.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label44.Location = new System.Drawing.Point(377, 434);
+			this.label44.Location = new System.Drawing.Point(373, 487);
 			this.label44.Name = "label44";
 			this.label44.Size = new System.Drawing.Size(99, 12);
 			this.label44.TabIndex = 25;
@@ -1267,7 +1291,7 @@
 			// 
 			this.label45.AutoSize = true;
 			this.label45.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label45.Location = new System.Drawing.Point(501, 434);
+			this.label45.Location = new System.Drawing.Point(497, 487);
 			this.label45.Name = "label45";
 			this.label45.Size = new System.Drawing.Size(36, 12);
 			this.label45.TabIndex = 26;
@@ -1275,29 +1299,131 @@
 			// 
 			// f_TextBoxRerolls
 			// 
-			this.f_TextBoxRerolls.Location = new System.Drawing.Point(475, 430);
+			this.f_TextBoxRerolls.Location = new System.Drawing.Point(471, 483);
 			this.f_TextBoxRerolls.Name = "f_TextBoxRerolls";
 			this.f_TextBoxRerolls.Size = new System.Drawing.Size(24, 19);
 			this.f_TextBoxRerolls.TabIndex = 27;
+			// 
+			// tabPage3
+			// 
+			this.tabPage3.Controls.Add(this.groupBox2);
+			this.tabPage3.Location = new System.Drawing.Point(4, 22);
+			this.tabPage3.Name = "tabPage3";
+			this.tabPage3.Size = new System.Drawing.Size(539, 431);
+			this.tabPage3.TabIndex = 2;
+			this.tabPage3.Text = "リスト出力";
+			this.tabPage3.UseVisualStyleBackColor = true;
+			// 
+			// f_CheckBoxDream_351
+			// 
+			this.f_CheckBoxDream_351.AutoSize = true;
+			this.f_CheckBoxDream_351.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_CheckBoxDream_351.Location = new System.Drawing.Point(8, 25);
+			this.f_CheckBoxDream_351.Name = "f_CheckBoxDream_351";
+			this.f_CheckBoxDream_351.Size = new System.Drawing.Size(78, 16);
+			this.f_CheckBoxDream_351.TabIndex = 0;
+			this.f_CheckBoxDream_351.Text = "夢特性あり";
+			this.f_CheckBoxDream_351.UseVisualStyleBackColor = true;
+			// 
+			// f_ComboBoxCharacteristic_351
+			// 
+			this.f_ComboBoxCharacteristic_351.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.f_ComboBoxCharacteristic_351.FormattingEnabled = true;
+			this.f_ComboBoxCharacteristic_351.Location = new System.Drawing.Point(139, 82);
+			this.f_ComboBoxCharacteristic_351.Name = "f_ComboBoxCharacteristic_351";
+			this.f_ComboBoxCharacteristic_351.Size = new System.Drawing.Size(125, 20);
+			this.f_ComboBoxCharacteristic_351.TabIndex = 8;
+			// 
+			// f_CheckBoxDream_352
+			// 
+			this.f_CheckBoxDream_352.AutoSize = true;
+			this.f_CheckBoxDream_352.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_CheckBoxDream_352.Location = new System.Drawing.Point(8, 25);
+			this.f_CheckBoxDream_352.Name = "f_CheckBoxDream_352";
+			this.f_CheckBoxDream_352.Size = new System.Drawing.Size(78, 16);
+			this.f_CheckBoxDream_352.TabIndex = 0;
+			this.f_CheckBoxDream_352.Text = "夢特性あり";
+			this.f_CheckBoxDream_352.UseVisualStyleBackColor = true;
+			// 
+			// f_ComboBoxCharacteristic_352
+			// 
+			this.f_ComboBoxCharacteristic_352.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.f_ComboBoxCharacteristic_352.FormattingEnabled = true;
+			this.f_ComboBoxCharacteristic_352.Location = new System.Drawing.Point(139, 82);
+			this.f_ComboBoxCharacteristic_352.Name = "f_ComboBoxCharacteristic_352";
+			this.f_ComboBoxCharacteristic_352.Size = new System.Drawing.Size(125, 20);
+			this.f_ComboBoxCharacteristic_352.TabIndex = 8;
+			// 
+			// f_ComboBoxCharacteristic_353
+			// 
+			this.f_ComboBoxCharacteristic_353.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.f_ComboBoxCharacteristic_353.FormattingEnabled = true;
+			this.f_ComboBoxCharacteristic_353.Location = new System.Drawing.Point(139, 82);
+			this.f_ComboBoxCharacteristic_353.Name = "f_ComboBoxCharacteristic_353";
+			this.f_ComboBoxCharacteristic_353.Size = new System.Drawing.Size(125, 20);
+			this.f_ComboBoxCharacteristic_353.TabIndex = 8;
+			// 
+			// f_CheckBoxDream_353
+			// 
+			this.f_CheckBoxDream_353.AutoSize = true;
+			this.f_CheckBoxDream_353.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_CheckBoxDream_353.Location = new System.Drawing.Point(8, 25);
+			this.f_CheckBoxDream_353.Name = "f_CheckBoxDream_353";
+			this.f_CheckBoxDream_353.Size = new System.Drawing.Size(78, 16);
+			this.f_CheckBoxDream_353.TabIndex = 0;
+			this.f_CheckBoxDream_353.Text = "夢特性あり";
+			this.f_CheckBoxDream_353.UseVisualStyleBackColor = true;
+			// 
+			// f_CheckBoxDream_List
+			// 
+			this.f_CheckBoxDream_List.AutoSize = true;
+			this.f_CheckBoxDream_List.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_CheckBoxDream_List.Location = new System.Drawing.Point(16, 55);
+			this.f_CheckBoxDream_List.Name = "f_CheckBoxDream_List";
+			this.f_CheckBoxDream_List.Size = new System.Drawing.Size(78, 16);
+			this.f_CheckBoxDream_List.TabIndex = 27;
+			this.f_CheckBoxDream_List.Text = "夢特性あり";
+			this.f_CheckBoxDream_List.UseVisualStyleBackColor = true;
+			// 
+			// f_CheckBoxNoGender_List
+			// 
+			this.f_CheckBoxNoGender_List.AutoSize = true;
+			this.f_CheckBoxNoGender_List.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_CheckBoxNoGender_List.Location = new System.Drawing.Point(220, 55);
+			this.f_CheckBoxNoGender_List.Name = "f_CheckBoxNoGender_List";
+			this.f_CheckBoxNoGender_List.Size = new System.Drawing.Size(102, 16);
+			this.f_CheckBoxNoGender_List.TabIndex = 28;
+			this.f_CheckBoxNoGender_List.Text = "性別固定/不明";
+			this.f_CheckBoxNoGender_List.UseVisualStyleBackColor = true;
+			// 
+			// f_CheckBoxShowSeed
+			// 
+			this.f_CheckBoxShowSeed.AutoSize = true;
+			this.f_CheckBoxShowSeed.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_CheckBoxShowSeed.Location = new System.Drawing.Point(16, 128);
+			this.f_CheckBoxShowSeed.Name = "f_CheckBoxShowSeed";
+			this.f_CheckBoxShowSeed.Size = new System.Drawing.Size(123, 16);
+			this.f_CheckBoxShowSeed.TabIndex = 29;
+			this.f_CheckBoxShowSeed.Text = "Seedの値を表示する";
+			this.f_CheckBoxShowSeed.UseVisualStyleBackColor = true;
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(549, 587);
+			this.ClientSize = new System.Drawing.Size(570, 543);
 			this.Controls.Add(this.f_TextBoxRerolls);
 			this.Controls.Add(this.label45);
 			this.Controls.Add(this.label44);
 			this.Controls.Add(this.f_TabControlMain);
 			this.Controls.Add(this.f_CheckBoxStop);
-			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.f_ButtonStartSearch);
 			this.ForeColor = System.Drawing.SystemColors.ControlLightLight;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.Name = "MainForm";
-			this.Text = "1-Star Seed Search v1.00";
+			this.Text = "1-Star Seed Search v1.01";
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.groupBox3.ResumeLayout(false);
@@ -1315,6 +1441,8 @@
 			this.groupBox4.ResumeLayout(false);
 			this.groupBox4.PerformLayout();
 			this.tabPage2.ResumeLayout(false);
+			this.tabPage3.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -1433,6 +1561,17 @@
 		private System.Windows.Forms.Label label44;
 		private System.Windows.Forms.TextBox f_TextBoxListVCount;
 		private System.Windows.Forms.Label label46;
+		private System.Windows.Forms.TabPage tabPage3;
+		private System.Windows.Forms.CheckBox f_CheckBoxDream_351;
+		private System.Windows.Forms.BindingSource bindingSource1;
+		private System.Windows.Forms.ComboBox f_ComboBoxCharacteristic_351;
+		private System.Windows.Forms.CheckBox f_CheckBoxDream_353;
+		private System.Windows.Forms.ComboBox f_ComboBoxCharacteristic_353;
+		private System.Windows.Forms.ComboBox f_ComboBoxCharacteristic_352;
+		private System.Windows.Forms.CheckBox f_CheckBoxDream_352;
+		private System.Windows.Forms.CheckBox f_CheckBoxNoGender_List;
+		private System.Windows.Forms.CheckBox f_CheckBoxDream_List;
+		private System.Windows.Forms.CheckBox f_CheckBoxShowSeed;
 	}
 }
 

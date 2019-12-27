@@ -33,11 +33,18 @@ namespace OneStar
 			PokemonFormUtility.SetNatureComboBox(f_ComboBoxNature_351);
 			PokemonFormUtility.SetNatureComboBox(f_ComboBoxNature_352);
 			PokemonFormUtility.SetNatureComboBox(f_ComboBoxNature_353);
+			PokemonFormUtility.SetCharacteristicComboBox(f_ComboBoxCharacteristic_351);
+			PokemonFormUtility.SetCharacteristicComboBox(f_ComboBoxCharacteristic_352);
+			PokemonFormUtility.SetCharacteristicComboBox(f_ComboBoxCharacteristic_353);
 			PokemonFormUtility.SetAbilityComboBox(f_ComboBoxAbility_351);
 			PokemonFormUtility.SetAbilityComboBox(f_ComboBoxAbility_352);
 			PokemonFormUtility.SetAbilityComboBox(f_ComboBoxAbility_353);
-			f_ComboBoxAbility_351.Items.Add("不明");
-			f_ComboBoxAbility_353.Items.Add("不明");
+			f_ComboBoxAbility_351.Items.Add("不明(通常特性)");
+			f_ComboBoxAbility_352.Items.Add("不明(通常特性)");
+			f_ComboBoxAbility_353.Items.Add("不明(通常特性)");
+			f_ComboBoxAbility_351.Items.Add("夢特性");
+			f_ComboBoxAbility_352.Items.Add("夢特性");
+			f_ComboBoxAbility_353.Items.Add("夢特性");
 
 			SetCheckResult(-1);
 
@@ -237,6 +244,10 @@ namespace OneStar
 			{
 				SeedSearch12();
 			}
+			else
+			{
+				MessageBox.Show("検索したいレイドによって\n★3～5か★1～2のタブを開いてください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 		}
 
 		// ★1～2検索
@@ -376,9 +387,9 @@ namespace OneStar
 			int ability1 = f_ComboBoxAbility_351.SelectedIndex;
 			int ability2 = f_ComboBoxAbility_352.SelectedIndex;
 			int ability3 = f_ComboBoxAbility_353.SelectedIndex;
-			if (ability1 == 2) { ability1 = -1; }
-			if (ability2 == 2) { ability2 = -1; }
-			if (ability3 == 2) { ability3 = -1; }
+			if (ability1 >= 2) { ability1 = ability1 * 3 - 7; }
+			if (ability2 >= 2) { ability2 = ability2 * 3 - 7; }
+			if (ability3 >= 2) { ability3 = ability3 * 3 - 7; }
 			int nature1 = f_ComboBoxNature_351.SelectedIndex;
 			int nature2 = f_ComboBoxNature_352.SelectedIndex;
 			int nature3 = f_ComboBoxNature_353.SelectedIndex;
@@ -387,11 +398,19 @@ namespace OneStar
 			bool noGender2 = f_CheckBoxNoGender_352.Checked;
 			bool noGender3 = f_CheckBoxNoGender_353.Checked;
 
+			bool isDream1 = f_CheckBoxDream_351.Checked;
+			bool isDream2 = f_CheckBoxDream_352.Checked;
+			bool isDream3 = f_CheckBoxDream_353.Checked;
+
+			int characteristic1 = f_ComboBoxCharacteristic_351.SelectedIndex;
+			int characteristic2 = f_ComboBoxCharacteristic_352.SelectedIndex;
+			int characteristic3 = f_ComboBoxCharacteristic_353.SelectedIndex;
+
 			// 計算開始
 			SeedSearcher searcher = new SeedSearcher(SeedSearcher.Mode.Star35);
-			SeedSearcher.SetSixFirstCondition(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5], ability1, nature1, noGender1);
-			SeedSearcher.SetSixSecondCondition(ivs[6], ivs[7], ivs[8], ivs[9], ivs[10], ivs[11], ability2, nature2, noGender2);
-			SeedSearcher.SetSixThirdCondition(ivs[12], ivs[13], ivs[14], ivs[15], ivs[16], ivs[17], ability3, nature3, noGender3);
+			SeedSearcher.SetSixFirstCondition(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5], ability1, nature1, characteristic1, noGender1, isDream1);
+			SeedSearcher.SetSixSecondCondition(ivs[6], ivs[7], ivs[8], ivs[9], ivs[10], ivs[11], ability2, nature2, characteristic2, noGender2, isDream2);
+			SeedSearcher.SetSixThirdCondition(ivs[12], ivs[13], ivs[14], ivs[15], ivs[16], ivs[17], ability3, nature3, characteristic3, noGender3, isDream3);
 
 			int vCount = 0;
 			for (int i = 0; i < 6; ++i)
@@ -479,16 +498,16 @@ namespace OneStar
 			f_ButtonStartSearch.BackColor = System.Drawing.Color.WhiteSmoke;
 
 			// 時間計測
-			//			var sw = new System.Diagnostics.Stopwatch();
-			//			sw.Start();
+			var stopwatch = new System.Diagnostics.Stopwatch();
+			stopwatch.Start();
 
 			await Task.Run(() =>
 			{
 				searcher.Calculate(isEnableStop, maxRerolls);
 			});
 
-			//			sw.Stop();
-			//			MessageBox.Show($"{sw.ElapsedMilliseconds}[ms]");
+			stopwatch.Stop();
+			MessageBox.Show($"{stopwatch.ElapsedMilliseconds}[ms]");
 
 			f_ButtonStartSearch.Enabled = true;
 			f_ButtonStartSearch.Text = "検索開始";
@@ -498,7 +517,7 @@ namespace OneStar
 			if (searcher.Result.Count == 0)
 			{
 				// エラー
-				MessageBox.Show("Den Seedが見つかりませんでした。\n（現在のバージョンでは一定確率で検索できない場合があります。\n日付を進めて別の個体で試してみてください。）", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show("Den Seedが見つかりませんでした。\n「V箇所のズレを考慮」の数字を増やすと見つかる可能性があります。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
 			else
@@ -517,6 +536,7 @@ namespace OneStar
 				}
 
 				f_TextBoxResultSeed.Text = $"{searcher.Result[0]:X}";
+				f_TabControlMain.SelectedIndex = 2;
 
 				// 見つかったらリスト出力
 				ListGenerate();
@@ -569,7 +589,11 @@ namespace OneStar
 
 			bool isShinyCheck = f_CheckBoxListShiny.Checked;
 
-			ListGenerator listGenerator = new ListGenerator(denSeed, maxFrameCount, vCount, isShinyCheck);
+			bool isNoGender = f_CheckBoxNoGender_List.Checked;
+			bool isDream = f_CheckBoxDream_List.Checked;
+			bool isShowSeed = f_CheckBoxShowSeed.Checked;
+
+			ListGenerator listGenerator = new ListGenerator(denSeed, maxFrameCount, vCount, isShinyCheck, isNoGender, isDream, isShowSeed);
 			listGenerator.Generate();
 		}
 	}

@@ -34,13 +34,13 @@ namespace OneStarCalculator
 		static extern void PrepareSix(int ivOffset);
 
 		[DllImport("OneStarCalculatorLib.dll")]
-		public static extern void SetSixFirstCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability, int nature, bool noGender);
+		public static extern void SetSixFirstCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability, int nature, int characteristic, bool noGender, bool isDream);
 
 		[DllImport("OneStarCalculatorLib.dll")]
-		public static extern void SetSixSecondCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability, int nature, bool noGender);
+		public static extern void SetSixSecondCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability, int nature, int characteristic, bool noGender, bool isDream);
 
 		[DllImport("OneStarCalculatorLib.dll")]
-		public static extern void SetSixThirdCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability, int nature, bool noGender);
+		public static extern void SetSixThirdCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability, int nature, int characteristic, bool noGender, bool isDream);
 
 		[DllImport("OneStarCalculatorLib.dll")]
 		public static extern void SetTargetCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability);
@@ -138,6 +138,15 @@ namespace OneStarCalculator
 								Result.Add(result);
 							}
 						});
+					}
+				}
+
+				// 結果を加工（[-3]にする）
+				for (int i = 0; i < Result.Count; ++i)
+				{
+					for (int a = 0; a < 3; ++a)
+					{
+						Result[i] = Result[i] + 0x7d5d4e8add6295a5ul;
 					}
 				}
 			}

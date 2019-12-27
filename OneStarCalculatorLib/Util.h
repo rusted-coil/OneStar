@@ -23,5 +23,21 @@ struct PokemonData
 	int ivs[6];
 	int ability;
 	int nature;
+	int characteristic;
 	bool isNoGender;
+	bool isEnableDream;
+
+	bool IsCharacterized(int index) // H A B "S" C D
+	{
+		switch (index)
+		{
+			case 0: return (ivs[0] == 31);
+			case 1: return (ivs[1] == 31);
+			case 2: return (ivs[2] == 31);
+			case 3: return (ivs[5] == 31);
+			case 4: return (ivs[3] == 31);
+			case 5: return (ivs[4] == 31);
+			default: return true;
+		}
+	}
 };

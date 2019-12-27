@@ -10,13 +10,19 @@ namespace OneStarCalculator
 		int m_MaxCount;
 		int m_VCount;
 		bool m_isShinyCheck;
+		bool m_isNoGender;
+		bool m_isDream;
+		bool m_isShowSeed;
 
-		public ListGenerator(UInt64 denSeed, int maxCount, int vCount, bool isShinyCheck)
+		public ListGenerator(UInt64 denSeed, int maxCount, int vCount, bool isShinyCheck, bool isNoGender, bool isDream, bool isShowSeed)
 		{
 			m_DenSeed = denSeed;
 			m_MaxCount = maxCount;
 			m_VCount = vCount;
 			m_isShinyCheck = isShinyCheck;
+			m_isNoGender = isNoGender;
+			m_isDream = isDream;
+			m_isShowSeed = isShowSeed;
 		}
 
 		public void Generate()
@@ -32,7 +38,14 @@ namespace OneStarCalculator
 
 			using (StreamWriter sw = new StreamWriter("list.txt"))
 			{
-				sw.WriteLine("消費数,H,A,B,C,D,S,特性,性格,色違い");
+				if (m_isShowSeed)
+				{
+					sw.WriteLine("消費数,Seed,H,A,B,C,D,S,特性,性格,色違い");
+				}
+				else
+				{
+					sw.WriteLine("消費数,H,A,B,C,D,S,特性,性格,色違い");
+				}
 
 				for (int frame = 0; frame <= m_MaxCount; ++frame)
 				{
@@ -44,6 +57,12 @@ namespace OneStarCalculator
 					pid = xoroshiro.Next(0xFFFFFFFFu);
 
 					bool isShiny = ((((otid ^ (otid >> 16)) >> 4) & 0xFFF) == (((pid ^ (pid >> 16)) >> 4) & 0xFFF));
+
+					if (m_isShinyCheck && ! isShiny)
+					{
+						seed = seed + 0x82a2b175229d6a5bul;
+						continue;
+					}
 
 					// V箇所決定
 					for (int i = 0; i < 6; ++i)
@@ -77,13 +96,26 @@ namespace OneStarCalculator
 					}
 
 					// 特性
-					ability = xoroshiro.Next(1);
+					if (m_isDream)
+					{
+						do
+						{
+							ability = xoroshiro.Next(3);
+						} while (ability >= 3);
+					}
+					else
+					{
+						ability = xoroshiro.Next(1);
+					}
 
 					// 性別値
-					do
+					if (!m_isNoGender)
 					{
-						gender = xoroshiro.Next(0xFF);
-					} while (gender >= 253);
+						do
+						{
+							gender = xoroshiro.Next(0xFF);
+						} while (gender >= 253);
+					}
 
 					// 性格
 					do
@@ -92,15 +124,30 @@ namespace OneStarCalculator
 					} while (nature >= 25);
 
 					// 出力
+					sw.Write($"{frame},");
+					if (m_isShowSeed)
+					{
+						sw.Write($"{seed:X16},");
+					}
+					sw.Write($"{ivs[0]},{ivs[1]},{ivs[2]},{ivs[3]},{ivs[4]},{ivs[5]},");
+					if (ability == 2)
+					{
+						sw.Write("夢,");
+					}
+					else
+					{
+						sw.Write($"{ ability + 1},");
+					}
+					sw.Write($"{Util.GetNatureString((int)nature)},");
 					if (isShiny)
 					{
-						sw.WriteLine($"{frame},{ivs[0]},{ivs[1]},{ivs[2]},{ivs[3]},{ivs[4]},{ivs[5]},{ability + 1},{Util.GetNatureString((int)nature)},★"); ;
+						sw.WriteLine($"★");
 					}
 					else if(!m_isShinyCheck)
 					{
-						sw.WriteLine($"{frame},{ivs[0]},{ivs[1]},{ivs[2]},{ivs[3]},{ivs[4]},{ivs[5]},{ability + 1},{Util.GetNatureString((int)nature)},"); ;
+						sw.WriteLine($"");
 					}
-					
+
 					seed = seed + 0x82a2b175229d6a5bul;
 				}
 			}

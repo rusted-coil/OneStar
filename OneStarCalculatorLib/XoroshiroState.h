@@ -17,9 +17,23 @@ struct XoroshiroState
 		m_S1 = 0x82a2b175229d6a5bull;
 	}
 
+	void Copy(XoroshiroState* src)
+	{
+		m_S0 = src->m_S0;
+		m_S1 = src->m_S1;
+	}
+
 	int Next(int mask)
 	{
 		int value = (m_S0 + m_S1) & mask;
+		m_S1 = m_S0 ^ m_S1;
+		m_S0 = RotateLeft(m_S0, 24) ^ m_S1 ^ (m_S1 << 16);
+		m_S1 = RotateLeft(m_S1, 37);
+		return value;
+	}
+	unsigned int Next(unsigned int mask)
+	{
+		unsigned int value = (m_S0 + m_S1) & mask;
 		m_S1 = m_S0 ^ m_S1;
 		m_S0 = RotateLeft(m_S0, 24) ^ m_S1 ^ (m_S1 << 16);
 		m_S1 = RotateLeft(m_S1, 37);
