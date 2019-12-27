@@ -17,3 +17,11 @@ inline _u64 GetSignature7(unsigned short value)
 	value = value ^ (value >> 2);
 	return (value ^ (value >> 1)) & 1;
 }
+
+struct PokemonData
+{
+	int ivs[6];
+	int ability;
+	int nature;
+	bool isNoGender;
+};

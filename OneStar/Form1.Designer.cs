@@ -135,6 +135,11 @@
 			this.label25 = new System.Windows.Forms.Label();
 			this.label26 = new System.Windows.Forms.Label();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.label44 = new System.Windows.Forms.Label();
+			this.label45 = new System.Windows.Forms.Label();
+			this.f_TextBoxRerolls = new System.Windows.Forms.TextBox();
+			this.label46 = new System.Windows.Forms.Label();
+			this.f_TextBoxListVCount = new System.Windows.Forms.TextBox();
 			this.groupBox1.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -556,6 +561,8 @@
 			// 
 			// groupBox2
 			// 
+			this.groupBox2.Controls.Add(this.f_TextBoxListVCount);
+			this.groupBox2.Controls.Add(this.label46);
 			this.groupBox2.Controls.Add(this.f_CheckBoxListShiny);
 			this.groupBox2.Controls.Add(this.f_TextBoxMaxFrame);
 			this.groupBox2.Controls.Add(this.label18);
@@ -601,7 +608,7 @@
 			this.f_CheckBoxStop.AutoSize = true;
 			this.f_CheckBoxStop.BackColor = System.Drawing.SystemColors.Control;
 			this.f_CheckBoxStop.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_CheckBoxStop.Location = new System.Drawing.Point(377, 442);
+			this.f_CheckBoxStop.Location = new System.Drawing.Point(377, 456);
 			this.f_CheckBoxStop.Name = "f_CheckBoxStop";
 			this.f_CheckBoxStop.Size = new System.Drawing.Size(111, 16);
 			this.f_CheckBoxStop.TabIndex = 23;
@@ -705,7 +712,6 @@
 			this.f_CheckBoxNoGender_353.TabIndex = 16;
 			this.f_CheckBoxNoGender_353.Text = "性別固定/不明";
 			this.f_CheckBoxNoGender_353.UseVisualStyleBackColor = true;
-			this.f_CheckBoxNoGender_353.Visible = false;
 			// 
 			// f_ComboBoxAbility_353
 			// 
@@ -889,7 +895,6 @@
 			this.f_CheckBoxNoGender_352.TabIndex = 16;
 			this.f_CheckBoxNoGender_352.Text = "性別固定/不明";
 			this.f_CheckBoxNoGender_352.UseVisualStyleBackColor = true;
-			this.f_CheckBoxNoGender_352.Visible = false;
 			// 
 			// f_ComboBoxAbility_352
 			// 
@@ -1073,7 +1078,6 @@
 			this.f_CheckBoxNoGender_351.TabIndex = 16;
 			this.f_CheckBoxNoGender_351.Text = "性別固定/不明";
 			this.f_CheckBoxNoGender_351.UseVisualStyleBackColor = true;
-			this.f_CheckBoxNoGender_351.Visible = false;
 			// 
 			// f_ComboBoxAbility_351
 			// 
@@ -1233,11 +1237,58 @@
 			this.tabPage2.Text = "★1～2";
 			this.tabPage2.UseVisualStyleBackColor = true;
 			// 
+			// label44
+			// 
+			this.label44.AutoSize = true;
+			this.label44.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.label44.Location = new System.Drawing.Point(377, 434);
+			this.label44.Name = "label44";
+			this.label44.Size = new System.Drawing.Size(99, 12);
+			this.label44.TabIndex = 25;
+			this.label44.Text = "V箇所のズレを考慮";
+			// 
+			// label45
+			// 
+			this.label45.AutoSize = true;
+			this.label45.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.label45.Location = new System.Drawing.Point(501, 434);
+			this.label45.Name = "label45";
+			this.label45.Size = new System.Drawing.Size(36, 12);
+			this.label45.TabIndex = 26;
+			this.label45.Text = "回まで";
+			// 
+			// f_TextBoxRerolls
+			// 
+			this.f_TextBoxRerolls.Location = new System.Drawing.Point(475, 430);
+			this.f_TextBoxRerolls.Name = "f_TextBoxRerolls";
+			this.f_TextBoxRerolls.Size = new System.Drawing.Size(24, 19);
+			this.f_TextBoxRerolls.TabIndex = 27;
+			// 
+			// label46
+			// 
+			this.label46.AutoSize = true;
+			this.label46.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.label46.Location = new System.Drawing.Point(250, 23);
+			this.label46.Name = "label46";
+			this.label46.Size = new System.Drawing.Size(55, 12);
+			this.label46.TabIndex = 25;
+			this.label46.Text = "V固定数：";
+			// 
+			// f_TextBoxListVCount
+			// 
+			this.f_TextBoxListVCount.Location = new System.Drawing.Point(303, 18);
+			this.f_TextBoxListVCount.Name = "f_TextBoxListVCount";
+			this.f_TextBoxListVCount.Size = new System.Drawing.Size(30, 19);
+			this.f_TextBoxListVCount.TabIndex = 26;
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(549, 587);
+			this.Controls.Add(this.f_TextBoxRerolls);
+			this.Controls.Add(this.label45);
+			this.Controls.Add(this.label44);
 			this.Controls.Add(this.f_TabControlMain);
 			this.Controls.Add(this.f_CheckBoxStop);
 			this.Controls.Add(this.groupBox2);
@@ -1378,6 +1429,11 @@
 		private System.Windows.Forms.Label label26;
 		private System.Windows.Forms.TabPage tabPage2;
 		private System.Windows.Forms.Button f_ButtonIvsCheck;
+		private System.Windows.Forms.TextBox f_TextBoxRerolls;
+		private System.Windows.Forms.Label label45;
+		private System.Windows.Forms.Label label44;
+		private System.Windows.Forms.TextBox f_TextBoxListVCount;
+		private System.Windows.Forms.Label label46;
 	}
 }
 

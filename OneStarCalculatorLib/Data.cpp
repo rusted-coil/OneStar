@@ -6,8 +6,11 @@ _u64 g_InputMatrix[64]; // CalculateInverseMatrixの前にセットする
 _u64 g_ConstantTermVector;
 _u64 g_Coefficient[64];
 _u64 g_AnswerFlag[64];
+int g_FreeBit[64];
+int g_FreeId[64];
 
 _u64 g_CoefficientData[0x80];
+_u64 g_SearchPattern[0x80];
 
 void CalculateInverseMatrix(int length)
 {
@@ -17,10 +20,17 @@ void CalculateInverseMatrix(int length)
 		g_AnswerFlag[i] = (1ull << (length - 1 - i));
 	}
 
+	int skip = 0;
+	for (int i = 0; i < 64; ++i)
+	{
+		g_FreeBit[i] = 0;
+	}
+
 	// 行基本変形で求める
 	for (int rank = 0; rank < length; )
 	{
-		_u64 top = (1ull << (63 - rank));
+		_u64 top = (1ull << (63 - (rank + skip)));
+		bool rankUpFlag = false;
 		for (int i = rank; i < length; ++i)
 		{
 			if ((g_InputMatrix[i] & top) != 0) // 一番左が1
@@ -45,15 +55,43 @@ void CalculateInverseMatrix(int length)
 				g_AnswerFlag[i] = swapF;
 
 				++rank;
+				rankUpFlag = true;
 			}
 		}
+		if (rankUpFlag == false)
+		{
+			// マーキングしてスキップ
+			g_FreeBit[rank + skip] = 1;
+			g_FreeId[skip] = rank + skip;
+			++skip;
+		}
+	}
+	// 自由bit
+	for (int i = length + skip; i < 64; ++i)
+	{
+		g_FreeBit[i] = 1;
+		g_FreeId[i - length] = i;
 	}
 
 	// 係数部分だけ抜き出し
-	_u64 mask = (1ull << (64 - length)) - 1;
+//	_u64 mask = (1ull << (64 - length)) - 1;
+//	int offset = 0;
 	for (int i = 0; i < length; ++i)
 	{
-		g_Coefficient[i] = g_InputMatrix[i] & mask;
+		g_Coefficient[i] = 0;
+		for (int a = 0; a < (64 - length); ++a)
+		{
+			g_Coefficient[i] |= (g_InputMatrix[i] & (1ull << (63 - g_FreeId[a]))) >> ((length + a) - g_FreeId[a]);
+		}
+/*
+		if (g_FreeId[i] > 0)
+		{
+			++offset;
+		}
+		else
+		{
+			g_Coefficient[i + offset] = g_InputMatrix[i + offset] & mask;
+		}*/
 	}
 }
 
@@ -64,9 +102,19 @@ void CalculateCoefficientData(int length)
 	for (unsigned short search = 0; search <= max; ++search)
 	{
 		g_CoefficientData[search] = 0;
+		g_SearchPattern[search] = 0;
+		int offset = 0;
 		for (int i = 0; i < length; ++i)
 		{
-			g_CoefficientData[search] |= (GetSignature7(g_Coefficient[i] & search) << (length - 1 - i));
+			if (g_FreeBit[i] > 0)
+			{
+				++offset;
+			}
+			g_CoefficientData[search] |= (GetSignature7(g_Coefficient[i] & search) << (63 - (i + offset)));
+		}
+		for (int a = 0; a < (64 - length); ++a)
+		{
+			g_SearchPattern[search] |= ((_u64)search & (1ull << (64 - length - 1 - a))) << ((length + a) - g_FreeId[a]);
 		}
 	}
 }

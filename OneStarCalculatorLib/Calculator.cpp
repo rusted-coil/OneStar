@@ -134,16 +134,21 @@ _u64 Search(_u64 ivs)
 
 	// 57bit側の計算結果キャッシュ
 	_u64 processedTarget = 0;
+	int offset = 0;
 	for (int i = 0; i < LENGTH; ++i)
 	{
-		processedTarget |= (GetSignature(g_AnswerFlag[i] & target) << (LENGTH - 1 - i));
+		if (g_FreeBit[i] > 0)
+		{
+			++offset;
+		}
+		processedTarget |= (GetSignature(g_AnswerFlag[i] & target) << (63 - (i + offset)));
 	}
 
 	// 下位7bitを決める
 	_u64 max = ((1 << (64 - LENGTH)) - 1);
 	for (_u64 search = 0; search <= max; ++search)
 	{
-		_u64 seed = ((processedTarget ^ g_CoefficientData[search]) << (64 - LENGTH)) | search;
+		_u64 seed = (processedTarget ^ g_CoefficientData[search]) | g_SearchPattern[search];
 
 		// ここから絞り込み
 		{
@@ -235,7 +240,8 @@ _u64 Search(_u64 ivs)
 			}
 
 			// 特性
-			if (g_NextAbility >= 0 && g_NextAbility != xoroshiro.Next(1))
+			int ability = xoroshiro.Next(1);
+			if (g_NextAbility >= 0 && g_NextAbility != ability)
 			{
 				continue;
 			}

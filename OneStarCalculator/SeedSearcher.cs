@@ -34,7 +34,16 @@ namespace OneStarCalculator
 		static extern void PrepareSix(int ivOffset);
 
 		[DllImport("OneStarCalculatorLib.dll")]
-		public static extern void SetSixCondition(int fixed1, int fixed2, int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int nature);
+		public static extern void SetSixFirstCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability, int nature, bool noGender);
+
+		[DllImport("OneStarCalculatorLib.dll")]
+		public static extern void SetSixSecondCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability, int nature, bool noGender);
+
+		[DllImport("OneStarCalculatorLib.dll")]
+		public static extern void SetSixThirdCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability, int nature, bool noGender);
+
+		[DllImport("OneStarCalculatorLib.dll")]
+		public static extern void SetTargetCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability);
 
 		[DllImport("OneStarCalculatorLib.dll")]
 		static extern ulong SearchSix(ulong ivs);
@@ -44,7 +53,7 @@ namespace OneStarCalculator
 			m_Mode = mode;
 		}
 
-		public void Calculate(bool isEnableStop)
+		public void Calculate(bool isEnableStop, int maxRerolls)
 		{
 			Result.Clear();
 
@@ -54,70 +63,83 @@ namespace OneStarCalculator
 				int searchLower = 0;
 				int searchUpper = 0xFFFFFFF;
 
-				// C++ライブラリ側の事前計算
-				Prepare(0);
+				for (int i = 0; i <= maxRerolls; ++i)
+				{
+					// C++ライブラリ側の事前計算
+					Prepare(i);
 
-				// 並列探索
-				if (isEnableStop)
-				{
-					// 中断あり
-					Parallel.For(searchLower, searchUpper, (ivs, state) =>
+					// 並列探索
+					if (isEnableStop)
 					{
-						ulong result = Search((ulong)ivs);
-						if (result != 0)
+						// 中断あり
+						Parallel.For(searchLower, searchUpper, (ivs, state) =>
 						{
-							Result.Add(result);
-							state.Stop();
+							ulong result = Search((ulong)ivs);
+							if (result != 0)
+							{
+								Result.Add(result);
+								state.Stop();
+							}
+						});
+						if (Result.Count > 0)
+						{
+							break;
 						}
-					});
-				}
-				else
-				{
-					// 中断なし
-					Parallel.For(searchLower, searchUpper, (ivs) =>
+					}
+					else
 					{
-						ulong result = Search((ulong)ivs);
-						if (result != 0)
+						// 中断なし
+						Parallel.For(searchLower, searchUpper, (ivs) =>
 						{
-							Result.Add(result);
-						}
-					});
+							ulong result = Search((ulong)ivs);
+							if (result != 0)
+							{
+								Result.Add(result);
+							}
+						});
+					}
 				}
 			}
 			else if (m_Mode == Mode.Star35)
 			{
 				// 探索範囲
 				int searchLower = 0;
+//				int searchUpper = 1;
 				int searchUpper = 0x3FFFFFFF;
 
-				Result.Clear();
-
-				// C++ライブラリ側の事前計算
-				PrepareSix(0);
-
-				// 並列探索
-				if (isEnableStop)
+				for (int i = 0; i <= maxRerolls; ++i)
 				{
-					// 中断あり
-					Parallel.For(searchLower, searchUpper, (ivs, state) => {
-						ulong result = SearchSix((ulong)ivs);
-						if (result != 0)
+					// C++ライブラリ側の事前計算
+					PrepareSix(i);
+
+					// 並列探索
+					if (isEnableStop)
+					{
+						// 中断あり
+						Parallel.For(searchLower, searchUpper, (ivs, state) => {
+							ulong result = SearchSix((ulong)ivs);
+							if (result != 0)
+							{
+								Result.Add(result);
+								state.Stop();
+							}
+						});
+						if (Result.Count > 0)
 						{
-							Result.Add(result);
-							state.Stop();
+							break;
 						}
-					});
-				}
-				else
-				{
-					// 中断なし
-					Parallel.For(searchLower, searchUpper, (ivs) => {
-						ulong result = SearchSix((ulong)ivs);
-						if (result != 0)
-						{
-							Result.Add(result);
-						}
-					});
+					}
+					else
+					{
+						// 中断なし
+						Parallel.For(searchLower, searchUpper, (ivs) => {
+							ulong result = SearchSix((ulong)ivs);
+							if (result != 0)
+							{
+								Result.Add(result);
+							}
+						});
+					}
 				}
 			}
 		}

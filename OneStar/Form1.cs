@@ -37,7 +37,6 @@ namespace OneStar
 			PokemonFormUtility.SetAbilityComboBox(f_ComboBoxAbility_352);
 			PokemonFormUtility.SetAbilityComboBox(f_ComboBoxAbility_353);
 			f_ComboBoxAbility_351.Items.Add("不明");
-			f_ComboBoxAbility_352.Items.Add("不明");
 			f_ComboBoxAbility_353.Items.Add("不明");
 
 			SetCheckResult(-1);
@@ -52,7 +51,9 @@ namespace OneStar
 			// 共通
 			f_TextBoxMaxFrame.Text = "5000";
 
+			f_TextBoxRerolls.Text = "3";
 			f_CheckBoxStop.Checked = true;
+			f_TextBoxListVCount.Text = "4";
 
 			// 扱いやすいようにキャッシュ
 			m_TextBoxIvsList12[0] = f_TextBoxIv0_1;
@@ -110,13 +111,117 @@ namespace OneStar
 					f_LabelCheckResult.Text = "OK！ Next -> 4V";
 					f_LabelCheckResult.ForeColor = System.Drawing.Color.Blue;
 					break;
+
+				case 7:
+					f_LabelCheckResult.Text = "OK！ Next -> 3V or 4V";
+					f_LabelCheckResult.ForeColor = System.Drawing.Color.Blue;
+					break;
 			}
 		}
 
 		// 個体値チェックボタン
 		private void f_ButtonIvsCheck_Click(object sender, EventArgs e)
 		{
+			bool isCheckFailed = false;
+			string errorText = "";
 
+			// フォームから必要な情報を取得
+			int[] ivs = new int[6];
+			for (int i = 0; i < 6; ++i)
+			{
+				try
+				{
+					ivs[i] = int.Parse(m_TextBoxIvsList35[i].Text);
+				}
+				catch (Exception)
+				{
+					// エラー
+					errorText = "個体値の入力が不正です。\n（0～31の半角数字）";
+					isCheckFailed = true;
+				}
+				if (ivs[i] < 0 || ivs[i] > 31)
+				{
+					// エラー
+					errorText = "個体値の入力が不正です。\n（0～31の半角数字）";
+					isCheckFailed = true;
+				}
+			}
+			if (isCheckFailed)
+			{
+				MessageBox.Show(errorText, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
+			// 1匹目はVが2箇所じゃないとエラー
+			int c = 0;
+			for (int i = 0; i < 6; ++i)
+			{
+				if (ivs[i] == 31)
+				{
+					++c;
+				}
+			}
+			if (c != 2)
+			{
+				// エラー
+				MessageBox.Show("4匹目-2Vのポケモンは個体値31が2箇所でなければいけません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
+			// 遺伝箇所チェック
+			bool[] possible = { false, false, false, false, false };
+			for (int vCount = 3; vCount <= 4; ++vCount)
+			{
+				c = 2;
+				int used = 2;
+				bool[] vFlag = { false, false, false, false, false, false };
+				for (int i = 0; i < 6; ++i)
+				{
+					if (ivs[i] == 31)
+					{
+						vFlag[i] = true;
+					}
+				}
+				// 普通に個体値生成をやってみる
+				for (int i = 0; i < 6; ++i)
+				{
+					if (ivs[i] != 31)
+					{
+						++used;
+						int vPos = ivs[i] % 8;
+						if (vPos < 6 && vFlag[vPos] == false)
+						{
+							vFlag[vPos] = true;
+							++c;
+							if (c == vCount) // 遺伝終わり
+							{
+								// 残り個体値で未知の部分を2つ以上使う
+								if ((6 - vCount) - (6 - used) >= 2)
+								{
+									possible[vCount] = true;
+								}
+								break;
+							}
+						}
+					}
+				}
+			}
+			if (possible[3] && possible[4])
+			{
+				SetCheckResult(7);
+			}
+			else if (possible[3])
+			{
+				SetCheckResult(3);
+			}
+			else if (possible[4])
+			{
+				SetCheckResult(4);
+			}
+			else
+			{
+				SetCheckResult(1);
+			}
 		}
 
 		// 検索開始ボタン
@@ -266,21 +371,7 @@ namespace OneStar
 				MessageBox.Show("4匹目-2Vのポケモンは個体値31が2箇所でなければいけません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
-			// 2匹目はVが4箇所以下じゃないとエラー
-			c = 0;
-			for (int i = 6; i < 12; ++i)
-			{
-				if (ivs[i] == 31)
-				{
-					++c;
-				}
-			}
-			if (c > 4)
-			{
-				// エラー
-				MessageBox.Show("4匹目-3V～4Vのポケモンは個体値31が4箇所以下でなければいけません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return;
-			}
+
 			int ability1 = f_ComboBoxAbility_351.SelectedIndex;
 			int ability2 = f_ComboBoxAbility_352.SelectedIndex;
 			int ability3 = f_ComboBoxAbility_353.SelectedIndex;
@@ -297,6 +388,74 @@ namespace OneStar
 
 			// 計算開始
 			SeedSearcher searcher = new SeedSearcher(SeedSearcher.Mode.Star35);
+			SeedSearcher.SetSixFirstCondition(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5], ability1, nature1, noGender1);
+			SeedSearcher.SetSixSecondCondition(ivs[6], ivs[7], ivs[8], ivs[9], ivs[10], ivs[11], ability2, nature2, noGender2);
+			SeedSearcher.SetSixThirdCondition(ivs[12], ivs[13], ivs[14], ivs[15], ivs[16], ivs[17], ability3, nature3, noGender3);
+
+			int vCount = 0;
+			for (int i = 0; i < 6; ++i)
+			{
+				if (ivs[6 + i] == 31)
+				{
+					++vCount;
+				}
+			}
+			// 3V+自然発生の4Vは考慮しない
+			if (vCount > 4)
+			{
+				vCount = 4;
+			}
+			// 遺伝箇所チェック
+			bool[] vFlag = { false, false, false, false, false, false };
+			for (int i = 0; i < 6; ++i)
+			{
+				if (ivs[i] == 31)
+				{
+					vFlag[i] = true;
+				}
+			}
+			c = 2;
+			int[] conditionIv = new int[6];
+			int cursor = 0;
+			for (int i = 0; i < 6; ++i)
+			{
+				if (ivs[i] != 31)
+				{
+					conditionIv[cursor++] = ivs[i];
+					int vPos = ivs[i] % 8;
+					if (vPos < 6 && vFlag[vPos] == false)
+					{
+						vFlag[vPos] = true;
+						++c;
+						if (c == vCount) // 遺伝終わり
+						{
+							break;
+						}
+					}
+				}
+			}
+
+			// 条件ベクトルを求める
+			c = 0;
+			int ability = -1;
+			for (int i = 0; i < 6; ++i)
+			{
+				if (vFlag[i] == false)
+				{
+					if (cursor == 6)
+					{
+						ability = ivs[i + 6] % 2;
+						break;
+					}
+					conditionIv[cursor++] = ivs[i + 6];
+				}
+			}
+			if (ability < 0) // 個体値列を最後まで使っていれば2匹目の特性の位置
+			{
+				ability = ability2;
+			}
+
+			SeedSearcher.SetTargetCondition(conditionIv[0], conditionIv[1], conditionIv[2], conditionIv[3], conditionIv[4], conditionIv[5], ability);
 
 			SearchImpl(searcher);
 		}
@@ -304,6 +463,13 @@ namespace OneStar
 		// 検索処理共通
 		async void SearchImpl(SeedSearcher searcher)
 		{
+			int maxRerolls = 0;
+			try
+			{
+				maxRerolls = int.Parse(f_TextBoxRerolls.Text);
+			}
+			catch (Exception)
+			{ }
 			bool isEnableStop = f_CheckBoxStop.Checked;
 
 			// ボタンを無効化
@@ -317,7 +483,7 @@ namespace OneStar
 
 			await Task.Run(() =>
 			{
-				searcher.Calculate(isEnableStop);
+				searcher.Calculate(isEnableStop, maxRerolls);
 			});
 
 			//			sw.Stop();
@@ -388,9 +554,21 @@ namespace OneStar
 				return;
 			}
 
+			int vCount = 0;
+			try
+			{
+				vCount = int.Parse(f_TextBoxListVCount.Text);
+			}
+			catch (Exception)
+			{
+				// エラー
+				MessageBox.Show("V固定数の入力が不正です。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
 			bool isShinyCheck = f_CheckBoxListShiny.Checked;
 
-			ListGenerator listGenerator = new ListGenerator(denSeed, maxFrameCount, isShinyCheck);
+			ListGenerator listGenerator = new ListGenerator(denSeed, maxFrameCount, vCount, isShinyCheck);
 			listGenerator.Generate();
 		}
 	}

@@ -8,12 +8,14 @@ namespace OneStarCalculator
 	{
 		UInt64 m_DenSeed;
 		int m_MaxCount;
+		int m_VCount;
 		bool m_isShinyCheck;
 
-		public ListGenerator(UInt64 denSeed, int maxCount, bool isShinyCheck)
+		public ListGenerator(UInt64 denSeed, int maxCount, int vCount, bool isShinyCheck)
 		{
 			m_DenSeed = denSeed;
 			m_MaxCount = maxCount;
+			m_VCount = vCount;
 			m_isShinyCheck = isShinyCheck;
 		}
 
@@ -49,12 +51,21 @@ namespace OneStarCalculator
 						ivs[i] = -1;
 					}
 
+					int fixedCount = 0;
 					do
 					{
-						fixedIndex = xoroshiro.Next(7);
-					} while (fixedIndex >= 6);
+						fixedIndex = 0;
+						do
+						{
+							fixedIndex = xoroshiro.Next(7); // V箇所
+						} while (fixedIndex >= 6);
 
-					ivs[fixedIndex] = 31;
+						if (ivs[fixedIndex] == -1)
+						{
+							ivs[fixedIndex] = 31;
+							++fixedCount;
+						}
+					} while (fixedCount < m_VCount);
 
 					// 個体値を埋める
 					for (int i = 0; i < 6; ++i)
