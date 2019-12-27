@@ -13,11 +13,6 @@ static PokemonData l_Third;
 static int g_Ivs[6];
 static int g_Ability;
 static int g_SecondIvCount;
-//static int g_Ability;
-//static int g_FixedIndex1;
-//static int g_FixedIndex2;
-//static int g_Nature;
-//static int g_isNoGender;
 
 static int g_IvOffset;
 
@@ -170,7 +165,7 @@ _u64 SearchSix(_u64 ivs)
 	int offset = 0;
 	for (int i = 0; i < LENGTH; ++i)
 	{
-		if (g_FreeBit[i] > 0)
+		while (g_FreeBit[i + offset] > 0)
 		{
 			++offset;
 		}
@@ -182,11 +177,6 @@ _u64 SearchSix(_u64 ivs)
 	for (_u64 search = 0; search <= max; ++search)
 	{
 		_u64 seed = (processedTarget ^ g_CoefficientData[search]) | g_SearchPattern[search];
-
-		if (seed == 0x81FBF5A652972177ull)
-		{
-			seed = seed;
-		}
 
 		// ‚±‚±‚©‚çi‚èž‚Ý
 		// 1•C–Ú

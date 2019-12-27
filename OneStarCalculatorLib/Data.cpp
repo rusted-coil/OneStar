@@ -74,8 +74,6 @@ void CalculateInverseMatrix(int length)
 	}
 
 	// ŒW”•”•ª‚¾‚¯”²‚«o‚µ
-//	_u64 mask = (1ull << (64 - length)) - 1;
-//	int offset = 0;
 	for (int i = 0; i < length; ++i)
 	{
 		g_Coefficient[i] = 0;
@@ -83,15 +81,6 @@ void CalculateInverseMatrix(int length)
 		{
 			g_Coefficient[i] |= (g_InputMatrix[i] & (1ull << (63 - g_FreeId[a]))) >> ((length + a) - g_FreeId[a]);
 		}
-/*
-		if (g_FreeId[i] > 0)
-		{
-			++offset;
-		}
-		else
-		{
-			g_Coefficient[i + offset] = g_InputMatrix[i + offset] & mask;
-		}*/
 	}
 }
 
@@ -106,7 +95,7 @@ void CalculateCoefficientData(int length)
 		int offset = 0;
 		for (int i = 0; i < length; ++i)
 		{
-			if (g_FreeBit[i] > 0)
+			while (g_FreeBit[i + offset] > 0)
 			{
 				++offset;
 			}

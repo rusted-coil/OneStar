@@ -6,70 +6,67 @@
 #include "Data.h"
 
 // 検索条件設定
+static PokemonData l_First;
+static PokemonData l_Second;
+
 static int g_Rerolls;
-static int g_Ivs[6];
-static int g_Ability;
 static int g_FixedIndex;
+static int g_VCount;
 
 // 絞り込み条件設定
-static int g_Nature;
-static int g_NextIvs[6];
-static int g_NextAbility;
-static int g_NextNature;
-static bool g_isNextNoGender;
-static int g_VCount;
 
 // V確定用参照
 const int* g_IvsRef[30] = {
-	&g_Ivs[1], &g_Ivs[2], &g_Ivs[3], &g_Ivs[4], &g_Ivs[5],
-	&g_Ivs[0], &g_Ivs[2], &g_Ivs[3], &g_Ivs[4], &g_Ivs[5],
-	&g_Ivs[0], &g_Ivs[1], &g_Ivs[3], &g_Ivs[4], &g_Ivs[5],
-	&g_Ivs[0], &g_Ivs[1], &g_Ivs[2], &g_Ivs[4], &g_Ivs[5],
-	&g_Ivs[0], &g_Ivs[1], &g_Ivs[2], &g_Ivs[3], &g_Ivs[5],
-	&g_Ivs[0], &g_Ivs[1], &g_Ivs[2], &g_Ivs[3], &g_Ivs[4]
+	&l_First.ivs[1], &l_First.ivs[2], &l_First.ivs[3], &l_First.ivs[4], &l_First.ivs[5],
+	&l_First.ivs[0], &l_First.ivs[2], &l_First.ivs[3], &l_First.ivs[4], &l_First.ivs[5],
+	&l_First.ivs[0], &l_First.ivs[1], &l_First.ivs[3], &l_First.ivs[4], &l_First.ivs[5],
+	&l_First.ivs[0], &l_First.ivs[1], &l_First.ivs[2], &l_First.ivs[4], &l_First.ivs[5],
+	&l_First.ivs[0], &l_First.ivs[1], &l_First.ivs[2], &l_First.ivs[3], &l_First.ivs[5],
+	&l_First.ivs[0], &l_First.ivs[1], &l_First.ivs[2], &l_First.ivs[3], &l_First.ivs[4]
 };
 
 #define LENGTH (57)
 
-void SetFirstCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature)
+void SetFirstCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, bool isNoGender)
 {
-	g_Ivs[0] = iv0;
-	g_Ivs[1] = iv1;
-	g_Ivs[2] = iv2;
-	g_Ivs[3] = iv3;
-	g_Ivs[4] = iv4;
-	g_Ivs[5] = iv5;
+	l_First.ivs[0] = iv0;
+	l_First.ivs[1] = iv1;
+	l_First.ivs[2] = iv2;
+	l_First.ivs[3] = iv3;
+	l_First.ivs[4] = iv4;
+	l_First.ivs[5] = iv5;
+	l_First.ability = ability;
+	l_First.nature = nature;
+	l_First.isNoGender = isNoGender;
 	g_FixedIndex = 0;
 	for (int i = 0; i < 6; ++i)
 	{
-		if (g_Ivs[i] == 31)
+		if (l_First.ivs[i] == 31)
 		{
 			g_FixedIndex = i;
 		}
 	}
-	g_Ability = ability;
-	g_Nature = nature;
 }
 
 void SetNextCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, bool isNoGender)
 {
-	g_NextIvs[0] = iv0;
-	g_NextIvs[1] = iv1;
-	g_NextIvs[2] = iv2;
-	g_NextIvs[3] = iv3;
-	g_NextIvs[4] = iv4;
-	g_NextIvs[5] = iv5;
+	l_Second.ivs[0] = iv0;
+	l_Second.ivs[1] = iv1;
+	l_Second.ivs[2] = iv2;
+	l_Second.ivs[3] = iv3;
+	l_Second.ivs[4] = iv4;
+	l_Second.ivs[5] = iv5;
+	l_Second.ability = ability;
+	l_Second.nature = nature;
+	l_Second.isNoGender = isNoGender;
 	g_VCount = 0;
 	for (int i = 0; i < 6; ++i)
 	{
-		if (g_NextIvs[i] == 31)
+		if (l_Second.ivs[i] == 31)
 		{
 			++g_VCount;
 		}
 	}
-	g_NextAbility = ability;
-	g_NextNature = nature;
-	g_isNextNoGender = isNoGender;
 }
 
 void Prepare(int rerolls)
@@ -107,7 +104,7 @@ _u64 Search(_u64 ivs)
 {
 	XoroshiroState xoroshiro;
 	
-	_u64 target = g_Ability;
+	_u64 target = l_First.ability;
 
 	// 上位3bit = V箇所決定
 	target |= (ivs & 0xE000000ul) << 29; // fixedIndex0
@@ -137,7 +134,7 @@ _u64 Search(_u64 ivs)
 	int offset = 0;
 	for (int i = 0; i < LENGTH; ++i)
 	{
-		if (g_FreeBit[i] > 0)
+		while (g_FreeBit[i + offset] > 0)
 		{
 			++offset;
 		}
@@ -176,17 +173,20 @@ _u64 Search(_u64 ivs)
 			xoroshiro.Next(); // 個体値5
 			xoroshiro.Next(); // 特性
 
-			int gender = 0;
-			do {
-				gender = xoroshiro.Next(0xFF); // 性別値
-			} while (gender >= 253);
+			if (!l_First.isNoGender)
+			{
+				int gender = 0;
+				do {
+					gender = xoroshiro.Next(0xFF); // 性別値
+				} while (gender >= 253);
+			}
 
 			int nature = 0;
 			do {
 				nature = xoroshiro.Next(0x1F); // 性格
 			} while (nature >= 25);
 
-			if (nature != g_Nature)
+			if (nature != l_First.nature)
 			{
 				continue;
 			}
@@ -222,13 +222,13 @@ _u64 Search(_u64 ivs)
 			{
 				if (ivs[i] == 31)
 				{
-					if (g_NextIvs[i] != 31)
+					if (l_Second.ivs[i] != 31)
 					{
 						isPassed = false;
 						break;
 					}
 				}
-				else if(g_NextIvs[i] != xoroshiro.Next(0x1F))
+				else if(l_Second.ivs[i] != xoroshiro.Next(0x1F))
 				{
 					isPassed = false;
 					break;
@@ -241,13 +241,13 @@ _u64 Search(_u64 ivs)
 
 			// 特性
 			int ability = xoroshiro.Next(1);
-			if (g_NextAbility >= 0 && g_NextAbility != ability)
+			if (l_Second.ability >= 0 && l_Second.ability != ability)
 			{
 				continue;
 			}
 
 			// 性別値
-			if (!g_isNextNoGender)
+			if (!l_Second.isNoGender)
 			{
 				int gender = 0;
 				do {
@@ -261,7 +261,7 @@ _u64 Search(_u64 ivs)
 				nature = xoroshiro.Next(0x1F);
 			} while (nature >= 25);
 
-			if (nature != g_NextNature)
+			if (nature != l_Second.nature)
 			{
 				continue;
 			}

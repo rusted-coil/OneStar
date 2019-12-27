@@ -21,7 +21,7 @@ namespace OneStarCalculator
 		static extern void Prepare(int rerolls);
 
 		[DllImport("OneStarCalculatorLib.dll")]
-		public static extern void SetFirstCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature);
+		public static extern void SetFirstCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, bool noGender);
 
 		[DllImport("OneStarCalculatorLib.dll")]
 		public static extern void SetNextCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, bool noGender);
@@ -104,7 +104,6 @@ namespace OneStarCalculator
 			{
 				// 探索範囲
 				int searchLower = 0;
-//				int searchUpper = 1;
 				int searchUpper = 0x3FFFFFFF;
 
 				for (int i = 0; i <= maxRerolls; ++i)

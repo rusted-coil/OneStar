@@ -70,6 +70,8 @@
 			this.f_TextBoxResultSeed = new System.Windows.Forms.TextBox();
 			this.f_ButtonListGenerate = new System.Windows.Forms.Button();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.f_TextBoxListVCount = new System.Windows.Forms.TextBox();
+			this.label46 = new System.Windows.Forms.Label();
 			this.f_CheckBoxListShiny = new System.Windows.Forms.CheckBox();
 			this.f_TextBoxMaxFrame = new System.Windows.Forms.TextBox();
 			this.label18 = new System.Windows.Forms.Label();
@@ -138,8 +140,6 @@
 			this.label44 = new System.Windows.Forms.Label();
 			this.label45 = new System.Windows.Forms.Label();
 			this.f_TextBoxRerolls = new System.Windows.Forms.TextBox();
-			this.label46 = new System.Windows.Forms.Label();
-			this.f_TextBoxListVCount = new System.Windows.Forms.TextBox();
 			this.groupBox1.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -188,7 +188,6 @@
 			this.f_CheckBoxNoGender_1.TabIndex = 16;
 			this.f_CheckBoxNoGender_1.Text = "性別固定/不明";
 			this.f_CheckBoxNoGender_1.UseVisualStyleBackColor = true;
-			this.f_CheckBoxNoGender_1.Visible = false;
 			// 
 			// f_ComboBoxAbility_1
 			// 
@@ -574,6 +573,23 @@
 			this.groupBox2.Size = new System.Drawing.Size(522, 93);
 			this.groupBox2.TabIndex = 22;
 			this.groupBox2.TabStop = false;
+			// 
+			// f_TextBoxListVCount
+			// 
+			this.f_TextBoxListVCount.Location = new System.Drawing.Point(303, 18);
+			this.f_TextBoxListVCount.Name = "f_TextBoxListVCount";
+			this.f_TextBoxListVCount.Size = new System.Drawing.Size(30, 19);
+			this.f_TextBoxListVCount.TabIndex = 26;
+			// 
+			// label46
+			// 
+			this.label46.AutoSize = true;
+			this.label46.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.label46.Location = new System.Drawing.Point(250, 23);
+			this.label46.Name = "label46";
+			this.label46.Size = new System.Drawing.Size(55, 12);
+			this.label46.TabIndex = 25;
+			this.label46.Text = "V固定数：";
 			// 
 			// f_CheckBoxListShiny
 			// 
@@ -1263,23 +1279,6 @@
 			this.f_TextBoxRerolls.Name = "f_TextBoxRerolls";
 			this.f_TextBoxRerolls.Size = new System.Drawing.Size(24, 19);
 			this.f_TextBoxRerolls.TabIndex = 27;
-			// 
-			// label46
-			// 
-			this.label46.AutoSize = true;
-			this.label46.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label46.Location = new System.Drawing.Point(250, 23);
-			this.label46.Name = "label46";
-			this.label46.Size = new System.Drawing.Size(55, 12);
-			this.label46.TabIndex = 25;
-			this.label46.Text = "V固定数：";
-			// 
-			// f_TextBoxListVCount
-			// 
-			this.f_TextBoxListVCount.Location = new System.Drawing.Point(303, 18);
-			this.f_TextBoxListVCount.Name = "f_TextBoxListVCount";
-			this.f_TextBoxListVCount.Size = new System.Drawing.Size(30, 19);
-			this.f_TextBoxListVCount.TabIndex = 26;
 			// 
 			// MainForm
 			// 

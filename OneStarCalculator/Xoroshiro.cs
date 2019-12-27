@@ -10,6 +10,15 @@ namespace OneStarCalculator
 	{
 		UInt64 s0, s1;
 
+		public int GetRaw(int index, UInt32 mask)
+		{
+			if (index == 0)
+			{
+				return (int)(s0 & mask);
+			}
+			return (int)(s1 & mask);
+		}
+
 		public Xoroshiro(UInt64 seed)
 		{
 			s0 = seed;

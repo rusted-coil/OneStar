@@ -100,7 +100,7 @@ namespace OneStarCalculator
 					{
 						sw.WriteLine($"{frame},{ivs[0]},{ivs[1]},{ivs[2]},{ivs[3]},{ivs[4]},{ivs[5]},{ability + 1},{Util.GetNatureString((int)nature)},"); ;
 					}
-
+					
 					seed = seed + 0x82a2b175229d6a5bul;
 				}
 			}

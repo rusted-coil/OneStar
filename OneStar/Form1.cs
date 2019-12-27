@@ -312,11 +312,12 @@ namespace OneStar
 			int nature1 = f_ComboBoxNature_1.SelectedIndex;
 			int nature2 = f_ComboBoxNature_2.SelectedIndex;
 
+			bool noGender1 = f_CheckBoxNoGender_1.Checked;
 			bool noGender2 = f_CheckBoxNoGender_2.Checked;
 
 			// 計算開始
 			SeedSearcher searcher = new SeedSearcher(SeedSearcher.Mode.Star12);
-			SeedSearcher.SetFirstCondition(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5], ability1, nature1);
+			SeedSearcher.SetFirstCondition(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5], ability1, nature1, noGender1);
 			SeedSearcher.SetNextCondition(ivs[6], ivs[7], ivs[8], ivs[9], ivs[10], ivs[11], ability2, nature2, noGender2);
 
 			SearchImpl(searcher);
