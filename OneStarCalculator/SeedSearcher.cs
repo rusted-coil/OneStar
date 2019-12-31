@@ -9,7 +9,8 @@ namespace OneStarCalculator
 		// モード
 		public enum Mode {
 			Star12,
-			Star35
+			Star35_5,
+			Star35_6
 		};
 		Mode m_Mode;
 
@@ -43,7 +44,10 @@ namespace OneStarCalculator
 		public static extern void SetSixThirdCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability, int nature, int characteristic, bool noGender, bool isDream);
 
 		[DllImport("OneStarCalculatorLib.dll")]
-		public static extern void SetTargetCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability);
+		public static extern void SetTargetCondition6(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6);
+
+		[DllImport("OneStarCalculatorLib.dll")]
+		public static extern void SetTargetCondition5(int iv1, int iv2, int iv3, int iv4, int iv5);
 
 		[DllImport("OneStarCalculatorLib.dll")]
 		static extern ulong SearchSix(ulong ivs);
@@ -100,11 +104,11 @@ namespace OneStarCalculator
 					}
 				}
 			}
-			else if (m_Mode == Mode.Star35)
+			else if (m_Mode == Mode.Star35_5 || m_Mode == Mode.Star35_6)
 			{
 				// 探索範囲
 				int searchLower = 0;
-				int searchUpper = 0x3FFFFFFF;
+				int searchUpper = (m_Mode == Mode.Star35_5 ? 0x1FFFFFF : 0x3FFFFFFF);
 
 				for (int i = 0; i <= maxRerolls; ++i)
 				{

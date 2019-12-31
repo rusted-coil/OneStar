@@ -19,6 +19,13 @@ namespace OneStar
 		TextBox[] m_TextBoxIvsList12 = new TextBox[12];
 		TextBox[] m_TextBoxIvsList35 = new TextBox[18];
 
+		enum Star35PanelMode {
+			From2V,
+			From3V
+		};
+
+		Star35PanelMode Get35Mode() { return (Star35PanelMode)f_ComboBoxModeSelector_35.SelectedIndex; }
+
 		public MainForm()
 		{
 			InitializeComponent();
@@ -30,6 +37,7 @@ namespace OneStar
 		void InitializeView()
 		{
 			// ★3～5パネル
+			f_ComboBoxModeSelector_35.SelectedIndex = 0;
 			PokemonFormUtility.SetNatureComboBox(f_ComboBoxNature_351);
 			PokemonFormUtility.SetNatureComboBox(f_ComboBoxNature_352);
 			PokemonFormUtility.SetNatureComboBox(f_ComboBoxNature_353);
@@ -159,7 +167,8 @@ namespace OneStar
 				return;
 			}
 
-			// 1匹目はVが2箇所じゃないとエラー
+			// 1匹目はVが2or3箇所じゃないとエラー
+			int strict = (Get35Mode() == Star35PanelMode.From3V ? 3 : 2);
 			int c = 0;
 			for (int i = 0; i < 6; ++i)
 			{
@@ -168,26 +177,45 @@ namespace OneStar
 					++c;
 				}
 			}
-			if (c != 2)
+			if (c != strict)
 			{
 				// エラー
-				MessageBox.Show("4匹目-2Vのポケモンは個体値31が2箇所でなければいけません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return;
+				if (strict == 3)
+				{
+					MessageBox.Show("4匹目-3Vのポケモンは個体値31が3箇所でなければいけません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					return;
+				}
+				else
+				{
+					MessageBox.Show("4匹目-2Vのポケモンは個体値31が2箇所でなければいけません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					return;
+				}
 			}
 
 			// 遺伝箇所チェック
 			bool[] possible = { false, false, false, false, false };
-			for (int vCount = 3; vCount <= 4; ++vCount)
+			bool[] vFlag = { false, false, false, false, false, false };
+			int fixedCount = 0;
+			for (int i = 0; i < 6; ++i)
 			{
-				c = 2;
-				int used = 2;
-				bool[] vFlag = { false, false, false, false, false, false };
+				if (ivs[i] == 31)
+				{
+					vFlag[i] = true;
+					++fixedCount;
+				}
+			}
+
+			//2V+3Vor4Vで6個確定
+			// 3V+4Vで5個確定
+			int needNumber = (Get35Mode() == Star35PanelMode.From2V ? 6 : 5);
+
+			for (int vCount = fixedCount + 1; vCount <= 4; ++vCount)
+			{
+				c = fixedCount;
+				int used = fixedCount;
 				for (int i = 0; i < 6; ++i)
 				{
-					if (ivs[i] == 31)
-					{
-						vFlag[i] = true;
-					}
+					vFlag[i] = (ivs[i] == 31);
 				}
 				// 普通に個体値生成をやってみる
 				for (int i = 0; i < 6; ++i)
@@ -202,8 +230,8 @@ namespace OneStar
 							++c;
 							if (c == vCount) // 遺伝終わり
 							{
-								// 残り個体値で未知の部分を2つ以上使う
-								if ((6 - vCount) - (6 - used) >= 2)
+								// 未知の部分が連続してneedNumber以上
+								if ((6 - vCount) - (6 - used) + (6 - fixedCount) >= needNumber)
 								{
 									possible[vCount] = true;
 								}
@@ -213,6 +241,7 @@ namespace OneStar
 					}
 				}
 			}
+
 			if (possible[3] && possible[4])
 			{
 				SetCheckResult(7);
@@ -368,7 +397,8 @@ namespace OneStar
 				return;
 			}
 
-			// 1匹目はVが2箇所じゃないとエラー
+			// 1匹目はVが2or3箇所じゃないとエラー
+			int strict = (Get35Mode() == Star35PanelMode.From3V ? 3 : 2);
 			int c = 0;
 			for (int i = 0; i < 6; ++i)
 			{
@@ -377,11 +407,19 @@ namespace OneStar
 					++c;
 				}
 			}
-			if (c != 2)
+			if (c != strict)
 			{
 				// エラー
-				MessageBox.Show("4匹目-2Vのポケモンは個体値31が2箇所でなければいけません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return;
+				if (strict == 3)
+				{
+					MessageBox.Show("4匹目-3Vのポケモンは個体値31が3箇所でなければいけません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					return;
+				}
+				else
+				{
+					MessageBox.Show("4匹目-2Vのポケモンは個体値31が2箇所でなければいけません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					return;
+				}
 			}
 
 			int ability1 = f_ComboBoxAbility_351.SelectedIndex;
@@ -406,8 +444,10 @@ namespace OneStar
 			int characteristic2 = f_ComboBoxCharacteristic_352.SelectedIndex;
 			int characteristic3 = f_ComboBoxCharacteristic_353.SelectedIndex;
 
+			var mode = Get35Mode();
+
 			// 計算開始
-			SeedSearcher searcher = new SeedSearcher(SeedSearcher.Mode.Star35);
+			SeedSearcher searcher = new SeedSearcher(mode == Star35PanelMode.From2V ? SeedSearcher.Mode.Star35_6 : SeedSearcher.Mode.Star35_5);
 			SeedSearcher.SetSixFirstCondition(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5], ability1, nature1, characteristic1, noGender1, isDream1);
 			SeedSearcher.SetSixSecondCondition(ivs[6], ivs[7], ivs[8], ivs[9], ivs[10], ivs[11], ability2, nature2, characteristic2, noGender2, isDream2);
 			SeedSearcher.SetSixThirdCondition(ivs[12], ivs[13], ivs[14], ivs[15], ivs[16], ivs[17], ability3, nature3, characteristic3, noGender3, isDream3);
@@ -434,7 +474,7 @@ namespace OneStar
 					vFlag[i] = true;
 				}
 			}
-			c = 2;
+			c = (mode == Star35PanelMode.From3V ? 3 : 2);
 			int[] conditionIv = new int[6];
 			int cursor = 0;
 			for (int i = 0; i < 6; ++i)
@@ -457,25 +497,26 @@ namespace OneStar
 
 			// 条件ベクトルを求める
 			c = 0;
-			int ability = -1;
 			for (int i = 0; i < 6; ++i)
 			{
 				if (vFlag[i] == false)
 				{
+					conditionIv[cursor++] = ivs[i + 6];
 					if (cursor == 6)
 					{
-						ability = ivs[i + 6] % 2;
 						break;
 					}
-					conditionIv[cursor++] = ivs[i + 6];
 				}
 			}
-			if (ability < 0) // 個体値列を最後まで使っていれば2匹目の特性の位置
-			{
-				ability = ability2;
-			}
 
-			SeedSearcher.SetTargetCondition(conditionIv[0], conditionIv[1], conditionIv[2], conditionIv[3], conditionIv[4], conditionIv[5], ability);
+			if (mode == Star35PanelMode.From2V)
+			{
+				SeedSearcher.SetTargetCondition6(conditionIv[0], conditionIv[1], conditionIv[2], conditionIv[3], conditionIv[4], conditionIv[5]);
+			}
+			else if (mode == Star35PanelMode.From3V)
+			{
+				SeedSearcher.SetTargetCondition5(conditionIv[0], conditionIv[1], conditionIv[2], conditionIv[3], conditionIv[4]);
+			}
 
 			SearchImpl(searcher);
 		}
@@ -498,16 +539,24 @@ namespace OneStar
 			f_ButtonStartSearch.BackColor = System.Drawing.Color.WhiteSmoke;
 
 			// 時間計測
-			var stopwatch = new System.Diagnostics.Stopwatch();
-			stopwatch.Start();
+			bool isShowResultTime = f_CheckBoxShowResultTime.Checked;
+			System.Diagnostics.Stopwatch stopWatch = null;
+			if (isShowResultTime)
+			{
+				stopWatch = new System.Diagnostics.Stopwatch();
+				stopWatch.Start();
+			}
 
 			await Task.Run(() =>
 			{
 				searcher.Calculate(isEnableStop, maxRerolls);
 			});
 
-			stopwatch.Stop();
-			MessageBox.Show($"{stopwatch.ElapsedMilliseconds}[ms]");
+			if (isShowResultTime && stopWatch != null)
+			{
+				stopWatch.Stop();
+				MessageBox.Show($"{stopWatch.ElapsedMilliseconds}[ms]");
+			}
 
 			f_ButtonStartSearch.Enabled = true;
 			f_ButtonStartSearch.Text = "検索開始";

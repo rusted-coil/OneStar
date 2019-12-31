@@ -71,6 +71,9 @@
 			this.f_TextBoxResultSeed = new System.Windows.Forms.TextBox();
 			this.f_ButtonListGenerate = new System.Windows.Forms.Button();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.f_CheckBoxShowSeed = new System.Windows.Forms.CheckBox();
+			this.f_CheckBoxNoGender_List = new System.Windows.Forms.CheckBox();
+			this.f_CheckBoxDream_List = new System.Windows.Forms.CheckBox();
 			this.f_TextBoxListVCount = new System.Windows.Forms.TextBox();
 			this.label46 = new System.Windows.Forms.Label();
 			this.f_CheckBoxListShiny = new System.Windows.Forms.CheckBox();
@@ -84,6 +87,8 @@
 			this.f_LabelCheckResult = new System.Windows.Forms.Label();
 			this.label43 = new System.Windows.Forms.Label();
 			this.groupBox6 = new System.Windows.Forms.GroupBox();
+			this.f_CheckBoxDream_353 = new System.Windows.Forms.CheckBox();
+			this.f_ComboBoxCharacteristic_353 = new System.Windows.Forms.ComboBox();
 			this.f_CheckBoxNoGender_353 = new System.Windows.Forms.CheckBox();
 			this.f_ComboBoxAbility_353 = new System.Windows.Forms.ComboBox();
 			this.label35 = new System.Windows.Forms.Label();
@@ -102,6 +107,8 @@
 			this.label41 = new System.Windows.Forms.Label();
 			this.label42 = new System.Windows.Forms.Label();
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.f_ComboBoxCharacteristic_352 = new System.Windows.Forms.ComboBox();
+			this.f_CheckBoxDream_352 = new System.Windows.Forms.CheckBox();
 			this.f_CheckBoxNoGender_352 = new System.Windows.Forms.CheckBox();
 			this.f_ComboBoxAbility_352 = new System.Windows.Forms.ComboBox();
 			this.label27 = new System.Windows.Forms.Label();
@@ -120,6 +127,9 @@
 			this.label33 = new System.Windows.Forms.Label();
 			this.label34 = new System.Windows.Forms.Label();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
+			this.f_ComboBoxModeSelector_35 = new System.Windows.Forms.ComboBox();
+			this.f_ComboBoxCharacteristic_351 = new System.Windows.Forms.ComboBox();
+			this.f_CheckBoxDream_351 = new System.Windows.Forms.CheckBox();
 			this.f_CheckBoxNoGender_351 = new System.Windows.Forms.CheckBox();
 			this.f_ComboBoxAbility_351 = new System.Windows.Forms.ComboBox();
 			this.label19 = new System.Windows.Forms.Label();
@@ -138,20 +148,12 @@
 			this.label25 = new System.Windows.Forms.Label();
 			this.label26 = new System.Windows.Forms.Label();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.label44 = new System.Windows.Forms.Label();
 			this.label45 = new System.Windows.Forms.Label();
 			this.f_TextBoxRerolls = new System.Windows.Forms.TextBox();
-			this.tabPage3 = new System.Windows.Forms.TabPage();
-			this.f_CheckBoxDream_351 = new System.Windows.Forms.CheckBox();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-			this.f_ComboBoxCharacteristic_351 = new System.Windows.Forms.ComboBox();
-			this.f_CheckBoxDream_352 = new System.Windows.Forms.CheckBox();
-			this.f_ComboBoxCharacteristic_352 = new System.Windows.Forms.ComboBox();
-			this.f_ComboBoxCharacteristic_353 = new System.Windows.Forms.ComboBox();
-			this.f_CheckBoxDream_353 = new System.Windows.Forms.CheckBox();
-			this.f_CheckBoxDream_List = new System.Windows.Forms.CheckBox();
-			this.f_CheckBoxNoGender_List = new System.Windows.Forms.CheckBox();
-			this.f_CheckBoxShowSeed = new System.Windows.Forms.CheckBox();
+			this.f_CheckBoxShowResultTime = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -591,6 +593,39 @@
 			this.groupBox2.TabIndex = 22;
 			this.groupBox2.TabStop = false;
 			// 
+			// f_CheckBoxShowSeed
+			// 
+			this.f_CheckBoxShowSeed.AutoSize = true;
+			this.f_CheckBoxShowSeed.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_CheckBoxShowSeed.Location = new System.Drawing.Point(16, 128);
+			this.f_CheckBoxShowSeed.Name = "f_CheckBoxShowSeed";
+			this.f_CheckBoxShowSeed.Size = new System.Drawing.Size(123, 16);
+			this.f_CheckBoxShowSeed.TabIndex = 29;
+			this.f_CheckBoxShowSeed.Text = "Seedの値を表示する";
+			this.f_CheckBoxShowSeed.UseVisualStyleBackColor = true;
+			// 
+			// f_CheckBoxNoGender_List
+			// 
+			this.f_CheckBoxNoGender_List.AutoSize = true;
+			this.f_CheckBoxNoGender_List.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_CheckBoxNoGender_List.Location = new System.Drawing.Point(220, 55);
+			this.f_CheckBoxNoGender_List.Name = "f_CheckBoxNoGender_List";
+			this.f_CheckBoxNoGender_List.Size = new System.Drawing.Size(102, 16);
+			this.f_CheckBoxNoGender_List.TabIndex = 28;
+			this.f_CheckBoxNoGender_List.Text = "性別固定/不明";
+			this.f_CheckBoxNoGender_List.UseVisualStyleBackColor = true;
+			// 
+			// f_CheckBoxDream_List
+			// 
+			this.f_CheckBoxDream_List.AutoSize = true;
+			this.f_CheckBoxDream_List.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_CheckBoxDream_List.Location = new System.Drawing.Point(16, 55);
+			this.f_CheckBoxDream_List.Name = "f_CheckBoxDream_List";
+			this.f_CheckBoxDream_List.Size = new System.Drawing.Size(78, 16);
+			this.f_CheckBoxDream_List.TabIndex = 27;
+			this.f_CheckBoxDream_List.Text = "夢特性あり";
+			this.f_CheckBoxDream_List.UseVisualStyleBackColor = true;
+			// 
 			// f_TextBoxListVCount
 			// 
 			this.f_TextBoxListVCount.Location = new System.Drawing.Point(157, 51);
@@ -685,7 +720,7 @@
 			this.f_ButtonIvsCheck.Location = new System.Drawing.Point(174, 135);
 			this.f_ButtonIvsCheck.Name = "f_ButtonIvsCheck";
 			this.f_ButtonIvsCheck.Size = new System.Drawing.Size(115, 31);
-			this.f_ButtonIvsCheck.TabIndex = 30;
+			this.f_ButtonIvsCheck.TabIndex = 1;
 			this.f_ButtonIvsCheck.Text = "個体値チェック";
 			this.f_ButtonIvsCheck.UseVisualStyleBackColor = true;
 			this.f_ButtonIvsCheck.Click += new System.EventHandler(this.f_ButtonIvsCheck_Click);
@@ -734,9 +769,29 @@
 			this.groupBox6.Location = new System.Drawing.Point(11, 308);
 			this.groupBox6.Name = "groupBox6";
 			this.groupBox6.Size = new System.Drawing.Size(513, 117);
-			this.groupBox6.TabIndex = 27;
+			this.groupBox6.TabIndex = 3;
 			this.groupBox6.TabStop = false;
 			this.groupBox6.Text = "5匹目";
+			// 
+			// f_CheckBoxDream_353
+			// 
+			this.f_CheckBoxDream_353.AutoSize = true;
+			this.f_CheckBoxDream_353.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_CheckBoxDream_353.Location = new System.Drawing.Point(8, 25);
+			this.f_CheckBoxDream_353.Name = "f_CheckBoxDream_353";
+			this.f_CheckBoxDream_353.Size = new System.Drawing.Size(78, 16);
+			this.f_CheckBoxDream_353.TabIndex = 0;
+			this.f_CheckBoxDream_353.Text = "夢特性あり";
+			this.f_CheckBoxDream_353.UseVisualStyleBackColor = true;
+			// 
+			// f_ComboBoxCharacteristic_353
+			// 
+			this.f_ComboBoxCharacteristic_353.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.f_ComboBoxCharacteristic_353.FormattingEnabled = true;
+			this.f_ComboBoxCharacteristic_353.Location = new System.Drawing.Point(139, 82);
+			this.f_ComboBoxCharacteristic_353.Name = "f_ComboBoxCharacteristic_353";
+			this.f_ComboBoxCharacteristic_353.Size = new System.Drawing.Size(125, 20);
+			this.f_ComboBoxCharacteristic_353.TabIndex = 8;
 			// 
 			// f_CheckBoxNoGender_353
 			// 
@@ -919,9 +974,29 @@
 			this.groupBox5.Location = new System.Drawing.Point(11, 183);
 			this.groupBox5.Name = "groupBox5";
 			this.groupBox5.Size = new System.Drawing.Size(513, 117);
-			this.groupBox5.TabIndex = 26;
+			this.groupBox5.TabIndex = 2;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "4匹目-3V～4V";
+			// 
+			// f_ComboBoxCharacteristic_352
+			// 
+			this.f_ComboBoxCharacteristic_352.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.f_ComboBoxCharacteristic_352.FormattingEnabled = true;
+			this.f_ComboBoxCharacteristic_352.Location = new System.Drawing.Point(139, 82);
+			this.f_ComboBoxCharacteristic_352.Name = "f_ComboBoxCharacteristic_352";
+			this.f_ComboBoxCharacteristic_352.Size = new System.Drawing.Size(125, 20);
+			this.f_ComboBoxCharacteristic_352.TabIndex = 8;
+			// 
+			// f_CheckBoxDream_352
+			// 
+			this.f_CheckBoxDream_352.AutoSize = true;
+			this.f_CheckBoxDream_352.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_CheckBoxDream_352.Location = new System.Drawing.Point(8, 25);
+			this.f_CheckBoxDream_352.Name = "f_CheckBoxDream_352";
+			this.f_CheckBoxDream_352.Size = new System.Drawing.Size(78, 16);
+			this.f_CheckBoxDream_352.TabIndex = 0;
+			this.f_CheckBoxDream_352.Text = "夢特性あり";
+			this.f_CheckBoxDream_352.UseVisualStyleBackColor = true;
 			// 
 			// f_CheckBoxNoGender_352
 			// 
@@ -1082,6 +1157,7 @@
 			// 
 			// groupBox4
 			// 
+			this.groupBox4.Controls.Add(this.f_ComboBoxModeSelector_35);
 			this.groupBox4.Controls.Add(this.f_ComboBoxCharacteristic_351);
 			this.groupBox4.Controls.Add(this.f_CheckBoxDream_351);
 			this.groupBox4.Controls.Add(this.f_CheckBoxNoGender_351);
@@ -1104,9 +1180,41 @@
 			this.groupBox4.Location = new System.Drawing.Point(12, 6);
 			this.groupBox4.Name = "groupBox4";
 			this.groupBox4.Size = new System.Drawing.Size(513, 117);
-			this.groupBox4.TabIndex = 25;
+			this.groupBox4.TabIndex = 0;
 			this.groupBox4.TabStop = false;
-			this.groupBox4.Text = "4匹目-2V";
+			// 
+			// f_ComboBoxModeSelector_35
+			// 
+			this.f_ComboBoxModeSelector_35.Cursor = System.Windows.Forms.Cursors.Default;
+			this.f_ComboBoxModeSelector_35.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.f_ComboBoxModeSelector_35.FormattingEnabled = true;
+			this.f_ComboBoxModeSelector_35.Items.AddRange(new object[] {
+            "4匹目-2Vから検索",
+            "4匹目-3Vから検索"});
+			this.f_ComboBoxModeSelector_35.Location = new System.Drawing.Point(8, 0);
+			this.f_ComboBoxModeSelector_35.Name = "f_ComboBoxModeSelector_35";
+			this.f_ComboBoxModeSelector_35.Size = new System.Drawing.Size(130, 20);
+			this.f_ComboBoxModeSelector_35.TabIndex = 0;
+			// 
+			// f_ComboBoxCharacteristic_351
+			// 
+			this.f_ComboBoxCharacteristic_351.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.f_ComboBoxCharacteristic_351.FormattingEnabled = true;
+			this.f_ComboBoxCharacteristic_351.Location = new System.Drawing.Point(139, 82);
+			this.f_ComboBoxCharacteristic_351.Name = "f_ComboBoxCharacteristic_351";
+			this.f_ComboBoxCharacteristic_351.Size = new System.Drawing.Size(125, 20);
+			this.f_ComboBoxCharacteristic_351.TabIndex = 9;
+			// 
+			// f_CheckBoxDream_351
+			// 
+			this.f_CheckBoxDream_351.AutoSize = true;
+			this.f_CheckBoxDream_351.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_CheckBoxDream_351.Location = new System.Drawing.Point(8, 25);
+			this.f_CheckBoxDream_351.Name = "f_CheckBoxDream_351";
+			this.f_CheckBoxDream_351.Size = new System.Drawing.Size(78, 16);
+			this.f_CheckBoxDream_351.TabIndex = 1;
+			this.f_CheckBoxDream_351.Text = "夢特性あり";
+			this.f_CheckBoxDream_351.UseVisualStyleBackColor = true;
 			// 
 			// f_CheckBoxNoGender_351
 			// 
@@ -1115,7 +1223,7 @@
 			this.f_CheckBoxNoGender_351.Location = new System.Drawing.Point(405, 84);
 			this.f_CheckBoxNoGender_351.Name = "f_CheckBoxNoGender_351";
 			this.f_CheckBoxNoGender_351.Size = new System.Drawing.Size(102, 16);
-			this.f_CheckBoxNoGender_351.TabIndex = 10;
+			this.f_CheckBoxNoGender_351.TabIndex = 11;
 			this.f_CheckBoxNoGender_351.Text = "性別固定/不明";
 			this.f_CheckBoxNoGender_351.UseVisualStyleBackColor = true;
 			// 
@@ -1126,7 +1234,7 @@
 			this.f_ComboBoxAbility_351.Location = new System.Drawing.Point(284, 82);
 			this.f_ComboBoxAbility_351.Name = "f_ComboBoxAbility_351";
 			this.f_ComboBoxAbility_351.Size = new System.Drawing.Size(108, 20);
-			this.f_ComboBoxAbility_351.TabIndex = 9;
+			this.f_ComboBoxAbility_351.TabIndex = 10;
 			// 
 			// label19
 			// 
@@ -1145,7 +1253,7 @@
 			this.f_ComboBoxNature_351.Location = new System.Drawing.Point(47, 82);
 			this.f_ComboBoxNature_351.Name = "f_ComboBoxNature_351";
 			this.f_ComboBoxNature_351.Size = new System.Drawing.Size(74, 20);
-			this.f_ComboBoxNature_351.TabIndex = 7;
+			this.f_ComboBoxNature_351.TabIndex = 8;
 			// 
 			// f_TextBoxIv5_351
 			// 
@@ -1153,7 +1261,7 @@
 			this.f_TextBoxIv5_351.MaxLength = 2;
 			this.f_TextBoxIv5_351.Name = "f_TextBoxIv5_351";
 			this.f_TextBoxIv5_351.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv5_351.TabIndex = 6;
+			this.f_TextBoxIv5_351.TabIndex = 7;
 			// 
 			// label20
 			// 
@@ -1171,7 +1279,7 @@
 			this.f_TextBoxIv4_351.MaxLength = 2;
 			this.f_TextBoxIv4_351.Name = "f_TextBoxIv4_351";
 			this.f_TextBoxIv4_351.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv4_351.TabIndex = 5;
+			this.f_TextBoxIv4_351.TabIndex = 6;
 			// 
 			// label21
 			// 
@@ -1189,7 +1297,7 @@
 			this.f_TextBoxIv3_351.MaxLength = 2;
 			this.f_TextBoxIv3_351.Name = "f_TextBoxIv3_351";
 			this.f_TextBoxIv3_351.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv3_351.TabIndex = 4;
+			this.f_TextBoxIv3_351.TabIndex = 5;
 			// 
 			// label22
 			// 
@@ -1207,7 +1315,7 @@
 			this.f_TextBoxIv2_351.MaxLength = 2;
 			this.f_TextBoxIv2_351.Name = "f_TextBoxIv2_351";
 			this.f_TextBoxIv2_351.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv2_351.TabIndex = 3;
+			this.f_TextBoxIv2_351.TabIndex = 4;
 			// 
 			// label23
 			// 
@@ -1225,7 +1333,7 @@
 			this.f_TextBoxIv1_351.MaxLength = 2;
 			this.f_TextBoxIv1_351.Name = "f_TextBoxIv1_351";
 			this.f_TextBoxIv1_351.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv1_351.TabIndex = 2;
+			this.f_TextBoxIv1_351.TabIndex = 3;
 			// 
 			// label24
 			// 
@@ -1243,7 +1351,7 @@
 			this.f_TextBoxIv0_351.MaxLength = 2;
 			this.f_TextBoxIv0_351.Name = "f_TextBoxIv0_351";
 			this.f_TextBoxIv0_351.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv0_351.TabIndex = 1;
+			this.f_TextBoxIv0_351.TabIndex = 2;
 			// 
 			// label25
 			// 
@@ -1277,6 +1385,16 @@
 			this.tabPage2.Text = "★1～2";
 			this.tabPage2.UseVisualStyleBackColor = true;
 			// 
+			// tabPage3
+			// 
+			this.tabPage3.Controls.Add(this.groupBox2);
+			this.tabPage3.Location = new System.Drawing.Point(4, 22);
+			this.tabPage3.Name = "tabPage3";
+			this.tabPage3.Size = new System.Drawing.Size(539, 431);
+			this.tabPage3.TabIndex = 2;
+			this.tabPage3.Text = "リスト出力";
+			this.tabPage3.UseVisualStyleBackColor = true;
+			// 
 			// label44
 			// 
 			this.label44.AutoSize = true;
@@ -1304,114 +1422,23 @@
 			this.f_TextBoxRerolls.Size = new System.Drawing.Size(24, 19);
 			this.f_TextBoxRerolls.TabIndex = 27;
 			// 
-			// tabPage3
+			// f_CheckBoxShowResultTime
 			// 
-			this.tabPage3.Controls.Add(this.groupBox2);
-			this.tabPage3.Location = new System.Drawing.Point(4, 22);
-			this.tabPage3.Name = "tabPage3";
-			this.tabPage3.Size = new System.Drawing.Size(539, 431);
-			this.tabPage3.TabIndex = 2;
-			this.tabPage3.Text = "リスト出力";
-			this.tabPage3.UseVisualStyleBackColor = true;
-			// 
-			// f_CheckBoxDream_351
-			// 
-			this.f_CheckBoxDream_351.AutoSize = true;
-			this.f_CheckBoxDream_351.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_CheckBoxDream_351.Location = new System.Drawing.Point(8, 25);
-			this.f_CheckBoxDream_351.Name = "f_CheckBoxDream_351";
-			this.f_CheckBoxDream_351.Size = new System.Drawing.Size(78, 16);
-			this.f_CheckBoxDream_351.TabIndex = 0;
-			this.f_CheckBoxDream_351.Text = "夢特性あり";
-			this.f_CheckBoxDream_351.UseVisualStyleBackColor = true;
-			// 
-			// f_ComboBoxCharacteristic_351
-			// 
-			this.f_ComboBoxCharacteristic_351.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.f_ComboBoxCharacteristic_351.FormattingEnabled = true;
-			this.f_ComboBoxCharacteristic_351.Location = new System.Drawing.Point(139, 82);
-			this.f_ComboBoxCharacteristic_351.Name = "f_ComboBoxCharacteristic_351";
-			this.f_ComboBoxCharacteristic_351.Size = new System.Drawing.Size(125, 20);
-			this.f_ComboBoxCharacteristic_351.TabIndex = 8;
-			// 
-			// f_CheckBoxDream_352
-			// 
-			this.f_CheckBoxDream_352.AutoSize = true;
-			this.f_CheckBoxDream_352.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_CheckBoxDream_352.Location = new System.Drawing.Point(8, 25);
-			this.f_CheckBoxDream_352.Name = "f_CheckBoxDream_352";
-			this.f_CheckBoxDream_352.Size = new System.Drawing.Size(78, 16);
-			this.f_CheckBoxDream_352.TabIndex = 0;
-			this.f_CheckBoxDream_352.Text = "夢特性あり";
-			this.f_CheckBoxDream_352.UseVisualStyleBackColor = true;
-			// 
-			// f_ComboBoxCharacteristic_352
-			// 
-			this.f_ComboBoxCharacteristic_352.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.f_ComboBoxCharacteristic_352.FormattingEnabled = true;
-			this.f_ComboBoxCharacteristic_352.Location = new System.Drawing.Point(139, 82);
-			this.f_ComboBoxCharacteristic_352.Name = "f_ComboBoxCharacteristic_352";
-			this.f_ComboBoxCharacteristic_352.Size = new System.Drawing.Size(125, 20);
-			this.f_ComboBoxCharacteristic_352.TabIndex = 8;
-			// 
-			// f_ComboBoxCharacteristic_353
-			// 
-			this.f_ComboBoxCharacteristic_353.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.f_ComboBoxCharacteristic_353.FormattingEnabled = true;
-			this.f_ComboBoxCharacteristic_353.Location = new System.Drawing.Point(139, 82);
-			this.f_ComboBoxCharacteristic_353.Name = "f_ComboBoxCharacteristic_353";
-			this.f_ComboBoxCharacteristic_353.Size = new System.Drawing.Size(125, 20);
-			this.f_ComboBoxCharacteristic_353.TabIndex = 8;
-			// 
-			// f_CheckBoxDream_353
-			// 
-			this.f_CheckBoxDream_353.AutoSize = true;
-			this.f_CheckBoxDream_353.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_CheckBoxDream_353.Location = new System.Drawing.Point(8, 25);
-			this.f_CheckBoxDream_353.Name = "f_CheckBoxDream_353";
-			this.f_CheckBoxDream_353.Size = new System.Drawing.Size(78, 16);
-			this.f_CheckBoxDream_353.TabIndex = 0;
-			this.f_CheckBoxDream_353.Text = "夢特性あり";
-			this.f_CheckBoxDream_353.UseVisualStyleBackColor = true;
-			// 
-			// f_CheckBoxDream_List
-			// 
-			this.f_CheckBoxDream_List.AutoSize = true;
-			this.f_CheckBoxDream_List.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_CheckBoxDream_List.Location = new System.Drawing.Point(16, 55);
-			this.f_CheckBoxDream_List.Name = "f_CheckBoxDream_List";
-			this.f_CheckBoxDream_List.Size = new System.Drawing.Size(78, 16);
-			this.f_CheckBoxDream_List.TabIndex = 27;
-			this.f_CheckBoxDream_List.Text = "夢特性あり";
-			this.f_CheckBoxDream_List.UseVisualStyleBackColor = true;
-			// 
-			// f_CheckBoxNoGender_List
-			// 
-			this.f_CheckBoxNoGender_List.AutoSize = true;
-			this.f_CheckBoxNoGender_List.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_CheckBoxNoGender_List.Location = new System.Drawing.Point(220, 55);
-			this.f_CheckBoxNoGender_List.Name = "f_CheckBoxNoGender_List";
-			this.f_CheckBoxNoGender_List.Size = new System.Drawing.Size(102, 16);
-			this.f_CheckBoxNoGender_List.TabIndex = 28;
-			this.f_CheckBoxNoGender_List.Text = "性別固定/不明";
-			this.f_CheckBoxNoGender_List.UseVisualStyleBackColor = true;
-			// 
-			// f_CheckBoxShowSeed
-			// 
-			this.f_CheckBoxShowSeed.AutoSize = true;
-			this.f_CheckBoxShowSeed.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_CheckBoxShowSeed.Location = new System.Drawing.Point(16, 128);
-			this.f_CheckBoxShowSeed.Name = "f_CheckBoxShowSeed";
-			this.f_CheckBoxShowSeed.Size = new System.Drawing.Size(123, 16);
-			this.f_CheckBoxShowSeed.TabIndex = 29;
-			this.f_CheckBoxShowSeed.Text = "Seedの値を表示する";
-			this.f_CheckBoxShowSeed.UseVisualStyleBackColor = true;
+			this.f_CheckBoxShowResultTime.AutoSize = true;
+			this.f_CheckBoxShowResultTime.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_CheckBoxShowResultTime.Location = new System.Drawing.Point(43, 495);
+			this.f_CheckBoxShowResultTime.Name = "f_CheckBoxShowResultTime";
+			this.f_CheckBoxShowResultTime.Size = new System.Drawing.Size(105, 16);
+			this.f_CheckBoxShowResultTime.TabIndex = 28;
+			this.f_CheckBoxShowResultTime.Text = "計算時間を表示";
+			this.f_CheckBoxShowResultTime.UseVisualStyleBackColor = true;
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(570, 543);
+			this.Controls.Add(this.f_CheckBoxShowResultTime);
 			this.Controls.Add(this.f_TextBoxRerolls);
 			this.Controls.Add(this.label45);
 			this.Controls.Add(this.label44);
@@ -1423,7 +1450,7 @@
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.Name = "MainForm";
-			this.Text = "1-Star Seed Search v1.01";
+			this.Text = "1-Star Seed Search v1.02";
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.groupBox3.ResumeLayout(false);
@@ -1572,6 +1599,8 @@
 		private System.Windows.Forms.CheckBox f_CheckBoxNoGender_List;
 		private System.Windows.Forms.CheckBox f_CheckBoxDream_List;
 		private System.Windows.Forms.CheckBox f_CheckBoxShowSeed;
+		private System.Windows.Forms.CheckBox f_CheckBoxShowResultTime;
+		private System.Windows.Forms.ComboBox f_ComboBoxModeSelector_35;
 	}
 }
 

@@ -7,7 +7,7 @@ namespace OneStarCUI
 	{
 		static void Main(string[] args)
 		{
-			SeedSearcher searcher = new SeedSearcher();
+			SeedSearcher searcher = new SeedSearcher(SeedSearcher.Mode.Star35_6);
 
 			// パラメータを設定
 			/*
@@ -24,7 +24,7 @@ namespace OneStarCUI
 	*/
 			Console.WriteLine("1匹目: ");
 			string[] str = Console.ReadLine().Split(' ');
-			SeedSearcher.SetSixCondition(int.Parse(str[0]), int.Parse(str[1]), int.Parse(str[2]), int.Parse(str[3]), int.Parse(str[4]), int.Parse(str[5]), int.Parse(str[6]), int.Parse(str[7]), int.Parse(str[8]));
+//			SeedSearcher.SetSixCondition(int.Parse(str[0]), int.Parse(str[1]), int.Parse(str[2]), int.Parse(str[3]), int.Parse(str[4]), int.Parse(str[5]), int.Parse(str[6]), int.Parse(str[7]), int.Parse(str[8]));
 
 			Console.WriteLine("2匹目: ");
 			string[] str2 = Console.ReadLine().Split(' ');
@@ -36,7 +36,7 @@ namespace OneStarCUI
 			sw.Start();
 
 			// 計算
-			searcher.CalculateSix();
+//			searcher.CalculateSix();
 
 			sw.Stop();
 

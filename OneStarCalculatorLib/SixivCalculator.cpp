@@ -10,13 +10,13 @@ static PokemonData l_First;
 static PokemonData l_Second;
 static PokemonData l_Third;
 
+static int g_FixedIvs;
 static int g_Ivs[6];
-static int g_Ability;
 static int g_SecondIvCount;
 
 static int g_IvOffset;
 
-#define LENGTH (60)
+//#define LENGTH (60)
 
 void SetSixFirstCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability, int nature, int characteristic, bool isNoGender, bool isEnableDream)
 {
@@ -71,63 +71,100 @@ void SetSixThirdCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, 
 	l_Third.isEnableDream = isEnableDream;
 }
 
-void SetTargetCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability)
+void SetTargetCondition6(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6)
 {
+	g_FixedIvs = 6;
 	g_Ivs[0] = iv1;
 	g_Ivs[1] = iv2;
 	g_Ivs[2] = iv3;
 	g_Ivs[3] = iv4;
 	g_Ivs[4] = iv5;
 	g_Ivs[5] = iv6;
-	g_Ability = ability;
+}
+
+void SetTargetCondition5(int iv1, int iv2, int iv3, int iv4, int iv5)
+{
+	g_FixedIvs = 5;
+	g_Ivs[0] = iv1;
+	g_Ivs[1] = iv2;
+	g_Ivs[2] = iv3;
+	g_Ivs[3] = iv4;
+	g_Ivs[4] = iv5;
 }
 
 void PrepareSix(int ivOffset)
 {
+	const int length = g_FixedIvs * 10;
+
 	g_IvOffset = ivOffset;
 
 	// 使用する行列値をセット
 	// 使用する定数ベクトルをセット
 	g_ConstantTermVector = 0;
-	for (int i = 0; i < LENGTH; ++i)
+	for (int i = 0; i < length; ++i)
 	{
-		int index = 10 * (2 + ivOffset) + i; // r[5+offset]からr[10+offset]まで使う
+		int index = 10 * (8 - g_FixedIvs + ivOffset) + i; // r[(11 - FixedIvs) + offset]からr[(11 - FixedIvs) + FixedIvs - 1 + offset]まで使う
 		g_InputMatrix[i] = Const::c_Matrix[index];
 		if (Const::c_ConstList[index] > 0)
 		{
-			g_ConstantTermVector |= (1ull << (LENGTH - 1 - i));
+			g_ConstantTermVector |= (1ull << (length - 1 - i));
 		}
 	}
 
 	// 行基本変形で求める
-	CalculateInverseMatrix(LENGTH);
+	CalculateInverseMatrix(length);
 
 	// 事前データを計算
-	CalculateCoefficientData(LENGTH);
+	CalculateCoefficientData(length);
 }
 
 _u64 SearchSix(_u64 ivs)
 {
+	const int length = g_FixedIvs * 10;
+
 	XoroshiroState xoroshiro;
 	XoroshiroState oshiroTemp;
 
 	_u64 target = 0;
 
-	// 下位30bit = 個体値
-	target |= (ivs & 0x3E000000ul) << 30; // iv0_0
-	target |= (ivs &  0x1F00000ul) << 25; // iv1_0
-	target |= (ivs &    0xF8000ul) << 20; // iv2_0
-	target |= (ivs &     0x7C00ul) << 15; // iv3_0
-	target |= (ivs &      0x3E0ul) << 10; // iv4_0
-	target |= (ivs &       0x1Ful) <<  5; // iv5_0
+	if(g_FixedIvs == 6)
+	{
+		// 下位30bit = 個体値
+		target |= (ivs & 0x3E000000ul) << 30; // iv0_0
+		target |= (ivs & 0x1F00000ul) << 25; // iv1_0
+		target |= (ivs & 0xF8000ul) << 20; // iv2_0
+		target |= (ivs & 0x7C00ul) << 15; // iv3_0
+		target |= (ivs & 0x3E0ul) << 10; // iv4_0
+		target |= (ivs & 0x1Ful) << 5; // iv5_0
 
-	// 隠された値を推定
-	target |= ((32ul + g_Ivs[0] - ((ivs & 0x3E000000ul) >> 25)) & 0x1F) << 50;
-	target |= ((32ul + g_Ivs[1] - ((ivs &  0x1F00000ul) >> 20)) & 0x1F) << 40;
-	target |= ((32ul + g_Ivs[2] - ((ivs &    0xF8000ul) >> 15)) & 0x1F) << 30;
-	target |= ((32ul + g_Ivs[3] - ((ivs &     0x7C00ul) >> 10)) & 0x1F) << 20;
-	target |= ((32ul + g_Ivs[4] - ((ivs &      0x3E0ul) >> 5)) & 0x1F) << 10;
-	target |= ((32ul + g_Ivs[5] -  (ivs &       0x1Ful)) & 0x1F);
+		// 隠された値を推定
+		target |= ((32ul + g_Ivs[0] - ((ivs & 0x3E000000ul) >> 25)) & 0x1F) << 50;
+		target |= ((32ul + g_Ivs[1] - ((ivs & 0x1F00000ul) >> 20)) & 0x1F) << 40;
+		target |= ((32ul + g_Ivs[2] - ((ivs & 0xF8000ul) >> 15)) & 0x1F) << 30;
+		target |= ((32ul + g_Ivs[3] - ((ivs & 0x7C00ul) >> 10)) & 0x1F) << 20;
+		target |= ((32ul + g_Ivs[4] - ((ivs & 0x3E0ul) >> 5)) & 0x1F) << 10;
+		target |= ((32ul + g_Ivs[5] - (ivs & 0x1Ful)) & 0x1F);
+	}
+	else if(g_FixedIvs == 5)
+	{
+		// 下位25bit = 個体値
+		target |= (ivs & 0x1F00000ul) << 25; // iv0_0
+		target |= (ivs & 0xF8000ul) << 20; // iv1_0
+		target |= (ivs & 0x7C00ul) << 15; // iv2_0
+		target |= (ivs & 0x3E0ul) << 10; // iv3_0
+		target |= (ivs & 0x1Ful) << 5; // iv4_0
+
+		// 隠された値を推定
+		target |= ((32ul + g_Ivs[0] - ((ivs & 0x1F00000ul) >> 20)) & 0x1F) << 40;
+		target |= ((32ul + g_Ivs[1] - ((ivs & 0xF8000ul) >> 15)) & 0x1F) << 30;
+		target |= ((32ul + g_Ivs[2] - ((ivs & 0x7C00ul) >> 10)) & 0x1F) << 20;
+		target |= ((32ul + g_Ivs[3] - ((ivs & 0x3E0ul) >> 5)) & 0x1F) << 10;
+		target |= ((32ul + g_Ivs[4] - (ivs & 0x1Ful)) & 0x1F);
+	}
+	else
+	{
+		return 0;
+	}
 
 	// targetベクトル入力完了
 
@@ -136,7 +173,7 @@ _u64 SearchSix(_u64 ivs)
 	// 60bit側の計算結果キャッシュ
 	_u64 processedTarget = 0;
 	int offset = 0;
-	for (int i = 0; i < LENGTH; ++i)
+	for (int i = 0; i < length; ++i)
 	{
 		while (g_FreeBit[i + offset] > 0)
 		{
@@ -146,7 +183,7 @@ _u64 SearchSix(_u64 ivs)
 	}
 
 	// 下位を決める
-	_u64 max = ((1 << (64 - LENGTH)) - 1);
+	_u64 max = ((1 << (64 - length)) - 1);
 	for (_u64 search = 0; search <= max; ++search)
 	{
 		_u64 seed = (processedTarget ^ g_CoefficientData[search]) | g_SearchPattern[search];

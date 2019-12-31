@@ -73,7 +73,10 @@
     <OutDir>$(SolutionDir)OneStar\bin\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)OneStar\bin\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)OneStar\bin\$(Configuration)\x64\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)OneStar\bin\$(Configuration)\x86\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>

@@ -57,6 +57,7 @@ namespace OneStarCalculator
 					pid = xoroshiro.Next(0xFFFFFFFFu);
 
 					bool isShiny = ((((otid ^ (otid >> 16)) >> 4) & 0xFFF) == (((pid ^ (pid >> 16)) >> 4) & 0xFFF));
+					bool isSquare = (((otid ^ (otid >> 16)) & 0xFFFF) == ((pid ^ (pid >> 16)) & 0xFFFF));
 
 					if (m_isShinyCheck && ! isShiny)
 					{
@@ -141,7 +142,7 @@ namespace OneStarCalculator
 					sw.Write($"{Util.GetNatureString((int)nature)},");
 					if (isShiny)
 					{
-						sw.WriteLine($"★");
+						sw.WriteLine(isSquare ? "◆" : "★");
 					}
 					else if(!m_isShinyCheck)
 					{
