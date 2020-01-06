@@ -139,4 +139,8 @@
     <Content Include="icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>cd $(SolutionDir)Data
+copy /Y *.json $(TargetDir)</PreBuildEvent>
+  </PropertyGroup>
 </Project>
