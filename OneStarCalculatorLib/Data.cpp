@@ -99,7 +99,7 @@ void CalculateCoefficientData(int length)
 			{
 				++offset;
 			}
-			g_CoefficientData[search] |= (GetSignature7(g_Coefficient[i] & search) << (63 - (i + offset)));
+			g_CoefficientData[search] |= (GetSignature(g_Coefficient[i] & search) << (63 - (i + offset)));
 		}
 		for (int a = 0; a < (64 - length); ++a)
 		{

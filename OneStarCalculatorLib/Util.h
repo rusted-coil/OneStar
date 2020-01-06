@@ -11,13 +11,6 @@ inline _u64 GetSignature(_u64 value)
 	return (a ^ (a >> 1)) & 1;
 }
 
-inline _u64 GetSignature7(unsigned short value)
-{
-	value = value ^ (value >> 4);
-	value = value ^ (value >> 2);
-	return (value ^ (value >> 1)) & 1;
-}
-
 struct PokemonData
 {
 	int ivs[6];

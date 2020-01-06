@@ -231,6 +231,7 @@
 			this.f_ComboBoxNature_1.Location = new System.Drawing.Point(47, 57);
 			this.f_ComboBoxNature_1.Name = "f_ComboBoxNature_1";
 			this.f_ComboBoxNature_1.Size = new System.Drawing.Size(111, 20);
+			this.f_ComboBoxNature_1.Sorted = true;
 			this.f_ComboBoxNature_1.TabIndex = 13;
 			// 
 			// f_TextBoxIv5_1
@@ -414,6 +415,7 @@
 			this.f_ComboBoxNature_2.Location = new System.Drawing.Point(47, 57);
 			this.f_ComboBoxNature_2.Name = "f_ComboBoxNature_2";
 			this.f_ComboBoxNature_2.Size = new System.Drawing.Size(111, 20);
+			this.f_ComboBoxNature_2.Sorted = true;
 			this.f_ComboBoxNature_2.TabIndex = 13;
 			// 
 			// f_TextBoxIv5_2
@@ -541,7 +543,7 @@
 			this.f_ButtonStartSearch.Location = new System.Drawing.Point(179, 481);
 			this.f_ButtonStartSearch.Name = "f_ButtonStartSearch";
 			this.f_ButtonStartSearch.Size = new System.Drawing.Size(176, 42);
-			this.f_ButtonStartSearch.TabIndex = 18;
+			this.f_ButtonStartSearch.TabIndex = 2;
 			this.f_ButtonStartSearch.Text = "検索開始";
 			this.f_ButtonStartSearch.UseVisualStyleBackColor = false;
 			this.f_ButtonStartSearch.Click += new System.EventHandler(this.ButtonStartSearch_Click);
@@ -553,7 +555,7 @@
 			this.label17.Location = new System.Drawing.Point(14, 23);
 			this.label17.Name = "label17";
 			this.label17.Size = new System.Drawing.Size(72, 12);
-			this.label17.TabIndex = 19;
+			this.label17.TabIndex = 0;
 			this.label17.Text = "Den Seed：0x";
 			// 
 			// f_TextBoxResultSeed
@@ -561,7 +563,7 @@
 			this.f_TextBoxResultSeed.Location = new System.Drawing.Point(86, 18);
 			this.f_TextBoxResultSeed.Name = "f_TextBoxResultSeed";
 			this.f_TextBoxResultSeed.Size = new System.Drawing.Size(138, 19);
-			this.f_TextBoxResultSeed.TabIndex = 20;
+			this.f_TextBoxResultSeed.TabIndex = 1;
 			// 
 			// f_ButtonListGenerate
 			// 
@@ -569,7 +571,7 @@
 			this.f_ButtonListGenerate.Location = new System.Drawing.Point(327, 92);
 			this.f_ButtonListGenerate.Name = "f_ButtonListGenerate";
 			this.f_ButtonListGenerate.Size = new System.Drawing.Size(154, 52);
-			this.f_ButtonListGenerate.TabIndex = 21;
+			this.f_ButtonListGenerate.TabIndex = 10;
 			this.f_ButtonListGenerate.Text = "リスト出力";
 			this.f_ButtonListGenerate.UseVisualStyleBackColor = true;
 			this.f_ButtonListGenerate.Click += new System.EventHandler(this.f_ButtonListGenerate_Click);
@@ -590,7 +592,7 @@
 			this.groupBox2.Location = new System.Drawing.Point(8, 2);
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Size = new System.Drawing.Size(522, 162);
-			this.groupBox2.TabIndex = 22;
+			this.groupBox2.TabIndex = 0;
 			this.groupBox2.TabStop = false;
 			// 
 			// f_CheckBoxShowSeed
@@ -600,7 +602,7 @@
 			this.f_CheckBoxShowSeed.Location = new System.Drawing.Point(16, 128);
 			this.f_CheckBoxShowSeed.Name = "f_CheckBoxShowSeed";
 			this.f_CheckBoxShowSeed.Size = new System.Drawing.Size(123, 16);
-			this.f_CheckBoxShowSeed.TabIndex = 29;
+			this.f_CheckBoxShowSeed.TabIndex = 9;
 			this.f_CheckBoxShowSeed.Text = "Seedの値を表示する";
 			this.f_CheckBoxShowSeed.UseVisualStyleBackColor = true;
 			// 
@@ -611,7 +613,7 @@
 			this.f_CheckBoxNoGender_List.Location = new System.Drawing.Point(220, 55);
 			this.f_CheckBoxNoGender_List.Name = "f_CheckBoxNoGender_List";
 			this.f_CheckBoxNoGender_List.Size = new System.Drawing.Size(102, 16);
-			this.f_CheckBoxNoGender_List.TabIndex = 28;
+			this.f_CheckBoxNoGender_List.TabIndex = 5;
 			this.f_CheckBoxNoGender_List.Text = "性別固定/不明";
 			this.f_CheckBoxNoGender_List.UseVisualStyleBackColor = true;
 			// 
@@ -622,7 +624,7 @@
 			this.f_CheckBoxDream_List.Location = new System.Drawing.Point(16, 55);
 			this.f_CheckBoxDream_List.Name = "f_CheckBoxDream_List";
 			this.f_CheckBoxDream_List.Size = new System.Drawing.Size(78, 16);
-			this.f_CheckBoxDream_List.TabIndex = 27;
+			this.f_CheckBoxDream_List.TabIndex = 2;
 			this.f_CheckBoxDream_List.Text = "夢特性あり";
 			this.f_CheckBoxDream_List.UseVisualStyleBackColor = true;
 			// 
@@ -631,7 +633,7 @@
 			this.f_TextBoxListVCount.Location = new System.Drawing.Point(157, 51);
 			this.f_TextBoxListVCount.Name = "f_TextBoxListVCount";
 			this.f_TextBoxListVCount.Size = new System.Drawing.Size(30, 19);
-			this.f_TextBoxListVCount.TabIndex = 26;
+			this.f_TextBoxListVCount.TabIndex = 4;
 			// 
 			// label46
 			// 
@@ -640,7 +642,7 @@
 			this.label46.Location = new System.Drawing.Point(104, 56);
 			this.label46.Name = "label46";
 			this.label46.Size = new System.Drawing.Size(55, 12);
-			this.label46.TabIndex = 25;
+			this.label46.TabIndex = 3;
 			this.label46.Text = "V固定数：";
 			// 
 			// f_CheckBoxListShiny
@@ -650,7 +652,7 @@
 			this.f_CheckBoxListShiny.Location = new System.Drawing.Point(177, 91);
 			this.f_CheckBoxListShiny.Name = "f_CheckBoxListShiny";
 			this.f_CheckBoxListShiny.Size = new System.Drawing.Size(79, 16);
-			this.f_CheckBoxListShiny.TabIndex = 24;
+			this.f_CheckBoxListShiny.TabIndex = 8;
 			this.f_CheckBoxListShiny.Text = "色違いのみ";
 			this.f_CheckBoxListShiny.UseVisualStyleBackColor = true;
 			// 
@@ -659,7 +661,7 @@
 			this.f_TextBoxMaxFrame.Location = new System.Drawing.Point(91, 89);
 			this.f_TextBoxMaxFrame.Name = "f_TextBoxMaxFrame";
 			this.f_TextBoxMaxFrame.Size = new System.Drawing.Size(67, 19);
-			this.f_TextBoxMaxFrame.TabIndex = 23;
+			this.f_TextBoxMaxFrame.TabIndex = 7;
 			// 
 			// label18
 			// 
@@ -668,7 +670,7 @@
 			this.label18.Location = new System.Drawing.Point(14, 92);
 			this.label18.Name = "label18";
 			this.label18.Size = new System.Drawing.Size(71, 12);
-			this.label18.TabIndex = 22;
+			this.label18.TabIndex = 6;
 			this.label18.Text = "最大消費数：";
 			// 
 			// f_CheckBoxStop
@@ -679,7 +681,7 @@
 			this.f_CheckBoxStop.Location = new System.Drawing.Point(373, 509);
 			this.f_CheckBoxStop.Name = "f_CheckBoxStop";
 			this.f_CheckBoxStop.Size = new System.Drawing.Size(111, 16);
-			this.f_CheckBoxStop.TabIndex = 23;
+			this.f_CheckBoxStop.TabIndex = 4;
 			this.f_CheckBoxStop.Text = "1つ見つけたら終了";
 			this.f_CheckBoxStop.UseVisualStyleBackColor = false;
 			// 
@@ -696,7 +698,7 @@
 			this.f_TabControlMain.Name = "f_TabControlMain";
 			this.f_TabControlMain.SelectedIndex = 0;
 			this.f_TabControlMain.Size = new System.Drawing.Size(547, 457);
-			this.f_TabControlMain.TabIndex = 24;
+			this.f_TabControlMain.TabIndex = 0;
 			// 
 			// tabPage1
 			// 
@@ -791,6 +793,7 @@
 			this.f_ComboBoxCharacteristic_353.Location = new System.Drawing.Point(139, 82);
 			this.f_ComboBoxCharacteristic_353.Name = "f_ComboBoxCharacteristic_353";
 			this.f_ComboBoxCharacteristic_353.Size = new System.Drawing.Size(125, 20);
+			this.f_ComboBoxCharacteristic_353.Sorted = true;
 			this.f_ComboBoxCharacteristic_353.TabIndex = 8;
 			// 
 			// f_CheckBoxNoGender_353
@@ -830,6 +833,7 @@
 			this.f_ComboBoxNature_353.Location = new System.Drawing.Point(47, 82);
 			this.f_ComboBoxNature_353.Name = "f_ComboBoxNature_353";
 			this.f_ComboBoxNature_353.Size = new System.Drawing.Size(74, 20);
+			this.f_ComboBoxNature_353.Sorted = true;
 			this.f_ComboBoxNature_353.TabIndex = 7;
 			// 
 			// f_TextBoxIv5_353
@@ -985,6 +989,7 @@
 			this.f_ComboBoxCharacteristic_352.Location = new System.Drawing.Point(139, 82);
 			this.f_ComboBoxCharacteristic_352.Name = "f_ComboBoxCharacteristic_352";
 			this.f_ComboBoxCharacteristic_352.Size = new System.Drawing.Size(125, 20);
+			this.f_ComboBoxCharacteristic_352.Sorted = true;
 			this.f_ComboBoxCharacteristic_352.TabIndex = 8;
 			// 
 			// f_CheckBoxDream_352
@@ -1035,6 +1040,7 @@
 			this.f_ComboBoxNature_352.Location = new System.Drawing.Point(47, 82);
 			this.f_ComboBoxNature_352.Name = "f_ComboBoxNature_352";
 			this.f_ComboBoxNature_352.Size = new System.Drawing.Size(74, 20);
+			this.f_ComboBoxNature_352.Sorted = true;
 			this.f_ComboBoxNature_352.TabIndex = 7;
 			// 
 			// f_TextBoxIv5_352
@@ -1203,6 +1209,7 @@
 			this.f_ComboBoxCharacteristic_351.Location = new System.Drawing.Point(139, 82);
 			this.f_ComboBoxCharacteristic_351.Name = "f_ComboBoxCharacteristic_351";
 			this.f_ComboBoxCharacteristic_351.Size = new System.Drawing.Size(125, 20);
+			this.f_ComboBoxCharacteristic_351.Sorted = true;
 			this.f_ComboBoxCharacteristic_351.TabIndex = 9;
 			// 
 			// f_CheckBoxDream_351
@@ -1253,6 +1260,7 @@
 			this.f_ComboBoxNature_351.Location = new System.Drawing.Point(47, 82);
 			this.f_ComboBoxNature_351.Name = "f_ComboBoxNature_351";
 			this.f_ComboBoxNature_351.Size = new System.Drawing.Size(74, 20);
+			this.f_ComboBoxNature_351.Sorted = true;
 			this.f_ComboBoxNature_351.TabIndex = 8;
 			// 
 			// f_TextBoxIv5_351
@@ -1420,7 +1428,7 @@
 			this.f_TextBoxRerolls.Location = new System.Drawing.Point(471, 483);
 			this.f_TextBoxRerolls.Name = "f_TextBoxRerolls";
 			this.f_TextBoxRerolls.Size = new System.Drawing.Size(24, 19);
-			this.f_TextBoxRerolls.TabIndex = 27;
+			this.f_TextBoxRerolls.TabIndex = 3;
 			// 
 			// f_CheckBoxShowResultTime
 			// 
@@ -1429,7 +1437,7 @@
 			this.f_CheckBoxShowResultTime.Location = new System.Drawing.Point(43, 495);
 			this.f_CheckBoxShowResultTime.Name = "f_CheckBoxShowResultTime";
 			this.f_CheckBoxShowResultTime.Size = new System.Drawing.Size(105, 16);
-			this.f_CheckBoxShowResultTime.TabIndex = 28;
+			this.f_CheckBoxShowResultTime.TabIndex = 1;
 			this.f_CheckBoxShowResultTime.Text = "計算時間を表示";
 			this.f_CheckBoxShowResultTime.UseVisualStyleBackColor = true;
 			// 

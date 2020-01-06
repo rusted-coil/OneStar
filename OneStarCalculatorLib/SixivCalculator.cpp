@@ -54,6 +54,10 @@ void SetSixSecondCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6,
 			++g_SecondIvCount;
 		}
 	}
+	if(g_SecondIvCount > 4)
+	{
+		g_SecondIvCount = 4;
+	}
 }
 
 void SetSixThirdCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability, int nature, int characteristic, bool isNoGender, bool isEnableDream)
@@ -234,7 +238,7 @@ _u64 SearchSix(_u64 ivs)
 		{
 			int ivs[6] = { -1, -1, -1, -1, -1, -1 };
 			int fixedCount = 0;
-			int offset = -2;
+			int offset = -(8 - g_FixedIvs);
 			do {
 				int fixedIndex = 0;
 				do {
@@ -247,7 +251,7 @@ _u64 SearchSix(_u64 ivs)
 					ivs[fixedIndex] = 31;
 					++fixedCount;
 				}
-			} while (fixedCount < 2);
+			} while (fixedCount < (8 - g_FixedIvs));
 
 			// reroll‰ñ”
 			if (offset != g_IvOffset)

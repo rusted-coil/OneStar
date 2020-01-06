@@ -349,8 +349,8 @@ namespace OneStar
 			{
 				ability2 = -1;
 			}
-			int nature1 = f_ComboBoxNature_1.SelectedIndex;
-			int nature2 = f_ComboBoxNature_2.SelectedIndex;
+			int nature1 = PokemonFormUtility.m_NatureDictionary[f_ComboBoxNature_1.Text];
+			int nature2 = PokemonFormUtility.m_NatureDictionary[f_ComboBoxNature_2.Text];
 
 			bool noGender1 = f_CheckBoxNoGender_1.Checked;
 			bool noGender2 = f_CheckBoxNoGender_2.Checked;
@@ -428,9 +428,9 @@ namespace OneStar
 			if (ability1 >= 2) { ability1 = ability1 * 3 - 7; }
 			if (ability2 >= 2) { ability2 = ability2 * 3 - 7; }
 			if (ability3 >= 2) { ability3 = ability3 * 3 - 7; }
-			int nature1 = f_ComboBoxNature_351.SelectedIndex;
-			int nature2 = f_ComboBoxNature_352.SelectedIndex;
-			int nature3 = f_ComboBoxNature_353.SelectedIndex;
+			int nature1 = PokemonFormUtility.m_NatureDictionary[f_ComboBoxNature_351.Text];
+			int nature2 = PokemonFormUtility.m_NatureDictionary[f_ComboBoxNature_352.Text];
+			int nature3 = PokemonFormUtility.m_NatureDictionary[f_ComboBoxNature_353.Text];
 
 			bool noGender1 = f_CheckBoxNoGender_351.Checked;
 			bool noGender2 = f_CheckBoxNoGender_352.Checked;
@@ -440,9 +440,9 @@ namespace OneStar
 			bool isDream2 = f_CheckBoxDream_352.Checked;
 			bool isDream3 = f_CheckBoxDream_353.Checked;
 
-			int characteristic1 = f_ComboBoxCharacteristic_351.SelectedIndex;
-			int characteristic2 = f_ComboBoxCharacteristic_352.SelectedIndex;
-			int characteristic3 = f_ComboBoxCharacteristic_353.SelectedIndex;
+			int characteristic1 = PokemonFormUtility.m_CharacteristicDictionary[f_ComboBoxCharacteristic_351.Text];
+			int characteristic2 = PokemonFormUtility.m_CharacteristicDictionary[f_ComboBoxCharacteristic_352.Text];
+			int characteristic3 = PokemonFormUtility.m_CharacteristicDictionary[f_ComboBoxCharacteristic_353.Text];
 
 			var mode = Get35Mode();
 
