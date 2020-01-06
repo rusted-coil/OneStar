@@ -2,7 +2,7 @@
 using System.IO;
 using System.Diagnostics;
 
-namespace OneStarCalculator
+namespace OneStar
 {
 	public class ListGenerator
 	{
@@ -38,14 +38,18 @@ namespace OneStarCalculator
 
 			using (StreamWriter sw = new StreamWriter("list.txt"))
 			{
+				sw.Write($"{Messages.Instance.ListLabel["Frame"]},");
 				if (m_isShowSeed)
 				{
-					sw.WriteLine("消費数,Seed,H,A,B,C,D,S,特性,性格,色違い");
+					sw.Write("Seed,");
 				}
-				else
+				for (int i = 0; i < 6; ++i)
 				{
-					sw.WriteLine("消費数,H,A,B,C,D,S,特性,性格,色違い");
+					sw.Write($"{Messages.Instance.Status[i]},");
 				}
+				sw.Write($"{Messages.Instance.ListLabel["Ability"]},");
+				sw.Write($"{Messages.Instance.ListLabel["Nature"]},");
+				sw.WriteLine($"{Messages.Instance.ListLabel["Shiny"]}");
 
 				for (int frame = 0; frame <= m_MaxCount; ++frame)
 				{
@@ -133,16 +137,16 @@ namespace OneStarCalculator
 					sw.Write($"{ivs[0]},{ivs[1]},{ivs[2]},{ivs[3]},{ivs[4]},{ivs[5]},");
 					if (ability == 2)
 					{
-						sw.Write("夢,");
+						sw.Write($"{Messages.Instance.ListLabel["HiddenAbility"]},");
 					}
 					else
 					{
 						sw.Write($"{ ability + 1},");
 					}
-					sw.Write($"{Util.GetNatureString((int)nature)},");
+					sw.Write($"{PokemonFormUtility.GetNatureString((int)nature)},");
 					if (isShiny)
 					{
-						sw.WriteLine(isSquare ? "◆" : "★");
+						sw.WriteLine(isSquare ? Messages.Instance.ListLabel["SquareShiny"] : Messages.Instance.ListLabel["StarShiny"]);
 					}
 					else if(!m_isShinyCheck)
 					{

@@ -16,7 +16,11 @@ namespace OneStar
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new MainForm());
+			MainForm mainForm = new MainForm();
+			if (mainForm.IsInitialized)
+			{
+				Application.Run(new MainForm());
+			}
 		}
 	}
 }

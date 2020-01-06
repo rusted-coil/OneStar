@@ -3,10 +3,17 @@ using OneStarCalculator;
 using System.Windows.Forms;
 using System.Threading.Tasks;
 using System.IO;
+using System.Collections.Generic;
 
 namespace OneStar
 {
 	// 設定項目
+	public enum Language
+	{
+		Japanese,
+		English
+	}
+
 	public enum AbilityType
 	{
 		First,
@@ -16,8 +23,16 @@ namespace OneStar
 
 	public partial class MainForm : Form
 	{
+		public bool IsInitialized { get; private set; }
+
+		// 環境設定
+		Preferences m_Preferences;
+
 		TextBox[] m_TextBoxIvsList12 = new TextBox[12];
 		TextBox[] m_TextBoxIvsList35 = new TextBox[18];
+
+		// 言語設定可能コントロール
+		Dictionary<string, Control[]> m_MultiLanguageControls;
 
 		enum Star35PanelMode {
 			From2V,
@@ -28,40 +43,58 @@ namespace OneStar
 
 		public MainForm()
 		{
+			// 設定の読み込み
+			m_Preferences = new Preferences();
+			if (!m_Preferences.Deserialize())
+			{
+				m_Preferences.Initialize();
+			}
+
+			// 言語の初期化
+			if (!Messages.Initialize(m_Preferences.Language))
+			{
+				MessageBox.Show("言語ファイルの読み込みに失敗しました。\n----------\n" + Messages.ErrorText, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				IsInitialized = false;
+				return;
+			}
+
 			InitializeComponent();
 
 			// ビューの初期化
 			InitializeView();
+
+			IsInitialized = true;
 		}
 
-		void InitializeView()
+		void InitializeComboBox()
 		{
+			// モード
+			f_ComboBoxModeSelector_35.Items.Clear();
+			f_ComboBoxModeSelector_35.Items.Add(Messages.Instance.SystemLabel["Pokemon35_1_2V"]);
+			f_ComboBoxModeSelector_35.Items.Add(Messages.Instance.SystemLabel["Pokemon35_1_3V"]);
+
 			// ★3～5パネル
-			f_ComboBoxModeSelector_35.SelectedIndex = 0;
 			PokemonFormUtility.SetNatureComboBox(f_ComboBoxNature_351);
 			PokemonFormUtility.SetNatureComboBox(f_ComboBoxNature_352);
 			PokemonFormUtility.SetNatureComboBox(f_ComboBoxNature_353);
 			PokemonFormUtility.SetCharacteristicComboBox(f_ComboBoxCharacteristic_351);
 			PokemonFormUtility.SetCharacteristicComboBox(f_ComboBoxCharacteristic_352);
 			PokemonFormUtility.SetCharacteristicComboBox(f_ComboBoxCharacteristic_353);
-			PokemonFormUtility.SetAbilityComboBox(f_ComboBoxAbility_351);
-			PokemonFormUtility.SetAbilityComboBox(f_ComboBoxAbility_352);
-			PokemonFormUtility.SetAbilityComboBox(f_ComboBoxAbility_353);
-			f_ComboBoxAbility_351.Items.Add("不明(通常特性)");
-			f_ComboBoxAbility_352.Items.Add("不明(通常特性)");
-			f_ComboBoxAbility_353.Items.Add("不明(通常特性)");
-			f_ComboBoxAbility_351.Items.Add("夢特性");
-			f_ComboBoxAbility_352.Items.Add("夢特性");
-			f_ComboBoxAbility_353.Items.Add("夢特性");
-
-			SetCheckResult(-1);
+			PokemonFormUtility.SetAbilityComboBox(f_ComboBoxAbility_351, 4);
+			PokemonFormUtility.SetAbilityComboBox(f_ComboBoxAbility_352, 4);
+			PokemonFormUtility.SetAbilityComboBox(f_ComboBoxAbility_353, 4);
 
 			// ★1～2パネル
 			PokemonFormUtility.SetNatureComboBox(f_ComboBoxNature_1);
 			PokemonFormUtility.SetNatureComboBox(f_ComboBoxNature_2);
-			PokemonFormUtility.SetAbilityComboBox(f_ComboBoxAbility_1);
-			PokemonFormUtility.SetAbilityComboBox(f_ComboBoxAbility_2);
-			f_ComboBoxAbility_2.Items.Add("不明");
+			PokemonFormUtility.SetAbilityComboBox(f_ComboBoxAbility_1, 2);
+			PokemonFormUtility.SetAbilityComboBox(f_ComboBoxAbility_2, 3);
+		}
+
+		void InitializeView()
+		{
+			// ★3～5パネル
+			SetCheckResult(-1);
 
 			// 共通
 			f_TextBoxMaxFrame.Text = "5000";
@@ -101,6 +134,66 @@ namespace OneStar
 			m_TextBoxIvsList35[15] = f_TextBoxIv3_353;
 			m_TextBoxIvsList35[16] = f_TextBoxIv4_353;
 			m_TextBoxIvsList35[17] = f_TextBoxIv5_353;
+
+			// 言語設定用コントロールをセット
+			m_MultiLanguageControls = new Dictionary<string, Control[]>();
+			m_MultiLanguageControls["Tab35"] = new Control[] { f_TabPage1 };
+			m_MultiLanguageControls["Tab12"] = new Control[] { f_TabPage2 };
+			m_MultiLanguageControls["TabList"] = new Control[] { f_TabPage3 };
+			m_MultiLanguageControls["Ivs"] = new Control[]{
+				f_LabelIvs_1,
+				f_LabelIvs_2,
+				f_LabelIvs_351,
+				f_LabelIvs_352,
+				f_LabelIvs_353,
+			};
+			m_MultiLanguageControls["Nature"] = new Control[]{
+				f_LabelNature_1,
+				f_LabelNature_2,
+				f_LabelNature_351,
+				f_LabelNature_352,
+				f_LabelNature_353,
+			};
+			m_MultiLanguageControls["HiddenPossible"] = new Control[] {
+				f_CheckBoxDream_351,
+				f_CheckBoxDream_352,
+				f_CheckBoxDream_353,
+				f_CheckBoxDream_List,
+			};
+			m_MultiLanguageControls["GenderFixed"] = new Control[] {
+				f_CheckBoxNoGender_1,
+				f_CheckBoxNoGender_2,
+				f_CheckBoxNoGender_351,
+				f_CheckBoxNoGender_352,
+				f_CheckBoxNoGender_353,
+				f_CheckBoxNoGender_List,
+			};
+			m_MultiLanguageControls["Pokemon35_1_2V"] = new Control[] {  };
+			m_MultiLanguageControls["Pokemon35_1_3V"] = new Control[] { };
+			m_MultiLanguageControls["Pokemon35_2"] = new Control[] { f_GroupBoxPokemon_352 };
+			m_MultiLanguageControls["Pokemon35_3"] = new Control[] { f_GroupBoxPokemon_353 };
+			m_MultiLanguageControls["Pokemon12_1"] = new Control[] { f_GroupBoxPokemon_1 };
+			m_MultiLanguageControls["Pokemon12_2"] = new Control[] { f_GroupBoxPokemon_2 };
+			m_MultiLanguageControls["CheckIvsButton"] = new Control[] { f_ButtonIvsCheck };
+			m_MultiLanguageControls["CheckIvsResultTitle"] = new Control[] { f_LabelCheckResultTitle };
+			m_MultiLanguageControls["ListVCount"] = new Control[] { f_LabelListVCount };
+			m_MultiLanguageControls["MaxFrame"] = new Control[] { f_LabelMaxFrame };
+			m_MultiLanguageControls["OnlyShiny"] = new Control[] { f_CheckBoxListShiny };
+			m_MultiLanguageControls["ShowSeed"] = new Control[] { f_CheckBoxShowSeed };
+			m_MultiLanguageControls["ListButton"] = new Control[] { f_ButtonListGenerate };
+			m_MultiLanguageControls["ShowDuration"] = new Control[] { f_CheckBoxShowResultTime };
+			m_MultiLanguageControls["StartSearch"] = new Control[] { f_ButtonStartSearch };
+			m_MultiLanguageControls["RerollsBefore"] = new Control[] { f_LabelRerollsBefore };
+			m_MultiLanguageControls["RerollsAfter"] = new Control[] { f_LabelRerollsAfter };
+			m_MultiLanguageControls["SearchStop"] = new Control[] { f_CheckBoxStop };
+
+			// 言語を適用
+			ChangeLanguage(true, m_Preferences.Language);
+		}
+
+		void CreateErrorDialog(string text)
+		{
+			MessageBox.Show(text, Messages.Instance.ErrorMessage["DialogTitle"], MessageBoxButtons.OK, MessageBoxIcon.Error);
 		}
 
 		void SetCheckResult(int result)
@@ -113,22 +206,22 @@ namespace OneStar
 					break;
 
 				case 1:
-					f_LabelCheckResult.Text = "NG！";
+					f_LabelCheckResult.Text = Messages.Instance.CheckIvsResult[0];
 					f_LabelCheckResult.ForeColor = System.Drawing.Color.Red;
 					break;
 
 				case 3:
-					f_LabelCheckResult.Text = "OK！ Next -> 3V";
+					f_LabelCheckResult.Text = Messages.Instance.CheckIvsResult[1];
 					f_LabelCheckResult.ForeColor = System.Drawing.Color.Blue;
 					break;
 
 				case 4:
-					f_LabelCheckResult.Text = "OK！ Next -> 4V";
+					f_LabelCheckResult.Text = Messages.Instance.CheckIvsResult[2];
 					f_LabelCheckResult.ForeColor = System.Drawing.Color.Blue;
 					break;
 
 				case 7:
-					f_LabelCheckResult.Text = "OK！ Next -> 3V or 4V";
+					f_LabelCheckResult.Text = Messages.Instance.CheckIvsResult[3];
 					f_LabelCheckResult.ForeColor = System.Drawing.Color.Blue;
 					break;
 			}
@@ -151,19 +244,19 @@ namespace OneStar
 				catch (Exception)
 				{
 					// エラー
-					errorText = "個体値の入力が不正です。\n（0～31の半角数字）";
+					errorText = Messages.Instance.ErrorMessage["IvsFormat"];
 					isCheckFailed = true;
 				}
 				if (ivs[i] < 0 || ivs[i] > 31)
 				{
 					// エラー
-					errorText = "個体値の入力が不正です。\n（0～31の半角数字）";
+					errorText = Messages.Instance.ErrorMessage["IvsFormat"];
 					isCheckFailed = true;
 				}
 			}
 			if (isCheckFailed)
 			{
-				MessageBox.Show(errorText, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				CreateErrorDialog(errorText);
 				return;
 			}
 
@@ -182,12 +275,12 @@ namespace OneStar
 				// エラー
 				if (strict == 3)
 				{
-					MessageBox.Show("4匹目-3Vのポケモンは個体値31が3箇所でなければいけません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					CreateErrorDialog(Messages.Instance.ErrorMessage["IvsStrict351_3V"]);
 					return;
 				}
 				else
 				{
-					MessageBox.Show("4匹目-2Vのポケモンは個体値31が2箇所でなければいけません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					CreateErrorDialog(Messages.Instance.ErrorMessage["IvsStrict351_2V"]);
 					return;
 				}
 			}
@@ -205,7 +298,7 @@ namespace OneStar
 				}
 			}
 
-			//2V+3Vor4Vで6個確定
+			// 2V+3Vor4Vで6個確定
 			// 3V+4Vで5個確定
 			int needNumber = (Get35Mode() == Star35PanelMode.From2V ? 6 : 5);
 
@@ -275,7 +368,7 @@ namespace OneStar
 			}
 			else
 			{
-				MessageBox.Show("検索したいレイドによって\n★3～5か★1～2のタブを開いてください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				CreateErrorDialog(Messages.Instance.ErrorMessage["NotSearchTab"]);
 			}
 		}
 
@@ -296,20 +389,20 @@ namespace OneStar
 				catch (Exception)
 				{
 					// エラー
-					errorText = "個体値の入力が不正です。\n（0～31の半角数字）";
+					errorText = Messages.Instance.ErrorMessage["IvsFormat"];
 					isCheckFailed = true;
 				}
 				if (ivs[i] < 0 || ivs[i] > 31)
 				{
 					// エラー
-					errorText = "個体値の入力が不正です。\n（0～31の半角数字）";
+					errorText = Messages.Instance.ErrorMessage["IvsFormat"];
 					isCheckFailed = true;
 				}
 			}
 
 			if (isCheckFailed)
 			{
-				MessageBox.Show(errorText, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				CreateErrorDialog(errorText);
 				return;
 			}
 
@@ -325,7 +418,7 @@ namespace OneStar
 			if (c != 1)
 			{
 				// エラー
-				MessageBox.Show("1匹目のポケモンは個体値31が1箇所でなければいけません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				CreateErrorDialog(Messages.Instance.ErrorMessage["IvsStrict1"]);
 				return;
 			}
 			// 2匹目はVが1箇所以上じゃないとエラー
@@ -340,7 +433,7 @@ namespace OneStar
 			if (c < 1)
 			{
 				// エラー
-				MessageBox.Show("2匹目のポケモンは個体値31が1箇所以上でなければいけません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				CreateErrorDialog(Messages.Instance.ErrorMessage["IvsStrict2"]);
 				return;
 			}
 			int ability1 = f_ComboBoxAbility_1.SelectedIndex;
@@ -349,8 +442,8 @@ namespace OneStar
 			{
 				ability2 = -1;
 			}
-			int nature1 = PokemonFormUtility.m_NatureDictionary[f_ComboBoxNature_1.Text];
-			int nature2 = PokemonFormUtility.m_NatureDictionary[f_ComboBoxNature_2.Text];
+			int nature1 = Messages.Instance.Nature[f_ComboBoxNature_1.Text];
+			int nature2 = Messages.Instance.Nature[f_ComboBoxNature_2.Text];
 
 			bool noGender1 = f_CheckBoxNoGender_1.Checked;
 			bool noGender2 = f_CheckBoxNoGender_2.Checked;
@@ -380,20 +473,20 @@ namespace OneStar
 				catch (Exception)
 				{
 					// エラー
-					errorText = "個体値の入力が不正です。\n（0～31の半角数字）";
+					errorText = Messages.Instance.ErrorMessage["IvsFormat"];
 					isCheckFailed = true;
 				}
 				if (ivs[i] < 0 || ivs[i] > 31)
 				{
 					// エラー
-					errorText = "個体値の入力が不正です。\n（0～31の半角数字）";
+					errorText = Messages.Instance.ErrorMessage["IvsFormat"];
 					isCheckFailed = true;
 				}
 			}
 
 			if (isCheckFailed)
 			{
-				MessageBox.Show(errorText, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				CreateErrorDialog(errorText);
 				return;
 			}
 
@@ -412,12 +505,12 @@ namespace OneStar
 				// エラー
 				if (strict == 3)
 				{
-					MessageBox.Show("4匹目-3Vのポケモンは個体値31が3箇所でなければいけません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					CreateErrorDialog(Messages.Instance.ErrorMessage["IvsStrict351_3V"]);
 					return;
 				}
 				else
 				{
-					MessageBox.Show("4匹目-2Vのポケモンは個体値31が2箇所でなければいけません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					CreateErrorDialog(Messages.Instance.ErrorMessage["IvsStrict351_2V"]);
 					return;
 				}
 			}
@@ -428,9 +521,9 @@ namespace OneStar
 			if (ability1 >= 2) { ability1 = ability1 * 3 - 7; }
 			if (ability2 >= 2) { ability2 = ability2 * 3 - 7; }
 			if (ability3 >= 2) { ability3 = ability3 * 3 - 7; }
-			int nature1 = PokemonFormUtility.m_NatureDictionary[f_ComboBoxNature_351.Text];
-			int nature2 = PokemonFormUtility.m_NatureDictionary[f_ComboBoxNature_352.Text];
-			int nature3 = PokemonFormUtility.m_NatureDictionary[f_ComboBoxNature_353.Text];
+			int nature1 = Messages.Instance.Nature[f_ComboBoxNature_351.Text];
+			int nature2 = Messages.Instance.Nature[f_ComboBoxNature_352.Text];
+			int nature3 = Messages.Instance.Nature[f_ComboBoxNature_353.Text];
 
 			bool noGender1 = f_CheckBoxNoGender_351.Checked;
 			bool noGender2 = f_CheckBoxNoGender_352.Checked;
@@ -440,9 +533,9 @@ namespace OneStar
 			bool isDream2 = f_CheckBoxDream_352.Checked;
 			bool isDream3 = f_CheckBoxDream_353.Checked;
 
-			int characteristic1 = PokemonFormUtility.m_CharacteristicDictionary[f_ComboBoxCharacteristic_351.Text];
-			int characteristic2 = PokemonFormUtility.m_CharacteristicDictionary[f_ComboBoxCharacteristic_352.Text];
-			int characteristic3 = PokemonFormUtility.m_CharacteristicDictionary[f_ComboBoxCharacteristic_353.Text];
+			int characteristic1 = Messages.Instance.Characteristic[f_ComboBoxCharacteristic_351.Text];
+			int characteristic2 = Messages.Instance.Characteristic[f_ComboBoxCharacteristic_352.Text];
+			int characteristic3 = Messages.Instance.Characteristic[f_ComboBoxCharacteristic_353.Text];
 
 			var mode = Get35Mode();
 
@@ -535,7 +628,7 @@ namespace OneStar
 
 			// ボタンを無効化
 			f_ButtonStartSearch.Enabled = false;
-			f_ButtonStartSearch.Text = "検索中";
+			f_ButtonStartSearch.Text = Messages.Instance.SystemLabel["Searching"];
 			f_ButtonStartSearch.BackColor = System.Drawing.Color.WhiteSmoke;
 
 			// 時間計測
@@ -559,14 +652,14 @@ namespace OneStar
 			}
 
 			f_ButtonStartSearch.Enabled = true;
-			f_ButtonStartSearch.Text = "検索開始";
+			f_ButtonStartSearch.Text = Messages.Instance.SystemLabel["StartSearch"];
 			f_ButtonStartSearch.BackColor = System.Drawing.Color.GreenYellow;
 
 			// 結果が見つからなかったらエラー
 			if (searcher.Result.Count == 0)
 			{
 				// エラー
-				MessageBox.Show("Den Seedが見つかりませんでした。\n「V箇所のズレを考慮」の数字を増やすと見つかる可能性があります。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				CreateErrorDialog(Messages.Instance.ErrorMessage["NotFound"]);
 				return;
 			}
 			else
@@ -581,7 +674,7 @@ namespace OneStar
 						}
 					}
 
-					MessageBox.Show("複数のDen Seedが見つかりました。\n全ての候補はseeds.txtをご確認ください。", "結果", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					MessageBox.Show(Messages.Instance.SystemMessage["FindManySeeds"], Messages.Instance.SystemMessage["ResultDialogTitle"], MessageBoxButtons.OK, MessageBoxIcon.Information);
 				}
 
 				f_TextBoxResultSeed.Text = $"{searcher.Result[0]:X}";
@@ -608,7 +701,7 @@ namespace OneStar
 			catch (Exception)
 			{
 				// エラー
-				MessageBox.Show("Den Seedの入力が不正です。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				CreateErrorDialog(Messages.Instance.ErrorMessage["DenSeedFormat"]);
 				return;
 			}
 
@@ -620,7 +713,7 @@ namespace OneStar
 			catch (Exception)
 			{
 				// エラー
-				MessageBox.Show("最大消費数の入力が不正です。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				CreateErrorDialog(Messages.Instance.ErrorMessage["MaxFrameFormat"]);
 				return;
 			}
 
@@ -632,7 +725,7 @@ namespace OneStar
 			catch (Exception)
 			{
 				// エラー
-				MessageBox.Show("V固定数の入力が不正です。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				CreateErrorDialog(Messages.Instance.ErrorMessage["VCountFormat"]);
 				return;
 			}
 
@@ -644,6 +737,160 @@ namespace OneStar
 
 			ListGenerator listGenerator = new ListGenerator(denSeed, maxFrameCount, vCount, isShinyCheck, isNoGender, isDream, isShowSeed);
 			listGenerator.Generate();
+		}
+
+		private void f_MenuItemLanguageJp_Click(object sender, EventArgs e)
+		{
+			if (!f_MenuItemLanguageJp.Checked)
+			{
+				ChangeLanguage(false, Language.Japanese);
+			}
+		}
+
+		private void f_MenuItemLanguageEn_Click(object sender, EventArgs e)
+		{
+			if (!f_MenuItemLanguageEn.Checked)
+			{
+				ChangeLanguage(false, Language.English);
+			}
+		}
+
+		void ChangeLanguage(bool isFirst, Language language)
+		{
+			// 言語のロード
+			if (!Messages.Initialize(language))
+			{
+				MessageBox.Show("言語ファイルの読み込みに失敗しました。\n----------\n" + Messages.ErrorText, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
+			// コンボボックスは一旦値を退避してセット
+			int modeIndex = 0;
+			int[] nature = new int[5];
+			int[] characteristic = new int[5];
+			int[] abilityIndex = new int[5];
+
+			if (!isFirst)
+			{
+				modeIndex = f_ComboBoxModeSelector_35.SelectedIndex;
+				f_ComboBoxModeSelector_35.Items.Clear();
+
+				nature = new int[]{
+					Messages.Instance.Nature[f_ComboBoxNature_1.Text],
+					Messages.Instance.Nature[f_ComboBoxNature_2.Text],
+					Messages.Instance.Nature[f_ComboBoxNature_351.Text],
+					Messages.Instance.Nature[f_ComboBoxNature_352.Text],
+					Messages.Instance.Nature[f_ComboBoxNature_353.Text],
+				};
+				f_ComboBoxNature_1.Items.Clear();
+				f_ComboBoxNature_2.Items.Clear();
+				f_ComboBoxNature_351.Items.Clear();
+				f_ComboBoxNature_352.Items.Clear();
+				f_ComboBoxNature_353.Items.Clear();
+
+				characteristic = new int[]{
+					Messages.Instance.Characteristic[f_ComboBoxCharacteristic_351.Text],
+					Messages.Instance.Characteristic[f_ComboBoxCharacteristic_352.Text],
+					Messages.Instance.Characteristic[f_ComboBoxCharacteristic_353.Text],
+				};
+				f_ComboBoxCharacteristic_351.Items.Clear();
+				f_ComboBoxCharacteristic_352.Items.Clear();
+				f_ComboBoxCharacteristic_353.Items.Clear();
+
+				abilityIndex = new int[]{
+					f_ComboBoxAbility_1.SelectedIndex,
+					f_ComboBoxAbility_2.SelectedIndex,
+					f_ComboBoxAbility_351.SelectedIndex,
+					f_ComboBoxAbility_352.SelectedIndex,
+					f_ComboBoxAbility_353.SelectedIndex,
+				};
+				f_ComboBoxAbility_1.Items.Clear();
+				f_ComboBoxAbility_2.Items.Clear();
+				f_ComboBoxAbility_351.Items.Clear();
+				f_ComboBoxAbility_352.Items.Clear();
+				f_ComboBoxAbility_353.Items.Clear();
+			}
+
+			// 設定変更
+			m_Preferences.Language = language;
+
+			// メニューアイテムのチェック
+			switch (language)
+			{
+				case Language.Japanese:
+					f_MenuItemLanguageJp.Checked = true;
+					f_MenuItemLanguageEn.Checked = false;
+					break;
+
+				case Language.English:
+					f_MenuItemLanguageJp.Checked = false;
+					f_MenuItemLanguageEn.Checked = true;
+					break;
+			}
+
+			// コントロールにメッセージを適用
+			foreach (var pair in m_MultiLanguageControls)
+			{
+				string str = Messages.Instance.SystemLabel[pair.Key];
+				foreach (var control in pair.Value)
+				{
+					control.Text = str;
+				}
+			}
+
+			// パラメータラベル
+			f_LabelStatus0_1.Text = Messages.Instance.Status[0];
+			f_LabelStatus1_1.Text = Messages.Instance.Status[1];
+			f_LabelStatus2_1.Text = Messages.Instance.Status[2];
+			f_LabelStatus3_1.Text = Messages.Instance.Status[3];
+			f_LabelStatus4_1.Text = Messages.Instance.Status[4];
+			f_LabelStatus5_1.Text = Messages.Instance.Status[5];
+			f_LabelStatus0_2.Text = Messages.Instance.Status[0];
+			f_LabelStatus1_2.Text = Messages.Instance.Status[1];
+			f_LabelStatus2_2.Text = Messages.Instance.Status[2];
+			f_LabelStatus3_2.Text = Messages.Instance.Status[3];
+			f_LabelStatus4_2.Text = Messages.Instance.Status[4];
+			f_LabelStatus5_2.Text = Messages.Instance.Status[5];
+			f_LabelStatus0_351.Text = Messages.Instance.Status[0];
+			f_LabelStatus1_351.Text = Messages.Instance.Status[1];
+			f_LabelStatus2_351.Text = Messages.Instance.Status[2];
+			f_LabelStatus3_351.Text = Messages.Instance.Status[3];
+			f_LabelStatus4_351.Text = Messages.Instance.Status[4];
+			f_LabelStatus5_351.Text = Messages.Instance.Status[5];
+			f_LabelStatus0_352.Text = Messages.Instance.Status[0];
+			f_LabelStatus1_352.Text = Messages.Instance.Status[1];
+			f_LabelStatus2_352.Text = Messages.Instance.Status[2];
+			f_LabelStatus3_352.Text = Messages.Instance.Status[3];
+			f_LabelStatus4_352.Text = Messages.Instance.Status[4];
+			f_LabelStatus5_352.Text = Messages.Instance.Status[5];
+			f_LabelStatus0_353.Text = Messages.Instance.Status[0];
+			f_LabelStatus1_353.Text = Messages.Instance.Status[1];
+			f_LabelStatus2_353.Text = Messages.Instance.Status[2];
+			f_LabelStatus3_353.Text = Messages.Instance.Status[3];
+			f_LabelStatus4_353.Text = Messages.Instance.Status[4];
+			f_LabelStatus5_353.Text = Messages.Instance.Status[5];
+
+			// コンボボックス再初期化
+			InitializeComboBox();
+
+			// 退避していた選択をセット
+			f_ComboBoxModeSelector_35.SelectedIndex = modeIndex;
+			if (!isFirst)
+			{
+				PokemonFormUtility.SelectNatureComboBox(f_ComboBoxNature_1, nature[0]);
+				PokemonFormUtility.SelectNatureComboBox(f_ComboBoxNature_2, nature[1]);
+				PokemonFormUtility.SelectNatureComboBox(f_ComboBoxNature_351, nature[2]);
+				PokemonFormUtility.SelectNatureComboBox(f_ComboBoxNature_352, nature[3]);
+				PokemonFormUtility.SelectNatureComboBox(f_ComboBoxNature_353, nature[4]);
+				PokemonFormUtility.SelectCharacteristicComboBox(f_ComboBoxCharacteristic_351, characteristic[0]);
+				PokemonFormUtility.SelectCharacteristicComboBox(f_ComboBoxCharacteristic_352, characteristic[1]);
+				PokemonFormUtility.SelectCharacteristicComboBox(f_ComboBoxCharacteristic_353, characteristic[2]);
+				f_ComboBoxAbility_1.SelectedIndex = abilityIndex[0];
+				f_ComboBoxAbility_2.SelectedIndex = abilityIndex[1];
+				f_ComboBoxAbility_351.SelectedIndex = abilityIndex[2];
+				f_ComboBoxAbility_352.SelectedIndex = abilityIndex[3];
+				f_ComboBoxAbility_353.SelectedIndex = abilityIndex[4];
+			}
 		}
 	}
 }

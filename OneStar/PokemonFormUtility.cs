@@ -6,52 +6,84 @@ namespace OneStar
 {
 	class PokemonFormUtility
 	{
-		// 逆引きリスト
-		public static Dictionary<string, int> m_NatureDictionary;
-		public static Dictionary<string, int> m_CharacteristicDictionary;
-
-		static PokemonFormUtility()
-		{
-			m_NatureDictionary = new Dictionary<string, int>();
-			for (int i = 0; i < 25; ++i)
-			{
-				m_NatureDictionary.Add(Util.GetNatureString(i), i);
-			}
-			m_CharacteristicDictionary = new Dictionary<string, int>();
-			m_CharacteristicDictionary.Add("ひるねをよくする", 0);
-			m_CharacteristicDictionary.Add("あばれることがすき", 1);
-			m_CharacteristicDictionary.Add("うたれづよい", 2);
-			m_CharacteristicDictionary.Add("ものおとにびんかん", 3);
-			m_CharacteristicDictionary.Add("イタズラがすき", 4);
-			m_CharacteristicDictionary.Add("ちょっぴりみえっぱり", 5);
-		}
-
 		// 性格リストをコンボボックスにセット
 		public static void SetNatureComboBox(ComboBox comboBox)
 		{
-			foreach (var key in m_NatureDictionary.Keys)
+			foreach (var key in Messages.Instance.Nature.Keys)
 			{
 				comboBox.Items.Add(key);
 			}
 			comboBox.SelectedIndex = 0;
+		}
+
+		// 性格IDのものを選択
+		public static void SelectNatureComboBox(ComboBox comboBox, int nature)
+		{
+			string str = GetNatureString(nature);
+			foreach (var item in comboBox.Items)
+			{
+				if (item.ToString() == str)
+				{
+					comboBox.SelectedItem = item;
+				}
+			}
 		}
 
 		// 個性リストをコンボボックスにセット
 		public static void SetCharacteristicComboBox(ComboBox comboBox)
 		{
-			foreach (var key in m_CharacteristicDictionary.Keys)
+			foreach (var key in Messages.Instance.Characteristic.Keys)
 			{
 				comboBox.Items.Add(key);
 			}
 			comboBox.SelectedIndex = 0;
 		}
 
-		// 特性リストをコンボボックスにセット
-		public static void SetAbilityComboBox(ComboBox comboBox, int initialIndex = 0)
+		// 個性IDのものを選択
+		public static void SelectCharacteristicComboBox(ComboBox comboBox, int characteristic)
 		{
-			comboBox.Items.Add("特性1");
-			comboBox.Items.Add("特性2");
+			string str = GetCharacteristicString(characteristic);
+			foreach (var item in comboBox.Items)
+			{
+				if (item.ToString() == str)
+				{
+					comboBox.SelectedItem = item;
+				}
+			}
+		}
+
+		// 特性リストをコンボボックスにセット
+		public static void SetAbilityComboBox(ComboBox comboBox, int count, int initialIndex = 0)
+		{
+			for (int i = 0; i < count; ++i)
+			{
+				comboBox.Items.Add(Messages.Instance.Ability[i]);
+			}
 			comboBox.SelectedIndex = initialIndex;
 		}
-}
+
+		public static string GetNatureString(int nature)
+		{
+			foreach (var pair in Messages.Instance.Nature)
+			{
+				if (pair.Value == nature)
+				{
+					return pair.Key;
+				}
+			}
+			return "";
+		}
+
+		public static string GetCharacteristicString(int characteristic)
+		{
+			foreach (var pair in Messages.Instance.Characteristic)
+			{
+				if (pair.Value == characteristic)
+				{
+					return pair.Key;
+				}
+			}
+			return "";
+		}
+	}
 }

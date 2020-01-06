@@ -7,6 +7,9 @@ namespace OneStarCUI
 	{
 		static void Main(string[] args)
 		{
+			// 適当に計算したりするテスト用コンソールです
+
+
 			SeedSearcher searcher = new SeedSearcher(SeedSearcher.Mode.Star35_6);
 
 			// パラメータを設定
