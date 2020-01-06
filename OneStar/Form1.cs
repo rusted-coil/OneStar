@@ -757,6 +757,27 @@ namespace OneStar
 
 		void ChangeLanguage(bool isFirst, Language language)
 		{
+            
+            int[] nature = new int[5];
+            int[] characteristic = new int[5];
+
+            if (!isFirst)
+            {
+                nature = new int[]{
+                    Messages.Instance.Nature[f_ComboBoxNature_1.Text],
+                    Messages.Instance.Nature[f_ComboBoxNature_2.Text],
+                    Messages.Instance.Nature[f_ComboBoxNature_351.Text],
+                    Messages.Instance.Nature[f_ComboBoxNature_352.Text],
+                    Messages.Instance.Nature[f_ComboBoxNature_353.Text],
+                };
+
+                characteristic = new int[]{
+                    Messages.Instance.Characteristic[f_ComboBoxCharacteristic_351.Text],
+                    Messages.Instance.Characteristic[f_ComboBoxCharacteristic_352.Text],
+                    Messages.Instance.Characteristic[f_ComboBoxCharacteristic_353.Text],
+                };
+            }
+
 			// 言語のロード
 			if (!Messages.Initialize(language))
 			{
@@ -766,33 +787,20 @@ namespace OneStar
 
 			// コンボボックスは一旦値を退避してセット
 			int modeIndex = 0;
-			int[] nature = new int[5];
-			int[] characteristic = new int[5];
 			int[] abilityIndex = new int[5];
 
 			if (!isFirst)
 			{
-				modeIndex = f_ComboBoxModeSelector_35.SelectedIndex;
+                
+                modeIndex = f_ComboBoxModeSelector_35.SelectedIndex;
 				f_ComboBoxModeSelector_35.Items.Clear();
 
-				nature = new int[]{
-					Messages.Instance.Nature[f_ComboBoxNature_1.Text],
-					Messages.Instance.Nature[f_ComboBoxNature_2.Text],
-					Messages.Instance.Nature[f_ComboBoxNature_351.Text],
-					Messages.Instance.Nature[f_ComboBoxNature_352.Text],
-					Messages.Instance.Nature[f_ComboBoxNature_353.Text],
-				};
 				f_ComboBoxNature_1.Items.Clear();
 				f_ComboBoxNature_2.Items.Clear();
 				f_ComboBoxNature_351.Items.Clear();
 				f_ComboBoxNature_352.Items.Clear();
 				f_ComboBoxNature_353.Items.Clear();
-
-				characteristic = new int[]{
-					Messages.Instance.Characteristic[f_ComboBoxCharacteristic_351.Text],
-					Messages.Instance.Characteristic[f_ComboBoxCharacteristic_352.Text],
-					Messages.Instance.Characteristic[f_ComboBoxCharacteristic_353.Text],
-				};
+				
 				f_ComboBoxCharacteristic_351.Items.Clear();
 				f_ComboBoxCharacteristic_352.Items.Clear();
 				f_ComboBoxCharacteristic_353.Items.Clear();
