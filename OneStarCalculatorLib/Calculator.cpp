@@ -25,7 +25,10 @@ const int* g_IvsRef[30] = {
 	&l_First.ivs[0], &l_First.ivs[1], &l_First.ivs[2], &l_First.ivs[3], &l_First.ivs[4]
 };
 
-#define LENGTH (57)
+#define LENGTH_BASE (56)
+
+// 夢特性なし、かつ特性指定ありの場合AbilityBitが有効
+inline bool IsEnableAbilityBit() { return (!l_First.isEnableDream && l_First.ability >= 0); }
 
 void SetFirstCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, bool isNoGender, bool isEnableDream)
 {
@@ -73,69 +76,103 @@ void SetNextCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int 
 
 void Prepare(int rerolls)
 {
+	const int length = (IsEnableAbilityBit() ? LENGTH_BASE + 1 : LENGTH_BASE);
+
 	g_Rerolls = rerolls;
 
 	// 使用する行列値をセット
 	// 使用する定数ベクトルをセット
+	
 	g_ConstantTermVector = 0;
-	for (int i = 0; i < LENGTH - 1; ++i)
+
+	// r[3+rerolls]をV箇所、r[4+rerolls]からr[8+rerolls]を個体値として使う
+
+	// 変換行列を計算
+	InitializeTransformationMatrix(); // r[1]が得られる変換行列がセットされる
+	for(int i = 0; i <= rerolls + 1; ++i)
 	{
-		int index = (i < 6 ? rerolls * 10 + (i / 3) * 5 + 2 + i % 3 : i - 6 + (rerolls + 1) * 10); // r[3+rerolls]をV箇所、r[4+rerolls]からr[8+rerolls]を個体値として使う
-		g_InputMatrix[i] = Const::c_Matrix[index];
-		if (Const::c_ConstList[index] > 0)
+		ProceedTransformationMatrix(); // r[2 + i]が得られる
+	}
+
+	int bit = 0;
+	for (int i = 0; i < 6; ++i, ++bit)
+	{
+		int index = 61 + (i / 3) * 64 + (i % 3);
+		g_InputMatrix[bit] = GetMatrixMultiplier(index);
+		if(GetMatrixConst(index) != 0)
 		{
-			g_ConstantTermVector |= (1ull << (LENGTH - 1 - i));
+			g_ConstantTermVector |= (1ull << (length - 1 - bit));
+		}
+	}
+	for (int a = 0; a < 5; ++a)
+	{
+		ProceedTransformationMatrix();
+		for(int i = 0; i < 10; ++i, ++bit)
+		{
+			int index = 59 + (i / 5) * 64 + (i % 5);
+			g_InputMatrix[bit] = GetMatrixMultiplier(index);
+			if(GetMatrixConst(index) != 0)
+			{
+				g_ConstantTermVector |= (1ull << (length - 1 - bit));
+			}
 		}
 	}
 	// Abilityは2つを圧縮 r[9+rerolls]
-	int index = (rerolls + 6) * 10 + 4;
-	g_InputMatrix[LENGTH - 1] = Const::c_Matrix[index] ^ Const::c_Matrix[index + 5];
-	if ((Const::c_ConstList[index] ^ Const::c_ConstList[index + 5]) != 0)
+	if(IsEnableAbilityBit())
 	{
-		g_ConstantTermVector |= 1;
+		ProceedTransformationMatrix();
+
+		g_InputMatrix[LENGTH_BASE] = GetMatrixMultiplier(63) ^ GetMatrixMultiplier(127);
+		if((GetMatrixConst(63) ^ GetMatrixConst(127)) != 0)
+		{
+			g_ConstantTermVector |= 1;
+		}
 	}
 
 	// 行基本変形で求める
-	CalculateInverseMatrix(LENGTH);
+	CalculateInverseMatrix(length);
 
 	// 事前データを計算
-	CalculateCoefficientData(LENGTH);
+	CalculateCoefficientData(length);
 }
 
 _u64 Search(_u64 ivs)
 {
+	const int length = (IsEnableAbilityBit() ? LENGTH_BASE + 1 : LENGTH_BASE);
+
 	XoroshiroState xoroshiro;
 	XoroshiroState oshiroTemp;
 
-	_u64 target = l_First.ability;
+	_u64 target = (IsEnableAbilityBit() ? (l_First.ability & 1) : 0);
+	int bitOffset = (IsEnableAbilityBit() ? 1 : 0);
 
 	// 上位3bit = V箇所決定
-	target |= (ivs & 0xE000000ul) << 29; // fixedIndex0
+	target |= (ivs & 0xE000000ul) << (28 + bitOffset); // fixedIndex0
 
 	// 下位25bit = 個体値
-	target |= (ivs & 0x1F00000ul) << 26; // iv0_0
-	target |= (ivs &   0xF8000ul) << 21; // iv1_0
-	target |= (ivs &    0x7C00ul) << 16; // iv2_0
-	target |= (ivs &     0x3E0ul) << 11; // iv3_0
-	target |= (ivs &      0x1Ful) <<  6; // iv4_0
+	target |= (ivs & 0x1F00000ul) << (25 + bitOffset); // iv0_0
+	target |= (ivs &   0xF8000ul) << (20 + bitOffset); // iv1_0
+	target |= (ivs &    0x7C00ul) << (15 + bitOffset); // iv2_0
+	target |= (ivs &     0x3E0ul) << (10 + bitOffset); // iv3_0
+	target |= (ivs &      0x1Ful) << ( 5 + bitOffset); // iv4_0
 
 	// 隠された値を推定
-	target |= ((8ul + g_FixedIndex - ((ivs & 0xE000000ul) >> 25)) & 7) << 51;
+	target |= ((8ul + g_FixedIndex - ((ivs & 0xE000000ul) >> 25)) & 7) << (50 + bitOffset);
 
-	target |= ((32ul + *g_IvsRef[g_FixedIndex * 5    ] - ((ivs & 0x1F00000ul) >> 20)) & 0x1F) << 41;
-	target |= ((32ul + *g_IvsRef[g_FixedIndex * 5 + 1] - ((ivs &   0xF8000ul) >> 15)) & 0x1F) << 31;
-	target |= ((32ul + *g_IvsRef[g_FixedIndex * 5 + 2] - ((ivs &    0x7C00ul) >> 10)) & 0x1F) << 21;
-	target |= ((32ul + *g_IvsRef[g_FixedIndex * 5 + 3] - ((ivs &     0x3E0ul) >> 5)) & 0x1F) << 11;
-	target |= ((32ul + *g_IvsRef[g_FixedIndex * 5 + 4] -  (ivs &      0x1Ful)) & 0x1F) << 1;
+	target |= ((32ul + *g_IvsRef[g_FixedIndex * 5    ] - ((ivs & 0x1F00000ul) >> 20)) & 0x1F) << (40 + bitOffset);
+	target |= ((32ul + *g_IvsRef[g_FixedIndex * 5 + 1] - ((ivs &   0xF8000ul) >> 15)) & 0x1F) << (30 + bitOffset);
+	target |= ((32ul + *g_IvsRef[g_FixedIndex * 5 + 2] - ((ivs &    0x7C00ul) >> 10)) & 0x1F) << (20 + bitOffset);
+	target |= ((32ul + *g_IvsRef[g_FixedIndex * 5 + 3] - ((ivs &     0x3E0ul) >> 5)) & 0x1F) << (10 + bitOffset);
+	target |= ((32ul + *g_IvsRef[g_FixedIndex * 5 + 4] -  (ivs &      0x1Ful)) & 0x1F) << bitOffset;
 
 	// targetベクトル入力完了
 
 	target ^= g_ConstantTermVector;
 
-	// 57bit側の計算結果キャッシュ
+	// 56~57bit側の計算結果キャッシュ
 	_u64 processedTarget = 0;
 	int offset = 0;
-	for (int i = 0; i < LENGTH; ++i)
+	for (int i = 0; i < length; ++i)
 	{
 		while (g_FreeBit[i + offset] > 0)
 		{
@@ -145,7 +182,7 @@ _u64 Search(_u64 ivs)
 	}
 
 	// 下位7bitを決める
-	_u64 max = ((1 << (64 - LENGTH)) - 1);
+	_u64 max = ((1 << (64 - length)) - 1);
 	for (_u64 search = 0; search <= max; ++search)
 	{
 		_u64 seed = (processedTarget ^ g_CoefficientData[search]) | g_SearchPattern[search];
@@ -164,6 +201,8 @@ _u64 Search(_u64 ivs)
 				fixedIndex = xoroshiro.Next(7); // V箇所
 				++offset;
 			} while (fixedIndex >= 6);
+
+			// reroll回数
 			if (offset != g_Rerolls)
 			{
 				continue;
@@ -174,8 +213,32 @@ _u64 Search(_u64 ivs)
 			xoroshiro.Next(); // 個体値3
 			xoroshiro.Next(); // 個体値4
 			xoroshiro.Next(); // 個体値5
-			xoroshiro.Next(); // 特性
 
+			// 特性
+			if(IsEnableAbilityBit())
+			{
+				xoroshiro.Next(); // AbilityBitが有効な場合は計算で加味されているのでチェック不要
+			}
+			else
+			{
+				int ability = 0;
+				if(l_First.isEnableDream)
+				{
+					do {
+						ability = xoroshiro.Next(3);
+					} while(ability >= 3);
+				}
+				else
+				{
+					ability = xoroshiro.Next(1);
+				}
+				if((l_First.ability >= 0 && l_First.ability != ability) || (l_First.ability == -1 && ability >= 2))
+				{
+					continue;
+				}
+			}
+
+			// 性別値
 			if (!l_First.isNoGender)
 			{
 				int gender = 0;

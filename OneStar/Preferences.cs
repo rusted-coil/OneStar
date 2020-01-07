@@ -7,18 +7,28 @@ namespace OneStar
 {
 	public class Preferences
 	{
-		public Language Language { get; set; }
+		// 言語設定
+		[JsonProperty] Language m_Language = Language.Japanese;
+
+		[JsonIgnore]
+		public Language Language {
+			get { return m_Language; }
+			set {
+				m_Language = value;
+				Serialize();
+			}
+		}
 
 		// 初期設定
 		public void Initialize()
 		{
-			Language = Language.Japanese;
+			m_Language = Language.Japanese;
 		}
 
 		// コピー
 		void Copy(Preferences src)
 		{
-			Language = src.Language;
+			m_Language = src.m_Language;
 		}
 
 		// 設定をファイルに保存
