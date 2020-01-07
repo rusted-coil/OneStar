@@ -1,7 +1,9 @@
 #include "Data.h"
 #include "Util.h"
+#include "Const.h"
 
 // 計算用データ
+_u64 g_TempMatrix[256];
 _u64 g_InputMatrix[64]; // CalculateInverseMatrixの前にセットする
 _u64 g_ConstantTermVector;
 _u64 g_Coefficient[64];
@@ -11,6 +13,77 @@ int g_FreeId[64];
 
 _u64 g_CoefficientData[0x4000];
 _u64 g_SearchPattern[0x4000];
+
+_u64 l_Temp[256];
+
+// 変換行列計算
+void InitializeTransformationMatrix()
+{
+	// r[0] は (C1, seed)
+	// r[1] は c_N * (C1, seed)
+
+	// c_N^1をセット
+	for(int i = 0; i < 256; ++i)
+	{
+		g_TempMatrix[i] = Const::c_N[i];
+	}
+}
+void ProceedTransformationMatrix()
+{
+	for(int i = 0; i < 256; ++i)
+	{
+		l_Temp[i] = g_TempMatrix[i];
+	}
+
+	// 変換行列にもう一つc_Nを左からかける
+	for(int y = 0; y < 128; ++y)
+	{
+		g_TempMatrix[y * 2] = 0;
+		g_TempMatrix[y * 2 + 1] = 0;
+		for(int x = 0; x < 64; ++x)
+		{
+			_u64 t0 = 0;
+			_u64 t1 = 0;
+			for(int i = 0; i < 64; ++i)
+			{
+				if((Const::c_N[y * 2] & (1ull << (63 - i))) != 0
+					&& (l_Temp[i * 2] & (1ull << (63 - x))) != 0)
+				{
+					t0 = 1 - t0;
+				}
+				if((Const::c_N[y * 2 + 1] & (1ull << (63 - i))) != 0
+					&& (l_Temp[(i + 64) * 2] & (1ull << (63 - x))) != 0)
+				{
+					t0 = 1 - t0;
+				}
+
+				if((Const::c_N[y * 2] & (1ull << (63 - i))) != 0
+					&& (l_Temp[i * 2 + 1] & (1ull << (63 - x))) != 0)
+				{
+					t1 = 1 - t1;
+				}
+				if((Const::c_N[y * 2 + 1] & (1ull << (63 - i))) != 0
+					&& (l_Temp[(i + 64) * 2 + 1] & (1ull << (63 - x))) != 0)
+				{
+					t1 = 1 - t1;
+				}
+			}
+			g_TempMatrix[y * 2]     |= (t0 << (63 - x));
+			g_TempMatrix[y * 2 + 1] |= (t1 << (63 - x));
+		}
+	}
+}
+_u64 GetMatrixMultiplier(int index)
+{
+	// s0部分
+	return g_TempMatrix[index * 2 + 1];
+}
+
+short GetMatrixConst(int index)
+{
+	// s1部分
+	return (short)GetSignature(g_TempMatrix[index * 2] & Const::c_XoroshiroConst);
+}
 
 void CalculateInverseMatrix(int length)
 {

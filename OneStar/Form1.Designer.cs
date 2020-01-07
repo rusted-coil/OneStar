@@ -31,6 +31,7 @@
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.f_GroupBoxPokemon_1 = new System.Windows.Forms.GroupBox();
+			this.f_CheckBoxDream_1 = new System.Windows.Forms.CheckBox();
 			this.f_CheckBoxNoGender_1 = new System.Windows.Forms.CheckBox();
 			this.f_ComboBoxAbility_1 = new System.Windows.Forms.ComboBox();
 			this.f_LabelNature_1 = new System.Windows.Forms.Label();
@@ -49,6 +50,7 @@
 			this.f_LabelStatus0_1 = new System.Windows.Forms.Label();
 			this.f_LabelIvs_1 = new System.Windows.Forms.Label();
 			this.f_GroupBoxPokemon_2 = new System.Windows.Forms.GroupBox();
+			this.f_CheckBoxDream_2 = new System.Windows.Forms.CheckBox();
 			this.f_CheckBoxNoGender_2 = new System.Windows.Forms.CheckBox();
 			this.f_ComboBoxAbility_2 = new System.Windows.Forms.ComboBox();
 			this.f_LabelNature_2 = new System.Windows.Forms.Label();
@@ -158,8 +160,6 @@
 			this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.f_MenuItemLanguageJp = new System.Windows.Forms.ToolStripMenuItem();
 			this.f_MenuItemLanguageEn = new System.Windows.Forms.ToolStripMenuItem();
-			this.f_CheckBoxDream_1 = new System.Windows.Forms.CheckBox();
-			this.f_CheckBoxDream_2 = new System.Windows.Forms.CheckBox();
 			this.f_GroupBoxPokemon_1.SuspendLayout();
 			this.f_GroupBoxPokemon_2.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -201,6 +201,17 @@
 			this.f_GroupBoxPokemon_1.TabIndex = 0;
 			this.f_GroupBoxPokemon_1.TabStop = false;
 			this.f_GroupBoxPokemon_1.Text = "1匹目";
+			// 
+			// f_CheckBoxDream_1
+			// 
+			this.f_CheckBoxDream_1.AutoSize = true;
+			this.f_CheckBoxDream_1.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_CheckBoxDream_1.Location = new System.Drawing.Point(8, 25);
+			this.f_CheckBoxDream_1.Name = "f_CheckBoxDream_1";
+			this.f_CheckBoxDream_1.Size = new System.Drawing.Size(78, 16);
+			this.f_CheckBoxDream_1.TabIndex = 0;
+			this.f_CheckBoxDream_1.Text = "夢特性あり";
+			this.f_CheckBoxDream_1.UseVisualStyleBackColor = true;
 			// 
 			// f_CheckBoxNoGender_1
 			// 
@@ -386,6 +397,17 @@
 			this.f_GroupBoxPokemon_2.TabIndex = 1;
 			this.f_GroupBoxPokemon_2.TabStop = false;
 			this.f_GroupBoxPokemon_2.Text = "2匹目";
+			// 
+			// f_CheckBoxDream_2
+			// 
+			this.f_CheckBoxDream_2.AutoSize = true;
+			this.f_CheckBoxDream_2.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_CheckBoxDream_2.Location = new System.Drawing.Point(8, 25);
+			this.f_CheckBoxDream_2.Name = "f_CheckBoxDream_2";
+			this.f_CheckBoxDream_2.Size = new System.Drawing.Size(78, 16);
+			this.f_CheckBoxDream_2.TabIndex = 0;
+			this.f_CheckBoxDream_2.Text = "夢特性あり";
+			this.f_CheckBoxDream_2.UseVisualStyleBackColor = true;
 			// 
 			// f_CheckBoxNoGender_2
 			// 
@@ -1482,28 +1504,6 @@
 			this.f_MenuItemLanguageEn.Size = new System.Drawing.Size(112, 22);
 			this.f_MenuItemLanguageEn.Text = "English";
 			this.f_MenuItemLanguageEn.Click += new System.EventHandler(this.f_MenuItemLanguageEn_Click);
-			// 
-			// f_CheckBoxDream_1
-			// 
-			this.f_CheckBoxDream_1.AutoSize = true;
-			this.f_CheckBoxDream_1.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_CheckBoxDream_1.Location = new System.Drawing.Point(8, 25);
-			this.f_CheckBoxDream_1.Name = "f_CheckBoxDream_1";
-			this.f_CheckBoxDream_1.Size = new System.Drawing.Size(78, 16);
-			this.f_CheckBoxDream_1.TabIndex = 0;
-			this.f_CheckBoxDream_1.Text = "夢特性あり";
-			this.f_CheckBoxDream_1.UseVisualStyleBackColor = true;
-			// 
-			// f_CheckBoxDream_2
-			// 
-			this.f_CheckBoxDream_2.AutoSize = true;
-			this.f_CheckBoxDream_2.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_CheckBoxDream_2.Location = new System.Drawing.Point(8, 25);
-			this.f_CheckBoxDream_2.Name = "f_CheckBoxDream_2";
-			this.f_CheckBoxDream_2.Size = new System.Drawing.Size(78, 16);
-			this.f_CheckBoxDream_2.TabIndex = 0;
-			this.f_CheckBoxDream_2.Text = "夢特性あり";
-			this.f_CheckBoxDream_2.UseVisualStyleBackColor = true;
 			// 
 			// MainForm
 			// 

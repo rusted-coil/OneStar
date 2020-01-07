@@ -104,15 +104,31 @@ void PrepareSix(int ivOffset)
 
 	// 使用する行列値をセット
 	// 使用する定数ベクトルをセット
+
 	g_ConstantTermVector = 0;
-	for (int i = 0; i < length; ++i)
+
+	// r[(11 - FixedIvs) + offset]からr[(11 - FixedIvs) + FixedIvs - 1 + offset]まで使う
+
+	// 変換行列を計算
+	InitializeTransformationMatrix(); // r[1]が得られる変換行列がセットされる
+	for(int i = 0; i <= 9 - g_FixedIvs + ivOffset; ++i)
 	{
-		int index = 10 * (8 - g_FixedIvs + ivOffset) + i; // r[(11 - FixedIvs) + offset]からr[(11 - FixedIvs) + FixedIvs - 1 + offset]まで使う
-		g_InputMatrix[i] = Const::c_Matrix[index];
-		if (Const::c_ConstList[index] > 0)
+		ProceedTransformationMatrix(); // r[2 + i]が得られる
+	}
+
+	for(int a = 0; a < g_FixedIvs; ++a)
+	{
+		for(int i = 0; i < 10; ++i)
 		{
-			g_ConstantTermVector |= (1ull << (length - 1 - i));
+			int index = 59 + (i / 5) * 64 + (i % 5);
+			int bit = a * 10 + i;
+			g_InputMatrix[bit] = GetMatrixMultiplier(index);
+			if(GetMatrixConst(index) != 0)
+			{
+				g_ConstantTermVector |= (1ull << (length - 1 - bit));
+			}
 		}
+		ProceedTransformationMatrix();
 	}
 
 	// 行基本変形で求める
