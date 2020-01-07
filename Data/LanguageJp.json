@@ -47,6 +47,7 @@
 		"C",
 		"D",
 		"S",
+		"L",
 	],
 	"SystemLabel": {
 		"Tab35": "★3～5",
@@ -75,6 +76,8 @@
 		"RerollsBefore": "V箇所のズレを考慮",
 		"RerollsAfter": "回まで",
 		"SearchStop": "1つ見つけたら終了",
+		"Pokemon": "Pokemon",
+		"CalculateIVs": "Calculate IVs",
 	},
 	"CheckIvsResult": [
 		"NG！",
@@ -94,6 +97,12 @@
 		"DenSeedFormat": "Den Seedの入力が不正です。",
 		"MaxFrameFormat": "最大消費数の入力が不正です。",
 		"VCountFormat": "V固定数の入力が不正です。",
+		"VFormat": "Levels, HP, Atk, Def, Sp.Atk., Sp.Def., Spd. must be numbers!",
+		"LevelRange": "Levels must be between 1 and 100.",
+		"CouldNotCalculateIVs": "Could not calculate IVs. Please check that the data you entered is correct.",
+		"StatError": "Issue with Stat: ",
+		"StatErrorTitle": "Stat Error",
+		"InvalidPokemon": "Please select a valid Pokemon",
 	},
 	"SystemMessage": {
 		"ResultDialogTitle": "結果",

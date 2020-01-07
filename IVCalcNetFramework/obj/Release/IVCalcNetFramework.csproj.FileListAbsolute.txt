@@ -1,0 +1,10 @@
+C:\Users\josep\source\repos\IVCalcNetFramework\IVCalcNetFramework\bin\Release\IVCalcNetFramework.pdb
+C:\Users\josep\source\repos\IVCalcNetFramework\IVCalcNetFramework\bin\Release\Newtonsoft.Json.dll
+C:\Users\josep\source\repos\IVCalcNetFramework\IVCalcNetFramework\bin\Release\Newtonsoft.Json.xml
+C:\Users\josep\source\repos\IVCalcNetFramework\IVCalcNetFramework\obj\Release\IVCalcNetFramework.csprojAssemblyReference.cache
+C:\Users\josep\source\repos\IVCalcNetFramework\IVCalcNetFramework\obj\Release\IVCalcNetFramework.csproj.CoreCompileInputs.cache
+C:\Users\josep\source\repos\IVCalcNetFramework\IVCalcNetFramework\obj\Release\IVCalcNetFramework.csproj.CopyComplete
+C:\Users\josep\source\repos\IVCalcNetFramework\IVCalcNetFramework\obj\Release\IVCalcNetFramework.pdb
+C:\Users\josep\source\repos\IVCalcNetFramework\IVCalcNetFramework\bin\Release\IVCalcNetFramework.dll.config
+C:\Users\josep\source\repos\IVCalcNetFramework\IVCalcNetFramework\bin\Release\IVCalcNetFramework.dll
+C:\Users\josep\source\repos\IVCalcNetFramework\IVCalcNetFramework\obj\Release\IVCalcNetFramework.dll

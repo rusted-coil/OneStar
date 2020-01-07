@@ -1,0 +1,10 @@
+C:\Users\josep\source\repos\IVCalcNetFramework\IVCalcNetFramework\bin\Debug\IVCalcNetFramework.pdb
+C:\Users\josep\source\repos\IVCalcNetFramework\IVCalcNetFramework\bin\Debug\Newtonsoft.Json.dll
+C:\Users\josep\source\repos\IVCalcNetFramework\IVCalcNetFramework\bin\Debug\Newtonsoft.Json.xml
+C:\Users\josep\source\repos\IVCalcNetFramework\IVCalcNetFramework\obj\Debug\IVCalcNetFramework.csprojAssemblyReference.cache
+C:\Users\josep\source\repos\IVCalcNetFramework\IVCalcNetFramework\obj\Debug\IVCalcNetFramework.csproj.CoreCompileInputs.cache
+C:\Users\josep\source\repos\IVCalcNetFramework\IVCalcNetFramework\obj\Debug\IVCalcNetFramework.csproj.CopyComplete
+C:\Users\josep\source\repos\IVCalcNetFramework\IVCalcNetFramework\obj\Debug\IVCalcNetFramework.pdb
+C:\Users\josep\source\repos\IVCalcNetFramework\IVCalcNetFramework\bin\Debug\IVCalcNetFramework.exe.config
+C:\Users\josep\source\repos\IVCalcNetFramework\IVCalcNetFramework\bin\Debug\IVCalcNetFramework.exe
+C:\Users\josep\source\repos\IVCalcNetFramework\IVCalcNetFramework\obj\Debug\IVCalcNetFramework.exe

@@ -4,6 +4,8 @@ using System.Windows.Forms;
 using System.Threading.Tasks;
 using System.IO;
 using System.Collections.Generic;
+using IVCalcNetFramework;
+using System.Linq;
 
 namespace OneStar
 {
@@ -63,7 +65,10 @@ namespace OneStar
 			// ビューの初期化
 			InitializeView();
 
-			IsInitialized = true;
+            //initialize Pokemon comboboxes, and IV Calculator
+            populateComboBoxes();
+
+            IsInitialized = true;
 		}
 
 		void InitializeComboBox()
@@ -877,9 +882,18 @@ namespace OneStar
 			f_LabelStatus3_353.Text = Messages.Instance.Status[3];
 			f_LabelStatus4_353.Text = Messages.Instance.Status[4];
 			f_LabelStatus5_353.Text = Messages.Instance.Status[5];
+            f_LabelLevel351.Text = Messages.Instance.Status[6];
+            f_LabelLevel352.Text = Messages.Instance.Status[6];
+            f_LabelLevel353.Text = Messages.Instance.Status[6];
+            f_LabelPokemon351.Text = Messages.Instance.SystemLabel["Pokemon"];
+            f_LabelPokemon352.Text = Messages.Instance.SystemLabel["Pokemon"];
+            f_LabelPokemon353.Text = Messages.Instance.SystemLabel["Pokemon"];
+            f_ButtonIVCalculate351.Text = Messages.Instance.SystemLabel["CalculateIVs"];
+            f_ButtonIVCalculate352.Text = Messages.Instance.SystemLabel["CalculateIVs"];
+            f_ButtonIVCalculate353.Text = Messages.Instance.SystemLabel["CalculateIVs"];
 
-			// コンボボックス再初期化
-			InitializeComboBox();
+            // コンボボックス再初期化
+            InitializeComboBox();
 
 			// 退避していた選択をセット
 			f_ComboBoxModeSelector_35.SelectedIndex = modeIndex;
@@ -900,5 +914,183 @@ namespace OneStar
 				f_ComboBoxAbility_353.SelectedIndex = abilityIndex[4];
 			}
 		}
-	}
+
+        private void populateComboBoxes()
+        {
+            IVCalcNetFramework.IVCalculator.loadData();
+            var Pokemon = IVCalcNetFramework.IVCalculator.PokemonDictionary.Keys.ToList();
+            Pokemon.Sort();
+
+            var dict = IVCalculator.PokemonDictionary;
+
+            f_ComboBoxPokemon351.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            f_ComboBoxPokemon351.AutoCompleteSource = AutoCompleteSource.ListItems;
+            f_ComboBoxPokemon351.Items.AddRange(Pokemon.ToArray());
+
+            f_ComboBoxPokemon352.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            f_ComboBoxPokemon352.AutoCompleteSource = AutoCompleteSource.ListItems;
+            f_ComboBoxPokemon352.Items.AddRange(Pokemon.ToArray());
+
+            f_ComboBoxPokemon353.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            f_ComboBoxPokemon353.AutoCompleteSource = AutoCompleteSource.ListItems;
+            f_ComboBoxPokemon353.Items.AddRange(Pokemon.ToArray());
+
+        }
+
+        private void F_ButtonIVCalculate351_Click(object sender, EventArgs e)
+        {
+            if (!IVCalculator.PokemonDictionary.ContainsKey(f_ComboBoxPokemon351.Text))
+            {
+                CreateErrorDialog(Messages.Instance.ErrorMessage["InvalidPokemon"]);
+            }
+            else
+            {
+                decimal pokemonID = IVCalculator.PokemonDictionary[f_ComboBoxPokemon351.Text];
+                try
+                {
+                    int lv = int.Parse(f_TextBoxLevel351.Text);
+                    if (lv > 100 || lv < 1)
+                    {
+                        CreateErrorDialog(Messages.Instance.ErrorMessage["LevelRange"]);
+                        return;
+                    }
+                    int HP = int.Parse(f_TextBoxIv0_351.Text);
+                    int Atk = int.Parse(f_TextBoxIv1_351.Text);
+                    int Def = int.Parse(f_TextBoxIv2_351.Text);
+                    int SpAtk = int.Parse(f_TextBoxIv3_351.Text);
+                    int SpDef = int.Parse(f_TextBoxIv4_351.Text);
+                    int Spd = int.Parse(f_TextBoxIv5_351.Text);
+
+                    string nature = f_ComboBoxNature_351.Text;
+                    string characteristic = f_ComboBoxCharacteristic_351.Text;
+
+                    int idx = IVCalculator.getPokemonIndex(pokemonID);
+                    var IVs = IVCalculator.getIVs(idx, lv, nature, characteristic, new List<int>() { HP, Atk, Def, SpAtk, SpDef, Spd }, null);
+
+                    f_TextBoxIv0_351.Text = IVs[0].First().ToString();
+                    f_TextBoxIv1_351.Text = IVs[1].First().ToString();
+                    f_TextBoxIv2_351.Text = IVs[2].First().ToString();
+                    f_TextBoxIv3_351.Text = IVs[3].First().ToString();
+                    f_TextBoxIv4_351.Text = IVs[4].First().ToString();
+                    f_TextBoxIv5_351.Text = IVs[5].First().ToString();
+                }
+                catch (FormatException except)
+                {
+                    CreateErrorDialog(Messages.Instance.ErrorMessage["VFormat"]);
+                }
+                catch (ArgumentOutOfRangeException except)
+                {
+                    CreateErrorDialog(Messages.Instance.ErrorMessage["CouldNotCalculateIVs"]);
+                }
+                catch (IVCalculator.StatException s)
+                {
+                    CreateErrorDialog(Messages.Instance.ErrorMessage["StatError"] + Messages.Instance.Status[s.Stat]);
+                }
+            }
+        }
+
+        private void F_ButtonIVCalculate352_Click(object sender, EventArgs e)
+        {
+            if (!IVCalculator.PokemonDictionary.ContainsKey(f_ComboBoxPokemon352.Text))
+            {
+                CreateErrorDialog(Messages.Instance.ErrorMessage["InvalidPokemon"]);
+            }
+            else
+            {
+                decimal pokemonID = IVCalculator.PokemonDictionary[f_ComboBoxPokemon352.Text];
+                try
+                {
+                    int lv = int.Parse(f_TextBoxLevel352.Text);
+                    if (lv > 100 || lv < 1)
+                    {
+                        CreateErrorDialog(Messages.Instance.ErrorMessage["LevelRange"]);
+                        return;
+                    }
+                    int HP = int.Parse(f_TextBoxIv0_352.Text);
+                    int Atk = int.Parse(f_TextBoxIv1_352.Text);
+                    int Def = int.Parse(f_TextBoxIv2_352.Text);
+                    int SpAtk = int.Parse(f_TextBoxIv3_352.Text);
+                    int SpDef = int.Parse(f_TextBoxIv4_352.Text);
+                    int Spd = int.Parse(f_TextBoxIv5_352.Text);
+
+                    string nature = f_ComboBoxNature_352.Text;
+                    string characteristic = f_ComboBoxCharacteristic_352.Text;
+
+                    int idx = IVCalculator.getPokemonIndex(pokemonID);
+                    var IVs = IVCalculator.getIVs(idx, lv, nature, characteristic, new List<int>() { HP, Atk, Def, SpAtk, SpDef, Spd }, null);
+
+                    f_TextBoxIv0_352.Text = IVs[0].First().ToString();
+                    f_TextBoxIv1_352.Text = IVs[1].First().ToString();
+                    f_TextBoxIv2_352.Text = IVs[2].First().ToString();
+                    f_TextBoxIv3_352.Text = IVs[3].First().ToString();
+                    f_TextBoxIv4_352.Text = IVs[4].First().ToString();
+                    f_TextBoxIv5_352.Text = IVs[5].First().ToString();
+                }
+                catch (FormatException except)
+                {
+                    CreateErrorDialog(Messages.Instance.ErrorMessage["VFormat"]);
+                }
+                catch (ArgumentOutOfRangeException except)
+                {
+                    CreateErrorDialog(Messages.Instance.ErrorMessage["CouldNotCalculateIVs"]);
+                }
+                catch (IVCalculator.StatException s)
+                {
+                    CreateErrorDialog(Messages.Instance.ErrorMessage["StatError"] + Messages.Instance.Status[s.Stat]);
+                }
+            }
+        }
+
+        private void F_ButtonIVCalculate353_Click(object sender, EventArgs e)
+        {
+            if (!IVCalculator.PokemonDictionary.ContainsKey(f_ComboBoxPokemon353.Text))
+            {
+                CreateErrorDialog(Messages.Instance.ErrorMessage["InvalidPokemon"]);
+            }
+            else
+            {
+                decimal pokemonID = IVCalculator.PokemonDictionary[f_ComboBoxPokemon353.Text];
+                try
+                {
+                    int lv = int.Parse(f_TextBoxLevel353.Text);
+                    if (lv > 100 || lv < 1)
+                    {
+                        CreateErrorDialog(Messages.Instance.ErrorMessage["LevelRange"]);
+                        return;
+                    }
+                    int HP = int.Parse(f_TextBoxIv0_353.Text);
+                    int Atk = int.Parse(f_TextBoxIv1_353.Text);
+                    int Def = int.Parse(f_TextBoxIv2_353.Text);
+                    int SpAtk = int.Parse(f_TextBoxIv3_353.Text);
+                    int SpDef = int.Parse(f_TextBoxIv4_353.Text);
+                    int Spd = int.Parse(f_TextBoxIv5_353.Text);
+
+                    string nature = f_ComboBoxNature_353.Text;
+                    string characteristic = f_ComboBoxCharacteristic_353.Text;
+
+                    int idx = IVCalculator.getPokemonIndex(pokemonID);
+                    var IVs = IVCalculator.getIVs(idx, lv, nature, characteristic, new List<int>() { HP, Atk, Def, SpAtk, SpDef, Spd }, null);
+
+                    f_TextBoxIv0_353.Text = IVs[0].First().ToString();
+                    f_TextBoxIv1_353.Text = IVs[1].First().ToString();
+                    f_TextBoxIv2_353.Text = IVs[2].First().ToString();
+                    f_TextBoxIv3_353.Text = IVs[3].First().ToString();
+                    f_TextBoxIv4_353.Text = IVs[4].First().ToString();
+                    f_TextBoxIv5_353.Text = IVs[5].First().ToString();
+                }
+                catch (FormatException except)
+                {
+                    CreateErrorDialog(Messages.Instance.ErrorMessage["VFormat"]);
+                }
+                catch (ArgumentOutOfRangeException except)
+                {
+                    CreateErrorDialog(Messages.Instance.ErrorMessage["CouldNotCalculateIVs"]);
+                }
+                catch (IVCalculator.StatException s)
+                {
+                    CreateErrorDialog(Messages.Instance.ErrorMessage["StatError"] + Messages.Instance.Status[s.Stat]);
+                }
+            }
+        }
+    }
 }

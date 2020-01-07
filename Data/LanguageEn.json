@@ -47,6 +47,7 @@
 		"SpA",
 		"SpD",
 		"Spe",
+		"Level",
 	],
 	"SystemLabel": {
 		"Tab35": "3★-5★",
@@ -75,6 +76,8 @@
 		"RerollsBefore": "Allow IV Deviation",
 		"RerollsAfter": "(Max 3)",
 		"SearchStop": "Stop after finding the first seed",
+		"Pokemon": "Pokemon",
+		"CalculateIVs": "Calculate IVs",
 	},
 	"CheckIvsResult": [
 		"No Good!",
@@ -94,6 +97,11 @@
 		"DenSeedFormat": "Invalid Den Seed.",
 		"MaxFrameFormat": "Invalid Max Frames. Please ensure that it is a number.",
 		"VCountFormat": "Invalid Best IVs.",
+		"VFormat": "Levels, HP, Atk, Def, Sp.Atk., Sp.Def., Spd. must be numbers!",
+		"LevelRange": "Levels must be between 1 and 100.",
+		"CouldNotCalculateIVs": "Could not calculate IVs. Please check that the data you entered is correct.",
+		"StatError": "Issue with Stat: ",
+		"InvalidPokemon": "Please select a valid Pokemon",
 	},
 	"SystemMessage": {
 		"ResultDialogTitle": "Results",
