@@ -27,7 +27,7 @@ const int* g_IvsRef[30] = {
 
 #define LENGTH (57)
 
-void SetFirstCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, bool isNoGender)
+void SetFirstCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, bool isNoGender, bool isEnableDream)
 {
 	l_First.ivs[0] = iv0;
 	l_First.ivs[1] = iv1;
@@ -38,6 +38,7 @@ void SetFirstCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int
 	l_First.ability = ability;
 	l_First.nature = nature;
 	l_First.isNoGender = isNoGender;
+	l_First.isEnableDream = isEnableDream;
 	g_FixedIndex = 0;
 	for (int i = 0; i < 6; ++i)
 	{
@@ -48,7 +49,7 @@ void SetFirstCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int
 	}
 }
 
-void SetNextCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, bool isNoGender)
+void SetNextCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, bool isNoGender, bool isEnableDream)
 {
 	l_Second.ivs[0] = iv0;
 	l_Second.ivs[1] = iv1;
@@ -59,6 +60,7 @@ void SetNextCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int 
 	l_Second.ability = ability;
 	l_Second.nature = nature;
 	l_Second.isNoGender = isNoGender;
+	l_Second.isEnableDream = isEnableDream;
 	g_VCount = 0;
 	for (int i = 0; i < 6; ++i)
 	{
@@ -103,7 +105,8 @@ void Prepare(int rerolls)
 _u64 Search(_u64 ivs)
 {
 	XoroshiroState xoroshiro;
-	
+	XoroshiroState oshiroTemp;
+
 	_u64 target = l_First.ability;
 
 	// ãˆÊ3bit = V‰ÓŠŒˆ’è
@@ -194,12 +197,15 @@ _u64 Search(_u64 ivs)
 
 		// 2•C–Ú
 		_u64 nextSeed = seed + 0x82a2b175229d6a5bull;
+		xoroshiro.SetSeed(nextSeed);
+		xoroshiro.Next(); // EC
+		xoroshiro.Next(); // OTID
+		xoroshiro.Next(); // PID
+		oshiroTemp.Copy(&xoroshiro); // ó‘Ô‚ð•Û‘¶
+
 		for(int ivVCount = g_VCount; ivVCount >= 1; --ivVCount)
 		{
-			xoroshiro.SetSeed(nextSeed);
-			xoroshiro.Next(); // EC
-			xoroshiro.Next(); // OTID
-			xoroshiro.Next(); // PID
+			xoroshiro.Copy(&oshiroTemp); // ‚Â‚Ã‚«‚©‚ç
 
 			int ivs[6] = { -1, -1, -1, -1, -1, -1 };
 			int fixedCount = 0;
@@ -240,8 +246,18 @@ _u64 Search(_u64 ivs)
 			}
 
 			// “Á«
-			int ability = xoroshiro.Next(1);
-			if (l_Second.ability >= 0 && l_Second.ability != ability)
+			int ability = 0;
+			if(l_Second.isEnableDream)
+			{
+				do {
+					ability = xoroshiro.Next(3);
+				} while(ability >= 3);
+			}
+			else
+			{
+				ability = xoroshiro.Next(1);
+			}
+			if((l_Second.ability >= 0 && l_Second.ability != ability) || (l_Second.ability == -1 && ability >= 2))
 			{
 				continue;
 			}

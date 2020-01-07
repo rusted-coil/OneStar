@@ -87,8 +87,8 @@ namespace OneStar
 			// ★1～2パネル
 			PokemonFormUtility.SetNatureComboBox(f_ComboBoxNature_1);
 			PokemonFormUtility.SetNatureComboBox(f_ComboBoxNature_2);
-			PokemonFormUtility.SetAbilityComboBox(f_ComboBoxAbility_1, 2);
-			PokemonFormUtility.SetAbilityComboBox(f_ComboBoxAbility_2, 3);
+			PokemonFormUtility.SetAbilityComboBox(f_ComboBoxAbility_1, 4);
+			PokemonFormUtility.SetAbilityComboBox(f_ComboBoxAbility_2, 4);
 		}
 
 		void InitializeView()
@@ -155,6 +155,8 @@ namespace OneStar
 				f_LabelNature_353,
 			};
 			m_MultiLanguageControls["HiddenPossible"] = new Control[] {
+				f_CheckBoxDream_1,
+				f_CheckBoxDream_2,
 				f_CheckBoxDream_351,
 				f_CheckBoxDream_352,
 				f_CheckBoxDream_353,
@@ -438,20 +440,21 @@ namespace OneStar
 			}
 			int ability1 = f_ComboBoxAbility_1.SelectedIndex;
 			int ability2 = f_ComboBoxAbility_2.SelectedIndex;
-			if (ability2 == 2)
-			{
-				ability2 = -1;
-			}
+			if (ability1 >= 2) { ability1 = ability1 * 3 - 7; }
+			if (ability2 >= 2) { ability2 = ability2 * 3 - 7; }
 			int nature1 = Messages.Instance.Nature[f_ComboBoxNature_1.Text];
 			int nature2 = Messages.Instance.Nature[f_ComboBoxNature_2.Text];
 
 			bool noGender1 = f_CheckBoxNoGender_1.Checked;
 			bool noGender2 = f_CheckBoxNoGender_2.Checked;
 
+			bool isDream1 = f_CheckBoxDream_1.Checked;
+			bool isDream2 = f_CheckBoxDream_2.Checked;
+
 			// 計算開始
 			SeedSearcher searcher = new SeedSearcher(SeedSearcher.Mode.Star12);
-			SeedSearcher.SetFirstCondition(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5], ability1, nature1, noGender1);
-			SeedSearcher.SetNextCondition(ivs[6], ivs[7], ivs[8], ivs[9], ivs[10], ivs[11], ability2, nature2, noGender2);
+			SeedSearcher.SetFirstCondition(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5], ability1, nature1, noGender1, isDream1);
+			SeedSearcher.SetNextCondition(ivs[6], ivs[7], ivs[8], ivs[9], ivs[10], ivs[11], ability2, nature2, noGender2, isDream2);
 
 			SearchImpl(searcher);
 		}
