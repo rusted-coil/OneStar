@@ -135,14 +135,7 @@ namespace OneStar
 						sw.Write($"{seed:X16},");
 					}
 					sw.Write($"{ivs[0]},{ivs[1]},{ivs[2]},{ivs[3]},{ivs[4]},{ivs[5]},");
-					if (ability == 2)
-					{
-						sw.Write($"{Messages.Instance.ListLabel["HiddenAbility"]},");
-					}
-					else
-					{
-						sw.Write($"{ ability + 1},");
-					}
+					sw.Write(ability == 2 ? $"{Messages.Instance.ListLabel["HiddenAbility"]}," : $"{ability + 1},");
 					sw.Write($"{PokemonFormUtility.GetNatureString((int)nature)},");
 					if (isShiny)
 					{
@@ -150,7 +143,7 @@ namespace OneStar
 					}
 					else if(!m_isShinyCheck)
 					{
-						sw.WriteLine($"");
+						sw.WriteLine("");
 					}
 
 					seed = seed + 0x82a2b175229d6a5bul;

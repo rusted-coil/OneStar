@@ -671,9 +671,9 @@ namespace OneStar
 				{
 					using (StreamWriter sw = new StreamWriter("seeds.txt"))
 					{
-						for (int i = 0; i < searcher.Result.Count; ++i)
+						foreach (var t in searcher.Result)
 						{
-							sw.WriteLine($"{searcher.Result[i]:X}");
+							sw.WriteLine($"{t:X}");
 						}
 					}
 
