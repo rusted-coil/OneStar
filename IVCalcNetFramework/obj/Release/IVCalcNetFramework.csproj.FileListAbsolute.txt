@@ -8,3 +8,13 @@ C:\Users\josep\source\repos\IVCalcNetFramework\IVCalcNetFramework\obj\Release\IV
 C:\Users\josep\source\repos\IVCalcNetFramework\IVCalcNetFramework\bin\Release\IVCalcNetFramework.dll.config
 C:\Users\josep\source\repos\IVCalcNetFramework\IVCalcNetFramework\bin\Release\IVCalcNetFramework.dll
 C:\Users\josep\source\repos\IVCalcNetFramework\IVCalcNetFramework\obj\Release\IVCalcNetFramework.dll
+G:\GIT\OneStar\IVCalcNetFramework\bin\Release\IVCalcNetFramework.dll.config
+G:\GIT\OneStar\IVCalcNetFramework\bin\Release\IVCalcNetFramework.dll
+G:\GIT\OneStar\IVCalcNetFramework\bin\Release\IVCalcNetFramework.pdb
+G:\GIT\OneStar\IVCalcNetFramework\bin\Release\Newtonsoft.Json.dll
+G:\GIT\OneStar\IVCalcNetFramework\bin\Release\Newtonsoft.Json.xml
+G:\GIT\OneStar\IVCalcNetFramework\obj\Release\IVCalcNetFramework.csprojAssemblyReference.cache
+G:\GIT\OneStar\IVCalcNetFramework\obj\Release\IVCalcNetFramework.csproj.CoreCompileInputs.cache
+G:\GIT\OneStar\IVCalcNetFramework\obj\Release\IVCalcNetFramework.csproj.CopyComplete
+G:\GIT\OneStar\IVCalcNetFramework\obj\Release\IVCalcNetFramework.dll
+G:\GIT\OneStar\IVCalcNetFramework\obj\Release\IVCalcNetFramework.pdb

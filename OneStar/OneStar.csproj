@@ -130,7 +130,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\PokemonGen8IVCalculator\IVCalcNetFramework\IVCalcNetFramework.csproj">
+    <ProjectReference Include="..\IVCalcNetFramework\IVCalcNetFramework.csproj">
       <Project>{ee1d9696-545c-495d-9f6d-680038688f85}</Project>
       <Name>IVCalcNetFramework</Name>
     </ProjectReference>
