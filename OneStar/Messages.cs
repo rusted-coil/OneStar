@@ -30,6 +30,7 @@ namespace OneStar
 			{
 				case Language.Japanese: fileName = "LanguageJp.json"; break;
 				case Language.English: fileName = "LanguageEn.json"; break;
+				case Language.ChineseZh: fileName = "LanguageZh.json"; break;
 			}
 			try
 			{

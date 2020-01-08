@@ -11,7 +11,8 @@ namespace OneStar
 	public enum Language
 	{
 		Japanese,
-		English
+		English,
+		ChineseZh
 	}
 
 	public enum AbilityType
@@ -758,6 +759,14 @@ namespace OneStar
 			}
 		}
 
+		private void f_MenuItemLanguageZh_Click(object sender, EventArgs e)
+		{
+			if (!f_MenuItemLanguageZh.Checked)
+			{
+				ChangeLanguage(false, Language.ChineseZh);
+			}
+		}
+
 		void ChangeLanguage(bool isFirst, Language language)
 		{
             
@@ -831,11 +840,19 @@ namespace OneStar
 				case Language.Japanese:
 					f_MenuItemLanguageJp.Checked = true;
 					f_MenuItemLanguageEn.Checked = false;
+					f_MenuItemLanguageZh.Checked = false;
 					break;
 
 				case Language.English:
 					f_MenuItemLanguageJp.Checked = false;
 					f_MenuItemLanguageEn.Checked = true;
+					f_MenuItemLanguageZh.Checked = false;
+					break;
+
+				case Language.ChineseZh:
+					f_MenuItemLanguageJp.Checked = false;
+					f_MenuItemLanguageEn.Checked = false;
+					f_MenuItemLanguageZh.Checked = true;
 					break;
 			}
 

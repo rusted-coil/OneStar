@@ -160,6 +160,7 @@
 			this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.f_MenuItemLanguageJp = new System.Windows.Forms.ToolStripMenuItem();
 			this.f_MenuItemLanguageEn = new System.Windows.Forms.ToolStripMenuItem();
+			this.f_MenuItemLanguageZh = new System.Windows.Forms.ToolStripMenuItem();
 			this.f_GroupBoxPokemon_1.SuspendLayout();
 			this.f_GroupBoxPokemon_2.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -1485,7 +1486,8 @@
 			// 
 			this.languageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.f_MenuItemLanguageJp,
-            this.f_MenuItemLanguageEn});
+            this.f_MenuItemLanguageEn,
+            this.f_MenuItemLanguageZh});
 			this.languageToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
 			this.languageToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
@@ -1494,16 +1496,23 @@
 			// f_MenuItemLanguageJp
 			// 
 			this.f_MenuItemLanguageJp.Name = "f_MenuItemLanguageJp";
-			this.f_MenuItemLanguageJp.Size = new System.Drawing.Size(112, 22);
+			this.f_MenuItemLanguageJp.Size = new System.Drawing.Size(180, 22);
 			this.f_MenuItemLanguageJp.Text = "日本語";
 			this.f_MenuItemLanguageJp.Click += new System.EventHandler(this.f_MenuItemLanguageJp_Click);
 			// 
 			// f_MenuItemLanguageEn
 			// 
 			this.f_MenuItemLanguageEn.Name = "f_MenuItemLanguageEn";
-			this.f_MenuItemLanguageEn.Size = new System.Drawing.Size(112, 22);
+			this.f_MenuItemLanguageEn.Size = new System.Drawing.Size(180, 22);
 			this.f_MenuItemLanguageEn.Text = "English";
 			this.f_MenuItemLanguageEn.Click += new System.EventHandler(this.f_MenuItemLanguageEn_Click);
+			// 
+			// f_MenuItemLanguageZh
+			// 
+			this.f_MenuItemLanguageZh.Name = "f_MenuItemLanguageZh";
+			this.f_MenuItemLanguageZh.Size = new System.Drawing.Size(180, 22);
+			this.f_MenuItemLanguageZh.Text = "简体字";
+			this.f_MenuItemLanguageZh.Click += new System.EventHandler(this.f_MenuItemLanguageZh_Click);
 			// 
 			// MainForm
 			// 
@@ -1524,7 +1533,7 @@
 			this.MainMenuStrip = this.menuStrip1;
 			this.MaximizeBox = false;
 			this.Name = "MainForm";
-			this.Text = "1-Star Seed Search v1.03";
+			this.Text = "1-Star Seed Search v1.03b";
 			this.f_GroupBoxPokemon_1.ResumeLayout(false);
 			this.f_GroupBoxPokemon_1.PerformLayout();
 			this.f_GroupBoxPokemon_2.ResumeLayout(false);
@@ -1683,6 +1692,7 @@
 		private System.Windows.Forms.ToolStripMenuItem f_MenuItemLanguageEn;
 		private System.Windows.Forms.CheckBox f_CheckBoxDream_1;
 		private System.Windows.Forms.CheckBox f_CheckBoxDream_2;
+		private System.Windows.Forms.ToolStripMenuItem f_MenuItemLanguageZh;
 	}
 }
 
