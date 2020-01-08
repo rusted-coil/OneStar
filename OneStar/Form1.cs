@@ -13,7 +13,8 @@ namespace OneStar
 	public enum Language
 	{
 		Japanese,
-		English
+		English,
+		ChineseZh
 	}
 
 	public enum AbilityType
@@ -676,9 +677,9 @@ namespace OneStar
 				{
 					using (StreamWriter sw = new StreamWriter("seeds.txt"))
 					{
-						for (int i = 0; i < searcher.Result.Count; ++i)
+						foreach (var t in searcher.Result)
 						{
-							sw.WriteLine($"{searcher.Result[i]:X}");
+							sw.WriteLine($"{t:X}");
 						}
 					}
 
@@ -760,6 +761,14 @@ namespace OneStar
 			if (!f_MenuItemLanguageEn.Checked)
 			{
 				ChangeLanguage(false, Language.English);
+			}
+		}
+
+		private void f_MenuItemLanguageZh_Click(object sender, EventArgs e)
+		{
+			if (!f_MenuItemLanguageZh.Checked)
+			{
+				ChangeLanguage(false, Language.ChineseZh);
 			}
 		}
 
@@ -848,11 +857,19 @@ namespace OneStar
 				case Language.Japanese:
 					f_MenuItemLanguageJp.Checked = true;
 					f_MenuItemLanguageEn.Checked = false;
+					f_MenuItemLanguageZh.Checked = false;
 					break;
 
 				case Language.English:
 					f_MenuItemLanguageJp.Checked = false;
 					f_MenuItemLanguageEn.Checked = true;
+					f_MenuItemLanguageZh.Checked = false;
+					break;
+
+				case Language.ChineseZh:
+					f_MenuItemLanguageJp.Checked = false;
+					f_MenuItemLanguageEn.Checked = false;
+					f_MenuItemLanguageZh.Checked = true;
 					break;
 			}
 
