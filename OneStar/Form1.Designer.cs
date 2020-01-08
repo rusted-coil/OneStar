@@ -600,7 +600,7 @@
 			// f_ButtonListGenerate
 			// 
 			this.f_ButtonListGenerate.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_ButtonListGenerate.Location = new System.Drawing.Point(327, 92);
+			this.f_ButtonListGenerate.Location = new System.Drawing.Point(355, 92);
 			this.f_ButtonListGenerate.Name = "f_ButtonListGenerate";
 			this.f_ButtonListGenerate.Size = new System.Drawing.Size(154, 52);
 			this.f_ButtonListGenerate.TabIndex = 10;
@@ -642,7 +642,7 @@
 			// 
 			this.f_CheckBoxNoGender_List.AutoSize = true;
 			this.f_CheckBoxNoGender_List.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_CheckBoxNoGender_List.Location = new System.Drawing.Point(258, 55);
+			this.f_CheckBoxNoGender_List.Location = new System.Drawing.Point(304, 55);
 			this.f_CheckBoxNoGender_List.Name = "f_CheckBoxNoGender_List";
 			this.f_CheckBoxNoGender_List.Size = new System.Drawing.Size(102, 16);
 			this.f_CheckBoxNoGender_List.TabIndex = 5;
@@ -662,7 +662,7 @@
 			// 
 			// f_TextBoxListVCount
 			// 
-			this.f_TextBoxListVCount.Location = new System.Drawing.Point(195, 51);
+			this.f_TextBoxListVCount.Location = new System.Drawing.Point(241, 51);
 			this.f_TextBoxListVCount.Name = "f_TextBoxListVCount";
 			this.f_TextBoxListVCount.Size = new System.Drawing.Size(30, 19);
 			this.f_TextBoxListVCount.TabIndex = 4;
@@ -671,7 +671,7 @@
 			// 
 			this.f_LabelListVCount.AutoSize = true;
 			this.f_LabelListVCount.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelListVCount.Location = new System.Drawing.Point(142, 56);
+			this.f_LabelListVCount.Location = new System.Drawing.Point(188, 56);
 			this.f_LabelListVCount.Name = "f_LabelListVCount";
 			this.f_LabelListVCount.Size = new System.Drawing.Size(55, 12);
 			this.f_LabelListVCount.TabIndex = 3;
