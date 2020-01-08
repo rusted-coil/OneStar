@@ -27,8 +27,12 @@ const int* g_IvsRef[30] = {
 
 #define LENGTH_BASE (56)
 
-// 夢特性なし、かつ特性指定ありの場合AbilityBitが有効
-inline bool IsEnableAbilityBit() { return (!l_First.isEnableDream && l_First.ability >= 0); }
+// 夢特性なし→特性指定ありの場合AbilityBitが有効
+// 夢特性あり→特性2の時のみAbilityBitが有効(1か3なので奇数)
+inline bool IsEnableAbilityBit()
+{
+	return (l_First.ability == 1) || (!l_First.isEnableDream && l_First.ability >= 0);
+}
 
 void SetFirstCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, bool isNoGender, bool isEnableDream)
 {
@@ -215,11 +219,6 @@ _u64 Search(_u64 ivs)
 			xoroshiro.Next(); // 個体値5
 
 			// 特性
-			if(IsEnableAbilityBit())
-			{
-				xoroshiro.Next(); // AbilityBitが有効な場合は計算で加味されているのでチェック不要
-			}
-			else
 			{
 				int ability = 0;
 				if(l_First.isEnableDream)
