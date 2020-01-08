@@ -137,6 +137,7 @@
             this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.f_MenuItemLanguageJp = new System.Windows.Forms.ToolStripMenuItem();
             this.f_MenuItemLanguageEn = new System.Windows.Forms.ToolStripMenuItem();
+            this.f_MenuItemLanguageZh = new System.Windows.Forms.ToolStripMenuItem();
             this.f_GroupBoxPokemon_2 = new System.Windows.Forms.GroupBox();
             this.f_CheckBoxDream_2 = new System.Windows.Forms.CheckBox();
             this.f_CheckBoxNoGender_2 = new System.Windows.Forms.CheckBox();
@@ -1264,7 +1265,8 @@
             // 
             this.languageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.f_MenuItemLanguageJp,
-            this.f_MenuItemLanguageEn});
+            this.f_MenuItemLanguageEn,
+            this.f_MenuItemLanguageZh});
             this.languageToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
             this.languageToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
@@ -1283,6 +1285,13 @@
             this.f_MenuItemLanguageEn.Size = new System.Drawing.Size(113, 22);
             this.f_MenuItemLanguageEn.Text = "English";
             this.f_MenuItemLanguageEn.Click += new System.EventHandler(this.f_MenuItemLanguageEn_Click);
+            // 
+            // f_MenuItemLanguageZh
+            // 
+            this.f_MenuItemLanguageZh.Name = "f_MenuItemLanguageZh";
+            this.f_MenuItemLanguageZh.Size = new System.Drawing.Size(180, 22);
+            this.f_MenuItemLanguageZh.Text = "简体字";
+            this.f_MenuItemLanguageZh.Click += new System.EventHandler(this.f_MenuItemLanguageZh_Click);
             // 
             // f_GroupBoxPokemon_2
             // 
@@ -1768,6 +1777,7 @@
 		private System.Windows.Forms.ToolStripMenuItem languageToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem f_MenuItemLanguageJp;
 		private System.Windows.Forms.ToolStripMenuItem f_MenuItemLanguageEn;
+        private System.Windows.Forms.ToolStripMenuItem f_MenuItemLanguageZh;
         private System.Windows.Forms.Label f_LabelLevel351;
         private System.Windows.Forms.TextBox f_TextBoxLevel351;
         private System.Windows.Forms.Label f_LabelPokemon351;
