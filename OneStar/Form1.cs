@@ -12,7 +12,8 @@ namespace OneStar
 	{
 		Japanese,
 		English,
-		ChineseZh
+		ChineseZh,
+		ChineseZh_TW
 	}
 
 	public enum AbilityType
@@ -767,6 +768,13 @@ namespace OneStar
 			}
 		}
 
+		private void f_MenuItemLanguageZh_TW_Click(object sender, EventArgs e)
+		{
+			if (!f_MenuItemLanguageZh_TW.Checked)
+			{
+				ChangeLanguage(false, Language.ChineseZh_TW);
+			}
+		}
 		void ChangeLanguage(bool isFirst, Language language)
 		{
             
@@ -841,19 +849,29 @@ namespace OneStar
 					f_MenuItemLanguageJp.Checked = true;
 					f_MenuItemLanguageEn.Checked = false;
 					f_MenuItemLanguageZh.Checked = false;
+					f_MenuItemLanguageZh_TW.Checked = false;
 					break;
 
 				case Language.English:
 					f_MenuItemLanguageJp.Checked = false;
 					f_MenuItemLanguageEn.Checked = true;
 					f_MenuItemLanguageZh.Checked = false;
+					f_MenuItemLanguageZh_TW.Checked = false;
 					break;
 
 				case Language.ChineseZh:
 					f_MenuItemLanguageJp.Checked = false;
 					f_MenuItemLanguageEn.Checked = false;
 					f_MenuItemLanguageZh.Checked = true;
+					f_MenuItemLanguageZh_TW.Checked = false;
 					break;
+
+				case Language.ChineseZh_TW:
+					f_MenuItemLanguageJp.Checked = false;
+					f_MenuItemLanguageEn.Checked = false;
+					f_MenuItemLanguageZh.Checked = false;
+					f_MenuItemLanguageZh_TW.Checked = true;
+					break;	
 			}
 
 			// コントロールにメッセージを適用
