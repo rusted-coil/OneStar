@@ -161,6 +161,7 @@
 			this.f_MenuItemLanguageJp = new System.Windows.Forms.ToolStripMenuItem();
 			this.f_MenuItemLanguageEn = new System.Windows.Forms.ToolStripMenuItem();
 			this.f_MenuItemLanguageZh = new System.Windows.Forms.ToolStripMenuItem();
+			this.f_MenuItemLanguageZh_TW = new System.Windows.Forms.ToolStripMenuItem();
 			this.f_GroupBoxPokemon_1.SuspendLayout();
 			this.f_GroupBoxPokemon_2.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -1487,7 +1488,8 @@
 			this.languageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.f_MenuItemLanguageJp,
             this.f_MenuItemLanguageEn,
-            this.f_MenuItemLanguageZh});
+            this.f_MenuItemLanguageZh,
+			this.f_MenuItemLanguageZh_TW});
 			this.languageToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
 			this.languageToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
@@ -1514,6 +1516,13 @@
 			this.f_MenuItemLanguageZh.Text = "简体字";
 			this.f_MenuItemLanguageZh.Click += new System.EventHandler(this.f_MenuItemLanguageZh_Click);
 			// 
+			// f_MenuItemLanguageZh_TW
+			// 
+			this.f_MenuItemLanguageZh_TW.Name = "f_MenuItemLanguageZh_TW";
+			this.f_MenuItemLanguageZh_TW.Size = new System.Drawing.Size(180, 22);
+			this.f_MenuItemLanguageZh_TW.Text = "正體字";
+			this.f_MenuItemLanguageZh_TW.Click += new System.EventHandler(this.f_MenuItemLanguageZh_TW_Click);			
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1533,7 +1542,7 @@
 			this.MainMenuStrip = this.menuStrip1;
 			this.MaximizeBox = false;
 			this.Name = "MainForm";
-			this.Text = "1-Star Seed Search v1.03b";
+			this.Text = "1-Star Seed Search v1.03c";
 			this.f_GroupBoxPokemon_1.ResumeLayout(false);
 			this.f_GroupBoxPokemon_1.PerformLayout();
 			this.f_GroupBoxPokemon_2.ResumeLayout(false);
@@ -1693,6 +1702,7 @@
 		private System.Windows.Forms.CheckBox f_CheckBoxDream_1;
 		private System.Windows.Forms.CheckBox f_CheckBoxDream_2;
 		private System.Windows.Forms.ToolStripMenuItem f_MenuItemLanguageZh;
+		private System.Windows.Forms.ToolStripMenuItem f_MenuItemLanguageZh_TW;
 	}
 }
 
