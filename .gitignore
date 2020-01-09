@@ -2,6 +2,10 @@
 /Debug
 /OneStar/bin
 /OneStar/obj
+/IVCalcNetFramework/bin
+/IVCalcNetFramework/bin/Debug
+/IVCalcNetFramework/bin/Release
+/IVCalcNetFramework/obj
 *.exp
 *.iobj
 *.ipdb
@@ -15,3 +19,15 @@
 /OneStarCalculator/obj
 /OneStarCalculatorLib/Release
 /packages/Newtonsoft.Json.12.0.3
+IVCalcNetFramework/bin/Debug/IVCalcNetFramework.pdb
+IVCalcNetFramework/bin/Release/IVCalcNetFramework.dll
+IVCalcNetFramework/bin/Release/IVCalcNetFramework.pdb
+IVCalcNetFramework/obj/Debug/IVCalcNetFramework.csproj.CoreCompileInputs.cache
+IVCalcNetFramework/obj/Debug/IVCalcNetFramework.csproj.FileListAbsolute.txt
+IVCalcNetFramework/obj/Debug/IVCalcNetFramework.csprojAssemblyReference.cache
+IVCalcNetFramework/obj/Debug/IVCalcNetFramework.pdb
+IVCalcNetFramework/obj/Release/IVCalcNetFramework.csproj.CoreCompileInputs.cache
+IVCalcNetFramework/obj/Release/IVCalcNetFramework.csproj.FileListAbsolute.txt
+IVCalcNetFramework/obj/Release/IVCalcNetFramework.csprojAssemblyReference.cache
+IVCalcNetFramework/obj/Release/IVCalcNetFramework.dll
+IVCalcNetFramework/obj/Release/IVCalcNetFramework.pdb

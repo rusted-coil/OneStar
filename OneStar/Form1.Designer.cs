@@ -1705,4 +1705,3 @@
 		private System.Windows.Forms.ToolStripMenuItem f_MenuItemLanguageZh_TW;
 	}
 }
-
