@@ -210,6 +210,20 @@ namespace OneStar
 			m_PokemonInfo[4].TextBoxStatus[5] = f_TextBoxStatus5_353;
 			m_PokemonInfo[4].ComboBoxNature = f_ComboBoxNature_353;
 			m_PokemonInfo[4].ComboBoxCharacteristic = f_ComboBoxCharacteristic_353;
+			// コールバックをセット
+			for (int a = 0; a < 5; ++a)
+			{
+				for (int b = 0; b < 6; ++b)
+				{
+					// ラムダ式へのキャプチャのためローカル変数にコピー
+					var tb1 = m_PokemonInfo[a].TextBoxIvs[b];
+					var tb2 = m_PokemonInfo[a].TextBoxStatus[b];
+					m_PokemonInfo[a].TextBoxIvs[b].Enter += new System.EventHandler((object sender, EventArgs e) => { EnterTextBoxAllSelect(tb1); });
+					m_PokemonInfo[a].TextBoxStatus[b].Enter += new System.EventHandler((object sender, EventArgs e) => { EnterTextBoxAllSelect(tb2); });
+				}
+				var tb3 = m_PokemonInfo[a].TextBoxLevel;
+				m_PokemonInfo[a].TextBoxLevel.Enter += new System.EventHandler((object sender, EventArgs e) => { EnterTextBoxAllSelect(tb3); });
+			}
 
 			// 言語設定用コントロールをセット
 			m_MultiLanguageControls = new Dictionary<string, Control[]>();
@@ -1224,5 +1238,31 @@ namespace OneStar
 				}
 			}
 		}
+
+		void EnterTextBoxAllSelect(TextBoxBase textBox)
+		{
+			textBox.SelectAll();
+		}
+
+		/*
+		bool testFlag = false;
+		private void f_TextBoxIv0_351_Enter(object sender, EventArgs e)
+		{
+			f_TextBoxIv0_351.SelectAll();
+			if (Control.MouseButtons != MouseButtons.None)
+			{
+				testFlag = true;
+			}
+		}
+
+		private void f_TextBoxIv0_351_MouseDown(object sender, MouseEventArgs e)
+		{
+			if (testFlag)
+			{
+				f_TextBoxIv0_351.SelectAll();
+				testFlag = false;
+			}
+		}
+		*/
 	}
 }
