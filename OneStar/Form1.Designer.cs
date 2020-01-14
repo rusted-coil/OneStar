@@ -89,6 +89,24 @@
 			this.f_LabelCheckResult = new System.Windows.Forms.Label();
 			this.f_LabelCheckResultTitle = new System.Windows.Forms.Label();
 			this.f_GroupBoxPokemon_353 = new System.Windows.Forms.GroupBox();
+			this.f_LabelLevel_353 = new System.Windows.Forms.Label();
+			this.f_LabelPokemon_353 = new System.Windows.Forms.Label();
+			this.f_LabelStatus_353 = new System.Windows.Forms.Label();
+			this.f_TextBoxStatus5_353 = new System.Windows.Forms.TextBox();
+			this.f_LabelStatus25_353 = new System.Windows.Forms.Label();
+			this.f_TextBoxStatus4_353 = new System.Windows.Forms.TextBox();
+			this.f_LabelStatus24_353 = new System.Windows.Forms.Label();
+			this.f_TextBoxStatus3_353 = new System.Windows.Forms.TextBox();
+			this.f_LabelStatus23_353 = new System.Windows.Forms.Label();
+			this.f_TextBoxStatus2_353 = new System.Windows.Forms.TextBox();
+			this.f_LabelStatus22_353 = new System.Windows.Forms.Label();
+			this.f_TextBoxStatus1_353 = new System.Windows.Forms.TextBox();
+			this.f_LabelStatus21_353 = new System.Windows.Forms.Label();
+			this.f_TextBoxStatus0_353 = new System.Windows.Forms.TextBox();
+			this.f_LabelStatus20_353 = new System.Windows.Forms.Label();
+			this.f_ButtonIvsCalc_353 = new System.Windows.Forms.Button();
+			this.f_TextBoxLevel_353 = new System.Windows.Forms.TextBox();
+			this.f_ComboBoxPokemon_353 = new System.Windows.Forms.ComboBox();
 			this.f_CheckBoxDream_353 = new System.Windows.Forms.CheckBox();
 			this.f_ComboBoxCharacteristic_353 = new System.Windows.Forms.ComboBox();
 			this.f_CheckBoxNoGender_353 = new System.Windows.Forms.CheckBox();
@@ -109,6 +127,8 @@
 			this.f_LabelStatus0_353 = new System.Windows.Forms.Label();
 			this.f_LabelIvs_353 = new System.Windows.Forms.Label();
 			this.f_GroupBoxPokemon_352 = new System.Windows.Forms.GroupBox();
+			this.f_TextBoxLevel_352 = new System.Windows.Forms.TextBox();
+			this.f_ComboBoxPokemon_352 = new System.Windows.Forms.ComboBox();
 			this.f_ComboBoxCharacteristic_352 = new System.Windows.Forms.ComboBox();
 			this.f_CheckBoxDream_352 = new System.Windows.Forms.CheckBox();
 			this.f_CheckBoxNoGender_352 = new System.Windows.Forms.CheckBox();
@@ -129,6 +149,8 @@
 			this.f_LabelStatus0_352 = new System.Windows.Forms.Label();
 			this.f_LabelIvs_352 = new System.Windows.Forms.Label();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
+			this.f_TextBoxLevel_351 = new System.Windows.Forms.TextBox();
+			this.f_ComboBoxPokemon_351 = new System.Windows.Forms.ComboBox();
 			this.f_ComboBoxModeSelector_35 = new System.Windows.Forms.ComboBox();
 			this.f_ComboBoxCharacteristic_351 = new System.Windows.Forms.ComboBox();
 			this.f_CheckBoxDream_351 = new System.Windows.Forms.CheckBox();
@@ -162,6 +184,41 @@
 			this.f_MenuItemLanguageEn = new System.Windows.Forms.ToolStripMenuItem();
 			this.f_MenuItemLanguageZh = new System.Windows.Forms.ToolStripMenuItem();
 			this.f_MenuItemLanguageZh_TW = new System.Windows.Forms.ToolStripMenuItem();
+			this.f_LabelLevel_352 = new System.Windows.Forms.Label();
+			this.f_LabelLevel_351 = new System.Windows.Forms.Label();
+			this.f_LabelPokemon_352 = new System.Windows.Forms.Label();
+			this.f_LabelPokemon_351 = new System.Windows.Forms.Label();
+			this.f_ButtonIvsCalc_352 = new System.Windows.Forms.Button();
+			this.f_ButtonIvsCalc_351 = new System.Windows.Forms.Button();
+			this.f_LabelStatus_352 = new System.Windows.Forms.Label();
+			this.f_TextBoxStatus5_352 = new System.Windows.Forms.TextBox();
+			this.f_LabelStatus25_352 = new System.Windows.Forms.Label();
+			this.f_TextBoxStatus4_352 = new System.Windows.Forms.TextBox();
+			this.f_LabelStatus24_352 = new System.Windows.Forms.Label();
+			this.f_TextBoxStatus3_352 = new System.Windows.Forms.TextBox();
+			this.f_LabelStatus23_352 = new System.Windows.Forms.Label();
+			this.f_TextBoxStatus2_352 = new System.Windows.Forms.TextBox();
+			this.f_LabelStatus22_352 = new System.Windows.Forms.Label();
+			this.f_TextBoxStatus1_352 = new System.Windows.Forms.TextBox();
+			this.f_LabelStatus21_352 = new System.Windows.Forms.Label();
+			this.f_TextBoxStatus0_352 = new System.Windows.Forms.TextBox();
+			this.f_LabelStatus20_352 = new System.Windows.Forms.Label();
+			this.f_LabelStatus_351 = new System.Windows.Forms.Label();
+			this.f_TextBoxStatus5_351 = new System.Windows.Forms.TextBox();
+			this.f_LabelStatus25_351 = new System.Windows.Forms.Label();
+			this.f_TextBoxStatus4_351 = new System.Windows.Forms.TextBox();
+			this.f_LabelStatus24_351 = new System.Windows.Forms.Label();
+			this.f_TextBoxStatus3_351 = new System.Windows.Forms.TextBox();
+			this.f_LabelStatus23_351 = new System.Windows.Forms.Label();
+			this.f_TextBoxStatus2_351 = new System.Windows.Forms.TextBox();
+			this.f_LabelStatus22_351 = new System.Windows.Forms.Label();
+			this.f_TextBoxStatus1_351 = new System.Windows.Forms.TextBox();
+			this.f_LabelStatus21_351 = new System.Windows.Forms.Label();
+			this.f_TextBoxStatus0_351 = new System.Windows.Forms.TextBox();
+			this.f_LabelStatus20_351 = new System.Windows.Forms.Label();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.panel2 = new System.Windows.Forms.Panel();
+			this.panel3 = new System.Windows.Forms.Panel();
 			this.f_GroupBoxPokemon_1.SuspendLayout();
 			this.f_GroupBoxPokemon_2.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -573,7 +630,7 @@
 			// 
 			this.f_ButtonStartSearch.BackColor = System.Drawing.Color.GreenYellow;
 			this.f_ButtonStartSearch.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_ButtonStartSearch.Location = new System.Drawing.Point(179, 504);
+			this.f_ButtonStartSearch.Location = new System.Drawing.Point(179, 653);
 			this.f_ButtonStartSearch.Name = "f_ButtonStartSearch";
 			this.f_ButtonStartSearch.Size = new System.Drawing.Size(176, 42);
 			this.f_ButtonStartSearch.TabIndex = 2;
@@ -713,7 +770,7 @@
 			this.f_CheckBoxStop.AutoSize = true;
 			this.f_CheckBoxStop.BackColor = System.Drawing.SystemColors.Control;
 			this.f_CheckBoxStop.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_CheckBoxStop.Location = new System.Drawing.Point(373, 532);
+			this.f_CheckBoxStop.Location = new System.Drawing.Point(373, 681);
 			this.f_CheckBoxStop.Name = "f_CheckBoxStop";
 			this.f_CheckBoxStop.Size = new System.Drawing.Size(111, 16);
 			this.f_CheckBoxStop.TabIndex = 4;
@@ -732,7 +789,7 @@
 			this.f_TabControlMain.Location = new System.Drawing.Point(12, 35);
 			this.f_TabControlMain.Name = "f_TabControlMain";
 			this.f_TabControlMain.SelectedIndex = 0;
-			this.f_TabControlMain.Size = new System.Drawing.Size(547, 457);
+			this.f_TabControlMain.Size = new System.Drawing.Size(595, 612);
 			this.f_TabControlMain.TabIndex = 0;
 			// 
 			// f_TabPage1
@@ -746,7 +803,7 @@
 			this.f_TabPage1.Location = new System.Drawing.Point(4, 22);
 			this.f_TabPage1.Name = "f_TabPage1";
 			this.f_TabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.f_TabPage1.Size = new System.Drawing.Size(539, 431);
+			this.f_TabPage1.Size = new System.Drawing.Size(587, 586);
 			this.f_TabPage1.TabIndex = 0;
 			this.f_TabPage1.Text = "★3～5";
 			this.f_TabPage1.UseVisualStyleBackColor = true;
@@ -754,7 +811,7 @@
 			// f_ButtonIvsCheck
 			// 
 			this.f_ButtonIvsCheck.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_ButtonIvsCheck.Location = new System.Drawing.Point(174, 135);
+			this.f_ButtonIvsCheck.Location = new System.Drawing.Point(174, 193);
 			this.f_ButtonIvsCheck.Name = "f_ButtonIvsCheck";
 			this.f_ButtonIvsCheck.Size = new System.Drawing.Size(115, 31);
 			this.f_ButtonIvsCheck.TabIndex = 1;
@@ -766,7 +823,7 @@
 			// 
 			this.f_LabelCheckResult.AutoSize = true;
 			this.f_LabelCheckResult.ForeColor = System.Drawing.Color.Blue;
-			this.f_LabelCheckResult.Location = new System.Drawing.Point(334, 144);
+			this.f_LabelCheckResult.Location = new System.Drawing.Point(334, 202);
 			this.f_LabelCheckResult.Name = "f_LabelCheckResult";
 			this.f_LabelCheckResult.Size = new System.Drawing.Size(94, 12);
 			this.f_LabelCheckResult.TabIndex = 29;
@@ -776,7 +833,7 @@
 			// 
 			this.f_LabelCheckResultTitle.AutoSize = true;
 			this.f_LabelCheckResultTitle.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelCheckResultTitle.Location = new System.Drawing.Point(302, 144);
+			this.f_LabelCheckResultTitle.Location = new System.Drawing.Point(302, 202);
 			this.f_LabelCheckResultTitle.Name = "f_LabelCheckResultTitle";
 			this.f_LabelCheckResultTitle.Size = new System.Drawing.Size(35, 12);
 			this.f_LabelCheckResultTitle.TabIndex = 28;
@@ -784,6 +841,24 @@
 			// 
 			// f_GroupBoxPokemon_353
 			// 
+			this.f_GroupBoxPokemon_353.Controls.Add(this.f_LabelLevel_353);
+			this.f_GroupBoxPokemon_353.Controls.Add(this.f_LabelPokemon_353);
+			this.f_GroupBoxPokemon_353.Controls.Add(this.f_LabelStatus_353);
+			this.f_GroupBoxPokemon_353.Controls.Add(this.f_TextBoxStatus5_353);
+			this.f_GroupBoxPokemon_353.Controls.Add(this.f_LabelStatus25_353);
+			this.f_GroupBoxPokemon_353.Controls.Add(this.f_TextBoxStatus4_353);
+			this.f_GroupBoxPokemon_353.Controls.Add(this.f_LabelStatus24_353);
+			this.f_GroupBoxPokemon_353.Controls.Add(this.f_TextBoxStatus3_353);
+			this.f_GroupBoxPokemon_353.Controls.Add(this.f_LabelStatus23_353);
+			this.f_GroupBoxPokemon_353.Controls.Add(this.f_TextBoxStatus2_353);
+			this.f_GroupBoxPokemon_353.Controls.Add(this.f_LabelStatus22_353);
+			this.f_GroupBoxPokemon_353.Controls.Add(this.f_TextBoxStatus1_353);
+			this.f_GroupBoxPokemon_353.Controls.Add(this.f_LabelStatus21_353);
+			this.f_GroupBoxPokemon_353.Controls.Add(this.f_TextBoxStatus0_353);
+			this.f_GroupBoxPokemon_353.Controls.Add(this.f_LabelStatus20_353);
+			this.f_GroupBoxPokemon_353.Controls.Add(this.f_ButtonIvsCalc_353);
+			this.f_GroupBoxPokemon_353.Controls.Add(this.f_TextBoxLevel_353);
+			this.f_GroupBoxPokemon_353.Controls.Add(this.f_ComboBoxPokemon_353);
 			this.f_GroupBoxPokemon_353.Controls.Add(this.f_CheckBoxDream_353);
 			this.f_GroupBoxPokemon_353.Controls.Add(this.f_ComboBoxCharacteristic_353);
 			this.f_GroupBoxPokemon_353.Controls.Add(this.f_CheckBoxNoGender_353);
@@ -803,12 +878,188 @@
 			this.f_GroupBoxPokemon_353.Controls.Add(this.f_TextBoxIv0_353);
 			this.f_GroupBoxPokemon_353.Controls.Add(this.f_LabelStatus0_353);
 			this.f_GroupBoxPokemon_353.Controls.Add(this.f_LabelIvs_353);
-			this.f_GroupBoxPokemon_353.Location = new System.Drawing.Point(11, 308);
+			this.f_GroupBoxPokemon_353.Controls.Add(this.panel3);
+			this.f_GroupBoxPokemon_353.Location = new System.Drawing.Point(11, 408);
 			this.f_GroupBoxPokemon_353.Name = "f_GroupBoxPokemon_353";
-			this.f_GroupBoxPokemon_353.Size = new System.Drawing.Size(513, 117);
+			this.f_GroupBoxPokemon_353.Size = new System.Drawing.Size(564, 167);
 			this.f_GroupBoxPokemon_353.TabIndex = 3;
 			this.f_GroupBoxPokemon_353.TabStop = false;
 			this.f_GroupBoxPokemon_353.Text = "5匹目";
+			// 
+			// f_LabelLevel_353
+			// 
+			this.f_LabelLevel_353.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelLevel_353.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelLevel_353.Location = new System.Drawing.Point(483, 26);
+			this.f_LabelLevel_353.Name = "f_LabelLevel_353";
+			this.f_LabelLevel_353.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelLevel_353.TabIndex = 34;
+			this.f_LabelLevel_353.Text = "Lv";
+			this.f_LabelLevel_353.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_LabelPokemon_353
+			// 
+			this.f_LabelPokemon_353.AutoSize = true;
+			this.f_LabelPokemon_353.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelPokemon_353.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelPokemon_353.Location = new System.Drawing.Point(288, 26);
+			this.f_LabelPokemon_353.Name = "f_LabelPokemon_353";
+			this.f_LabelPokemon_353.Size = new System.Drawing.Size(48, 12);
+			this.f_LabelPokemon_353.TabIndex = 33;
+			this.f_LabelPokemon_353.Text = "ポケモン：";
+			// 
+			// f_LabelStatus_353
+			// 
+			this.f_LabelStatus_353.AutoSize = true;
+			this.f_LabelStatus_353.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelStatus_353.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus_353.Location = new System.Drawing.Point(288, 79);
+			this.f_LabelStatus_353.Name = "f_LabelStatus_353";
+			this.f_LabelStatus_353.Size = new System.Drawing.Size(56, 12);
+			this.f_LabelStatus_353.TabIndex = 32;
+			this.f_LabelStatus_353.Text = "ステータス：";
+			// 
+			// f_TextBoxStatus5_353
+			// 
+			this.f_TextBoxStatus5_353.Location = new System.Drawing.Point(451, 101);
+			this.f_TextBoxStatus5_353.MaxLength = 2;
+			this.f_TextBoxStatus5_353.Name = "f_TextBoxStatus5_353";
+			this.f_TextBoxStatus5_353.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxStatus5_353.TabIndex = 28;
+			// 
+			// f_LabelStatus25_353
+			// 
+			this.f_LabelStatus25_353.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelStatus25_353.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus25_353.Location = new System.Drawing.Point(419, 104);
+			this.f_LabelStatus25_353.Name = "f_LabelStatus25_353";
+			this.f_LabelStatus25_353.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelStatus25_353.TabIndex = 31;
+			this.f_LabelStatus25_353.Text = "S";
+			this.f_LabelStatus25_353.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_TextBoxStatus4_353
+			// 
+			this.f_TextBoxStatus4_353.Location = new System.Drawing.Point(451, 76);
+			this.f_TextBoxStatus4_353.MaxLength = 2;
+			this.f_TextBoxStatus4_353.Name = "f_TextBoxStatus4_353";
+			this.f_TextBoxStatus4_353.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxStatus4_353.TabIndex = 26;
+			// 
+			// f_LabelStatus24_353
+			// 
+			this.f_LabelStatus24_353.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelStatus24_353.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus24_353.Location = new System.Drawing.Point(419, 79);
+			this.f_LabelStatus24_353.Name = "f_LabelStatus24_353";
+			this.f_LabelStatus24_353.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelStatus24_353.TabIndex = 30;
+			this.f_LabelStatus24_353.Text = "D";
+			this.f_LabelStatus24_353.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_TextBoxStatus3_353
+			// 
+			this.f_TextBoxStatus3_353.Location = new System.Drawing.Point(451, 51);
+			this.f_TextBoxStatus3_353.MaxLength = 2;
+			this.f_TextBoxStatus3_353.Name = "f_TextBoxStatus3_353";
+			this.f_TextBoxStatus3_353.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxStatus3_353.TabIndex = 25;
+			// 
+			// f_LabelStatus23_353
+			// 
+			this.f_LabelStatus23_353.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelStatus23_353.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus23_353.Location = new System.Drawing.Point(419, 54);
+			this.f_LabelStatus23_353.Name = "f_LabelStatus23_353";
+			this.f_LabelStatus23_353.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelStatus23_353.TabIndex = 29;
+			this.f_LabelStatus23_353.Text = "C";
+			this.f_LabelStatus23_353.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_TextBoxStatus2_353
+			// 
+			this.f_TextBoxStatus2_353.Location = new System.Drawing.Point(371, 101);
+			this.f_TextBoxStatus2_353.MaxLength = 2;
+			this.f_TextBoxStatus2_353.Name = "f_TextBoxStatus2_353";
+			this.f_TextBoxStatus2_353.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxStatus2_353.TabIndex = 23;
+			// 
+			// f_LabelStatus22_353
+			// 
+			this.f_LabelStatus22_353.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelStatus22_353.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus22_353.Location = new System.Drawing.Point(339, 104);
+			this.f_LabelStatus22_353.Name = "f_LabelStatus22_353";
+			this.f_LabelStatus22_353.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelStatus22_353.TabIndex = 27;
+			this.f_LabelStatus22_353.Text = "B";
+			this.f_LabelStatus22_353.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_TextBoxStatus1_353
+			// 
+			this.f_TextBoxStatus1_353.Location = new System.Drawing.Point(371, 76);
+			this.f_TextBoxStatus1_353.MaxLength = 2;
+			this.f_TextBoxStatus1_353.Name = "f_TextBoxStatus1_353";
+			this.f_TextBoxStatus1_353.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxStatus1_353.TabIndex = 22;
+			// 
+			// f_LabelStatus21_353
+			// 
+			this.f_LabelStatus21_353.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelStatus21_353.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus21_353.Location = new System.Drawing.Point(339, 79);
+			this.f_LabelStatus21_353.Name = "f_LabelStatus21_353";
+			this.f_LabelStatus21_353.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelStatus21_353.TabIndex = 24;
+			this.f_LabelStatus21_353.Text = "A";
+			this.f_LabelStatus21_353.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_TextBoxStatus0_353
+			// 
+			this.f_TextBoxStatus0_353.Location = new System.Drawing.Point(371, 51);
+			this.f_TextBoxStatus0_353.MaxLength = 2;
+			this.f_TextBoxStatus0_353.Name = "f_TextBoxStatus0_353";
+			this.f_TextBoxStatus0_353.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxStatus0_353.TabIndex = 20;
+			// 
+			// f_LabelStatus20_353
+			// 
+			this.f_LabelStatus20_353.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelStatus20_353.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus20_353.Location = new System.Drawing.Point(339, 54);
+			this.f_LabelStatus20_353.Name = "f_LabelStatus20_353";
+			this.f_LabelStatus20_353.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelStatus20_353.TabIndex = 21;
+			this.f_LabelStatus20_353.Text = "H";
+			this.f_LabelStatus20_353.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_ButtonIvsCalc_353
+			// 
+			this.f_ButtonIvsCalc_353.BackColor = System.Drawing.Color.Transparent;
+			this.f_ButtonIvsCalc_353.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_ButtonIvsCalc_353.Location = new System.Drawing.Point(222, 66);
+			this.f_ButtonIvsCalc_353.Name = "f_ButtonIvsCalc_353";
+			this.f_ButtonIvsCalc_353.Size = new System.Drawing.Size(56, 39);
+			this.f_ButtonIvsCalc_353.TabIndex = 19;
+			this.f_ButtonIvsCalc_353.Text = "<- 計算";
+			this.f_ButtonIvsCalc_353.UseVisualStyleBackColor = false;
+			// 
+			// f_TextBoxLevel_353
+			// 
+			this.f_TextBoxLevel_353.Location = new System.Drawing.Point(515, 23);
+			this.f_TextBoxLevel_353.MaxLength = 2;
+			this.f_TextBoxLevel_353.Name = "f_TextBoxLevel_353";
+			this.f_TextBoxLevel_353.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxLevel_353.TabIndex = 18;
+			// 
+			// f_ComboBoxPokemon_353
+			// 
+			this.f_ComboBoxPokemon_353.Cursor = System.Windows.Forms.Cursors.Default;
+			this.f_ComboBoxPokemon_353.FormattingEnabled = true;
+			this.f_ComboBoxPokemon_353.Location = new System.Drawing.Point(349, 23);
+			this.f_ComboBoxPokemon_353.Name = "f_ComboBoxPokemon_353";
+			this.f_ComboBoxPokemon_353.Size = new System.Drawing.Size(133, 20);
+			this.f_ComboBoxPokemon_353.TabIndex = 17;
 			// 
 			// f_CheckBoxDream_353
 			// 
@@ -825,7 +1076,7 @@
 			// 
 			this.f_ComboBoxCharacteristic_353.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.f_ComboBoxCharacteristic_353.FormattingEnabled = true;
-			this.f_ComboBoxCharacteristic_353.Location = new System.Drawing.Point(139, 82);
+			this.f_ComboBoxCharacteristic_353.Location = new System.Drawing.Point(139, 133);
 			this.f_ComboBoxCharacteristic_353.Name = "f_ComboBoxCharacteristic_353";
 			this.f_ComboBoxCharacteristic_353.Size = new System.Drawing.Size(125, 20);
 			this.f_ComboBoxCharacteristic_353.Sorted = true;
@@ -835,7 +1086,7 @@
 			// 
 			this.f_CheckBoxNoGender_353.AutoSize = true;
 			this.f_CheckBoxNoGender_353.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_CheckBoxNoGender_353.Location = new System.Drawing.Point(405, 84);
+			this.f_CheckBoxNoGender_353.Location = new System.Drawing.Point(405, 135);
 			this.f_CheckBoxNoGender_353.Name = "f_CheckBoxNoGender_353";
 			this.f_CheckBoxNoGender_353.Size = new System.Drawing.Size(102, 16);
 			this.f_CheckBoxNoGender_353.TabIndex = 10;
@@ -846,7 +1097,7 @@
 			// 
 			this.f_ComboBoxAbility_353.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.f_ComboBoxAbility_353.FormattingEnabled = true;
-			this.f_ComboBoxAbility_353.Location = new System.Drawing.Point(285, 82);
+			this.f_ComboBoxAbility_353.Location = new System.Drawing.Point(285, 133);
 			this.f_ComboBoxAbility_353.Name = "f_ComboBoxAbility_353";
 			this.f_ComboBoxAbility_353.Size = new System.Drawing.Size(108, 20);
 			this.f_ComboBoxAbility_353.TabIndex = 9;
@@ -855,7 +1106,7 @@
 			// 
 			this.f_LabelNature_353.AutoSize = true;
 			this.f_LabelNature_353.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelNature_353.Location = new System.Drawing.Point(6, 85);
+			this.f_LabelNature_353.Location = new System.Drawing.Point(6, 135);
 			this.f_LabelNature_353.Name = "f_LabelNature_353";
 			this.f_LabelNature_353.Size = new System.Drawing.Size(35, 12);
 			this.f_LabelNature_353.TabIndex = 14;
@@ -865,7 +1116,7 @@
 			// 
 			this.f_ComboBoxNature_353.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.f_ComboBoxNature_353.FormattingEnabled = true;
-			this.f_ComboBoxNature_353.Location = new System.Drawing.Point(47, 82);
+			this.f_ComboBoxNature_353.Location = new System.Drawing.Point(47, 133);
 			this.f_ComboBoxNature_353.Name = "f_ComboBoxNature_353";
 			this.f_ComboBoxNature_353.Size = new System.Drawing.Size(74, 20);
 			this.f_ComboBoxNature_353.Sorted = true;
@@ -873,7 +1124,7 @@
 			// 
 			// f_TextBoxIv5_353
 			// 
-			this.f_TextBoxIv5_353.Location = new System.Drawing.Point(443, 51);
+			this.f_TextBoxIv5_353.Location = new System.Drawing.Point(163, 101);
 			this.f_TextBoxIv5_353.MaxLength = 2;
 			this.f_TextBoxIv5_353.Name = "f_TextBoxIv5_353";
 			this.f_TextBoxIv5_353.Size = new System.Drawing.Size(34, 19);
@@ -882,7 +1133,7 @@
 			// f_LabelStatus5_353
 			// 
 			this.f_LabelStatus5_353.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelStatus5_353.Location = new System.Drawing.Point(411, 54);
+			this.f_LabelStatus5_353.Location = new System.Drawing.Point(131, 104);
 			this.f_LabelStatus5_353.Name = "f_LabelStatus5_353";
 			this.f_LabelStatus5_353.Size = new System.Drawing.Size(30, 12);
 			this.f_LabelStatus5_353.TabIndex = 11;
@@ -891,7 +1142,7 @@
 			// 
 			// f_TextBoxIv4_353
 			// 
-			this.f_TextBoxIv4_353.Location = new System.Drawing.Point(371, 51);
+			this.f_TextBoxIv4_353.Location = new System.Drawing.Point(163, 76);
 			this.f_TextBoxIv4_353.MaxLength = 2;
 			this.f_TextBoxIv4_353.Name = "f_TextBoxIv4_353";
 			this.f_TextBoxIv4_353.Size = new System.Drawing.Size(34, 19);
@@ -900,7 +1151,7 @@
 			// f_LabelStatus4_353
 			// 
 			this.f_LabelStatus4_353.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelStatus4_353.Location = new System.Drawing.Point(339, 54);
+			this.f_LabelStatus4_353.Location = new System.Drawing.Point(131, 79);
 			this.f_LabelStatus4_353.Name = "f_LabelStatus4_353";
 			this.f_LabelStatus4_353.Size = new System.Drawing.Size(30, 12);
 			this.f_LabelStatus4_353.TabIndex = 9;
@@ -909,7 +1160,7 @@
 			// 
 			// f_TextBoxIv3_353
 			// 
-			this.f_TextBoxIv3_353.Location = new System.Drawing.Point(299, 51);
+			this.f_TextBoxIv3_353.Location = new System.Drawing.Point(163, 51);
 			this.f_TextBoxIv3_353.MaxLength = 2;
 			this.f_TextBoxIv3_353.Name = "f_TextBoxIv3_353";
 			this.f_TextBoxIv3_353.Size = new System.Drawing.Size(34, 19);
@@ -918,7 +1169,7 @@
 			// f_LabelStatus3_353
 			// 
 			this.f_LabelStatus3_353.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelStatus3_353.Location = new System.Drawing.Point(267, 54);
+			this.f_LabelStatus3_353.Location = new System.Drawing.Point(131, 54);
 			this.f_LabelStatus3_353.Name = "f_LabelStatus3_353";
 			this.f_LabelStatus3_353.Size = new System.Drawing.Size(30, 12);
 			this.f_LabelStatus3_353.TabIndex = 7;
@@ -927,7 +1178,7 @@
 			// 
 			// f_TextBoxIv2_353
 			// 
-			this.f_TextBoxIv2_353.Location = new System.Drawing.Point(227, 51);
+			this.f_TextBoxIv2_353.Location = new System.Drawing.Point(83, 101);
 			this.f_TextBoxIv2_353.MaxLength = 2;
 			this.f_TextBoxIv2_353.Name = "f_TextBoxIv2_353";
 			this.f_TextBoxIv2_353.Size = new System.Drawing.Size(34, 19);
@@ -936,7 +1187,7 @@
 			// f_LabelStatus2_353
 			// 
 			this.f_LabelStatus2_353.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelStatus2_353.Location = new System.Drawing.Point(195, 54);
+			this.f_LabelStatus2_353.Location = new System.Drawing.Point(51, 104);
 			this.f_LabelStatus2_353.Name = "f_LabelStatus2_353";
 			this.f_LabelStatus2_353.Size = new System.Drawing.Size(30, 12);
 			this.f_LabelStatus2_353.TabIndex = 5;
@@ -945,7 +1196,7 @@
 			// 
 			// f_TextBoxIv1_353
 			// 
-			this.f_TextBoxIv1_353.Location = new System.Drawing.Point(155, 51);
+			this.f_TextBoxIv1_353.Location = new System.Drawing.Point(83, 76);
 			this.f_TextBoxIv1_353.MaxLength = 2;
 			this.f_TextBoxIv1_353.Name = "f_TextBoxIv1_353";
 			this.f_TextBoxIv1_353.Size = new System.Drawing.Size(34, 19);
@@ -954,7 +1205,7 @@
 			// f_LabelStatus1_353
 			// 
 			this.f_LabelStatus1_353.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelStatus1_353.Location = new System.Drawing.Point(123, 54);
+			this.f_LabelStatus1_353.Location = new System.Drawing.Point(51, 79);
 			this.f_LabelStatus1_353.Name = "f_LabelStatus1_353";
 			this.f_LabelStatus1_353.Size = new System.Drawing.Size(30, 12);
 			this.f_LabelStatus1_353.TabIndex = 3;
@@ -983,7 +1234,7 @@
 			// 
 			this.f_LabelIvs_353.AutoSize = true;
 			this.f_LabelIvs_353.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelIvs_353.Location = new System.Drawing.Point(6, 54);
+			this.f_LabelIvs_353.Location = new System.Drawing.Point(6, 79);
 			this.f_LabelIvs_353.Name = "f_LabelIvs_353";
 			this.f_LabelIvs_353.Size = new System.Drawing.Size(47, 12);
 			this.f_LabelIvs_353.TabIndex = 0;
@@ -991,12 +1242,30 @@
 			// 
 			// f_GroupBoxPokemon_352
 			// 
+			this.f_GroupBoxPokemon_352.Controls.Add(this.f_LabelStatus_352);
+			this.f_GroupBoxPokemon_352.Controls.Add(this.f_TextBoxStatus5_352);
+			this.f_GroupBoxPokemon_352.Controls.Add(this.f_ButtonIvsCalc_352);
+			this.f_GroupBoxPokemon_352.Controls.Add(this.f_LabelStatus25_352);
+			this.f_GroupBoxPokemon_352.Controls.Add(this.f_LabelPokemon_352);
+			this.f_GroupBoxPokemon_352.Controls.Add(this.f_TextBoxStatus4_352);
+			this.f_GroupBoxPokemon_352.Controls.Add(this.f_LabelLevel_352);
+			this.f_GroupBoxPokemon_352.Controls.Add(this.f_LabelStatus24_352);
+			this.f_GroupBoxPokemon_352.Controls.Add(this.f_TextBoxLevel_352);
+			this.f_GroupBoxPokemon_352.Controls.Add(this.f_TextBoxStatus3_352);
+			this.f_GroupBoxPokemon_352.Controls.Add(this.f_ComboBoxPokemon_352);
+			this.f_GroupBoxPokemon_352.Controls.Add(this.f_LabelStatus23_352);
 			this.f_GroupBoxPokemon_352.Controls.Add(this.f_ComboBoxCharacteristic_352);
+			this.f_GroupBoxPokemon_352.Controls.Add(this.f_TextBoxStatus2_352);
 			this.f_GroupBoxPokemon_352.Controls.Add(this.f_CheckBoxDream_352);
+			this.f_GroupBoxPokemon_352.Controls.Add(this.f_LabelStatus22_352);
 			this.f_GroupBoxPokemon_352.Controls.Add(this.f_CheckBoxNoGender_352);
+			this.f_GroupBoxPokemon_352.Controls.Add(this.f_TextBoxStatus1_352);
 			this.f_GroupBoxPokemon_352.Controls.Add(this.f_ComboBoxAbility_352);
+			this.f_GroupBoxPokemon_352.Controls.Add(this.f_LabelStatus21_352);
 			this.f_GroupBoxPokemon_352.Controls.Add(this.f_LabelNature_352);
+			this.f_GroupBoxPokemon_352.Controls.Add(this.f_TextBoxStatus0_352);
 			this.f_GroupBoxPokemon_352.Controls.Add(this.f_ComboBoxNature_352);
+			this.f_GroupBoxPokemon_352.Controls.Add(this.f_LabelStatus20_352);
 			this.f_GroupBoxPokemon_352.Controls.Add(this.f_TextBoxIv5_352);
 			this.f_GroupBoxPokemon_352.Controls.Add(this.f_LabelStatus5_352);
 			this.f_GroupBoxPokemon_352.Controls.Add(this.f_TextBoxIv4_352);
@@ -1010,18 +1279,36 @@
 			this.f_GroupBoxPokemon_352.Controls.Add(this.f_TextBoxIv0_352);
 			this.f_GroupBoxPokemon_352.Controls.Add(this.f_LabelStatus0_352);
 			this.f_GroupBoxPokemon_352.Controls.Add(this.f_LabelIvs_352);
-			this.f_GroupBoxPokemon_352.Location = new System.Drawing.Point(11, 183);
+			this.f_GroupBoxPokemon_352.Controls.Add(this.panel2);
+			this.f_GroupBoxPokemon_352.Location = new System.Drawing.Point(11, 233);
 			this.f_GroupBoxPokemon_352.Name = "f_GroupBoxPokemon_352";
-			this.f_GroupBoxPokemon_352.Size = new System.Drawing.Size(513, 117);
+			this.f_GroupBoxPokemon_352.Size = new System.Drawing.Size(564, 167);
 			this.f_GroupBoxPokemon_352.TabIndex = 2;
 			this.f_GroupBoxPokemon_352.TabStop = false;
 			this.f_GroupBoxPokemon_352.Text = "4匹目-3V～4V";
+			// 
+			// f_TextBoxLevel_352
+			// 
+			this.f_TextBoxLevel_352.Location = new System.Drawing.Point(515, 23);
+			this.f_TextBoxLevel_352.MaxLength = 2;
+			this.f_TextBoxLevel_352.Name = "f_TextBoxLevel_352";
+			this.f_TextBoxLevel_352.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxLevel_352.TabIndex = 17;
+			// 
+			// f_ComboBoxPokemon_352
+			// 
+			this.f_ComboBoxPokemon_352.Cursor = System.Windows.Forms.Cursors.Default;
+			this.f_ComboBoxPokemon_352.FormattingEnabled = true;
+			this.f_ComboBoxPokemon_352.Location = new System.Drawing.Point(349, 23);
+			this.f_ComboBoxPokemon_352.Name = "f_ComboBoxPokemon_352";
+			this.f_ComboBoxPokemon_352.Size = new System.Drawing.Size(133, 20);
+			this.f_ComboBoxPokemon_352.TabIndex = 16;
 			// 
 			// f_ComboBoxCharacteristic_352
 			// 
 			this.f_ComboBoxCharacteristic_352.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.f_ComboBoxCharacteristic_352.FormattingEnabled = true;
-			this.f_ComboBoxCharacteristic_352.Location = new System.Drawing.Point(139, 82);
+			this.f_ComboBoxCharacteristic_352.Location = new System.Drawing.Point(139, 133);
 			this.f_ComboBoxCharacteristic_352.Name = "f_ComboBoxCharacteristic_352";
 			this.f_ComboBoxCharacteristic_352.Size = new System.Drawing.Size(125, 20);
 			this.f_ComboBoxCharacteristic_352.Sorted = true;
@@ -1042,7 +1329,7 @@
 			// 
 			this.f_CheckBoxNoGender_352.AutoSize = true;
 			this.f_CheckBoxNoGender_352.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_CheckBoxNoGender_352.Location = new System.Drawing.Point(405, 84);
+			this.f_CheckBoxNoGender_352.Location = new System.Drawing.Point(405, 135);
 			this.f_CheckBoxNoGender_352.Name = "f_CheckBoxNoGender_352";
 			this.f_CheckBoxNoGender_352.Size = new System.Drawing.Size(102, 16);
 			this.f_CheckBoxNoGender_352.TabIndex = 10;
@@ -1053,7 +1340,7 @@
 			// 
 			this.f_ComboBoxAbility_352.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.f_ComboBoxAbility_352.FormattingEnabled = true;
-			this.f_ComboBoxAbility_352.Location = new System.Drawing.Point(285, 82);
+			this.f_ComboBoxAbility_352.Location = new System.Drawing.Point(285, 133);
 			this.f_ComboBoxAbility_352.Name = "f_ComboBoxAbility_352";
 			this.f_ComboBoxAbility_352.Size = new System.Drawing.Size(108, 20);
 			this.f_ComboBoxAbility_352.TabIndex = 9;
@@ -1062,7 +1349,7 @@
 			// 
 			this.f_LabelNature_352.AutoSize = true;
 			this.f_LabelNature_352.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelNature_352.Location = new System.Drawing.Point(6, 85);
+			this.f_LabelNature_352.Location = new System.Drawing.Point(6, 135);
 			this.f_LabelNature_352.Name = "f_LabelNature_352";
 			this.f_LabelNature_352.Size = new System.Drawing.Size(35, 12);
 			this.f_LabelNature_352.TabIndex = 14;
@@ -1072,7 +1359,7 @@
 			// 
 			this.f_ComboBoxNature_352.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.f_ComboBoxNature_352.FormattingEnabled = true;
-			this.f_ComboBoxNature_352.Location = new System.Drawing.Point(47, 82);
+			this.f_ComboBoxNature_352.Location = new System.Drawing.Point(47, 133);
 			this.f_ComboBoxNature_352.Name = "f_ComboBoxNature_352";
 			this.f_ComboBoxNature_352.Size = new System.Drawing.Size(74, 20);
 			this.f_ComboBoxNature_352.Sorted = true;
@@ -1080,7 +1367,7 @@
 			// 
 			// f_TextBoxIv5_352
 			// 
-			this.f_TextBoxIv5_352.Location = new System.Drawing.Point(443, 51);
+			this.f_TextBoxIv5_352.Location = new System.Drawing.Point(163, 101);
 			this.f_TextBoxIv5_352.MaxLength = 2;
 			this.f_TextBoxIv5_352.Name = "f_TextBoxIv5_352";
 			this.f_TextBoxIv5_352.Size = new System.Drawing.Size(34, 19);
@@ -1089,7 +1376,7 @@
 			// f_LabelStatus5_352
 			// 
 			this.f_LabelStatus5_352.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelStatus5_352.Location = new System.Drawing.Point(411, 54);
+			this.f_LabelStatus5_352.Location = new System.Drawing.Point(131, 104);
 			this.f_LabelStatus5_352.Name = "f_LabelStatus5_352";
 			this.f_LabelStatus5_352.Size = new System.Drawing.Size(30, 12);
 			this.f_LabelStatus5_352.TabIndex = 11;
@@ -1098,7 +1385,7 @@
 			// 
 			// f_TextBoxIv4_352
 			// 
-			this.f_TextBoxIv4_352.Location = new System.Drawing.Point(371, 51);
+			this.f_TextBoxIv4_352.Location = new System.Drawing.Point(163, 76);
 			this.f_TextBoxIv4_352.MaxLength = 2;
 			this.f_TextBoxIv4_352.Name = "f_TextBoxIv4_352";
 			this.f_TextBoxIv4_352.Size = new System.Drawing.Size(34, 19);
@@ -1107,7 +1394,7 @@
 			// f_LabelStatus4_352
 			// 
 			this.f_LabelStatus4_352.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelStatus4_352.Location = new System.Drawing.Point(339, 54);
+			this.f_LabelStatus4_352.Location = new System.Drawing.Point(131, 79);
 			this.f_LabelStatus4_352.Name = "f_LabelStatus4_352";
 			this.f_LabelStatus4_352.Size = new System.Drawing.Size(30, 12);
 			this.f_LabelStatus4_352.TabIndex = 9;
@@ -1116,7 +1403,7 @@
 			// 
 			// f_TextBoxIv3_352
 			// 
-			this.f_TextBoxIv3_352.Location = new System.Drawing.Point(299, 51);
+			this.f_TextBoxIv3_352.Location = new System.Drawing.Point(163, 51);
 			this.f_TextBoxIv3_352.MaxLength = 2;
 			this.f_TextBoxIv3_352.Name = "f_TextBoxIv3_352";
 			this.f_TextBoxIv3_352.Size = new System.Drawing.Size(34, 19);
@@ -1125,7 +1412,7 @@
 			// f_LabelStatus3_352
 			// 
 			this.f_LabelStatus3_352.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelStatus3_352.Location = new System.Drawing.Point(267, 54);
+			this.f_LabelStatus3_352.Location = new System.Drawing.Point(131, 54);
 			this.f_LabelStatus3_352.Name = "f_LabelStatus3_352";
 			this.f_LabelStatus3_352.Size = new System.Drawing.Size(30, 12);
 			this.f_LabelStatus3_352.TabIndex = 7;
@@ -1134,7 +1421,7 @@
 			// 
 			// f_TextBoxIv2_352
 			// 
-			this.f_TextBoxIv2_352.Location = new System.Drawing.Point(227, 51);
+			this.f_TextBoxIv2_352.Location = new System.Drawing.Point(83, 101);
 			this.f_TextBoxIv2_352.MaxLength = 2;
 			this.f_TextBoxIv2_352.Name = "f_TextBoxIv2_352";
 			this.f_TextBoxIv2_352.Size = new System.Drawing.Size(34, 19);
@@ -1143,7 +1430,7 @@
 			// f_LabelStatus2_352
 			// 
 			this.f_LabelStatus2_352.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelStatus2_352.Location = new System.Drawing.Point(195, 54);
+			this.f_LabelStatus2_352.Location = new System.Drawing.Point(51, 104);
 			this.f_LabelStatus2_352.Name = "f_LabelStatus2_352";
 			this.f_LabelStatus2_352.Size = new System.Drawing.Size(30, 12);
 			this.f_LabelStatus2_352.TabIndex = 5;
@@ -1152,7 +1439,7 @@
 			// 
 			// f_TextBoxIv1_352
 			// 
-			this.f_TextBoxIv1_352.Location = new System.Drawing.Point(155, 51);
+			this.f_TextBoxIv1_352.Location = new System.Drawing.Point(83, 76);
 			this.f_TextBoxIv1_352.MaxLength = 2;
 			this.f_TextBoxIv1_352.Name = "f_TextBoxIv1_352";
 			this.f_TextBoxIv1_352.Size = new System.Drawing.Size(34, 19);
@@ -1161,7 +1448,7 @@
 			// f_LabelStatus1_352
 			// 
 			this.f_LabelStatus1_352.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelStatus1_352.Location = new System.Drawing.Point(123, 54);
+			this.f_LabelStatus1_352.Location = new System.Drawing.Point(51, 79);
 			this.f_LabelStatus1_352.Name = "f_LabelStatus1_352";
 			this.f_LabelStatus1_352.Size = new System.Drawing.Size(30, 12);
 			this.f_LabelStatus1_352.TabIndex = 3;
@@ -1190,7 +1477,7 @@
 			// 
 			this.f_LabelIvs_352.AutoSize = true;
 			this.f_LabelIvs_352.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelIvs_352.Location = new System.Drawing.Point(6, 54);
+			this.f_LabelIvs_352.Location = new System.Drawing.Point(6, 79);
 			this.f_LabelIvs_352.Name = "f_LabelIvs_352";
 			this.f_LabelIvs_352.Size = new System.Drawing.Size(47, 12);
 			this.f_LabelIvs_352.TabIndex = 0;
@@ -1198,12 +1485,30 @@
 			// 
 			// groupBox4
 			// 
+			this.groupBox4.Controls.Add(this.f_LabelStatus_351);
+			this.groupBox4.Controls.Add(this.f_TextBoxStatus5_351);
+			this.groupBox4.Controls.Add(this.f_ButtonIvsCalc_351);
+			this.groupBox4.Controls.Add(this.f_LabelStatus25_351);
+			this.groupBox4.Controls.Add(this.f_LabelPokemon_351);
+			this.groupBox4.Controls.Add(this.f_TextBoxStatus4_351);
+			this.groupBox4.Controls.Add(this.f_LabelLevel_351);
+			this.groupBox4.Controls.Add(this.f_LabelStatus24_351);
+			this.groupBox4.Controls.Add(this.f_TextBoxLevel_351);
+			this.groupBox4.Controls.Add(this.f_TextBoxStatus3_351);
+			this.groupBox4.Controls.Add(this.f_ComboBoxPokemon_351);
+			this.groupBox4.Controls.Add(this.f_LabelStatus23_351);
 			this.groupBox4.Controls.Add(this.f_ComboBoxModeSelector_35);
+			this.groupBox4.Controls.Add(this.f_TextBoxStatus2_351);
 			this.groupBox4.Controls.Add(this.f_ComboBoxCharacteristic_351);
+			this.groupBox4.Controls.Add(this.f_LabelStatus22_351);
 			this.groupBox4.Controls.Add(this.f_CheckBoxDream_351);
+			this.groupBox4.Controls.Add(this.f_TextBoxStatus1_351);
 			this.groupBox4.Controls.Add(this.f_CheckBoxNoGender_351);
+			this.groupBox4.Controls.Add(this.f_LabelStatus21_351);
 			this.groupBox4.Controls.Add(this.f_ComboBoxAbility_351);
+			this.groupBox4.Controls.Add(this.f_TextBoxStatus0_351);
 			this.groupBox4.Controls.Add(this.f_LabelNature_351);
+			this.groupBox4.Controls.Add(this.f_LabelStatus20_351);
 			this.groupBox4.Controls.Add(this.f_ComboBoxNature_351);
 			this.groupBox4.Controls.Add(this.f_TextBoxIv5_351);
 			this.groupBox4.Controls.Add(this.f_LabelStatus5_351);
@@ -1218,11 +1523,29 @@
 			this.groupBox4.Controls.Add(this.f_TextBoxIv0_351);
 			this.groupBox4.Controls.Add(this.f_LabelStatus0_351);
 			this.groupBox4.Controls.Add(this.f_LabelIvs_351);
+			this.groupBox4.Controls.Add(this.panel1);
 			this.groupBox4.Location = new System.Drawing.Point(12, 6);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(513, 117);
+			this.groupBox4.Size = new System.Drawing.Size(563, 175);
 			this.groupBox4.TabIndex = 0;
 			this.groupBox4.TabStop = false;
+			// 
+			// f_TextBoxLevel_351
+			// 
+			this.f_TextBoxLevel_351.Location = new System.Drawing.Point(515, 31);
+			this.f_TextBoxLevel_351.MaxLength = 2;
+			this.f_TextBoxLevel_351.Name = "f_TextBoxLevel_351";
+			this.f_TextBoxLevel_351.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxLevel_351.TabIndex = 16;
+			// 
+			// f_ComboBoxPokemon_351
+			// 
+			this.f_ComboBoxPokemon_351.Cursor = System.Windows.Forms.Cursors.Default;
+			this.f_ComboBoxPokemon_351.FormattingEnabled = true;
+			this.f_ComboBoxPokemon_351.Location = new System.Drawing.Point(349, 31);
+			this.f_ComboBoxPokemon_351.Name = "f_ComboBoxPokemon_351";
+			this.f_ComboBoxPokemon_351.Size = new System.Drawing.Size(133, 20);
+			this.f_ComboBoxPokemon_351.TabIndex = 15;
 			// 
 			// f_ComboBoxModeSelector_35
 			// 
@@ -1238,7 +1561,7 @@
 			// 
 			this.f_ComboBoxCharacteristic_351.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.f_ComboBoxCharacteristic_351.FormattingEnabled = true;
-			this.f_ComboBoxCharacteristic_351.Location = new System.Drawing.Point(139, 82);
+			this.f_ComboBoxCharacteristic_351.Location = new System.Drawing.Point(139, 141);
 			this.f_ComboBoxCharacteristic_351.Name = "f_ComboBoxCharacteristic_351";
 			this.f_ComboBoxCharacteristic_351.Size = new System.Drawing.Size(125, 20);
 			this.f_ComboBoxCharacteristic_351.Sorted = true;
@@ -1248,7 +1571,7 @@
 			// 
 			this.f_CheckBoxDream_351.AutoSize = true;
 			this.f_CheckBoxDream_351.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_CheckBoxDream_351.Location = new System.Drawing.Point(8, 25);
+			this.f_CheckBoxDream_351.Location = new System.Drawing.Point(8, 33);
 			this.f_CheckBoxDream_351.Name = "f_CheckBoxDream_351";
 			this.f_CheckBoxDream_351.Size = new System.Drawing.Size(78, 16);
 			this.f_CheckBoxDream_351.TabIndex = 1;
@@ -1259,7 +1582,7 @@
 			// 
 			this.f_CheckBoxNoGender_351.AutoSize = true;
 			this.f_CheckBoxNoGender_351.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_CheckBoxNoGender_351.Location = new System.Drawing.Point(405, 84);
+			this.f_CheckBoxNoGender_351.Location = new System.Drawing.Point(405, 143);
 			this.f_CheckBoxNoGender_351.Name = "f_CheckBoxNoGender_351";
 			this.f_CheckBoxNoGender_351.Size = new System.Drawing.Size(102, 16);
 			this.f_CheckBoxNoGender_351.TabIndex = 11;
@@ -1270,7 +1593,7 @@
 			// 
 			this.f_ComboBoxAbility_351.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.f_ComboBoxAbility_351.FormattingEnabled = true;
-			this.f_ComboBoxAbility_351.Location = new System.Drawing.Point(284, 82);
+			this.f_ComboBoxAbility_351.Location = new System.Drawing.Point(284, 141);
 			this.f_ComboBoxAbility_351.Name = "f_ComboBoxAbility_351";
 			this.f_ComboBoxAbility_351.Size = new System.Drawing.Size(108, 20);
 			this.f_ComboBoxAbility_351.TabIndex = 10;
@@ -1279,7 +1602,7 @@
 			// 
 			this.f_LabelNature_351.AutoSize = true;
 			this.f_LabelNature_351.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelNature_351.Location = new System.Drawing.Point(6, 85);
+			this.f_LabelNature_351.Location = new System.Drawing.Point(6, 143);
 			this.f_LabelNature_351.Name = "f_LabelNature_351";
 			this.f_LabelNature_351.Size = new System.Drawing.Size(35, 12);
 			this.f_LabelNature_351.TabIndex = 14;
@@ -1289,7 +1612,7 @@
 			// 
 			this.f_ComboBoxNature_351.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.f_ComboBoxNature_351.FormattingEnabled = true;
-			this.f_ComboBoxNature_351.Location = new System.Drawing.Point(47, 82);
+			this.f_ComboBoxNature_351.Location = new System.Drawing.Point(47, 141);
 			this.f_ComboBoxNature_351.Name = "f_ComboBoxNature_351";
 			this.f_ComboBoxNature_351.Size = new System.Drawing.Size(74, 20);
 			this.f_ComboBoxNature_351.Sorted = true;
@@ -1297,7 +1620,7 @@
 			// 
 			// f_TextBoxIv5_351
 			// 
-			this.f_TextBoxIv5_351.Location = new System.Drawing.Point(443, 51);
+			this.f_TextBoxIv5_351.Location = new System.Drawing.Point(162, 109);
 			this.f_TextBoxIv5_351.MaxLength = 2;
 			this.f_TextBoxIv5_351.Name = "f_TextBoxIv5_351";
 			this.f_TextBoxIv5_351.Size = new System.Drawing.Size(34, 19);
@@ -1306,7 +1629,7 @@
 			// f_LabelStatus5_351
 			// 
 			this.f_LabelStatus5_351.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelStatus5_351.Location = new System.Drawing.Point(411, 54);
+			this.f_LabelStatus5_351.Location = new System.Drawing.Point(130, 112);
 			this.f_LabelStatus5_351.Name = "f_LabelStatus5_351";
 			this.f_LabelStatus5_351.Size = new System.Drawing.Size(30, 12);
 			this.f_LabelStatus5_351.TabIndex = 11;
@@ -1315,7 +1638,7 @@
 			// 
 			// f_TextBoxIv4_351
 			// 
-			this.f_TextBoxIv4_351.Location = new System.Drawing.Point(371, 51);
+			this.f_TextBoxIv4_351.Location = new System.Drawing.Point(162, 83);
 			this.f_TextBoxIv4_351.MaxLength = 2;
 			this.f_TextBoxIv4_351.Name = "f_TextBoxIv4_351";
 			this.f_TextBoxIv4_351.Size = new System.Drawing.Size(34, 19);
@@ -1324,7 +1647,7 @@
 			// f_LabelStatus4_351
 			// 
 			this.f_LabelStatus4_351.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelStatus4_351.Location = new System.Drawing.Point(339, 54);
+			this.f_LabelStatus4_351.Location = new System.Drawing.Point(130, 86);
 			this.f_LabelStatus4_351.Name = "f_LabelStatus4_351";
 			this.f_LabelStatus4_351.Size = new System.Drawing.Size(30, 12);
 			this.f_LabelStatus4_351.TabIndex = 9;
@@ -1333,7 +1656,7 @@
 			// 
 			// f_TextBoxIv3_351
 			// 
-			this.f_TextBoxIv3_351.Location = new System.Drawing.Point(299, 51);
+			this.f_TextBoxIv3_351.Location = new System.Drawing.Point(162, 59);
 			this.f_TextBoxIv3_351.MaxLength = 2;
 			this.f_TextBoxIv3_351.Name = "f_TextBoxIv3_351";
 			this.f_TextBoxIv3_351.Size = new System.Drawing.Size(34, 19);
@@ -1342,7 +1665,7 @@
 			// f_LabelStatus3_351
 			// 
 			this.f_LabelStatus3_351.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelStatus3_351.Location = new System.Drawing.Point(267, 54);
+			this.f_LabelStatus3_351.Location = new System.Drawing.Point(130, 62);
 			this.f_LabelStatus3_351.Name = "f_LabelStatus3_351";
 			this.f_LabelStatus3_351.Size = new System.Drawing.Size(30, 12);
 			this.f_LabelStatus3_351.TabIndex = 7;
@@ -1351,7 +1674,7 @@
 			// 
 			// f_TextBoxIv2_351
 			// 
-			this.f_TextBoxIv2_351.Location = new System.Drawing.Point(227, 51);
+			this.f_TextBoxIv2_351.Location = new System.Drawing.Point(83, 109);
 			this.f_TextBoxIv2_351.MaxLength = 2;
 			this.f_TextBoxIv2_351.Name = "f_TextBoxIv2_351";
 			this.f_TextBoxIv2_351.Size = new System.Drawing.Size(34, 19);
@@ -1360,7 +1683,7 @@
 			// f_LabelStatus2_351
 			// 
 			this.f_LabelStatus2_351.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelStatus2_351.Location = new System.Drawing.Point(195, 54);
+			this.f_LabelStatus2_351.Location = new System.Drawing.Point(51, 112);
 			this.f_LabelStatus2_351.Name = "f_LabelStatus2_351";
 			this.f_LabelStatus2_351.Size = new System.Drawing.Size(30, 12);
 			this.f_LabelStatus2_351.TabIndex = 5;
@@ -1369,7 +1692,7 @@
 			// 
 			// f_TextBoxIv1_351
 			// 
-			this.f_TextBoxIv1_351.Location = new System.Drawing.Point(155, 51);
+			this.f_TextBoxIv1_351.Location = new System.Drawing.Point(83, 84);
 			this.f_TextBoxIv1_351.MaxLength = 2;
 			this.f_TextBoxIv1_351.Name = "f_TextBoxIv1_351";
 			this.f_TextBoxIv1_351.Size = new System.Drawing.Size(34, 19);
@@ -1378,7 +1701,7 @@
 			// f_LabelStatus1_351
 			// 
 			this.f_LabelStatus1_351.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelStatus1_351.Location = new System.Drawing.Point(123, 54);
+			this.f_LabelStatus1_351.Location = new System.Drawing.Point(51, 87);
 			this.f_LabelStatus1_351.Name = "f_LabelStatus1_351";
 			this.f_LabelStatus1_351.Size = new System.Drawing.Size(30, 12);
 			this.f_LabelStatus1_351.TabIndex = 3;
@@ -1387,7 +1710,7 @@
 			// 
 			// f_TextBoxIv0_351
 			// 
-			this.f_TextBoxIv0_351.Location = new System.Drawing.Point(83, 51);
+			this.f_TextBoxIv0_351.Location = new System.Drawing.Point(83, 59);
 			this.f_TextBoxIv0_351.MaxLength = 2;
 			this.f_TextBoxIv0_351.Name = "f_TextBoxIv0_351";
 			this.f_TextBoxIv0_351.Size = new System.Drawing.Size(34, 19);
@@ -1396,7 +1719,7 @@
 			// f_LabelStatus0_351
 			// 
 			this.f_LabelStatus0_351.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelStatus0_351.Location = new System.Drawing.Point(51, 54);
+			this.f_LabelStatus0_351.Location = new System.Drawing.Point(51, 62);
 			this.f_LabelStatus0_351.Name = "f_LabelStatus0_351";
 			this.f_LabelStatus0_351.Size = new System.Drawing.Size(30, 12);
 			this.f_LabelStatus0_351.TabIndex = 1;
@@ -1407,7 +1730,7 @@
 			// 
 			this.f_LabelIvs_351.AutoSize = true;
 			this.f_LabelIvs_351.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelIvs_351.Location = new System.Drawing.Point(6, 54);
+			this.f_LabelIvs_351.Location = new System.Drawing.Point(6, 86);
 			this.f_LabelIvs_351.Name = "f_LabelIvs_351";
 			this.f_LabelIvs_351.Size = new System.Drawing.Size(47, 12);
 			this.f_LabelIvs_351.TabIndex = 0;
@@ -1420,7 +1743,7 @@
 			this.f_TabPage2.Location = new System.Drawing.Point(4, 22);
 			this.f_TabPage2.Name = "f_TabPage2";
 			this.f_TabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.f_TabPage2.Size = new System.Drawing.Size(539, 431);
+			this.f_TabPage2.Size = new System.Drawing.Size(587, 586);
 			this.f_TabPage2.TabIndex = 1;
 			this.f_TabPage2.Text = "★1～2";
 			this.f_TabPage2.UseVisualStyleBackColor = true;
@@ -1430,7 +1753,7 @@
 			this.f_TabPage3.Controls.Add(this.groupBox2);
 			this.f_TabPage3.Location = new System.Drawing.Point(4, 22);
 			this.f_TabPage3.Name = "f_TabPage3";
-			this.f_TabPage3.Size = new System.Drawing.Size(539, 431);
+			this.f_TabPage3.Size = new System.Drawing.Size(587, 586);
 			this.f_TabPage3.TabIndex = 2;
 			this.f_TabPage3.Text = "リスト出力";
 			this.f_TabPage3.UseVisualStyleBackColor = true;
@@ -1439,7 +1762,7 @@
 			// 
 			this.f_LabelRerollsBefore.AutoSize = true;
 			this.f_LabelRerollsBefore.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelRerollsBefore.Location = new System.Drawing.Point(373, 510);
+			this.f_LabelRerollsBefore.Location = new System.Drawing.Point(373, 659);
 			this.f_LabelRerollsBefore.Name = "f_LabelRerollsBefore";
 			this.f_LabelRerollsBefore.Size = new System.Drawing.Size(99, 12);
 			this.f_LabelRerollsBefore.TabIndex = 25;
@@ -1449,7 +1772,7 @@
 			// 
 			this.f_LabelRerollsAfter.AutoSize = true;
 			this.f_LabelRerollsAfter.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelRerollsAfter.Location = new System.Drawing.Point(497, 510);
+			this.f_LabelRerollsAfter.Location = new System.Drawing.Point(497, 659);
 			this.f_LabelRerollsAfter.Name = "f_LabelRerollsAfter";
 			this.f_LabelRerollsAfter.Size = new System.Drawing.Size(36, 12);
 			this.f_LabelRerollsAfter.TabIndex = 26;
@@ -1457,7 +1780,7 @@
 			// 
 			// f_TextBoxRerolls
 			// 
-			this.f_TextBoxRerolls.Location = new System.Drawing.Point(471, 506);
+			this.f_TextBoxRerolls.Location = new System.Drawing.Point(471, 655);
 			this.f_TextBoxRerolls.Name = "f_TextBoxRerolls";
 			this.f_TextBoxRerolls.Size = new System.Drawing.Size(24, 19);
 			this.f_TextBoxRerolls.TabIndex = 3;
@@ -1466,7 +1789,7 @@
 			// 
 			this.f_CheckBoxShowResultTime.AutoSize = true;
 			this.f_CheckBoxShowResultTime.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_CheckBoxShowResultTime.Location = new System.Drawing.Point(43, 518);
+			this.f_CheckBoxShowResultTime.Location = new System.Drawing.Point(43, 667);
 			this.f_CheckBoxShowResultTime.Name = "f_CheckBoxShowResultTime";
 			this.f_CheckBoxShowResultTime.Size = new System.Drawing.Size(105, 16);
 			this.f_CheckBoxShowResultTime.TabIndex = 1;
@@ -1479,7 +1802,7 @@
             this.languageToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(570, 24);
+			this.menuStrip1.Size = new System.Drawing.Size(620, 24);
 			this.menuStrip1.TabIndex = 27;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
@@ -1489,7 +1812,7 @@
             this.f_MenuItemLanguageJp,
             this.f_MenuItemLanguageEn,
             this.f_MenuItemLanguageZh,
-			this.f_MenuItemLanguageZh_TW});
+            this.f_MenuItemLanguageZh_TW});
 			this.languageToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
 			this.languageToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
@@ -1498,36 +1821,379 @@
 			// f_MenuItemLanguageJp
 			// 
 			this.f_MenuItemLanguageJp.Name = "f_MenuItemLanguageJp";
-			this.f_MenuItemLanguageJp.Size = new System.Drawing.Size(180, 22);
+			this.f_MenuItemLanguageJp.Size = new System.Drawing.Size(112, 22);
 			this.f_MenuItemLanguageJp.Text = "日本語";
 			this.f_MenuItemLanguageJp.Click += new System.EventHandler(this.f_MenuItemLanguageJp_Click);
 			// 
 			// f_MenuItemLanguageEn
 			// 
 			this.f_MenuItemLanguageEn.Name = "f_MenuItemLanguageEn";
-			this.f_MenuItemLanguageEn.Size = new System.Drawing.Size(180, 22);
+			this.f_MenuItemLanguageEn.Size = new System.Drawing.Size(112, 22);
 			this.f_MenuItemLanguageEn.Text = "English";
 			this.f_MenuItemLanguageEn.Click += new System.EventHandler(this.f_MenuItemLanguageEn_Click);
 			// 
 			// f_MenuItemLanguageZh
 			// 
 			this.f_MenuItemLanguageZh.Name = "f_MenuItemLanguageZh";
-			this.f_MenuItemLanguageZh.Size = new System.Drawing.Size(180, 22);
+			this.f_MenuItemLanguageZh.Size = new System.Drawing.Size(112, 22);
 			this.f_MenuItemLanguageZh.Text = "简体字";
 			this.f_MenuItemLanguageZh.Click += new System.EventHandler(this.f_MenuItemLanguageZh_Click);
 			// 
 			// f_MenuItemLanguageZh_TW
 			// 
 			this.f_MenuItemLanguageZh_TW.Name = "f_MenuItemLanguageZh_TW";
-			this.f_MenuItemLanguageZh_TW.Size = new System.Drawing.Size(180, 22);
+			this.f_MenuItemLanguageZh_TW.Size = new System.Drawing.Size(112, 22);
 			this.f_MenuItemLanguageZh_TW.Text = "正體字";
-			this.f_MenuItemLanguageZh_TW.Click += new System.EventHandler(this.f_MenuItemLanguageZh_TW_Click);			
+			this.f_MenuItemLanguageZh_TW.Click += new System.EventHandler(this.f_MenuItemLanguageZh_TW_Click);
+			// 
+			// f_LabelLevel_352
+			// 
+			this.f_LabelLevel_352.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelLevel_352.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelLevel_352.Location = new System.Drawing.Point(483, 26);
+			this.f_LabelLevel_352.Name = "f_LabelLevel_352";
+			this.f_LabelLevel_352.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelLevel_352.TabIndex = 35;
+			this.f_LabelLevel_352.Text = "Lv";
+			this.f_LabelLevel_352.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_LabelLevel_351
+			// 
+			this.f_LabelLevel_351.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelLevel_351.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelLevel_351.Location = new System.Drawing.Point(482, 34);
+			this.f_LabelLevel_351.Name = "f_LabelLevel_351";
+			this.f_LabelLevel_351.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelLevel_351.TabIndex = 36;
+			this.f_LabelLevel_351.Text = "Lv";
+			this.f_LabelLevel_351.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_LabelPokemon_352
+			// 
+			this.f_LabelPokemon_352.AutoSize = true;
+			this.f_LabelPokemon_352.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelPokemon_352.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelPokemon_352.Location = new System.Drawing.Point(288, 26);
+			this.f_LabelPokemon_352.Name = "f_LabelPokemon_352";
+			this.f_LabelPokemon_352.Size = new System.Drawing.Size(48, 12);
+			this.f_LabelPokemon_352.TabIndex = 35;
+			this.f_LabelPokemon_352.Text = "ポケモン：";
+			// 
+			// f_LabelPokemon_351
+			// 
+			this.f_LabelPokemon_351.AutoSize = true;
+			this.f_LabelPokemon_351.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelPokemon_351.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelPokemon_351.Location = new System.Drawing.Point(288, 34);
+			this.f_LabelPokemon_351.Name = "f_LabelPokemon_351";
+			this.f_LabelPokemon_351.Size = new System.Drawing.Size(48, 12);
+			this.f_LabelPokemon_351.TabIndex = 36;
+			this.f_LabelPokemon_351.Text = "ポケモン：";
+			// 
+			// f_ButtonIvsCalc_352
+			// 
+			this.f_ButtonIvsCalc_352.BackColor = System.Drawing.Color.Transparent;
+			this.f_ButtonIvsCalc_352.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_ButtonIvsCalc_352.Location = new System.Drawing.Point(222, 66);
+			this.f_ButtonIvsCalc_352.Name = "f_ButtonIvsCalc_352";
+			this.f_ButtonIvsCalc_352.Size = new System.Drawing.Size(56, 39);
+			this.f_ButtonIvsCalc_352.TabIndex = 35;
+			this.f_ButtonIvsCalc_352.Text = "<- 計算";
+			this.f_ButtonIvsCalc_352.UseVisualStyleBackColor = false;
+			// 
+			// f_ButtonIvsCalc_351
+			// 
+			this.f_ButtonIvsCalc_351.BackColor = System.Drawing.Color.Transparent;
+			this.f_ButtonIvsCalc_351.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_ButtonIvsCalc_351.Location = new System.Drawing.Point(221, 74);
+			this.f_ButtonIvsCalc_351.Name = "f_ButtonIvsCalc_351";
+			this.f_ButtonIvsCalc_351.Size = new System.Drawing.Size(56, 39);
+			this.f_ButtonIvsCalc_351.TabIndex = 36;
+			this.f_ButtonIvsCalc_351.Text = "<- 計算";
+			this.f_ButtonIvsCalc_351.UseVisualStyleBackColor = false;
+			// 
+			// f_LabelStatus_352
+			// 
+			this.f_LabelStatus_352.AutoSize = true;
+			this.f_LabelStatus_352.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelStatus_352.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus_352.Location = new System.Drawing.Point(288, 79);
+			this.f_LabelStatus_352.Name = "f_LabelStatus_352";
+			this.f_LabelStatus_352.Size = new System.Drawing.Size(56, 12);
+			this.f_LabelStatus_352.TabIndex = 47;
+			this.f_LabelStatus_352.Text = "ステータス：";
+			// 
+			// f_TextBoxStatus5_352
+			// 
+			this.f_TextBoxStatus5_352.Location = new System.Drawing.Point(451, 101);
+			this.f_TextBoxStatus5_352.MaxLength = 2;
+			this.f_TextBoxStatus5_352.Name = "f_TextBoxStatus5_352";
+			this.f_TextBoxStatus5_352.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxStatus5_352.TabIndex = 43;
+			// 
+			// f_LabelStatus25_352
+			// 
+			this.f_LabelStatus25_352.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelStatus25_352.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus25_352.Location = new System.Drawing.Point(419, 104);
+			this.f_LabelStatus25_352.Name = "f_LabelStatus25_352";
+			this.f_LabelStatus25_352.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelStatus25_352.TabIndex = 46;
+			this.f_LabelStatus25_352.Text = "S";
+			this.f_LabelStatus25_352.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_TextBoxStatus4_352
+			// 
+			this.f_TextBoxStatus4_352.Location = new System.Drawing.Point(451, 76);
+			this.f_TextBoxStatus4_352.MaxLength = 2;
+			this.f_TextBoxStatus4_352.Name = "f_TextBoxStatus4_352";
+			this.f_TextBoxStatus4_352.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxStatus4_352.TabIndex = 41;
+			// 
+			// f_LabelStatus24_352
+			// 
+			this.f_LabelStatus24_352.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelStatus24_352.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus24_352.Location = new System.Drawing.Point(419, 79);
+			this.f_LabelStatus24_352.Name = "f_LabelStatus24_352";
+			this.f_LabelStatus24_352.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelStatus24_352.TabIndex = 45;
+			this.f_LabelStatus24_352.Text = "D";
+			this.f_LabelStatus24_352.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_TextBoxStatus3_352
+			// 
+			this.f_TextBoxStatus3_352.Location = new System.Drawing.Point(451, 51);
+			this.f_TextBoxStatus3_352.MaxLength = 2;
+			this.f_TextBoxStatus3_352.Name = "f_TextBoxStatus3_352";
+			this.f_TextBoxStatus3_352.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxStatus3_352.TabIndex = 40;
+			// 
+			// f_LabelStatus23_352
+			// 
+			this.f_LabelStatus23_352.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelStatus23_352.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus23_352.Location = new System.Drawing.Point(419, 54);
+			this.f_LabelStatus23_352.Name = "f_LabelStatus23_352";
+			this.f_LabelStatus23_352.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelStatus23_352.TabIndex = 44;
+			this.f_LabelStatus23_352.Text = "C";
+			this.f_LabelStatus23_352.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_TextBoxStatus2_352
+			// 
+			this.f_TextBoxStatus2_352.Location = new System.Drawing.Point(371, 101);
+			this.f_TextBoxStatus2_352.MaxLength = 2;
+			this.f_TextBoxStatus2_352.Name = "f_TextBoxStatus2_352";
+			this.f_TextBoxStatus2_352.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxStatus2_352.TabIndex = 38;
+			// 
+			// f_LabelStatus22_352
+			// 
+			this.f_LabelStatus22_352.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelStatus22_352.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus22_352.Location = new System.Drawing.Point(339, 104);
+			this.f_LabelStatus22_352.Name = "f_LabelStatus22_352";
+			this.f_LabelStatus22_352.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelStatus22_352.TabIndex = 42;
+			this.f_LabelStatus22_352.Text = "B";
+			this.f_LabelStatus22_352.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_TextBoxStatus1_352
+			// 
+			this.f_TextBoxStatus1_352.Location = new System.Drawing.Point(371, 76);
+			this.f_TextBoxStatus1_352.MaxLength = 2;
+			this.f_TextBoxStatus1_352.Name = "f_TextBoxStatus1_352";
+			this.f_TextBoxStatus1_352.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxStatus1_352.TabIndex = 37;
+			// 
+			// f_LabelStatus21_352
+			// 
+			this.f_LabelStatus21_352.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelStatus21_352.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus21_352.Location = new System.Drawing.Point(339, 79);
+			this.f_LabelStatus21_352.Name = "f_LabelStatus21_352";
+			this.f_LabelStatus21_352.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelStatus21_352.TabIndex = 39;
+			this.f_LabelStatus21_352.Text = "A";
+			this.f_LabelStatus21_352.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_TextBoxStatus0_352
+			// 
+			this.f_TextBoxStatus0_352.Location = new System.Drawing.Point(371, 51);
+			this.f_TextBoxStatus0_352.MaxLength = 2;
+			this.f_TextBoxStatus0_352.Name = "f_TextBoxStatus0_352";
+			this.f_TextBoxStatus0_352.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxStatus0_352.TabIndex = 35;
+			// 
+			// f_LabelStatus20_352
+			// 
+			this.f_LabelStatus20_352.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelStatus20_352.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus20_352.Location = new System.Drawing.Point(339, 54);
+			this.f_LabelStatus20_352.Name = "f_LabelStatus20_352";
+			this.f_LabelStatus20_352.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelStatus20_352.TabIndex = 36;
+			this.f_LabelStatus20_352.Text = "H";
+			this.f_LabelStatus20_352.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_LabelStatus_351
+			// 
+			this.f_LabelStatus_351.AutoSize = true;
+			this.f_LabelStatus_351.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelStatus_351.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus_351.Location = new System.Drawing.Point(287, 87);
+			this.f_LabelStatus_351.Name = "f_LabelStatus_351";
+			this.f_LabelStatus_351.Size = new System.Drawing.Size(56, 12);
+			this.f_LabelStatus_351.TabIndex = 60;
+			this.f_LabelStatus_351.Text = "ステータス：";
+			// 
+			// f_TextBoxStatus5_351
+			// 
+			this.f_TextBoxStatus5_351.Location = new System.Drawing.Point(450, 109);
+			this.f_TextBoxStatus5_351.MaxLength = 2;
+			this.f_TextBoxStatus5_351.Name = "f_TextBoxStatus5_351";
+			this.f_TextBoxStatus5_351.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxStatus5_351.TabIndex = 56;
+			// 
+			// f_LabelStatus25_351
+			// 
+			this.f_LabelStatus25_351.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelStatus25_351.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus25_351.Location = new System.Drawing.Point(418, 112);
+			this.f_LabelStatus25_351.Name = "f_LabelStatus25_351";
+			this.f_LabelStatus25_351.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelStatus25_351.TabIndex = 59;
+			this.f_LabelStatus25_351.Text = "S";
+			this.f_LabelStatus25_351.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_TextBoxStatus4_351
+			// 
+			this.f_TextBoxStatus4_351.Location = new System.Drawing.Point(450, 84);
+			this.f_TextBoxStatus4_351.MaxLength = 2;
+			this.f_TextBoxStatus4_351.Name = "f_TextBoxStatus4_351";
+			this.f_TextBoxStatus4_351.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxStatus4_351.TabIndex = 54;
+			// 
+			// f_LabelStatus24_351
+			// 
+			this.f_LabelStatus24_351.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelStatus24_351.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus24_351.Location = new System.Drawing.Point(418, 87);
+			this.f_LabelStatus24_351.Name = "f_LabelStatus24_351";
+			this.f_LabelStatus24_351.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelStatus24_351.TabIndex = 58;
+			this.f_LabelStatus24_351.Text = "D";
+			this.f_LabelStatus24_351.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_TextBoxStatus3_351
+			// 
+			this.f_TextBoxStatus3_351.Location = new System.Drawing.Point(450, 59);
+			this.f_TextBoxStatus3_351.MaxLength = 2;
+			this.f_TextBoxStatus3_351.Name = "f_TextBoxStatus3_351";
+			this.f_TextBoxStatus3_351.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxStatus3_351.TabIndex = 53;
+			// 
+			// f_LabelStatus23_351
+			// 
+			this.f_LabelStatus23_351.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelStatus23_351.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus23_351.Location = new System.Drawing.Point(418, 62);
+			this.f_LabelStatus23_351.Name = "f_LabelStatus23_351";
+			this.f_LabelStatus23_351.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelStatus23_351.TabIndex = 57;
+			this.f_LabelStatus23_351.Text = "C";
+			this.f_LabelStatus23_351.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_TextBoxStatus2_351
+			// 
+			this.f_TextBoxStatus2_351.Location = new System.Drawing.Point(370, 109);
+			this.f_TextBoxStatus2_351.MaxLength = 2;
+			this.f_TextBoxStatus2_351.Name = "f_TextBoxStatus2_351";
+			this.f_TextBoxStatus2_351.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxStatus2_351.TabIndex = 51;
+			// 
+			// f_LabelStatus22_351
+			// 
+			this.f_LabelStatus22_351.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelStatus22_351.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus22_351.Location = new System.Drawing.Point(338, 112);
+			this.f_LabelStatus22_351.Name = "f_LabelStatus22_351";
+			this.f_LabelStatus22_351.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelStatus22_351.TabIndex = 55;
+			this.f_LabelStatus22_351.Text = "B";
+			this.f_LabelStatus22_351.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_TextBoxStatus1_351
+			// 
+			this.f_TextBoxStatus1_351.Location = new System.Drawing.Point(370, 84);
+			this.f_TextBoxStatus1_351.MaxLength = 2;
+			this.f_TextBoxStatus1_351.Name = "f_TextBoxStatus1_351";
+			this.f_TextBoxStatus1_351.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxStatus1_351.TabIndex = 50;
+			// 
+			// f_LabelStatus21_351
+			// 
+			this.f_LabelStatus21_351.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelStatus21_351.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus21_351.Location = new System.Drawing.Point(338, 87);
+			this.f_LabelStatus21_351.Name = "f_LabelStatus21_351";
+			this.f_LabelStatus21_351.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelStatus21_351.TabIndex = 52;
+			this.f_LabelStatus21_351.Text = "A";
+			this.f_LabelStatus21_351.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_TextBoxStatus0_351
+			// 
+			this.f_TextBoxStatus0_351.Location = new System.Drawing.Point(370, 59);
+			this.f_TextBoxStatus0_351.MaxLength = 2;
+			this.f_TextBoxStatus0_351.Name = "f_TextBoxStatus0_351";
+			this.f_TextBoxStatus0_351.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxStatus0_351.TabIndex = 48;
+			// 
+			// f_LabelStatus20_351
+			// 
+			this.f_LabelStatus20_351.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelStatus20_351.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus20_351.Location = new System.Drawing.Point(338, 62);
+			this.f_LabelStatus20_351.Name = "f_LabelStatus20_351";
+			this.f_LabelStatus20_351.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelStatus20_351.TabIndex = 49;
+			this.f_LabelStatus20_351.Text = "H";
+			this.f_LabelStatus20_351.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// panel1
+			// 
+			this.panel1.BackColor = System.Drawing.Color.LightCyan;
+			this.panel1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+			this.panel1.Location = new System.Drawing.Point(210, 27);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(347, 105);
+			this.panel1.TabIndex = 61;
+			// 
+			// panel2
+			// 
+			this.panel2.BackColor = System.Drawing.Color.LightCyan;
+			this.panel2.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+			this.panel2.Location = new System.Drawing.Point(210, 19);
+			this.panel2.Name = "panel2";
+			this.panel2.Size = new System.Drawing.Size(347, 105);
+			this.panel2.TabIndex = 62;
+			// 
+			// panel3
+			// 
+			this.panel3.BackColor = System.Drawing.Color.LightCyan;
+			this.panel3.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+			this.panel3.Location = new System.Drawing.Point(210, 19);
+			this.panel3.Name = "panel3";
+			this.panel3.Size = new System.Drawing.Size(347, 105);
+			this.panel3.TabIndex = 63;
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(570, 563);
+			this.ClientSize = new System.Drawing.Size(620, 730);
 			this.Controls.Add(this.f_CheckBoxShowResultTime);
 			this.Controls.Add(this.f_TextBoxRerolls);
 			this.Controls.Add(this.f_LabelRerollsAfter);
@@ -1703,5 +2369,62 @@
 		private System.Windows.Forms.CheckBox f_CheckBoxDream_2;
 		private System.Windows.Forms.ToolStripMenuItem f_MenuItemLanguageZh;
 		private System.Windows.Forms.ToolStripMenuItem f_MenuItemLanguageZh_TW;
+		private System.Windows.Forms.ComboBox f_ComboBoxPokemon_351;
+		private System.Windows.Forms.ComboBox f_ComboBoxPokemon_352;
+		private System.Windows.Forms.ComboBox f_ComboBoxPokemon_353;
+		private System.Windows.Forms.TextBox f_TextBoxLevel_353;
+		private System.Windows.Forms.TextBox f_TextBoxLevel_352;
+		private System.Windows.Forms.TextBox f_TextBoxLevel_351;
+		private System.Windows.Forms.TextBox f_TextBoxStatus5_353;
+		private System.Windows.Forms.Label f_LabelStatus25_353;
+		private System.Windows.Forms.TextBox f_TextBoxStatus4_353;
+		private System.Windows.Forms.Label f_LabelStatus24_353;
+		private System.Windows.Forms.TextBox f_TextBoxStatus3_353;
+		private System.Windows.Forms.Label f_LabelStatus23_353;
+		private System.Windows.Forms.TextBox f_TextBoxStatus2_353;
+		private System.Windows.Forms.Label f_LabelStatus22_353;
+		private System.Windows.Forms.TextBox f_TextBoxStatus1_353;
+		private System.Windows.Forms.Label f_LabelStatus21_353;
+		private System.Windows.Forms.TextBox f_TextBoxStatus0_353;
+		private System.Windows.Forms.Label f_LabelStatus20_353;
+		private System.Windows.Forms.Button f_ButtonIvsCalc_353;
+		private System.Windows.Forms.Label f_LabelLevel_353;
+		private System.Windows.Forms.Label f_LabelPokemon_353;
+		private System.Windows.Forms.Label f_LabelStatus_353;
+		private System.Windows.Forms.Label f_LabelLevel_352;
+		private System.Windows.Forms.Label f_LabelLevel_351;
+		private System.Windows.Forms.Label f_LabelStatus_352;
+		private System.Windows.Forms.TextBox f_TextBoxStatus5_352;
+		private System.Windows.Forms.Button f_ButtonIvsCalc_352;
+		private System.Windows.Forms.Label f_LabelStatus25_352;
+		private System.Windows.Forms.Label f_LabelPokemon_352;
+		private System.Windows.Forms.TextBox f_TextBoxStatus4_352;
+		private System.Windows.Forms.Label f_LabelStatus24_352;
+		private System.Windows.Forms.TextBox f_TextBoxStatus3_352;
+		private System.Windows.Forms.Label f_LabelStatus23_352;
+		private System.Windows.Forms.TextBox f_TextBoxStatus2_352;
+		private System.Windows.Forms.Label f_LabelStatus22_352;
+		private System.Windows.Forms.TextBox f_TextBoxStatus1_352;
+		private System.Windows.Forms.Label f_LabelStatus21_352;
+		private System.Windows.Forms.TextBox f_TextBoxStatus0_352;
+		private System.Windows.Forms.Label f_LabelStatus20_352;
+		private System.Windows.Forms.Label f_LabelStatus_351;
+		private System.Windows.Forms.TextBox f_TextBoxStatus5_351;
+		private System.Windows.Forms.Button f_ButtonIvsCalc_351;
+		private System.Windows.Forms.Label f_LabelStatus25_351;
+		private System.Windows.Forms.Label f_LabelPokemon_351;
+		private System.Windows.Forms.TextBox f_TextBoxStatus4_351;
+		private System.Windows.Forms.Label f_LabelStatus24_351;
+		private System.Windows.Forms.TextBox f_TextBoxStatus3_351;
+		private System.Windows.Forms.Label f_LabelStatus23_351;
+		private System.Windows.Forms.TextBox f_TextBoxStatus2_351;
+		private System.Windows.Forms.Label f_LabelStatus22_351;
+		private System.Windows.Forms.TextBox f_TextBoxStatus1_351;
+		private System.Windows.Forms.Label f_LabelStatus21_351;
+		private System.Windows.Forms.TextBox f_TextBoxStatus0_351;
+		private System.Windows.Forms.Label f_LabelStatus20_351;
+		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.Panel panel3;
+		private System.Windows.Forms.Panel panel2;
 	}
 }

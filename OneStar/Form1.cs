@@ -34,6 +34,7 @@ namespace OneStar
 
 		TextBox[] m_TextBoxIvsList12 = new TextBox[12];
 		TextBox[] m_TextBoxIvsList35 = new TextBox[18];
+		TextBox[] m_TextBoxStatusList35 = new TextBox[18];
 
 		// 言語設定可能コントロール
 		Dictionary<string, Control[]> m_MultiLanguageControls;
@@ -141,6 +142,24 @@ namespace OneStar
 			m_TextBoxIvsList35[15] = f_TextBoxIv3_353;
 			m_TextBoxIvsList35[16] = f_TextBoxIv4_353;
 			m_TextBoxIvsList35[17] = f_TextBoxIv5_353;
+			m_TextBoxStatusList35[0] = f_TextBoxStatus0_351;
+			m_TextBoxStatusList35[1] = f_TextBoxStatus1_351;
+			m_TextBoxStatusList35[2] = f_TextBoxStatus2_351;
+			m_TextBoxStatusList35[3] = f_TextBoxStatus3_351;
+			m_TextBoxStatusList35[4] = f_TextBoxStatus4_351;
+			m_TextBoxStatusList35[5] = f_TextBoxStatus5_351;
+			m_TextBoxStatusList35[6] = f_TextBoxStatus0_352;
+			m_TextBoxStatusList35[7] = f_TextBoxStatus1_352;
+			m_TextBoxStatusList35[8] = f_TextBoxStatus2_352;
+			m_TextBoxStatusList35[9] = f_TextBoxStatus3_352;
+			m_TextBoxStatusList35[10] = f_TextBoxStatus4_352;
+			m_TextBoxStatusList35[11] = f_TextBoxStatus5_352;
+			m_TextBoxStatusList35[12] = f_TextBoxStatus0_353;
+			m_TextBoxStatusList35[13] = f_TextBoxStatus1_353;
+			m_TextBoxStatusList35[14] = f_TextBoxStatus2_353;
+			m_TextBoxStatusList35[15] = f_TextBoxStatus3_353;
+			m_TextBoxStatusList35[16] = f_TextBoxStatus4_353;
+			m_TextBoxStatusList35[17] = f_TextBoxStatus5_353;
 
 			// 言語設定用コントロールをセット
 			m_MultiLanguageControls = new Dictionary<string, Control[]>();
@@ -805,9 +824,9 @@ namespace OneStar
 
                 pokemon = new decimal[]
                 {
-                    Messages.Instance.Pokemon.ContainsKey(f_ComboBoxPokemon351.Text) ? Messages.Instance.Pokemon[f_ComboBoxPokemon351.Text] : -1,
-                    Messages.Instance.Pokemon.ContainsKey(f_ComboBoxPokemon352.Text) ? Messages.Instance.Pokemon[f_ComboBoxPokemon352.Text] : -1,
-                    Messages.Instance.Pokemon.ContainsKey(f_ComboBoxPokemon353.Text) ? Messages.Instance.Pokemon[f_ComboBoxPokemon353.Text] : -1
+                    Messages.Instance.Pokemon.ContainsKey(f_ComboBoxPokemon_351.Text) ? Messages.Instance.Pokemon[f_ComboBoxPokemon_351.Text] : -1,
+                    Messages.Instance.Pokemon.ContainsKey(f_ComboBoxPokemon_352.Text) ? Messages.Instance.Pokemon[f_ComboBoxPokemon_352.Text] : -1,
+                    Messages.Instance.Pokemon.ContainsKey(f_ComboBoxPokemon_353.Text) ? Messages.Instance.Pokemon[f_ComboBoxPokemon_353.Text] : -1
                 };
             }
 
@@ -838,9 +857,9 @@ namespace OneStar
 				f_ComboBoxCharacteristic_352.Items.Clear();
 				f_ComboBoxCharacteristic_353.Items.Clear();
 
-                f_ComboBoxPokemon351.Items.Clear();
-                f_ComboBoxPokemon352.Items.Clear();
-                f_ComboBoxPokemon353.Items.Clear();
+                f_ComboBoxPokemon_351.Items.Clear();
+				f_ComboBoxPokemon_352.Items.Clear();
+				f_ComboBoxPokemon_353.Items.Clear();
 
 				abilityIndex = new int[]{
 					f_ComboBoxAbility_1.SelectedIndex,
@@ -932,15 +951,33 @@ namespace OneStar
 			f_LabelStatus3_353.Text = Messages.Instance.Status[3];
 			f_LabelStatus4_353.Text = Messages.Instance.Status[4];
 			f_LabelStatus5_353.Text = Messages.Instance.Status[5];
-            f_LabelLevel351.Text = Messages.Instance.Status[6];
-            f_LabelLevel352.Text = Messages.Instance.Status[6];
-            f_LabelLevel353.Text = Messages.Instance.Status[6];
-            f_LabelPokemon351.Text = Messages.Instance.SystemLabel["Pokemon"];
-            f_LabelPokemon352.Text = Messages.Instance.SystemLabel["Pokemon"];
-            f_LabelPokemon353.Text = Messages.Instance.SystemLabel["Pokemon"];
-            f_ButtonIVCalculate351.Text = Messages.Instance.SystemLabel["CalculateIVs"];
-            f_ButtonIVCalculate352.Text = Messages.Instance.SystemLabel["CalculateIVs"];
-            f_ButtonIVCalculate353.Text = Messages.Instance.SystemLabel["CalculateIVs"];
+			f_LabelStatus20_351.Text = Messages.Instance.Status[0];
+			f_LabelStatus21_351.Text = Messages.Instance.Status[1];
+			f_LabelStatus22_351.Text = Messages.Instance.Status[2];
+			f_LabelStatus23_351.Text = Messages.Instance.Status[3];
+			f_LabelStatus24_351.Text = Messages.Instance.Status[4];
+			f_LabelStatus25_351.Text = Messages.Instance.Status[5];
+			f_LabelStatus20_352.Text = Messages.Instance.Status[0];
+			f_LabelStatus21_352.Text = Messages.Instance.Status[1];
+			f_LabelStatus22_352.Text = Messages.Instance.Status[2];
+			f_LabelStatus23_352.Text = Messages.Instance.Status[3];
+			f_LabelStatus24_352.Text = Messages.Instance.Status[4];
+			f_LabelStatus25_352.Text = Messages.Instance.Status[5];
+			f_LabelStatus20_353.Text = Messages.Instance.Status[0];
+			f_LabelStatus21_353.Text = Messages.Instance.Status[1];
+			f_LabelStatus22_353.Text = Messages.Instance.Status[2];
+			f_LabelStatus23_353.Text = Messages.Instance.Status[3];
+			f_LabelStatus24_353.Text = Messages.Instance.Status[4];
+			f_LabelStatus25_353.Text = Messages.Instance.Status[5];
+			f_LabelLevel_351.Text = Messages.Instance.Status[6];
+            f_LabelLevel_352.Text = Messages.Instance.Status[6];
+            f_LabelLevel_353.Text = Messages.Instance.Status[6];
+            f_LabelPokemon_351.Text = Messages.Instance.SystemLabel["Pokemon"];
+            f_LabelPokemon_352.Text = Messages.Instance.SystemLabel["Pokemon"];
+            f_LabelPokemon_353.Text = Messages.Instance.SystemLabel["Pokemon"];
+			f_ButtonIvsCalc_351.Text = Messages.Instance.SystemLabel["CalculateIVs"];
+			f_ButtonIvsCalc_352.Text = Messages.Instance.SystemLabel["CalculateIVs"];
+			f_ButtonIvsCalc_353.Text = Messages.Instance.SystemLabel["CalculateIVs"];
 
             // コンボボックス再初期化
             InitializeComboBox();
@@ -969,7 +1006,7 @@ namespace OneStar
                     var idxa = (from i in Messages.Instance.Pokemon.Keys
                                 where Messages.Instance.Pokemon[i] == pokemon[0]
                                 select i).First();
-                    f_ComboBoxPokemon351.SelectedIndex = f_ComboBoxPokemon351.Items.IndexOf(idxa);
+                    f_ComboBoxPokemon_351.SelectedIndex = f_ComboBoxPokemon_351.Items.IndexOf(idxa);
                 }
                 
                 if (pokemon[1] != -1)
@@ -977,7 +1014,7 @@ namespace OneStar
                     var idxb = (from i in Messages.Instance.Pokemon.Keys
                                 where Messages.Instance.Pokemon[i] == pokemon[1]
                                 select i).First();
-                    f_ComboBoxPokemon352.SelectedIndex = f_ComboBoxPokemon351.Items.IndexOf(idxb);
+					f_ComboBoxPokemon_352.SelectedIndex = f_ComboBoxPokemon_351.Items.IndexOf(idxb);
                 }
                 
                 if (pokemon[2] != -1)
@@ -985,7 +1022,7 @@ namespace OneStar
                     var idxc = (from i in Messages.Instance.Pokemon.Keys
                                 where Messages.Instance.Pokemon[i] == pokemon[2]
                                 select i).First();
-                    f_ComboBoxPokemon353.SelectedIndex = f_ComboBoxPokemon351.Items.IndexOf(idxc);
+					f_ComboBoxPokemon_353.SelectedIndex = f_ComboBoxPokemon_351.Items.IndexOf(idxc);
                 }
                 
             }
@@ -1000,33 +1037,33 @@ namespace OneStar
             var Pokemon = Messages.Instance.Pokemon.Keys.ToList();
             Pokemon.Sort();
 
-            f_ComboBoxPokemon351.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            f_ComboBoxPokemon351.AutoCompleteSource = AutoCompleteSource.ListItems;
-            f_ComboBoxPokemon351.Items.AddRange(Pokemon.ToArray());
+            f_ComboBoxPokemon_351.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            f_ComboBoxPokemon_351.AutoCompleteSource = AutoCompleteSource.ListItems;
+            f_ComboBoxPokemon_351.Items.AddRange(Pokemon.ToArray());
 
-            f_ComboBoxPokemon352.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            f_ComboBoxPokemon352.AutoCompleteSource = AutoCompleteSource.ListItems;
-            f_ComboBoxPokemon352.Items.AddRange(Pokemon.ToArray());
+			f_ComboBoxPokemon_352.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+			f_ComboBoxPokemon_352.AutoCompleteSource = AutoCompleteSource.ListItems;
+			f_ComboBoxPokemon_352.Items.AddRange(Pokemon.ToArray());
 
-            f_ComboBoxPokemon353.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            f_ComboBoxPokemon353.AutoCompleteSource = AutoCompleteSource.ListItems;
-            f_ComboBoxPokemon353.Items.AddRange(Pokemon.ToArray());
+			f_ComboBoxPokemon_353.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+			f_ComboBoxPokemon_353.AutoCompleteSource = AutoCompleteSource.ListItems;
+			f_ComboBoxPokemon_353.Items.AddRange(Pokemon.ToArray());
 
             firstRun = false;
         }
 
         private void F_ButtonIVCalculate351_Click(object sender, EventArgs e)
         {
-            if (!Messages.Instance.Pokemon.ContainsKey(f_ComboBoxPokemon351.Text) || f_ComboBoxPokemon351.Text == "")
+            if (!Messages.Instance.Pokemon.ContainsKey(f_ComboBoxPokemon_351.Text) || f_ComboBoxPokemon_351.Text == "")
             {
                 CreateErrorDialog(Messages.Instance.ErrorMessage["InvalidPokemon"]);
             }
             else
             {
-                decimal pokemonID = Messages.Instance.Pokemon[f_ComboBoxPokemon351.Text];
+                decimal pokemonID = Messages.Instance.Pokemon[f_ComboBoxPokemon_351.Text];
                 try
                 {
-                    int lv = int.Parse(f_TextBoxLevel351.Text);
+                    int lv = int.Parse(f_TextBoxLevel_351.Text);
                     if (lv > 100 || lv < 1)
                     {
                         CreateErrorDialog(Messages.Instance.ErrorMessage["LevelRange"]);
@@ -1068,16 +1105,16 @@ namespace OneStar
 
         private void F_ButtonIVCalculate352_Click(object sender, EventArgs e)
         {
-            if (!Messages.Instance.Pokemon.ContainsKey(f_ComboBoxPokemon352.Text) || f_ComboBoxPokemon352.Text == "")
+            if (!Messages.Instance.Pokemon.ContainsKey(f_ComboBoxPokemon_352.Text) || f_ComboBoxPokemon_352.Text == "")
             {
                 CreateErrorDialog(Messages.Instance.ErrorMessage["InvalidPokemon"]);
             }
             else
             {
-                decimal pokemonID = Messages.Instance.Pokemon[f_ComboBoxPokemon352.Text];
+                decimal pokemonID = Messages.Instance.Pokemon[f_ComboBoxPokemon_352.Text];
                 try
                 {
-                    int lv = int.Parse(f_TextBoxLevel352.Text);
+                    int lv = int.Parse(f_TextBoxLevel_352.Text);
                     if (lv > 100 || lv < 1)
                     {
                         CreateErrorDialog(Messages.Instance.ErrorMessage["LevelRange"]);
@@ -1119,16 +1156,16 @@ namespace OneStar
 
         private void F_ButtonIVCalculate353_Click(object sender, EventArgs e)
         {
-            if (!Messages.Instance.Pokemon.ContainsKey(f_ComboBoxPokemon353.Text) || f_ComboBoxPokemon353.Text == "")
+            if (!Messages.Instance.Pokemon.ContainsKey(f_ComboBoxPokemon_353.Text) || f_ComboBoxPokemon_353.Text == "")
             {
                 CreateErrorDialog(Messages.Instance.ErrorMessage["InvalidPokemon"]);
             }
             else
             {
-                decimal pokemonID = Messages.Instance.Pokemon[f_ComboBoxPokemon353.Text];
+                decimal pokemonID = Messages.Instance.Pokemon[f_ComboBoxPokemon_353.Text];
                 try
                 {
-                    int lv = int.Parse(f_TextBoxLevel353.Text);
+                    int lv = int.Parse(f_TextBoxLevel_353.Text);
                     if (lv > 100 || lv < 1)
                     {
                         CreateErrorDialog(Messages.Instance.ErrorMessage["LevelRange"]);
