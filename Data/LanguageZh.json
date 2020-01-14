@@ -78,6 +78,7 @@
 		"SearchStop": "找到一个种子时停止",
 		"Pokemon": "Pokemon",
 		"CalculateIVs": "Calculate IVs",
+        "Status": "Stats.",
 	},
 	"CheckIvsResult": [
 		"失败!",
@@ -107,6 +108,7 @@
 	"SystemMessage": {
 		"ResultDialogTitle": "结果",
 		"FindManySeeds": "找到了多个种子，详见seeds.txt",
+		"FindManyIvs": "Multiple possible Ivs were found. Try another level.",
 	},
 	"ListLabel": {
 		"Frame": "帧数",

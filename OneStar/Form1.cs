@@ -32,9 +32,20 @@ namespace OneStar
 		// 環境設定
 		Preferences m_Preferences;
 
-		TextBox[] m_TextBoxIvsList12 = new TextBox[12];
-		TextBox[] m_TextBoxIvsList35 = new TextBox[18];
-		TextBox[] m_TextBoxStatusList35 = new TextBox[18];
+		// ポケモン入力フォームごとのセット
+		class PokemonInfoForm {
+			public ComboBox ComboBoxName { get; set; } = null;
+			public TextBox TextBoxLevel { get; set; } = null;
+			public TextBox[] TextBoxIvs { get; set; } = new TextBox[6];
+			public TextBox[] TextBoxStatus { get; set; } = new TextBox[6];
+			public ComboBox ComboBoxNature { get; set; } = null;
+			public ComboBox ComboBoxCharacteristic { get; set; } = null;
+		};
+		PokemonInfoForm[] m_PokemonInfo = new PokemonInfoForm[5];
+
+//		TextBox[] m_TextBoxIvsList12 = new TextBox[12];
+//		TextBox[] m_TextBoxIvsList35 = new TextBox[18];
+//		TextBox[] m_TextBoxStatusList35 = new TextBox[18];
 
 		// 言語設定可能コントロール
 		Dictionary<string, Control[]> m_MultiLanguageControls;
@@ -95,6 +106,8 @@ namespace OneStar
 			// ★1～2パネル
 			PokemonFormUtility.SetNatureComboBox(f_ComboBoxNature_1);
 			PokemonFormUtility.SetNatureComboBox(f_ComboBoxNature_2);
+			PokemonFormUtility.SetCharacteristicComboBox(f_ComboBoxCharacteristic_1);
+			PokemonFormUtility.SetCharacteristicComboBox(f_ComboBoxCharacteristic_2);
 			PokemonFormUtility.SetAbilityComboBox(f_ComboBoxAbility_1, 4);
 			PokemonFormUtility.SetAbilityComboBox(f_ComboBoxAbility_2, 4);
 		}
@@ -112,54 +125,91 @@ namespace OneStar
 			f_TextBoxListVCount.Text = "4";
 
 			// 扱いやすいようにキャッシュ
-			m_TextBoxIvsList12[0] = f_TextBoxIv0_1;
-			m_TextBoxIvsList12[1] = f_TextBoxIv1_1;
-			m_TextBoxIvsList12[2] = f_TextBoxIv2_1;
-			m_TextBoxIvsList12[3] = f_TextBoxIv3_1;
-			m_TextBoxIvsList12[4] = f_TextBoxIv4_1;
-			m_TextBoxIvsList12[5] = f_TextBoxIv5_1;
-			m_TextBoxIvsList12[6] = f_TextBoxIv0_2;
-			m_TextBoxIvsList12[7] = f_TextBoxIv1_2;
-			m_TextBoxIvsList12[8] = f_TextBoxIv2_2;
-			m_TextBoxIvsList12[9] = f_TextBoxIv3_2;
-			m_TextBoxIvsList12[10] = f_TextBoxIv4_2;
-			m_TextBoxIvsList12[11] = f_TextBoxIv5_2;
-			m_TextBoxIvsList35[0] = f_TextBoxIv0_351;
-			m_TextBoxIvsList35[1] = f_TextBoxIv1_351;
-			m_TextBoxIvsList35[2] = f_TextBoxIv2_351;
-			m_TextBoxIvsList35[3] = f_TextBoxIv3_351;
-			m_TextBoxIvsList35[4] = f_TextBoxIv4_351;
-			m_TextBoxIvsList35[5] = f_TextBoxIv5_351;
-			m_TextBoxIvsList35[6] = f_TextBoxIv0_352;
-			m_TextBoxIvsList35[7] = f_TextBoxIv1_352;
-			m_TextBoxIvsList35[8] = f_TextBoxIv2_352;
-			m_TextBoxIvsList35[9] = f_TextBoxIv3_352;
-			m_TextBoxIvsList35[10] = f_TextBoxIv4_352;
-			m_TextBoxIvsList35[11] = f_TextBoxIv5_352;
-			m_TextBoxIvsList35[12] = f_TextBoxIv0_353;
-			m_TextBoxIvsList35[13] = f_TextBoxIv1_353;
-			m_TextBoxIvsList35[14] = f_TextBoxIv2_353;
-			m_TextBoxIvsList35[15] = f_TextBoxIv3_353;
-			m_TextBoxIvsList35[16] = f_TextBoxIv4_353;
-			m_TextBoxIvsList35[17] = f_TextBoxIv5_353;
-			m_TextBoxStatusList35[0] = f_TextBoxStatus0_351;
-			m_TextBoxStatusList35[1] = f_TextBoxStatus1_351;
-			m_TextBoxStatusList35[2] = f_TextBoxStatus2_351;
-			m_TextBoxStatusList35[3] = f_TextBoxStatus3_351;
-			m_TextBoxStatusList35[4] = f_TextBoxStatus4_351;
-			m_TextBoxStatusList35[5] = f_TextBoxStatus5_351;
-			m_TextBoxStatusList35[6] = f_TextBoxStatus0_352;
-			m_TextBoxStatusList35[7] = f_TextBoxStatus1_352;
-			m_TextBoxStatusList35[8] = f_TextBoxStatus2_352;
-			m_TextBoxStatusList35[9] = f_TextBoxStatus3_352;
-			m_TextBoxStatusList35[10] = f_TextBoxStatus4_352;
-			m_TextBoxStatusList35[11] = f_TextBoxStatus5_352;
-			m_TextBoxStatusList35[12] = f_TextBoxStatus0_353;
-			m_TextBoxStatusList35[13] = f_TextBoxStatus1_353;
-			m_TextBoxStatusList35[14] = f_TextBoxStatus2_353;
-			m_TextBoxStatusList35[15] = f_TextBoxStatus3_353;
-			m_TextBoxStatusList35[16] = f_TextBoxStatus4_353;
-			m_TextBoxStatusList35[17] = f_TextBoxStatus5_353;
+			m_PokemonInfo[0] = new PokemonInfoForm();
+			m_PokemonInfo[0].ComboBoxName = f_ComboBoxPokemon_1;
+			m_PokemonInfo[0].TextBoxLevel = f_TextBoxLevel_1;
+			m_PokemonInfo[0].TextBoxIvs[0] = f_TextBoxIv0_1;
+			m_PokemonInfo[0].TextBoxIvs[1] = f_TextBoxIv1_1;
+			m_PokemonInfo[0].TextBoxIvs[2] = f_TextBoxIv2_1;
+			m_PokemonInfo[0].TextBoxIvs[3] = f_TextBoxIv3_1;
+			m_PokemonInfo[0].TextBoxIvs[4] = f_TextBoxIv4_1;
+			m_PokemonInfo[0].TextBoxIvs[5] = f_TextBoxIv5_1;
+			m_PokemonInfo[0].TextBoxStatus[0] = f_TextBoxStatus0_1;
+			m_PokemonInfo[0].TextBoxStatus[1] = f_TextBoxStatus1_1;
+			m_PokemonInfo[0].TextBoxStatus[2] = f_TextBoxStatus2_1;
+			m_PokemonInfo[0].TextBoxStatus[3] = f_TextBoxStatus3_1;
+			m_PokemonInfo[0].TextBoxStatus[4] = f_TextBoxStatus4_1;
+			m_PokemonInfo[0].TextBoxStatus[5] = f_TextBoxStatus5_1;
+			m_PokemonInfo[0].ComboBoxNature = f_ComboBoxNature_1;
+			m_PokemonInfo[0].ComboBoxCharacteristic = f_ComboBoxCharacteristic_1;
+			m_PokemonInfo[1] = new PokemonInfoForm();
+			m_PokemonInfo[1].ComboBoxName = f_ComboBoxPokemon_2;
+			m_PokemonInfo[1].TextBoxLevel = f_TextBoxLevel_2;
+			m_PokemonInfo[1].TextBoxIvs[0] = f_TextBoxIv0_2;
+			m_PokemonInfo[1].TextBoxIvs[1] = f_TextBoxIv1_2;
+			m_PokemonInfo[1].TextBoxIvs[2] = f_TextBoxIv2_2;
+			m_PokemonInfo[1].TextBoxIvs[3] = f_TextBoxIv3_2;
+			m_PokemonInfo[1].TextBoxIvs[4] = f_TextBoxIv4_2;
+			m_PokemonInfo[1].TextBoxIvs[5] = f_TextBoxIv5_2;
+			m_PokemonInfo[1].TextBoxStatus[0] = f_TextBoxStatus0_2;
+			m_PokemonInfo[1].TextBoxStatus[1] = f_TextBoxStatus1_2;
+			m_PokemonInfo[1].TextBoxStatus[2] = f_TextBoxStatus2_2;
+			m_PokemonInfo[1].TextBoxStatus[3] = f_TextBoxStatus3_2;
+			m_PokemonInfo[1].TextBoxStatus[4] = f_TextBoxStatus4_2;
+			m_PokemonInfo[1].TextBoxStatus[5] = f_TextBoxStatus5_2;
+			m_PokemonInfo[1].ComboBoxNature = f_ComboBoxNature_2;
+			m_PokemonInfo[1].ComboBoxCharacteristic = f_ComboBoxCharacteristic_2;
+			m_PokemonInfo[2] = new PokemonInfoForm();
+			m_PokemonInfo[2].ComboBoxName = f_ComboBoxPokemon_351;
+			m_PokemonInfo[2].TextBoxLevel = f_TextBoxLevel_351;
+			m_PokemonInfo[2].TextBoxIvs[0] = f_TextBoxIv0_351;
+			m_PokemonInfo[2].TextBoxIvs[1] = f_TextBoxIv1_351;
+			m_PokemonInfo[2].TextBoxIvs[2] = f_TextBoxIv2_351;
+			m_PokemonInfo[2].TextBoxIvs[3] = f_TextBoxIv3_351;
+			m_PokemonInfo[2].TextBoxIvs[4] = f_TextBoxIv4_351;
+			m_PokemonInfo[2].TextBoxIvs[5] = f_TextBoxIv5_351;
+			m_PokemonInfo[2].TextBoxStatus[0] = f_TextBoxStatus0_351;
+			m_PokemonInfo[2].TextBoxStatus[1] = f_TextBoxStatus1_351;
+			m_PokemonInfo[2].TextBoxStatus[2] = f_TextBoxStatus2_351;
+			m_PokemonInfo[2].TextBoxStatus[3] = f_TextBoxStatus3_351;
+			m_PokemonInfo[2].TextBoxStatus[4] = f_TextBoxStatus4_351;
+			m_PokemonInfo[2].TextBoxStatus[5] = f_TextBoxStatus5_351;
+			m_PokemonInfo[2].ComboBoxNature = f_ComboBoxNature_351;
+			m_PokemonInfo[2].ComboBoxCharacteristic = f_ComboBoxCharacteristic_351;
+			m_PokemonInfo[3] = new PokemonInfoForm();
+			m_PokemonInfo[3].ComboBoxName = f_ComboBoxPokemon_352;
+			m_PokemonInfo[3].TextBoxLevel = f_TextBoxLevel_352;
+			m_PokemonInfo[3].TextBoxIvs[0] = f_TextBoxIv0_352;
+			m_PokemonInfo[3].TextBoxIvs[1] = f_TextBoxIv1_352;
+			m_PokemonInfo[3].TextBoxIvs[2] = f_TextBoxIv2_352;
+			m_PokemonInfo[3].TextBoxIvs[3] = f_TextBoxIv3_352;
+			m_PokemonInfo[3].TextBoxIvs[4] = f_TextBoxIv4_352;
+			m_PokemonInfo[3].TextBoxIvs[5] = f_TextBoxIv5_352;
+			m_PokemonInfo[3].TextBoxStatus[0] = f_TextBoxStatus0_352;
+			m_PokemonInfo[3].TextBoxStatus[1] = f_TextBoxStatus1_352;
+			m_PokemonInfo[3].TextBoxStatus[2] = f_TextBoxStatus2_352;
+			m_PokemonInfo[3].TextBoxStatus[3] = f_TextBoxStatus3_352;
+			m_PokemonInfo[3].TextBoxStatus[4] = f_TextBoxStatus4_352;
+			m_PokemonInfo[3].TextBoxStatus[5] = f_TextBoxStatus5_352;
+			m_PokemonInfo[3].ComboBoxNature = f_ComboBoxNature_352;
+			m_PokemonInfo[3].ComboBoxCharacteristic = f_ComboBoxCharacteristic_352;
+			m_PokemonInfo[4] = new PokemonInfoForm();
+			m_PokemonInfo[4].ComboBoxName = f_ComboBoxPokemon_353;
+			m_PokemonInfo[4].TextBoxLevel = f_TextBoxLevel_353;
+			m_PokemonInfo[4].TextBoxIvs[0] = f_TextBoxIv0_353;
+			m_PokemonInfo[4].TextBoxIvs[1] = f_TextBoxIv1_353;
+			m_PokemonInfo[4].TextBoxIvs[2] = f_TextBoxIv2_353;
+			m_PokemonInfo[4].TextBoxIvs[3] = f_TextBoxIv3_353;
+			m_PokemonInfo[4].TextBoxIvs[4] = f_TextBoxIv4_353;
+			m_PokemonInfo[4].TextBoxIvs[5] = f_TextBoxIv5_353;
+			m_PokemonInfo[4].TextBoxStatus[0] = f_TextBoxStatus0_353;
+			m_PokemonInfo[4].TextBoxStatus[1] = f_TextBoxStatus1_353;
+			m_PokemonInfo[4].TextBoxStatus[2] = f_TextBoxStatus2_353;
+			m_PokemonInfo[4].TextBoxStatus[3] = f_TextBoxStatus3_353;
+			m_PokemonInfo[4].TextBoxStatus[4] = f_TextBoxStatus4_353;
+			m_PokemonInfo[4].TextBoxStatus[5] = f_TextBoxStatus5_353;
+			m_PokemonInfo[4].ComboBoxNature = f_ComboBoxNature_353;
+			m_PokemonInfo[4].ComboBoxCharacteristic = f_ComboBoxCharacteristic_353;
 
 			// 言語設定用コントロールをセット
 			m_MultiLanguageControls = new Dictionary<string, Control[]>();
@@ -267,7 +317,7 @@ namespace OneStar
 			{
 				try
 				{
-					ivs[i] = int.Parse(m_TextBoxIvsList35[i].Text);
+					ivs[i] = int.Parse(m_PokemonInfo[2].TextBoxIvs[i].Text);
 				}
 				catch (Exception)
 				{
@@ -407,24 +457,28 @@ namespace OneStar
 			string errorText = "";
 
 			// フォームから必要な情報を取得
-			int[] ivs = new int[12];
-			for (int i = 0; i < 12; ++i)
+			int[] ivs1 = new int[6];
+			int[] ivs2 = new int[6];
+			for (int i = 0; i < 6; ++i)
 			{
 				try
 				{
-					ivs[i] = int.Parse(m_TextBoxIvsList12[i].Text);
+					ivs1[i] = int.Parse(m_PokemonInfo[0].TextBoxIvs[i].Text);
+					ivs2[i] = int.Parse(m_PokemonInfo[1].TextBoxIvs[i].Text);
 				}
 				catch (Exception)
 				{
 					// エラー
 					errorText = Messages.Instance.ErrorMessage["IvsFormat"];
 					isCheckFailed = true;
+					break;
 				}
-				if (ivs[i] < 0 || ivs[i] > 31)
+				if (ivs1[i] < 0 || ivs1[i] > 31 || ivs2[i] < 0 || ivs2[i] > 31)
 				{
 					// エラー
 					errorText = Messages.Instance.ErrorMessage["IvsFormat"];
 					isCheckFailed = true;
+					break;
 				}
 			}
 
@@ -438,7 +492,7 @@ namespace OneStar
 			int c = 0;
 			for (int i = 0; i < 6; ++i)
 			{
-				if (ivs[i] == 31)
+				if (ivs1[i] == 31)
 				{
 					++c;
 				}
@@ -451,9 +505,9 @@ namespace OneStar
 			}
 			// 2匹目はVが1箇所以上じゃないとエラー
 			c = 0;
-			for (int i = 6; i < 12; ++i)
+			for (int i = 0; i < 6; ++i)
 			{
-				if (ivs[i] == 31)
+				if (ivs2[i] == 31)
 				{
 					++c;
 				}
@@ -468,8 +522,8 @@ namespace OneStar
 			int ability2 = f_ComboBoxAbility_2.SelectedIndex;
 			if (ability1 >= 2) { ability1 = ability1 * 3 - 7; }
 			if (ability2 >= 2) { ability2 = ability2 * 3 - 7; }
-			int nature1 = Messages.Instance.Nature[f_ComboBoxNature_1.Text];
-			int nature2 = Messages.Instance.Nature[f_ComboBoxNature_2.Text];
+			int nature1 = Messages.Instance.Nature[m_PokemonInfo[0].ComboBoxNature.Text];
+			int nature2 = Messages.Instance.Nature[m_PokemonInfo[1].ComboBoxNature.Text];
 
 			bool noGender1 = f_CheckBoxNoGender_1.Checked;
 			bool noGender2 = f_CheckBoxNoGender_2.Checked;
@@ -479,8 +533,8 @@ namespace OneStar
 
 			// 計算開始
 			SeedSearcher searcher = new SeedSearcher(SeedSearcher.Mode.Star12);
-			SeedSearcher.SetFirstCondition(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5], ability1, nature1, noGender1, isDream1);
-			SeedSearcher.SetNextCondition(ivs[6], ivs[7], ivs[8], ivs[9], ivs[10], ivs[11], ability2, nature2, noGender2, isDream2);
+			SeedSearcher.SetFirstCondition(ivs1[0], ivs1[1], ivs1[2], ivs1[3], ivs1[4], ivs1[5], ability1, nature1, noGender1, isDream1);
+			SeedSearcher.SetNextCondition(ivs2[0], ivs2[1], ivs2[2], ivs2[3], ivs2[4], ivs2[5], ability2, nature2, noGender2, isDream2);
 
 			SearchImpl(searcher);
 		}
@@ -497,7 +551,7 @@ namespace OneStar
 			{
 				try
 				{
-					ivs[i] = int.Parse(m_TextBoxIvsList35[i].Text);
+					ivs[i] = int.Parse(m_PokemonInfo[i / 6].TextBoxIvs[i % 6].Text);
 				}
 				catch (Exception)
 				{
@@ -550,9 +604,9 @@ namespace OneStar
 			if (ability1 >= 2) { ability1 = ability1 * 3 - 7; }
 			if (ability2 >= 2) { ability2 = ability2 * 3 - 7; }
 			if (ability3 >= 2) { ability3 = ability3 * 3 - 7; }
-			int nature1 = Messages.Instance.Nature[f_ComboBoxNature_351.Text];
-			int nature2 = Messages.Instance.Nature[f_ComboBoxNature_352.Text];
-			int nature3 = Messages.Instance.Nature[f_ComboBoxNature_353.Text];
+			int nature1 = Messages.Instance.Nature[m_PokemonInfo[2].ComboBoxNature.Text];
+			int nature2 = Messages.Instance.Nature[m_PokemonInfo[3].ComboBoxNature.Text];
+			int nature3 = Messages.Instance.Nature[m_PokemonInfo[4].ComboBoxNature.Text];
 
 			bool noGender1 = f_CheckBoxNoGender_351.Checked;
 			bool noGender2 = f_CheckBoxNoGender_352.Checked;
@@ -562,9 +616,9 @@ namespace OneStar
 			bool isDream2 = f_CheckBoxDream_352.Checked;
 			bool isDream3 = f_CheckBoxDream_353.Checked;
 
-			int characteristic1 = Messages.Instance.Characteristic[f_ComboBoxCharacteristic_351.Text];
-			int characteristic2 = Messages.Instance.Characteristic[f_ComboBoxCharacteristic_352.Text];
-			int characteristic3 = Messages.Instance.Characteristic[f_ComboBoxCharacteristic_353.Text];
+			int characteristic1 = Messages.Instance.Characteristic[m_PokemonInfo[2].ComboBoxCharacteristic.Text];
+			int characteristic2 = Messages.Instance.Characteristic[m_PokemonInfo[3].ComboBoxCharacteristic.Text];
+			int characteristic3 = Messages.Instance.Characteristic[m_PokemonInfo[4].ComboBoxCharacteristic.Text];
 
 			var mode = Get35Mode();
 
@@ -803,8 +857,8 @@ namespace OneStar
 		{
             
             int[] nature = new int[5];
-            int[] characteristic = new int[3];
-            decimal[] pokemon = new decimal[3];
+            int[] characteristic = new int[5];
+            decimal[] pokemon = new decimal[5];
 
             if (!isFirst)
             {
@@ -817,14 +871,18 @@ namespace OneStar
                 };
 
                 characteristic = new int[]{
-                    Messages.Instance.Characteristic[f_ComboBoxCharacteristic_351.Text],
+					Messages.Instance.Characteristic[f_ComboBoxCharacteristic_1.Text],
+					Messages.Instance.Characteristic[f_ComboBoxCharacteristic_2.Text],
+					Messages.Instance.Characteristic[f_ComboBoxCharacteristic_351.Text],
                     Messages.Instance.Characteristic[f_ComboBoxCharacteristic_352.Text],
                     Messages.Instance.Characteristic[f_ComboBoxCharacteristic_353.Text],
                 };
 
                 pokemon = new decimal[]
                 {
-                    Messages.Instance.Pokemon.ContainsKey(f_ComboBoxPokemon_351.Text) ? Messages.Instance.Pokemon[f_ComboBoxPokemon_351.Text] : -1,
+					Messages.Instance.Pokemon.ContainsKey(f_ComboBoxPokemon_1.Text) ? Messages.Instance.Pokemon[f_ComboBoxPokemon_1.Text] : -1,
+					Messages.Instance.Pokemon.ContainsKey(f_ComboBoxPokemon_2.Text) ? Messages.Instance.Pokemon[f_ComboBoxPokemon_2.Text] : -1,
+					Messages.Instance.Pokemon.ContainsKey(f_ComboBoxPokemon_351.Text) ? Messages.Instance.Pokemon[f_ComboBoxPokemon_351.Text] : -1,
                     Messages.Instance.Pokemon.ContainsKey(f_ComboBoxPokemon_352.Text) ? Messages.Instance.Pokemon[f_ComboBoxPokemon_352.Text] : -1,
                     Messages.Instance.Pokemon.ContainsKey(f_ComboBoxPokemon_353.Text) ? Messages.Instance.Pokemon[f_ComboBoxPokemon_353.Text] : -1
                 };
@@ -852,12 +910,16 @@ namespace OneStar
 				f_ComboBoxNature_351.Items.Clear();
 				f_ComboBoxNature_352.Items.Clear();
 				f_ComboBoxNature_353.Items.Clear();
-				
+
+				f_ComboBoxCharacteristic_1.Items.Clear();
+				f_ComboBoxCharacteristic_2.Items.Clear();
 				f_ComboBoxCharacteristic_351.Items.Clear();
 				f_ComboBoxCharacteristic_352.Items.Clear();
 				f_ComboBoxCharacteristic_353.Items.Clear();
 
-                f_ComboBoxPokemon_351.Items.Clear();
+				f_ComboBoxPokemon_1.Items.Clear();
+				f_ComboBoxPokemon_2.Items.Clear();
+				f_ComboBoxPokemon_351.Items.Clear();
 				f_ComboBoxPokemon_352.Items.Clear();
 				f_ComboBoxPokemon_353.Items.Clear();
 
@@ -951,6 +1013,18 @@ namespace OneStar
 			f_LabelStatus3_353.Text = Messages.Instance.Status[3];
 			f_LabelStatus4_353.Text = Messages.Instance.Status[4];
 			f_LabelStatus5_353.Text = Messages.Instance.Status[5];
+			f_LabelStatus20_1.Text = Messages.Instance.Status[0];
+			f_LabelStatus21_1.Text = Messages.Instance.Status[1];
+			f_LabelStatus22_1.Text = Messages.Instance.Status[2];
+			f_LabelStatus23_1.Text = Messages.Instance.Status[3];
+			f_LabelStatus24_1.Text = Messages.Instance.Status[4];
+			f_LabelStatus25_1.Text = Messages.Instance.Status[5];
+			f_LabelStatus20_2.Text = Messages.Instance.Status[0];
+			f_LabelStatus21_2.Text = Messages.Instance.Status[1];
+			f_LabelStatus22_2.Text = Messages.Instance.Status[2];
+			f_LabelStatus23_2.Text = Messages.Instance.Status[3];
+			f_LabelStatus24_2.Text = Messages.Instance.Status[4];
+			f_LabelStatus25_2.Text = Messages.Instance.Status[5];
 			f_LabelStatus20_351.Text = Messages.Instance.Status[0];
 			f_LabelStatus21_351.Text = Messages.Instance.Status[1];
 			f_LabelStatus22_351.Text = Messages.Instance.Status[2];
@@ -969,12 +1043,23 @@ namespace OneStar
 			f_LabelStatus23_353.Text = Messages.Instance.Status[3];
 			f_LabelStatus24_353.Text = Messages.Instance.Status[4];
 			f_LabelStatus25_353.Text = Messages.Instance.Status[5];
+			f_LabelLevel_1.Text = Messages.Instance.Status[6];
+			f_LabelLevel_2.Text = Messages.Instance.Status[6];
 			f_LabelLevel_351.Text = Messages.Instance.Status[6];
             f_LabelLevel_352.Text = Messages.Instance.Status[6];
             f_LabelLevel_353.Text = Messages.Instance.Status[6];
-            f_LabelPokemon_351.Text = Messages.Instance.SystemLabel["Pokemon"];
+			f_LabelPokemon_1.Text = Messages.Instance.SystemLabel["Pokemon"];
+			f_LabelPokemon_2.Text = Messages.Instance.SystemLabel["Pokemon"];
+			f_LabelPokemon_351.Text = Messages.Instance.SystemLabel["Pokemon"];
             f_LabelPokemon_352.Text = Messages.Instance.SystemLabel["Pokemon"];
             f_LabelPokemon_353.Text = Messages.Instance.SystemLabel["Pokemon"];
+			f_LabelStatus_1.Text = Messages.Instance.SystemLabel["Status"];
+			f_LabelStatus_2.Text = Messages.Instance.SystemLabel["Status"];
+			f_LabelStatus_351.Text = Messages.Instance.SystemLabel["Status"];
+			f_LabelStatus_352.Text = Messages.Instance.SystemLabel["Status"];
+			f_LabelStatus_353.Text = Messages.Instance.SystemLabel["Status"];
+			f_ButtonIvsCalc_1.Text = Messages.Instance.SystemLabel["CalculateIVs"];
+			f_ButtonIvsCalc_2.Text = Messages.Instance.SystemLabel["CalculateIVs"];
 			f_ButtonIvsCalc_351.Text = Messages.Instance.SystemLabel["CalculateIVs"];
 			f_ButtonIvsCalc_352.Text = Messages.Instance.SystemLabel["CalculateIVs"];
 			f_ButtonIvsCalc_353.Text = Messages.Instance.SystemLabel["CalculateIVs"];
@@ -991,9 +1076,11 @@ namespace OneStar
 				PokemonFormUtility.SelectNatureComboBox(f_ComboBoxNature_351, nature[2]);
 				PokemonFormUtility.SelectNatureComboBox(f_ComboBoxNature_352, nature[3]);
 				PokemonFormUtility.SelectNatureComboBox(f_ComboBoxNature_353, nature[4]);
-				PokemonFormUtility.SelectCharacteristicComboBox(f_ComboBoxCharacteristic_351, characteristic[0]);
-				PokemonFormUtility.SelectCharacteristicComboBox(f_ComboBoxCharacteristic_352, characteristic[1]);
-				PokemonFormUtility.SelectCharacteristicComboBox(f_ComboBoxCharacteristic_353, characteristic[2]);
+				PokemonFormUtility.SelectCharacteristicComboBox(f_ComboBoxCharacteristic_1, characteristic[0]);
+				PokemonFormUtility.SelectCharacteristicComboBox(f_ComboBoxCharacteristic_2, characteristic[1]);
+				PokemonFormUtility.SelectCharacteristicComboBox(f_ComboBoxCharacteristic_351, characteristic[2]);
+				PokemonFormUtility.SelectCharacteristicComboBox(f_ComboBoxCharacteristic_352, characteristic[3]);
+				PokemonFormUtility.SelectCharacteristicComboBox(f_ComboBoxCharacteristic_353, characteristic[4]);
 				f_ComboBoxAbility_1.SelectedIndex = abilityIndex[0];
 				f_ComboBoxAbility_2.SelectedIndex = abilityIndex[1];
 				f_ComboBoxAbility_351.SelectedIndex = abilityIndex[2];
@@ -1001,30 +1088,16 @@ namespace OneStar
 				f_ComboBoxAbility_353.SelectedIndex = abilityIndex[4];
 
                 populateComboBoxes();
-                if (pokemon[0] != -1)
-                {
-                    var idxa = (from i in Messages.Instance.Pokemon.Keys
-                                where Messages.Instance.Pokemon[i] == pokemon[0]
-                                select i).First();
-                    f_ComboBoxPokemon_351.SelectedIndex = f_ComboBoxPokemon_351.Items.IndexOf(idxa);
-                }
-                
-                if (pokemon[1] != -1)
-                {
-                    var idxb = (from i in Messages.Instance.Pokemon.Keys
-                                where Messages.Instance.Pokemon[i] == pokemon[1]
-                                select i).First();
-					f_ComboBoxPokemon_352.SelectedIndex = f_ComboBoxPokemon_351.Items.IndexOf(idxb);
-                }
-                
-                if (pokemon[2] != -1)
-                {
-                    var idxc = (from i in Messages.Instance.Pokemon.Keys
-                                where Messages.Instance.Pokemon[i] == pokemon[2]
-                                select i).First();
-					f_ComboBoxPokemon_353.SelectedIndex = f_ComboBoxPokemon_351.Items.IndexOf(idxc);
-                }
-                
+				for (int a = 0; a < 5; ++a)
+				{
+					if (pokemon[a] != -1)
+					{
+						var idxa = (from i in Messages.Instance.Pokemon.Keys
+									where Messages.Instance.Pokemon[i] == pokemon[a]
+									select i).First();
+						m_PokemonInfo[a].ComboBoxName.SelectedIndex = m_PokemonInfo[a].ComboBoxName.Items.IndexOf(idxa);
+					}
+				}
             }
 		}
 
@@ -1037,7 +1110,15 @@ namespace OneStar
             var Pokemon = Messages.Instance.Pokemon.Keys.ToList();
             Pokemon.Sort();
 
-            f_ComboBoxPokemon_351.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+			f_ComboBoxPokemon_1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+			f_ComboBoxPokemon_1.AutoCompleteSource = AutoCompleteSource.ListItems;
+			f_ComboBoxPokemon_1.Items.AddRange(Pokemon.ToArray());
+
+			f_ComboBoxPokemon_2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+			f_ComboBoxPokemon_2.AutoCompleteSource = AutoCompleteSource.ListItems;
+			f_ComboBoxPokemon_2.Items.AddRange(Pokemon.ToArray());
+
+			f_ComboBoxPokemon_351.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             f_ComboBoxPokemon_351.AutoCompleteSource = AutoCompleteSource.ListItems;
             f_ComboBoxPokemon_351.Items.AddRange(Pokemon.ToArray());
 
@@ -1052,157 +1133,96 @@ namespace OneStar
             firstRun = false;
         }
 
-        private void F_ButtonIVCalculate351_Click(object sender, EventArgs e)
-        {
-            if (!Messages.Instance.Pokemon.ContainsKey(f_ComboBoxPokemon_351.Text) || f_ComboBoxPokemon_351.Text == "")
-            {
-                CreateErrorDialog(Messages.Instance.ErrorMessage["InvalidPokemon"]);
-            }
-            else
-            {
-                decimal pokemonID = Messages.Instance.Pokemon[f_ComboBoxPokemon_351.Text];
-                try
-                {
-                    int lv = int.Parse(f_TextBoxLevel_351.Text);
-                    if (lv > 100 || lv < 1)
-                    {
-                        CreateErrorDialog(Messages.Instance.ErrorMessage["LevelRange"]);
-                        return;
-                    }
-                    int HP = int.Parse(f_TextBoxIv0_351.Text);
-                    int Atk = int.Parse(f_TextBoxIv1_351.Text);
-                    int Def = int.Parse(f_TextBoxIv2_351.Text);
-                    int SpAtk = int.Parse(f_TextBoxIv3_351.Text);
-                    int SpDef = int.Parse(f_TextBoxIv4_351.Text);
-                    int Spd = int.Parse(f_TextBoxIv5_351.Text);
+		private void f_ButtonIvsCalc_1_Click(object sender, EventArgs e)
+		{
+			IvsCalculate(0);
+		}
 
-                    int nature = Messages.Instance.Nature[f_ComboBoxNature_351.Text];
-                    int characteristic = Messages.Instance.Characteristic[f_ComboBoxCharacteristic_351.Text];
+		private void f_ButtonIvsCalc_2_Click(object sender, EventArgs e)
+		{
+			IvsCalculate(1);
+		}
 
-                    var IVs = IVCalculator.getIVs(pokemonID, lv, nature, characteristic, new List<int>() { HP, Atk, Def, SpAtk, SpDef, Spd }, null);
+		private void f_ButtonIvsCalc_351_Click(object sender, EventArgs e)
+		{
+			IvsCalculate(2);
+		}
 
-                    f_TextBoxIv0_351.Text = IVs[0].First().ToString();
-                    f_TextBoxIv1_351.Text = IVs[1].First().ToString();
-                    f_TextBoxIv2_351.Text = IVs[2].First().ToString();
-                    f_TextBoxIv3_351.Text = IVs[3].First().ToString();
-                    f_TextBoxIv4_351.Text = IVs[4].First().ToString();
-                    f_TextBoxIv5_351.Text = IVs[5].First().ToString();
-                }
-                catch (FormatException except)
-                {
-                    CreateErrorDialog(Messages.Instance.ErrorMessage["VFormat"]);
-                }
-                catch (ArgumentOutOfRangeException except)
-                {
-                    CreateErrorDialog(Messages.Instance.ErrorMessage["CouldNotCalculateIVs"]);
-                }
-                catch (IVCalculator.StatException s)
-                {
-                    CreateErrorDialog(Messages.Instance.ErrorMessage["StatError"] + Messages.Instance.Status[s.Stat]);
-                }
-            }
-        }
+		private void f_ButtonIvsCalc_352_Click(object sender, EventArgs e)
+		{
+			IvsCalculate(3);
+		}
 
-        private void F_ButtonIVCalculate352_Click(object sender, EventArgs e)
-        {
-            if (!Messages.Instance.Pokemon.ContainsKey(f_ComboBoxPokemon_352.Text) || f_ComboBoxPokemon_352.Text == "")
-            {
-                CreateErrorDialog(Messages.Instance.ErrorMessage["InvalidPokemon"]);
-            }
-            else
-            {
-                decimal pokemonID = Messages.Instance.Pokemon[f_ComboBoxPokemon_352.Text];
-                try
-                {
-                    int lv = int.Parse(f_TextBoxLevel_352.Text);
-                    if (lv > 100 || lv < 1)
-                    {
-                        CreateErrorDialog(Messages.Instance.ErrorMessage["LevelRange"]);
-                        return;
-                    }
-                    int HP = int.Parse(f_TextBoxIv0_352.Text);
-                    int Atk = int.Parse(f_TextBoxIv1_352.Text);
-                    int Def = int.Parse(f_TextBoxIv2_352.Text);
-                    int SpAtk = int.Parse(f_TextBoxIv3_352.Text);
-                    int SpDef = int.Parse(f_TextBoxIv4_352.Text);
-                    int Spd = int.Parse(f_TextBoxIv5_352.Text);
+		private void f_ButtonIvsCalc_353_Click(object sender, EventArgs e)
+		{
+			IvsCalculate(4);
+		}
 
-                    int nature = Messages.Instance.Nature[f_ComboBoxNature_352.Text];
-                    int characteristic = Messages.Instance.Characteristic[f_ComboBoxCharacteristic_352.Text];
+		void IvsCalculate(int index)
+		{
+			var pokemonInfo = m_PokemonInfo[index];
+			string pokemon = pokemonInfo.ComboBoxName.Text;
+			string levelText = pokemonInfo.TextBoxLevel.Text;
+			if (pokemon == "" || !Messages.Instance.Pokemon.ContainsKey(pokemon))
+			{
+				CreateErrorDialog(Messages.Instance.ErrorMessage["InvalidPokemon"]);
+			}
+			else
+			{
+				decimal pokemonID = Messages.Instance.Pokemon[pokemon];
+				try
+				{
+					int lv = int.Parse(levelText);
+					if (lv > 100 || lv < 1)
+					{
+						CreateErrorDialog(Messages.Instance.ErrorMessage["LevelRange"]);
+						return;
+					}
+					int HP = int.Parse(pokemonInfo.TextBoxStatus[0].Text);
+					int Atk = int.Parse(pokemonInfo.TextBoxStatus[1].Text);
+					int Def = int.Parse(pokemonInfo.TextBoxStatus[2].Text);
+					int SpAtk = int.Parse(pokemonInfo.TextBoxStatus[3].Text);
+					int SpDef = int.Parse(pokemonInfo.TextBoxStatus[4].Text);
+					int Spd = int.Parse(pokemonInfo.TextBoxStatus[5].Text);
+				
+					int nature = Messages.Instance.Nature[pokemonInfo.ComboBoxNature.Text];
+					int characteristic = Messages.Instance.Characteristic[pokemonInfo.ComboBoxCharacteristic.Text];
 
-                    var IVs = IVCalculator.getIVs(pokemonID, lv, nature, characteristic, new List<int>() { HP, Atk, Def, SpAtk, SpDef, Spd }, null);
+					var IVs = IVCalculator.getIVs(pokemonID, lv, nature, characteristic, new List<int>() { HP, Atk, Def, SpAtk, SpDef, Spd }, null);
 
-                    f_TextBoxIv0_352.Text = IVs[0].First().ToString();
-                    f_TextBoxIv1_352.Text = IVs[1].First().ToString();
-                    f_TextBoxIv2_352.Text = IVs[2].First().ToString();
-                    f_TextBoxIv3_352.Text = IVs[3].First().ToString();
-                    f_TextBoxIv4_352.Text = IVs[4].First().ToString();
-                    f_TextBoxIv5_352.Text = IVs[5].First().ToString();
-                }
-                catch (FormatException except)
-                {
-                    CreateErrorDialog(Messages.Instance.ErrorMessage["VFormat"]);
-                }
-                catch (ArgumentOutOfRangeException except)
-                {
-                    CreateErrorDialog(Messages.Instance.ErrorMessage["CouldNotCalculateIVs"]);
-                }
-                catch (IVCalculator.StatException s)
-                {
-                    CreateErrorDialog(Messages.Instance.ErrorMessage["StatError"] + Messages.Instance.Status[s.Stat]);
-                }
-            }
-        }
+					bool uncertain = false;
 
-        private void F_ButtonIVCalculate353_Click(object sender, EventArgs e)
-        {
-            if (!Messages.Instance.Pokemon.ContainsKey(f_ComboBoxPokemon_353.Text) || f_ComboBoxPokemon_353.Text == "")
-            {
-                CreateErrorDialog(Messages.Instance.ErrorMessage["InvalidPokemon"]);
-            }
-            else
-            {
-                decimal pokemonID = Messages.Instance.Pokemon[f_ComboBoxPokemon_353.Text];
-                try
-                {
-                    int lv = int.Parse(f_TextBoxLevel_353.Text);
-                    if (lv > 100 || lv < 1)
-                    {
-                        CreateErrorDialog(Messages.Instance.ErrorMessage["LevelRange"]);
-                        return;
-                    }
-                    int HP = int.Parse(f_TextBoxIv0_353.Text);
-                    int Atk = int.Parse(f_TextBoxIv1_353.Text);
-                    int Def = int.Parse(f_TextBoxIv2_353.Text);
-                    int SpAtk = int.Parse(f_TextBoxIv3_353.Text);
-                    int SpDef = int.Parse(f_TextBoxIv4_353.Text);
-                    int Spd = int.Parse(f_TextBoxIv5_353.Text);
+					for (int i = 0; i < 6; ++i)
+					{
+						if (IVs[i].Count == 1)
+						{
+							pokemonInfo.TextBoxIvs[i].Text = IVs[i].First().ToString();
+						}
+						else
+						{
+							uncertain = true;
+							pokemonInfo.TextBoxIvs[i].Text = "";
+						}
+					}
 
-                    int nature = Messages.Instance.Nature[f_ComboBoxNature_353.Text];
-                    int characteristic = Messages.Instance.Characteristic[f_ComboBoxCharacteristic_353.Text];
-
-                    var IVs = IVCalculator.getIVs(pokemonID, lv, nature, characteristic, new List<int>() { HP, Atk, Def, SpAtk, SpDef, Spd }, null);
-
-                    f_TextBoxIv0_353.Text = IVs[0].First().ToString();
-                    f_TextBoxIv1_353.Text = IVs[1].First().ToString();
-                    f_TextBoxIv2_353.Text = IVs[2].First().ToString();
-                    f_TextBoxIv3_353.Text = IVs[3].First().ToString();
-                    f_TextBoxIv4_353.Text = IVs[4].First().ToString();
-                    f_TextBoxIv5_353.Text = IVs[5].First().ToString();
-                }
-                catch (FormatException except)
-                {
-                    CreateErrorDialog(Messages.Instance.ErrorMessage["VFormat"]);
-                }
-                catch (ArgumentOutOfRangeException except)
-                {
-                    CreateErrorDialog(Messages.Instance.ErrorMessage["CouldNotCalculateIVs"]);
-                }
-                catch (IVCalculator.StatException s)
-                {
-                    CreateErrorDialog(Messages.Instance.ErrorMessage["StatError"] + Messages.Instance.Status[s.Stat]);
-                }
-            }
-        }
-    }
+					if (uncertain)
+					{
+						MessageBox.Show(Messages.Instance.SystemMessage["FindManyIvs"], Messages.Instance.SystemMessage["ResultDialogTitle"], MessageBoxButtons.OK, MessageBoxIcon.Information);
+					}
+				}
+				catch (FormatException except)
+				{
+					CreateErrorDialog(Messages.Instance.ErrorMessage["VFormat"]);
+				}
+				catch (ArgumentOutOfRangeException except)
+				{
+					CreateErrorDialog(Messages.Instance.ErrorMessage["CouldNotCalculateIVs"]);
+				}
+				catch (IVCalculator.StatException s)
+				{
+					CreateErrorDialog(Messages.Instance.ErrorMessage["StatError"] + Messages.Instance.Status[s.Stat]);
+				}
+			}
+		}
+	}
 }

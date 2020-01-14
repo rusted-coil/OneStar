@@ -78,6 +78,7 @@
 		"SearchStop": "Stop after finding the first seed",
 		"Pokemon": "Pokemon",
 		"CalculateIVs": "Calculate IVs",
+        "Status": "Stats.",
 	},
 	"CheckIvsResult": [
 		"No Good!",
@@ -101,11 +102,13 @@
 		"LevelRange": "Levels must be between 1 and 100.",
 		"CouldNotCalculateIVs": "Could not calculate IVs. Please check that the data you entered is correct.",
 		"StatError": "Issue with Stat: ",
+		"StatErrorTitle": "Stat Error",
 		"InvalidPokemon": "Please select a valid Pokemon",
 	},
 	"SystemMessage": {
 		"ResultDialogTitle": "Results",
 		"FindManySeeds": "Multiple possible Den Seeds were found. Check seeds.text for more details.",
+		"FindManyIvs": "Multiple possible Ivs were found. Try another level.",
 	},
 	"ListLabel": {
 		"Frame": "Frames",
