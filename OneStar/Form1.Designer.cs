@@ -260,6 +260,7 @@
 			this.f_MenuItemLanguageZh_TW = new System.Windows.Forms.ToolStripMenuItem();
 			this.f_LabelRerollsRange = new System.Windows.Forms.Label();
 			this.f_TextBoxRerollsUpper = new System.Windows.Forms.TextBox();
+			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.f_GroupBoxPokemon_1.SuspendLayout();
 			this.panel4.SuspendLayout();
 			this.f_GroupBoxPokemon_2.SuspendLayout();
@@ -1103,7 +1104,7 @@
 			// 
 			this.f_ButtonStartSearch.BackColor = System.Drawing.Color.GreenYellow;
 			this.f_ButtonStartSearch.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_ButtonStartSearch.Location = new System.Drawing.Point(201, 657);
+			this.f_ButtonStartSearch.Location = new System.Drawing.Point(463, 649);
 			this.f_ButtonStartSearch.Name = "f_ButtonStartSearch";
 			this.f_ButtonStartSearch.Size = new System.Drawing.Size(176, 42);
 			this.f_ButtonStartSearch.TabIndex = 2;
@@ -1243,7 +1244,7 @@
 			this.f_CheckBoxStop.AutoSize = true;
 			this.f_CheckBoxStop.BackColor = System.Drawing.SystemColors.Control;
 			this.f_CheckBoxStop.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_CheckBoxStop.Location = new System.Drawing.Point(395, 685);
+			this.f_CheckBoxStop.Location = new System.Drawing.Point(657, 677);
 			this.f_CheckBoxStop.Name = "f_CheckBoxStop";
 			this.f_CheckBoxStop.Size = new System.Drawing.Size(111, 16);
 			this.f_CheckBoxStop.TabIndex = 4;
@@ -1259,7 +1260,7 @@
 			this.f_TabControlMain.Controls.Add(this.f_TabPage1);
 			this.f_TabControlMain.Controls.Add(this.f_TabPage2);
 			this.f_TabControlMain.Controls.Add(this.f_TabPage3);
-			this.f_TabControlMain.Location = new System.Drawing.Point(12, 35);
+			this.f_TabControlMain.Location = new System.Drawing.Point(274, 27);
 			this.f_TabControlMain.Name = "f_TabControlMain";
 			this.f_TabControlMain.SelectedIndex = 0;
 			this.f_TabControlMain.Size = new System.Drawing.Size(595, 612);
@@ -2581,7 +2582,7 @@
 			// 
 			this.f_LabelRerolls.AutoSize = true;
 			this.f_LabelRerolls.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelRerolls.Location = new System.Drawing.Point(395, 663);
+			this.f_LabelRerolls.Location = new System.Drawing.Point(657, 655);
 			this.f_LabelRerolls.Name = "f_LabelRerolls";
 			this.f_LabelRerolls.Size = new System.Drawing.Size(121, 12);
 			this.f_LabelRerolls.TabIndex = 25;
@@ -2589,7 +2590,7 @@
 			// 
 			// f_TextBoxRerollsLower
 			// 
-			this.f_TextBoxRerollsLower.Location = new System.Drawing.Point(516, 660);
+			this.f_TextBoxRerollsLower.Location = new System.Drawing.Point(778, 652);
 			this.f_TextBoxRerollsLower.Name = "f_TextBoxRerollsLower";
 			this.f_TextBoxRerollsLower.Size = new System.Drawing.Size(24, 19);
 			this.f_TextBoxRerollsLower.TabIndex = 3;
@@ -2598,7 +2599,7 @@
 			// 
 			this.f_CheckBoxShowResultTime.AutoSize = true;
 			this.f_CheckBoxShowResultTime.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_CheckBoxShowResultTime.Location = new System.Drawing.Point(65, 671);
+			this.f_CheckBoxShowResultTime.Location = new System.Drawing.Point(327, 663);
 			this.f_CheckBoxShowResultTime.Name = "f_CheckBoxShowResultTime";
 			this.f_CheckBoxShowResultTime.Size = new System.Drawing.Size(105, 16);
 			this.f_CheckBoxShowResultTime.TabIndex = 1;
@@ -2611,7 +2612,7 @@
             this.languageToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(620, 24);
+			this.menuStrip1.Size = new System.Drawing.Size(881, 24);
 			this.menuStrip1.TabIndex = 27;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
@@ -2659,7 +2660,7 @@
 			// 
 			this.f_LabelRerollsRange.AutoSize = true;
 			this.f_LabelRerollsRange.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelRerollsRange.Location = new System.Drawing.Point(544, 664);
+			this.f_LabelRerollsRange.Location = new System.Drawing.Point(806, 656);
 			this.f_LabelRerollsRange.Name = "f_LabelRerollsRange";
 			this.f_LabelRerollsRange.Size = new System.Drawing.Size(17, 12);
 			this.f_LabelRerollsRange.TabIndex = 28;
@@ -2667,16 +2668,26 @@
 			// 
 			// f_TextBoxRerollsUpper
 			// 
-			this.f_TextBoxRerollsUpper.Location = new System.Drawing.Point(560, 660);
+			this.f_TextBoxRerollsUpper.Location = new System.Drawing.Point(822, 652);
 			this.f_TextBoxRerollsUpper.Name = "f_TextBoxRerollsUpper";
 			this.f_TextBoxRerollsUpper.Size = new System.Drawing.Size(24, 19);
 			this.f_TextBoxRerollsUpper.TabIndex = 29;
+			// 
+			// groupBox1
+			// 
+			this.groupBox1.Location = new System.Drawing.Point(16, 31);
+			this.groupBox1.Name = "groupBox1";
+			this.groupBox1.Size = new System.Drawing.Size(245, 672);
+			this.groupBox1.TabIndex = 30;
+			this.groupBox1.TabStop = false;
+			this.groupBox1.Text = "groupBox1";
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(620, 716);
+			this.ClientSize = new System.Drawing.Size(881, 716);
+			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.f_TextBoxRerollsUpper);
 			this.Controls.Add(this.f_LabelRerollsRange);
 			this.Controls.Add(this.f_CheckBoxShowResultTime);
@@ -2955,5 +2966,6 @@
 		private System.Windows.Forms.ComboBox f_ComboBoxCharacteristic_2;
 		private System.Windows.Forms.TextBox f_TextBoxRerollsUpper;
 		private System.Windows.Forms.Label f_LabelRerollsRange;
+		private System.Windows.Forms.GroupBox groupBox1;
 	}
 }
