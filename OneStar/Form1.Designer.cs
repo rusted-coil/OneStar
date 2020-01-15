@@ -250,7 +250,6 @@
 			this.f_TabPage3 = new System.Windows.Forms.TabPage();
 			this.f_LabelRerolls = new System.Windows.Forms.Label();
 			this.f_TextBoxRerollsLower = new System.Windows.Forms.TextBox();
-			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.f_CheckBoxShowResultTime = new System.Windows.Forms.CheckBox();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -261,6 +260,14 @@
 			this.f_LabelRerollsRange = new System.Windows.Forms.Label();
 			this.f_TextBoxRerollsUpper = new System.Windows.Forms.TextBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.f_ComboBoxRarity = new System.Windows.Forms.ComboBox();
+			this.f_LabelDenName = new System.Windows.Forms.Label();
+			this.f_LabelRarity = new System.Windows.Forms.Label();
+			this.DenMap = new System.Windows.Forms.PictureBox();
+			this.f_ComboBoxGameVersion = new System.Windows.Forms.ComboBox();
+			this.f_ComboBoxDenName = new System.Windows.Forms.ComboBox();
+			this.f_LabelGameVersion = new System.Windows.Forms.Label();
+			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.f_GroupBoxPokemon_1.SuspendLayout();
 			this.panel4.SuspendLayout();
 			this.f_GroupBoxPokemon_2.SuspendLayout();
@@ -274,8 +281,10 @@
 			this.groupBox4.SuspendLayout();
 			this.f_TabPage2.SuspendLayout();
 			this.f_TabPage3.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
 			this.menuStrip1.SuspendLayout();
+			this.groupBox1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.DenMap)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// f_GroupBoxPokemon_1
@@ -2675,12 +2684,92 @@
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.f_ComboBoxRarity);
+			this.groupBox1.Controls.Add(this.f_LabelDenName);
+			this.groupBox1.Controls.Add(this.f_LabelRarity);
+			this.groupBox1.Controls.Add(this.DenMap);
+			this.groupBox1.Controls.Add(this.f_ComboBoxGameVersion);
+			this.groupBox1.Controls.Add(this.f_ComboBoxDenName);
+			this.groupBox1.Controls.Add(this.f_LabelGameVersion);
 			this.groupBox1.Location = new System.Drawing.Point(16, 31);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(245, 672);
 			this.groupBox1.TabIndex = 30;
 			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "groupBox1";
+			// 
+			// f_ComboBoxRarity
+			// 
+			this.f_ComboBoxRarity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.f_ComboBoxRarity.FormattingEnabled = true;
+			this.f_ComboBoxRarity.Location = new System.Drawing.Point(80, 89);
+			this.f_ComboBoxRarity.Margin = new System.Windows.Forms.Padding(2);
+			this.f_ComboBoxRarity.Name = "f_ComboBoxRarity";
+			this.f_ComboBoxRarity.Size = new System.Drawing.Size(160, 20);
+			this.f_ComboBoxRarity.TabIndex = 3;
+			// 
+			// f_LabelDenName
+			// 
+			this.f_LabelDenName.AutoSize = true;
+			this.f_LabelDenName.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelDenName.Location = new System.Drawing.Point(5, 24);
+			this.f_LabelDenName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.f_LabelDenName.Name = "f_LabelDenName";
+			this.f_LabelDenName.Size = new System.Drawing.Size(29, 12);
+			this.f_LabelDenName.TabIndex = 24;
+			this.f_LabelDenName.Text = "巣穴";
+			// 
+			// f_LabelRarity
+			// 
+			this.f_LabelRarity.AutoSize = true;
+			this.f_LabelRarity.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelRarity.Location = new System.Drawing.Point(5, 92);
+			this.f_LabelRarity.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.f_LabelRarity.Name = "f_LabelRarity";
+			this.f_LabelRarity.Size = new System.Drawing.Size(51, 12);
+			this.f_LabelRarity.TabIndex = 26;
+			this.f_LabelRarity.Text = "柱の種類";
+			// 
+			// DenMap
+			// 
+			this.DenMap.BackgroundImage = global::OneStar.Properties.Resources.map;
+			this.DenMap.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.DenMap.Location = new System.Drawing.Point(7, 124);
+			this.DenMap.Margin = new System.Windows.Forms.Padding(2);
+			this.DenMap.Name = "DenMap";
+			this.DenMap.Size = new System.Drawing.Size(233, 543);
+			this.DenMap.TabIndex = 0;
+			this.DenMap.TabStop = false;
+			// 
+			// f_ComboBoxGameVersion
+			// 
+			this.f_ComboBoxGameVersion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.f_ComboBoxGameVersion.FormattingEnabled = true;
+			this.f_ComboBoxGameVersion.Location = new System.Drawing.Point(80, 55);
+			this.f_ComboBoxGameVersion.Margin = new System.Windows.Forms.Padding(2);
+			this.f_ComboBoxGameVersion.Name = "f_ComboBoxGameVersion";
+			this.f_ComboBoxGameVersion.Size = new System.Drawing.Size(160, 20);
+			this.f_ComboBoxGameVersion.TabIndex = 2;
+			// 
+			// f_ComboBoxDenName
+			// 
+			this.f_ComboBoxDenName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.f_ComboBoxDenName.FormattingEnabled = true;
+			this.f_ComboBoxDenName.Location = new System.Drawing.Point(80, 21);
+			this.f_ComboBoxDenName.Margin = new System.Windows.Forms.Padding(2);
+			this.f_ComboBoxDenName.Name = "f_ComboBoxDenName";
+			this.f_ComboBoxDenName.Size = new System.Drawing.Size(160, 20);
+			this.f_ComboBoxDenName.TabIndex = 1;
+			// 
+			// f_LabelGameVersion
+			// 
+			this.f_LabelGameVersion.AutoSize = true;
+			this.f_LabelGameVersion.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelGameVersion.Location = new System.Drawing.Point(5, 58);
+			this.f_LabelGameVersion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.f_LabelGameVersion.Name = "f_LabelGameVersion";
+			this.f_LabelGameVersion.Size = new System.Drawing.Size(50, 12);
+			this.f_LabelGameVersion.TabIndex = 1;
+			this.f_LabelGameVersion.Text = "バージョン";
 			// 
 			// MainForm
 			// 
@@ -2703,7 +2792,7 @@
 			this.MainMenuStrip = this.menuStrip1;
 			this.MaximizeBox = false;
 			this.Name = "MainForm";
-			this.Text = "1-Star Seed Search v1.04";
+			this.Text = "1-Star Seed Search v1.05";
 			this.f_GroupBoxPokemon_1.ResumeLayout(false);
 			this.f_GroupBoxPokemon_1.PerformLayout();
 			this.panel4.ResumeLayout(false);
@@ -2726,9 +2815,12 @@
 			this.groupBox4.PerformLayout();
 			this.f_TabPage2.ResumeLayout(false);
 			this.f_TabPage3.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
+			this.groupBox1.ResumeLayout(false);
+			this.groupBox1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.DenMap)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -2967,5 +3059,12 @@
 		private System.Windows.Forms.TextBox f_TextBoxRerollsUpper;
 		private System.Windows.Forms.Label f_LabelRerollsRange;
 		private System.Windows.Forms.GroupBox groupBox1;
+		private System.Windows.Forms.ComboBox f_ComboBoxRarity;
+		private System.Windows.Forms.Label f_LabelDenName;
+		private System.Windows.Forms.Label f_LabelRarity;
+		private System.Windows.Forms.PictureBox DenMap;
+		private System.Windows.Forms.ComboBox f_ComboBoxGameVersion;
+		private System.Windows.Forms.ComboBox f_ComboBoxDenName;
+		private System.Windows.Forms.Label f_LabelGameVersion;
 	}
 }

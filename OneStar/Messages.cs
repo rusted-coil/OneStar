@@ -18,6 +18,9 @@ namespace OneStar
 		public Dictionary<string, string> SystemMessage;
 		public Dictionary<string, string> ListLabel;
         public Dictionary<string, decimal> Pokemon;
+		public Dictionary<string, int> Den;
+		public List<string> Version;
+		public List<string> DenRarity;
 
 		[JsonIgnore] public static Messages Instance { get; private set; }
 		[JsonIgnore] public static string ErrorText { get; private set; }

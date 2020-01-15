@@ -6,6 +6,7 @@ using System.IO;
 using System.Collections.Generic;
 using IVCalcNetFramework;
 using System.Linq;
+using PKHeX_Raid_Plugin;
 
 namespace OneStar
 {
@@ -31,6 +32,9 @@ namespace OneStar
 
 		// 環境設定
 		Preferences m_Preferences;
+
+		// 巣穴データ
+		readonly RaidData c_RaidData = new RaidData();
 
 		// ポケモン入力フォームごとのセット
 		class PokemonInfoForm {
@@ -83,10 +87,68 @@ namespace OneStar
             populateComboBoxes();
 
             IsInitialized = true;
+
+			//			RaidTemplateTable toUse = 
+			// ポケモンデータチェック
+			for (int i = -1; i <= 99; ++i)
+			{
+				if (i == 16)
+				{
+					continue;
+				}
+
+				for (int a = 0; a < 2; ++a)
+				{
+					for (int b = 0; b < 2; ++b)
+					{
+						RaidTemplateTable raidTable = c_RaidData.GetRaidTemplateTable(i, a, b);
+						foreach (var entry in raidTable.Entries)
+						{
+							for (int c = 0; c < 5; ++c)
+							{
+								if (entry.Probabilities[c] > 0)
+								{
+									int species = entry.Species;
+									bool isExist = false;
+									foreach (var pokemon in Messages.Instance.Pokemon)
+									{
+										if (pokemon.Value == species)
+										{
+											isExist = true;
+											break;
+										}
+									}
+									if (isExist == false)
+									{
+										;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 
 		void InitializeComboBox()
 		{
+			// 巣穴
+			foreach (var key in Messages.Instance.Den.Keys)
+			{
+				f_ComboBoxDenName.Items.Add(key);
+			}
+			f_ComboBoxDenName.SelectedIndex = 0;
+			foreach (var version in Messages.Instance.Version)
+			{
+				f_ComboBoxGameVersion.Items.Add(version);
+			}
+			f_ComboBoxGameVersion.SelectedIndex = 0;
+			foreach (var rarity in Messages.Instance.DenRarity)
+			{
+				f_ComboBoxRarity.Items.Add(rarity);
+			}
+			f_ComboBoxRarity.SelectedIndex = 0;
+
 			// モード
 			f_ComboBoxModeSelector_35.Items.Clear();
 			f_ComboBoxModeSelector_35.Items.Add(Messages.Instance.SystemLabel["Pokemon35_1_2V"]);
@@ -921,10 +983,12 @@ namespace OneStar
 			// コンボボックスは一旦値を退避してセット
 			int modeIndex = 0;
 			int[] abilityIndex = new int[5];
+			int denIndex = 0;
+			int versionIndex = 0;
+			int rarityIndex = 0;
 
 			if (!isFirst)
-			{
-                
+			{                
                 modeIndex = f_ComboBoxModeSelector_35.SelectedIndex;
 				f_ComboBoxModeSelector_35.Items.Clear();
 
@@ -958,6 +1022,15 @@ namespace OneStar
 				f_ComboBoxAbility_351.Items.Clear();
 				f_ComboBoxAbility_352.Items.Clear();
 				f_ComboBoxAbility_353.Items.Clear();
+
+				denIndex = f_ComboBoxDenName.SelectedIndex;
+				f_ComboBoxDenName.Items.Clear();
+
+				versionIndex = f_ComboBoxGameVersion.SelectedIndex;
+				f_ComboBoxGameVersion.Items.Clear();
+
+				rarityIndex = f_ComboBoxRarity.SelectedIndex;
+				f_ComboBoxRarity.Items.Clear();
 			}
 
 			// 設定変更
@@ -1121,6 +1194,10 @@ namespace OneStar
 						m_PokemonInfo[a].ComboBoxName.SelectedIndex = m_PokemonInfo[a].ComboBoxName.Items.IndexOf(idxa);
 					}
 				}
+
+				f_ComboBoxDenName.SelectedIndex = denIndex;
+				f_ComboBoxGameVersion.SelectedIndex = versionIndex;
+				f_ComboBoxRarity.SelectedIndex = rarityIndex;
             }
 		}
 
