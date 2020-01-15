@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 
@@ -57,7 +58,8 @@ namespace OneStarCalculator
 			m_Mode = mode;
 		}
 
-		public void Calculate(bool isEnableStop, int minRerolls, int maxRerolls)
+		private readonly object lockObj = new object();
+		public void Calculate(bool isEnableStop, int minRerolls, int maxRerolls, System.IProgress<int> p)
 		{
 			Result.Clear();
 
@@ -67,8 +69,21 @@ namespace OneStarCalculator
 				int searchLower = 0;
 				int searchUpper = 0xFFFFFFF;
 
+				// 途中経過
+				int progress = 0;
+				int chunkSize = searchUpper / 16;
+				int chunkMax = 16 * (maxRerolls - minRerolls + 1);
+				int chunkCount = 1;
+
+				p.Report(0);
+
 				for (int i = minRerolls; i <= maxRerolls; ++i)
 				{
+					int chunkOffset = (i - minRerolls) * 16;
+
+					progress = 0;
+					chunkCount = 0;
+
 					// C++ライブラリ側の事前計算
 					Prepare(i);
 
@@ -83,6 +98,18 @@ namespace OneStarCalculator
 							{
 								Result.Add(result);
 								state.Stop();
+							}
+							Interlocked.Increment(ref progress);
+							if (progress >= chunkCount * chunkSize)
+							{
+								lock (lockObj)
+								{
+									if (progress >= chunkCount * chunkSize)
+									{
+										p.Report((chunkCount + chunkOffset) * 1000 / chunkMax);
+										++chunkCount;
+									}
+								}
 							}
 						});
 						if (Result.Count > 0)
@@ -100,6 +127,18 @@ namespace OneStarCalculator
 							{
 								Result.Add(result);
 							}
+							Interlocked.Increment(ref progress);
+							if (progress >= chunkCount * chunkSize)
+							{
+								lock (lockObj)
+								{
+									if (progress >= chunkCount * chunkSize)
+									{
+										p.Report((chunkCount + chunkOffset) * 1000 / chunkMax);
+										++chunkCount;
+									}
+								}
+							}
 						});
 					}
 				}
@@ -109,9 +148,22 @@ namespace OneStarCalculator
 				// 探索範囲
 				int searchLower = 0;
 				int searchUpper = (m_Mode == Mode.Star35_5 ? 0x1FFFFFF : 0x3FFFFFFF);
-				
+
+				// 途中経過
+				int progress = 0;
+				int chunkSize = searchUpper / 16;
+				int chunkMax = 16 * (maxRerolls - minRerolls + 1);
+				int chunkCount = 1;
+
+				p.Report(0);
+
 				for (int i = minRerolls; i <= maxRerolls; ++i)
 				{
+					int chunkOffset = (i - minRerolls) * 16;
+
+					progress = 0;
+					chunkCount = 0;
+
 					// C++ライブラリ側の事前計算
 					PrepareSix(i);
 
@@ -125,6 +177,18 @@ namespace OneStarCalculator
 							{
 								Result.Add(result);
 								state.Stop();
+							}
+							Interlocked.Increment(ref progress);
+							if (progress >= chunkCount * chunkSize)
+							{
+								lock (lockObj)
+								{
+									if (progress >= chunkCount * chunkSize)
+									{
+										p.Report((chunkCount + chunkOffset) * 1000 / chunkMax);
+										++chunkCount;
+									}
+								}
 							}
 						});
 						if (Result.Count > 0)
@@ -142,6 +206,18 @@ namespace OneStarCalculator
 								Result.Add(result);
 							}
 						});
+						Interlocked.Increment(ref progress);
+						if (progress >= chunkCount * chunkSize)
+						{
+							lock (lockObj)
+							{
+								if (progress >= chunkCount * chunkSize)
+								{
+									p.Report((chunkCount + chunkOffset) * 1000 / chunkMax);
+									++chunkCount;
+								}
+							}
+						}
 					}
 				}
 

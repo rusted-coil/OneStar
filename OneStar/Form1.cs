@@ -566,7 +566,7 @@ namespace OneStar
 			{
 				try
 				{
-					ivs[i] = int.Parse(m_PokemonInfo[i / 6].TextBoxIvs[i % 6].Text);
+					ivs[i] = int.Parse(m_PokemonInfo[2 + i / 6].TextBoxIvs[i % 6].Text);
 				}
 				catch (Exception)
 				{
@@ -712,6 +712,11 @@ namespace OneStar
 			SearchImpl(searcher);
 		}
 
+		public void ReportProgress(int permille)
+		{
+			f_ButtonStartSearch.Text = Messages.Instance.SystemLabel["Searching"] + $" {permille / 10.0f:0.0}%";
+		}
+
 		// 検索処理共通
 		async void SearchImpl(SeedSearcher searcher)
 		{
@@ -740,9 +745,10 @@ namespace OneStar
 				stopWatch.Start();
 			}
 
+			var p = new Progress<int>(ReportProgress);
 			await Task.Run(() =>
 			{
-				searcher.Calculate(isEnableStop, minRerolls, maxRerolls);
+				searcher.Calculate(isEnableStop, minRerolls, maxRerolls, p);
 			});
 
 			if (isShowResultTime && stopWatch != null)
