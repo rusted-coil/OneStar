@@ -57,7 +57,7 @@ namespace OneStarCalculator
 			m_Mode = mode;
 		}
 
-		public void Calculate(bool isEnableStop, int maxRerolls)
+		public void Calculate(bool isEnableStop, int minRerolls, int maxRerolls)
 		{
 			Result.Clear();
 
@@ -67,7 +67,7 @@ namespace OneStarCalculator
 				int searchLower = 0;
 				int searchUpper = 0xFFFFFFF;
 
-				for (int i = 0; i <= maxRerolls; ++i)
+				for (int i = minRerolls; i <= maxRerolls; ++i)
 				{
 					// C++ライブラリ側の事前計算
 					Prepare(i);
@@ -110,7 +110,7 @@ namespace OneStarCalculator
 				int searchLower = 0;
 				int searchUpper = (m_Mode == Mode.Star35_5 ? 0x1FFFFFF : 0x3FFFFFFF);
 				
-				for (int i = 0; i <= maxRerolls; ++i)
+				for (int i = minRerolls; i <= maxRerolls; ++i)
 				{
 					// C++ライブラリ側の事前計算
 					PrepareSix(i);

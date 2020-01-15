@@ -248,9 +248,8 @@
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.f_TabPage2 = new System.Windows.Forms.TabPage();
 			this.f_TabPage3 = new System.Windows.Forms.TabPage();
-			this.f_LabelRerollsBefore = new System.Windows.Forms.Label();
-			this.f_LabelRerollsAfter = new System.Windows.Forms.Label();
-			this.f_TextBoxRerolls = new System.Windows.Forms.TextBox();
+			this.f_LabelRerolls = new System.Windows.Forms.Label();
+			this.f_TextBoxRerollsLower = new System.Windows.Forms.TextBox();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.f_CheckBoxShowResultTime = new System.Windows.Forms.CheckBox();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -259,6 +258,8 @@
 			this.f_MenuItemLanguageEn = new System.Windows.Forms.ToolStripMenuItem();
 			this.f_MenuItemLanguageZh = new System.Windows.Forms.ToolStripMenuItem();
 			this.f_MenuItemLanguageZh_TW = new System.Windows.Forms.ToolStripMenuItem();
+			this.f_LabelRerollsRange = new System.Windows.Forms.Label();
+			this.f_TextBoxRerollsUpper = new System.Windows.Forms.TextBox();
 			this.f_GroupBoxPokemon_1.SuspendLayout();
 			this.panel4.SuspendLayout();
 			this.f_GroupBoxPokemon_2.SuspendLayout();
@@ -2576,32 +2577,22 @@
 			this.f_TabPage3.Text = "リスト出力";
 			this.f_TabPage3.UseVisualStyleBackColor = true;
 			// 
-			// f_LabelRerollsBefore
+			// f_LabelRerolls
 			// 
-			this.f_LabelRerollsBefore.AutoSize = true;
-			this.f_LabelRerollsBefore.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelRerollsBefore.Location = new System.Drawing.Point(395, 663);
-			this.f_LabelRerollsBefore.Name = "f_LabelRerollsBefore";
-			this.f_LabelRerollsBefore.Size = new System.Drawing.Size(99, 12);
-			this.f_LabelRerollsBefore.TabIndex = 25;
-			this.f_LabelRerollsBefore.Text = "V箇所のズレを考慮";
+			this.f_LabelRerolls.AutoSize = true;
+			this.f_LabelRerolls.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelRerolls.Location = new System.Drawing.Point(395, 663);
+			this.f_LabelRerolls.Name = "f_LabelRerolls";
+			this.f_LabelRerolls.Size = new System.Drawing.Size(121, 12);
+			this.f_LabelRerolls.TabIndex = 25;
+			this.f_LabelRerolls.Text = "V箇所再抽選考慮回数";
 			// 
-			// f_LabelRerollsAfter
+			// f_TextBoxRerollsLower
 			// 
-			this.f_LabelRerollsAfter.AutoSize = true;
-			this.f_LabelRerollsAfter.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelRerollsAfter.Location = new System.Drawing.Point(519, 663);
-			this.f_LabelRerollsAfter.Name = "f_LabelRerollsAfter";
-			this.f_LabelRerollsAfter.Size = new System.Drawing.Size(36, 12);
-			this.f_LabelRerollsAfter.TabIndex = 26;
-			this.f_LabelRerollsAfter.Text = "回まで";
-			// 
-			// f_TextBoxRerolls
-			// 
-			this.f_TextBoxRerolls.Location = new System.Drawing.Point(493, 659);
-			this.f_TextBoxRerolls.Name = "f_TextBoxRerolls";
-			this.f_TextBoxRerolls.Size = new System.Drawing.Size(24, 19);
-			this.f_TextBoxRerolls.TabIndex = 3;
+			this.f_TextBoxRerollsLower.Location = new System.Drawing.Point(516, 660);
+			this.f_TextBoxRerollsLower.Name = "f_TextBoxRerollsLower";
+			this.f_TextBoxRerollsLower.Size = new System.Drawing.Size(24, 19);
+			this.f_TextBoxRerollsLower.TabIndex = 3;
 			// 
 			// f_CheckBoxShowResultTime
 			// 
@@ -2664,15 +2655,33 @@
 			this.f_MenuItemLanguageZh_TW.Text = "正體字";
 			this.f_MenuItemLanguageZh_TW.Click += new System.EventHandler(this.f_MenuItemLanguageZh_TW_Click);
 			// 
+			// f_LabelRerollsRange
+			// 
+			this.f_LabelRerollsRange.AutoSize = true;
+			this.f_LabelRerollsRange.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelRerollsRange.Location = new System.Drawing.Point(544, 664);
+			this.f_LabelRerollsRange.Name = "f_LabelRerollsRange";
+			this.f_LabelRerollsRange.Size = new System.Drawing.Size(17, 12);
+			this.f_LabelRerollsRange.TabIndex = 28;
+			this.f_LabelRerollsRange.Text = "～";
+			// 
+			// f_TextBoxRerollsUpper
+			// 
+			this.f_TextBoxRerollsUpper.Location = new System.Drawing.Point(560, 660);
+			this.f_TextBoxRerollsUpper.Name = "f_TextBoxRerollsUpper";
+			this.f_TextBoxRerollsUpper.Size = new System.Drawing.Size(24, 19);
+			this.f_TextBoxRerollsUpper.TabIndex = 29;
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(620, 716);
+			this.Controls.Add(this.f_TextBoxRerollsUpper);
+			this.Controls.Add(this.f_LabelRerollsRange);
 			this.Controls.Add(this.f_CheckBoxShowResultTime);
-			this.Controls.Add(this.f_TextBoxRerolls);
-			this.Controls.Add(this.f_LabelRerollsAfter);
-			this.Controls.Add(this.f_LabelRerollsBefore);
+			this.Controls.Add(this.f_TextBoxRerollsLower);
+			this.Controls.Add(this.f_LabelRerolls);
 			this.Controls.Add(this.f_TabControlMain);
 			this.Controls.Add(this.f_CheckBoxStop);
 			this.Controls.Add(this.f_ButtonStartSearch);
@@ -2822,9 +2831,8 @@
 		private System.Windows.Forms.Label f_LabelIvs_351;
 		private System.Windows.Forms.TabPage f_TabPage2;
 		private System.Windows.Forms.Button f_ButtonIvsCheck;
-		private System.Windows.Forms.TextBox f_TextBoxRerolls;
-		private System.Windows.Forms.Label f_LabelRerollsAfter;
-		private System.Windows.Forms.Label f_LabelRerollsBefore;
+		private System.Windows.Forms.TextBox f_TextBoxRerollsLower;
+		private System.Windows.Forms.Label f_LabelRerolls;
 		private System.Windows.Forms.TextBox f_TextBoxListVCount;
 		private System.Windows.Forms.Label f_LabelListVCount;
 		private System.Windows.Forms.TabPage f_TabPage3;
@@ -2945,5 +2953,7 @@
 		private System.Windows.Forms.Label f_LabelStatus20_2;
 		private System.Windows.Forms.ComboBox f_ComboBoxCharacteristic_1;
 		private System.Windows.Forms.ComboBox f_ComboBoxCharacteristic_2;
+		private System.Windows.Forms.TextBox f_TextBoxRerollsUpper;
+		private System.Windows.Forms.Label f_LabelRerollsRange;
 	}
 }

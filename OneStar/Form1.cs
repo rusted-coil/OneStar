@@ -120,7 +120,8 @@ namespace OneStar
 			// 共通
 			f_TextBoxMaxFrame.Text = "5000";
 
-			f_TextBoxRerolls.Text = "3";
+			f_TextBoxRerollsLower.Text = "0";
+			f_TextBoxRerollsUpper.Text = "3";
 			f_CheckBoxStop.Checked = true;
 			f_TextBoxListVCount.Text = "4";
 
@@ -275,8 +276,8 @@ namespace OneStar
 			m_MultiLanguageControls["ListButton"] = new Control[] { f_ButtonListGenerate };
 			m_MultiLanguageControls["ShowDuration"] = new Control[] { f_CheckBoxShowResultTime };
 			m_MultiLanguageControls["StartSearch"] = new Control[] { f_ButtonStartSearch };
-			m_MultiLanguageControls["RerollsBefore"] = new Control[] { f_LabelRerollsBefore };
-			m_MultiLanguageControls["RerollsAfter"] = new Control[] { f_LabelRerollsAfter };
+			m_MultiLanguageControls["Rerolls"] = new Control[] { f_LabelRerolls };
+			m_MultiLanguageControls["Range"] = new Control[] { f_LabelRerollsRange };
 			m_MultiLanguageControls["SearchStop"] = new Control[] { f_CheckBoxStop };
 
 			// 言語を適用
@@ -714,10 +715,12 @@ namespace OneStar
 		// 検索処理共通
 		async void SearchImpl(SeedSearcher searcher)
 		{
-			int maxRerolls = 0;
+			int minRerolls = 0;
+			int maxRerolls = 3;
 			try
 			{
-				maxRerolls = int.Parse(f_TextBoxRerolls.Text);
+				minRerolls = int.Parse(f_TextBoxRerollsLower.Text);
+				maxRerolls = int.Parse(f_TextBoxRerollsUpper.Text);
 			}
 			catch (Exception)
 			{ }
@@ -739,7 +742,7 @@ namespace OneStar
 
 			await Task.Run(() =>
 			{
-				searcher.Calculate(isEnableStop, maxRerolls);
+				searcher.Calculate(isEnableStop, minRerolls, maxRerolls);
 			});
 
 			if (isShowResultTime && stopWatch != null)
