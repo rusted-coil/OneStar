@@ -63,6 +63,7 @@
 		"Pokemon35_3": "第五幀",
 		"Pokemon12_1": "第一幀",
 		"Pokemon12_2": "第二幀",
+		"Pokemon12_3": "第三幀",
 		"CheckIvsButton": "個體值確認",
 		"CheckIvsResultTitle": "結果：",
 		"ListVCount": "V數：",
@@ -79,6 +80,7 @@
 		"Pokemon": "Pokemon",
 		"CalculateIVs": "Calculate IVs",
         "Status": "Stats.",
+        "EventDen": "Event Den",
 	},
 	"CheckIvsResult": [
 		"No Good！",
@@ -91,6 +93,7 @@
 		"IvsFormat": "無效的個體值。\n(0～31的半形數字有效)",
 		"IvsStrict1": "第一幀的寶可夢不能沒有V(個體值31)",
 		"IvsStrict2": "第二幀的寶可夢至少要有1個以上的V(個體值31)",
+		"IvsStrict3": "第三幀的寶可夢至少要有1個以上的V(個體值31)",
 		"IvsStrict351_3V": "第四幀-3V的寶可夢不能沒有3V(個體值31)",
 		"IvsStrict351_2V": "第四幀-2V的寶可夢不能沒有2V(個體值31)",
 		"NotSearchTab": "依照欲檢索的內容，打開★3～5或★1～2的標籤頁。",
