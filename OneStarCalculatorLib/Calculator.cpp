@@ -220,8 +220,6 @@ _u64 Search(_u64 ivs)
 	for (_u64 search = 0; search <= max; ++search)
 	{
 		_u64 seed = (processedTarget ^ g_CoefficientData[search]) | g_SearchPattern[search];
-
-		seed = 0xE01D4BF92327634Dull;
 		
 		// ‚±‚±‚©‚çi‚èž‚Ý
 		{
