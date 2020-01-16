@@ -36,6 +36,13 @@ namespace OneStar
 		// 巣穴データ
 		readonly RaidData c_RaidData = new RaidData();
 
+		// 現在の巣穴データ
+		int m_CurrentDenIndex = -2;
+		int m_CurrentGameVersion = -1;
+		int m_CurrentRarity = -1;
+		List<RaidData.Pokemon> m_EncounterList = new List<RaidData.Pokemon>();
+		Dictionary<string, int> m_EncounterIndex = new Dictionary<string, int>();
+
 		// ポケモン入力フォームごとのセット
 		class PokemonInfoForm {
 			public ComboBox ComboBoxName { get; set; } = null;
@@ -46,10 +53,6 @@ namespace OneStar
 			public ComboBox ComboBoxCharacteristic { get; set; } = null;
 		};
 		PokemonInfoForm[] m_PokemonInfo = new PokemonInfoForm[6];
-
-//		TextBox[] m_TextBoxIvsList12 = new TextBox[12];
-//		TextBox[] m_TextBoxIvsList35 = new TextBox[18];
-//		TextBox[] m_TextBoxStatusList35 = new TextBox[18];
 
 		// 言語設定可能コントロール
 		Dictionary<string, Control[]> m_MultiLanguageControls;
@@ -179,16 +182,6 @@ namespace OneStar
 
 		void InitializeView()
 		{
-			/*
-			f_CheckBoxThirdEnable.Parent = this;
-			System.Drawing.Point pos;
-			System.Drawing.Point pt1 = f_GroupBoxPokemon_3.Location;
-			System.Drawing.Point pt2 = f_GroupBoxPokemon_3.Location;
-			pt.X = pt.X + 8;
-			f_CheckBoxThirdEnable.Location = pt;
-			f_CheckBoxThirdEnable.BringToFront();
-			*/
-
 			// ★3～5パネル
 			SetCheckResult(-1);
 
@@ -331,30 +324,10 @@ namespace OneStar
 				f_LabelIvs_352,
 				f_LabelIvs_353,
 			};
-			m_MultiLanguageControls["Nature"] = new Control[]{
-				f_LabelNature_1,
-				f_LabelNature_2,
-				f_LabelNature_3,
-				f_LabelNature_351,
-				f_LabelNature_352,
-				f_LabelNature_353,
-			};
 			m_MultiLanguageControls["HiddenPossible"] = new Control[] {
-				f_CheckBoxDream_1,
-				f_CheckBoxDream_2,
-				f_CheckBoxDream_3,
-				f_CheckBoxDream_351,
-				f_CheckBoxDream_352,
-				f_CheckBoxDream_353,
 				f_CheckBoxDream_List,
 			};
 			m_MultiLanguageControls["GenderFixed"] = new Control[] {
-				f_CheckBoxNoGender_1,
-				f_CheckBoxNoGender_2,
-				f_CheckBoxNoGender_3,
-				f_CheckBoxNoGender_351,
-				f_CheckBoxNoGender_352,
-				f_CheckBoxNoGender_353,
 				f_CheckBoxNoGender_List,
 			};
 			m_MultiLanguageControls["Pokemon35_2"] = new Control[] { f_GroupBoxPokemon_352 };
@@ -374,7 +347,7 @@ namespace OneStar
 			m_MultiLanguageControls["Rerolls"] = new Control[] { f_LabelRerolls };
 			m_MultiLanguageControls["Range"] = new Control[] { f_LabelRerollsRange };
 			m_MultiLanguageControls["SearchStop"] = new Control[] { f_CheckBoxStop };
-			m_MultiLanguageControls["EventDen"] = new Control[] { f_CheckBoxEventDen };
+//			m_MultiLanguageControls["EventDen"] = new Control[] { f_CheckBoxEventDen };
 
 			// 言語を適用
 			ChangeLanguage(true, m_Preferences.Language);
@@ -671,15 +644,15 @@ namespace OneStar
 			int nature2 = Messages.Instance.Nature[m_PokemonInfo[1].ComboBoxNature.Text];
 			int nature3 = Messages.Instance.Nature[m_PokemonInfo[2].ComboBoxNature.Text];
 
-			bool noGender1 = f_CheckBoxNoGender_1.Checked;
-			bool noGender2 = f_CheckBoxNoGender_2.Checked;
-			bool noGender3 = f_CheckBoxNoGender_3.Checked;
+			bool noGender1 = false;
+			bool noGender2 = false;
+			bool noGender3 = false;
 
-			bool isDream1 = f_CheckBoxDream_1.Checked;
-			bool isDream2 = f_CheckBoxDream_2.Checked;
-			bool isDream3 = f_CheckBoxDream_3.Checked;
+			bool isDream1 = false;
+			bool isDream2 = false;
+			bool isDream3 = false;
 
-			bool isEvent = f_CheckBoxEventDen.Checked;
+			bool isEvent = false;
 
 			// 計算開始
 			SeedSearcher searcher = new SeedSearcher(SeedSearcher.Mode.Star12);
@@ -762,13 +735,13 @@ namespace OneStar
 			int nature2 = Messages.Instance.Nature[m_PokemonInfo[4].ComboBoxNature.Text];
 			int nature3 = Messages.Instance.Nature[m_PokemonInfo[5].ComboBoxNature.Text];
 
-			bool noGender1 = f_CheckBoxNoGender_351.Checked;
-			bool noGender2 = f_CheckBoxNoGender_352.Checked;
-			bool noGender3 = f_CheckBoxNoGender_353.Checked;
+			bool noGender1 = false;
+			bool noGender2 = false;
+			bool noGender3 = false;
 
-			bool isDream1 = f_CheckBoxDream_351.Checked;
-			bool isDream2 = f_CheckBoxDream_352.Checked;
-			bool isDream3 = f_CheckBoxDream_353.Checked;
+			bool isDream1 = false;
+			bool isDream2 = false;
+			bool isDream3 = false;
 
 			int characteristic1 = Messages.Instance.Characteristic[m_PokemonInfo[3].ComboBoxCharacteristic.Text];
 			int characteristic2 = Messages.Instance.Characteristic[m_PokemonInfo[4].ComboBoxCharacteristic.Text];
@@ -1242,18 +1215,6 @@ namespace OneStar
 			f_LabelLevel_351.Text = Messages.Instance.Status[6];
             f_LabelLevel_352.Text = Messages.Instance.Status[6];
             f_LabelLevel_353.Text = Messages.Instance.Status[6];
-			f_LabelPokemon_1.Text = Messages.Instance.SystemLabel["Pokemon"];
-			f_LabelPokemon_2.Text = Messages.Instance.SystemLabel["Pokemon"];
-			f_LabelPokemon_3.Text = Messages.Instance.SystemLabel["Pokemon"];
-			f_LabelPokemon_351.Text = Messages.Instance.SystemLabel["Pokemon"];
-            f_LabelPokemon_352.Text = Messages.Instance.SystemLabel["Pokemon"];
-            f_LabelPokemon_353.Text = Messages.Instance.SystemLabel["Pokemon"];
-			f_LabelStatus_1.Text = Messages.Instance.SystemLabel["Status"];
-			f_LabelStatus_2.Text = Messages.Instance.SystemLabel["Status"];
-			f_LabelStatus_3.Text = Messages.Instance.SystemLabel["Status"];
-			f_LabelStatus_351.Text = Messages.Instance.SystemLabel["Status"];
-			f_LabelStatus_352.Text = Messages.Instance.SystemLabel["Status"];
-			f_LabelStatus_353.Text = Messages.Instance.SystemLabel["Status"];
 			f_ButtonIvsCalc_1.Text = Messages.Instance.SystemLabel["CalculateIVs"];
 			f_ButtonIvsCalc_2.Text = Messages.Instance.SystemLabel["CalculateIVs"];
 			f_ButtonIvsCalc_3.Text = Messages.Instance.SystemLabel["CalculateIVs"];
@@ -1314,6 +1275,7 @@ namespace OneStar
             var Pokemon = Messages.Instance.Pokemon.Keys.ToList();
             Pokemon.Sort();
 
+			/*
 			f_ComboBoxPokemon_1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
 			f_ComboBoxPokemon_1.AutoCompleteSource = AutoCompleteSource.ListItems;
 			f_ComboBoxPokemon_1.Items.AddRange(Pokemon.ToArray());
@@ -1337,8 +1299,9 @@ namespace OneStar
 			f_ComboBoxPokemon_353.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
 			f_ComboBoxPokemon_353.AutoCompleteSource = AutoCompleteSource.ListItems;
 			f_ComboBoxPokemon_353.Items.AddRange(Pokemon.ToArray());
+			*/
 
-            firstRun = false;
+			firstRun = false;
         }
 
 		private void f_ButtonIvsCalc_1_Click(object sender, EventArgs e)
@@ -1374,15 +1337,17 @@ namespace OneStar
 		void IvsCalculate(int index)
 		{
 			var pokemonInfo = m_PokemonInfo[index];
-			string pokemon = pokemonInfo.ComboBoxName.Text;
-			string levelText = pokemonInfo.TextBoxLevel.Text;
-			if (pokemon == "" || !Messages.Instance.Pokemon.ContainsKey(pokemon))
+			// 計算に使うポケモン
+			RaidData.Pokemon encounterData = pokemonInfo.ComboBoxName.SelectedItem as RaidData.Pokemon;
+
+			if (encounterData == null)
 			{
 				CreateErrorDialog(Messages.Instance.ErrorMessage["InvalidPokemon"]);
 			}
 			else
 			{
-				decimal pokemonID = Messages.Instance.Pokemon[pokemon];
+				string levelText = pokemonInfo.TextBoxLevel.Text;
+				decimal pokemonID = encounterData.Species;
 				try
 				{
 					int lv = int.Parse(levelText);
@@ -1446,6 +1411,156 @@ namespace OneStar
 		private void f_CheckBoxThirdEnable_CheckedChanged(object sender, EventArgs e)
 		{
 			f_GroupBoxPokemon_3.Enabled = f_CheckBoxThirdEnable.Checked;
+		}
+
+		private void f_ComboBoxDenName_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			// 選択情報を取得
+			int denIndex = Messages.Instance.Den[f_ComboBoxDenName.Text];
+			if (denIndex != m_CurrentDenIndex)
+			{
+				m_CurrentDenIndex = denIndex;
+				RefreshDen();
+			}
+		}
+
+		private void f_ComboBoxGameVersion_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			// 選択情報を取得
+			int gameVersion = f_ComboBoxGameVersion.SelectedIndex;
+			if (gameVersion != m_CurrentGameVersion)
+			{
+				m_CurrentGameVersion = gameVersion;
+				RefreshDen();
+			}
+		}
+
+		private void f_ComboBoxRarity_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			// 選択情報を取得
+			int rarity = f_ComboBoxRarity.SelectedIndex;
+			if (rarity != m_CurrentRarity)
+			{
+				m_CurrentRarity = rarity;
+				RefreshDen();
+			}
+		}
+
+		// 巣穴情報変更
+		void RefreshDen()
+		{
+			if (m_CurrentDenIndex < -1 || m_CurrentGameVersion < 0 || m_CurrentRarity < 0)
+			{
+				return;
+			}
+			RaidTemplateTable raidTable = c_RaidData.GetRaidTemplateTable(m_CurrentDenIndex, m_CurrentGameVersion, m_CurrentRarity);
+
+			// データ構築
+			m_EncounterList.Clear();
+			m_EncounterIndex.Clear();
+			foreach (var entry in raidTable.Entries)
+			{
+				for (int c = 0; c < 5; ++c)
+				{
+					if (entry.Probabilities[c] > 0)
+					{
+						// キーを作成
+						string key = Messages.Instance.RankPrefix[c];
+						foreach (var pokemon in Messages.Instance.Pokemon)
+						{
+							if (pokemon.Value == entry.Species)
+							{
+								key += pokemon.Key;
+								break;
+							}
+						}
+						if (entry.IsGigantamax)
+						{
+							key += Messages.Instance.SystemLabel["Gigantamax"];
+						}
+
+						// 全く同じ見た目のポケモンの場合マージする
+						if (m_EncounterIndex.ContainsKey(key))
+						{
+							m_EncounterList[m_EncounterIndex[key]].Merge(entry);
+						}
+						else
+						{
+							m_EncounterIndex.Add(key, m_EncounterList.Count);
+							m_EncounterList.Add(new RaidData.Pokemon(key, c, entry));
+						}
+					}
+				}
+			}
+
+			// コンボボックスに反映
+			foreach (var encounter in m_EncounterList)
+			{
+				// 1Vのみ
+				if (encounter.Entry.FlawlessIVs == 1)
+				{
+					f_ComboBoxPokemon_1.Items.Add(encounter);
+				}
+				// ★3まで
+				if (encounter.Rank < 3)
+				{
+					f_ComboBoxPokemon_2.Items.Add(encounter);
+					f_ComboBoxPokemon_3.Items.Add(encounter);
+				}
+				f_ComboBoxPokemon_351.Items.Add(encounter);
+				f_ComboBoxPokemon_352.Items.Add(encounter);
+				f_ComboBoxPokemon_353.Items.Add(encounter);
+			}
+			f_ComboBoxPokemon_1.SelectedIndex = 0;
+			f_ComboBoxPokemon_2.SelectedIndex = 0;
+			f_ComboBoxPokemon_3.SelectedIndex = 0;
+			f_ComboBoxPokemon_351.SelectedIndex = 0;
+			f_ComboBoxPokemon_352.SelectedIndex = 0;
+			f_ComboBoxPokemon_353.SelectedIndex = 0;
+		}
+
+		private void f_ButtonEncounterInfo_1_Click(object sender, EventArgs e)
+		{
+			ShowEncounterInfo(0);
+		}
+
+		private void f_ButtonEncounterInfo_2_Click(object sender, EventArgs e)
+		{
+			ShowEncounterInfo(1);
+		}
+
+		private void f_ButtonEncounterInfo_3_Click(object sender, EventArgs e)
+		{
+			ShowEncounterInfo(2);
+		}
+
+		private void f_ButtonEncounterInfo_351_Click(object sender, EventArgs e)
+		{
+			ShowEncounterInfo(3);
+		}
+
+		private void f_ButtonEncounterInfo_352_Click(object sender, EventArgs e)
+		{
+			ShowEncounterInfo(4);
+		}
+
+		private void f_ButtonEncounterInfo_353_Click(object sender, EventArgs e)
+		{
+			ShowEncounterInfo(5);
+		}
+
+		void ShowEncounterInfo(int index)
+		{
+			RaidData.Pokemon pokemon = m_PokemonInfo[index].ComboBoxName.SelectedItem as RaidData.Pokemon;
+
+			string str = pokemon.Key;
+			str += "\n-----";
+			if (pokemon.IsFixedDream)
+			{
+				str += "\n夢特性固定あり";
+			}
+
+			MessageBox.Show(str, Messages.Instance.SystemMessage["EncounterInfoDialogTitle"], MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
 		/*

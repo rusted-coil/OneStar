@@ -49,6 +49,13 @@
         "Spe",
         "LV",
     ],
+    "RankPrefix": [
+        "1★ ",
+        "2★ ",
+        "3★ ",
+        "4★ ",
+        "5★ ",
+    ],
     "SystemLabel": {
         "Tab35": "3★-5★",
         "Tab12": "1★-2★",
@@ -81,6 +88,7 @@
         "CalculateIVs": "Calculate IVs",
         "Status": "Stats.",
         "EventDen": "Event Den",
+        "Gigantamax": " (G-Max)",
     },
     "CheckIvsResult": [
         "No Good!",
@@ -112,6 +120,7 @@
         "ResultDialogTitle": "Results",
         "FindManySeeds": "Multiple possible Den Seeds were found. Check seeds.text for more details.",
         "FindManyIvs": "Multiple possible Ivs were found. Try another level.",
+        "EncounterInfoDialogTitle": "Encounter Info",
     },
     "ListLabel": {
         "Frame": "Frames",

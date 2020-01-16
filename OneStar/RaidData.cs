@@ -30,5 +30,38 @@ namespace OneStar
 				}
 			}
 		}
+
+		// 1ランク1ポケモンごとに対応するデータ
+		public class Pokemon
+		{
+			public string Key { get; private set; }
+			public int Rank { get; private set; }
+			public RaidTemplate Entry { get; private set; }
+
+			public decimal Species { get; private set; } // 個体値計算上の種族
+			public bool IsFixedDream { get; private set; }
+
+			public override string ToString() { return Key; }
+
+			public Pokemon(string key, int rank, RaidTemplate entry)
+			{
+				Key = key;
+				Rank = rank;
+				Entry = entry;
+
+				int rawSpecies = entry.Species;
+				Species = rawSpecies;
+
+				// TODO ガラル
+
+				IsFixedDream = (entry.Ability == 2);
+			}
+
+			public void Merge(RaidTemplate entry)
+			{
+				// 夢特性固定があれば上書き
+				IsFixedDream = IsFixedDream || (entry.Ability == 2);
+			}
+		}
 	}
 }

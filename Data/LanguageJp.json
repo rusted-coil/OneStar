@@ -49,6 +49,13 @@
         "S",
         "Lv",
     ],
+    "RankPrefix": [
+        "★1 ",
+        "★2 ",
+        "★3 ",
+        "★4 ",
+        "★5 ",
+    ],
     "SystemLabel": {
         "Tab35": "★3～5",
         "Tab12": "★1～2",
@@ -81,6 +88,7 @@
         "CalculateIVs": "<- 計算",
         "Status": "ステータス：",
         "EventDen": "イベントレイド",
+        "Gigantamax": "（キョダイ）",
     },
     "CheckIvsResult": [
         "NG！",
@@ -112,6 +120,7 @@
         "ResultDialogTitle": "結果",
         "FindManySeeds": "複数のDen Seedが見つかりました。\n全ての候補はseeds.txtをご確認ください。",
         "FindManyIvs": "個体値を絞り込めなかったステータスがあります。\n他のレベルで計算してみてください。",
+        "EncounterInfoDialogTitle": "レイド情報",
     },
     "ListLabel": {
         "Frame": "消費数",
