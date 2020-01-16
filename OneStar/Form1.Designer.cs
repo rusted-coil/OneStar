@@ -31,6 +31,7 @@
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.f_GroupBoxPokemon_1 = new System.Windows.Forms.GroupBox();
+			this.f_CheckBoxEventDen = new System.Windows.Forms.CheckBox();
 			this.f_ComboBoxCharacteristic_1 = new System.Windows.Forms.ComboBox();
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.f_LabelStatus_1 = new System.Windows.Forms.Label();
@@ -247,6 +248,45 @@
 			this.f_LabelIvs_351 = new System.Windows.Forms.Label();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.f_TabPage2 = new System.Windows.Forms.TabPage();
+			this.f_GroupBoxPokemon_3 = new System.Windows.Forms.GroupBox();
+			this.f_ComboBoxCharacteristic_3 = new System.Windows.Forms.ComboBox();
+			this.panel6 = new System.Windows.Forms.Panel();
+			this.f_LabelStatus_3 = new System.Windows.Forms.Label();
+			this.f_TextBoxStatus5_3 = new System.Windows.Forms.TextBox();
+			this.f_ButtonIvsCalc_3 = new System.Windows.Forms.Button();
+			this.f_LabelStatus25_3 = new System.Windows.Forms.Label();
+			this.f_LabelPokemon_3 = new System.Windows.Forms.Label();
+			this.f_TextBoxStatus4_3 = new System.Windows.Forms.TextBox();
+			this.f_LabelLevel_3 = new System.Windows.Forms.Label();
+			this.f_LabelStatus24_3 = new System.Windows.Forms.Label();
+			this.f_TextBoxLevel_3 = new System.Windows.Forms.TextBox();
+			this.f_TextBoxStatus3_3 = new System.Windows.Forms.TextBox();
+			this.f_ComboBoxPokemon_3 = new System.Windows.Forms.ComboBox();
+			this.f_LabelStatus23_3 = new System.Windows.Forms.Label();
+			this.f_TextBoxStatus2_3 = new System.Windows.Forms.TextBox();
+			this.f_LabelStatus22_3 = new System.Windows.Forms.Label();
+			this.f_TextBoxStatus1_3 = new System.Windows.Forms.TextBox();
+			this.f_LabelStatus21_3 = new System.Windows.Forms.Label();
+			this.f_TextBoxStatus0_3 = new System.Windows.Forms.TextBox();
+			this.f_LabelStatus20_3 = new System.Windows.Forms.Label();
+			this.f_CheckBoxDream_3 = new System.Windows.Forms.CheckBox();
+			this.f_CheckBoxNoGender_3 = new System.Windows.Forms.CheckBox();
+			this.f_ComboBoxAbility_3 = new System.Windows.Forms.ComboBox();
+			this.f_LabelNature_3 = new System.Windows.Forms.Label();
+			this.f_ComboBoxNature_3 = new System.Windows.Forms.ComboBox();
+			this.f_TextBoxIv5_3 = new System.Windows.Forms.TextBox();
+			this.f_LabelStatus5_3 = new System.Windows.Forms.Label();
+			this.f_TextBoxIv4_3 = new System.Windows.Forms.TextBox();
+			this.f_LabelStatus4_3 = new System.Windows.Forms.Label();
+			this.f_TextBoxIv3_3 = new System.Windows.Forms.TextBox();
+			this.f_LabelStatus3_3 = new System.Windows.Forms.Label();
+			this.f_TextBoxIv2_3 = new System.Windows.Forms.TextBox();
+			this.f_LabelStatus2_3 = new System.Windows.Forms.Label();
+			this.f_TextBoxIv1_3 = new System.Windows.Forms.TextBox();
+			this.f_LabelStatus1_3 = new System.Windows.Forms.Label();
+			this.f_TextBoxIv0_3 = new System.Windows.Forms.TextBox();
+			this.f_LabelStatus0_3 = new System.Windows.Forms.Label();
+			this.f_LabelIvs_3 = new System.Windows.Forms.Label();
 			this.f_TabPage3 = new System.Windows.Forms.TabPage();
 			this.f_LabelRerolls = new System.Windows.Forms.Label();
 			this.f_TextBoxRerollsLower = new System.Windows.Forms.TextBox();
@@ -260,7 +300,7 @@
 			this.f_MenuItemLanguageZh_TW = new System.Windows.Forms.ToolStripMenuItem();
 			this.f_LabelRerollsRange = new System.Windows.Forms.Label();
 			this.f_TextBoxRerollsUpper = new System.Windows.Forms.TextBox();
-			this.f_CheckBoxEventDen = new System.Windows.Forms.CheckBox();
+			this.f_CheckBoxThirdEnable = new System.Windows.Forms.CheckBox();
 			this.f_GroupBoxPokemon_1.SuspendLayout();
 			this.panel4.SuspendLayout();
 			this.f_GroupBoxPokemon_2.SuspendLayout();
@@ -273,6 +313,8 @@
 			this.f_GroupBoxPokemon_352.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			this.f_TabPage2.SuspendLayout();
+			this.f_GroupBoxPokemon_3.SuspendLayout();
+			this.panel6.SuspendLayout();
 			this.f_TabPage3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
 			this.menuStrip1.SuspendLayout();
@@ -307,6 +349,17 @@
 			this.f_GroupBoxPokemon_1.TabIndex = 0;
 			this.f_GroupBoxPokemon_1.TabStop = false;
 			this.f_GroupBoxPokemon_1.Text = "1匹目";
+			// 
+			// f_CheckBoxEventDen
+			// 
+			this.f_CheckBoxEventDen.AutoSize = true;
+			this.f_CheckBoxEventDen.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_CheckBoxEventDen.Location = new System.Drawing.Point(119, 25);
+			this.f_CheckBoxEventDen.Name = "f_CheckBoxEventDen";
+			this.f_CheckBoxEventDen.Size = new System.Drawing.Size(87, 16);
+			this.f_CheckBoxEventDen.TabIndex = 1;
+			this.f_CheckBoxEventDen.Text = "イベントレイド";
+			this.f_CheckBoxEventDen.UseVisualStyleBackColor = true;
 			// 
 			// f_ComboBoxCharacteristic_1
 			// 
@@ -2559,6 +2612,8 @@
 			// 
 			// f_TabPage2
 			// 
+			this.f_TabPage2.Controls.Add(this.f_CheckBoxThirdEnable);
+			this.f_TabPage2.Controls.Add(this.f_GroupBoxPokemon_3);
 			this.f_TabPage2.Controls.Add(this.f_GroupBoxPokemon_2);
 			this.f_TabPage2.Controls.Add(this.f_GroupBoxPokemon_1);
 			this.f_TabPage2.Location = new System.Drawing.Point(4, 22);
@@ -2568,6 +2623,417 @@
 			this.f_TabPage2.TabIndex = 1;
 			this.f_TabPage2.Text = "★1～2";
 			this.f_TabPage2.UseVisualStyleBackColor = true;
+			// 
+			// f_GroupBoxPokemon_3
+			// 
+			this.f_GroupBoxPokemon_3.Controls.Add(this.f_ComboBoxCharacteristic_3);
+			this.f_GroupBoxPokemon_3.Controls.Add(this.panel6);
+			this.f_GroupBoxPokemon_3.Controls.Add(this.f_CheckBoxDream_3);
+			this.f_GroupBoxPokemon_3.Controls.Add(this.f_CheckBoxNoGender_3);
+			this.f_GroupBoxPokemon_3.Controls.Add(this.f_ComboBoxAbility_3);
+			this.f_GroupBoxPokemon_3.Controls.Add(this.f_LabelNature_3);
+			this.f_GroupBoxPokemon_3.Controls.Add(this.f_ComboBoxNature_3);
+			this.f_GroupBoxPokemon_3.Controls.Add(this.f_TextBoxIv5_3);
+			this.f_GroupBoxPokemon_3.Controls.Add(this.f_LabelStatus5_3);
+			this.f_GroupBoxPokemon_3.Controls.Add(this.f_TextBoxIv4_3);
+			this.f_GroupBoxPokemon_3.Controls.Add(this.f_LabelStatus4_3);
+			this.f_GroupBoxPokemon_3.Controls.Add(this.f_TextBoxIv3_3);
+			this.f_GroupBoxPokemon_3.Controls.Add(this.f_LabelStatus3_3);
+			this.f_GroupBoxPokemon_3.Controls.Add(this.f_TextBoxIv2_3);
+			this.f_GroupBoxPokemon_3.Controls.Add(this.f_LabelStatus2_3);
+			this.f_GroupBoxPokemon_3.Controls.Add(this.f_TextBoxIv1_3);
+			this.f_GroupBoxPokemon_3.Controls.Add(this.f_LabelStatus1_3);
+			this.f_GroupBoxPokemon_3.Controls.Add(this.f_TextBoxIv0_3);
+			this.f_GroupBoxPokemon_3.Controls.Add(this.f_LabelStatus0_3);
+			this.f_GroupBoxPokemon_3.Controls.Add(this.f_LabelIvs_3);
+			this.f_GroupBoxPokemon_3.Enabled = false;
+			this.f_GroupBoxPokemon_3.Location = new System.Drawing.Point(12, 354);
+			this.f_GroupBoxPokemon_3.Name = "f_GroupBoxPokemon_3";
+			this.f_GroupBoxPokemon_3.Size = new System.Drawing.Size(563, 167);
+			this.f_GroupBoxPokemon_3.TabIndex = 3;
+			this.f_GroupBoxPokemon_3.TabStop = false;
+			// 
+			// f_ComboBoxCharacteristic_3
+			// 
+			this.f_ComboBoxCharacteristic_3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.f_ComboBoxCharacteristic_3.FormattingEnabled = true;
+			this.f_ComboBoxCharacteristic_3.Location = new System.Drawing.Point(139, 132);
+			this.f_ComboBoxCharacteristic_3.Name = "f_ComboBoxCharacteristic_3";
+			this.f_ComboBoxCharacteristic_3.Size = new System.Drawing.Size(125, 20);
+			this.f_ComboBoxCharacteristic_3.Sorted = true;
+			this.f_ComboBoxCharacteristic_3.TabIndex = 8;
+			// 
+			// panel6
+			// 
+			this.panel6.BackColor = System.Drawing.Color.LightCyan;
+			this.panel6.Controls.Add(this.f_LabelStatus_3);
+			this.panel6.Controls.Add(this.f_TextBoxStatus5_3);
+			this.panel6.Controls.Add(this.f_ButtonIvsCalc_3);
+			this.panel6.Controls.Add(this.f_LabelStatus25_3);
+			this.panel6.Controls.Add(this.f_LabelPokemon_3);
+			this.panel6.Controls.Add(this.f_TextBoxStatus4_3);
+			this.panel6.Controls.Add(this.f_LabelLevel_3);
+			this.panel6.Controls.Add(this.f_LabelStatus24_3);
+			this.panel6.Controls.Add(this.f_TextBoxLevel_3);
+			this.panel6.Controls.Add(this.f_TextBoxStatus3_3);
+			this.panel6.Controls.Add(this.f_ComboBoxPokemon_3);
+			this.panel6.Controls.Add(this.f_LabelStatus23_3);
+			this.panel6.Controls.Add(this.f_TextBoxStatus2_3);
+			this.panel6.Controls.Add(this.f_LabelStatus22_3);
+			this.panel6.Controls.Add(this.f_TextBoxStatus1_3);
+			this.panel6.Controls.Add(this.f_LabelStatus21_3);
+			this.panel6.Controls.Add(this.f_TextBoxStatus0_3);
+			this.panel6.Controls.Add(this.f_LabelStatus20_3);
+			this.panel6.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+			this.panel6.Location = new System.Drawing.Point(210, 19);
+			this.panel6.Name = "panel6";
+			this.panel6.Size = new System.Drawing.Size(347, 105);
+			this.panel6.TabIndex = 11;
+			// 
+			// f_LabelStatus_3
+			// 
+			this.f_LabelStatus_3.AutoSize = true;
+			this.f_LabelStatus_3.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelStatus_3.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus_3.Location = new System.Drawing.Point(75, 60);
+			this.f_LabelStatus_3.Name = "f_LabelStatus_3";
+			this.f_LabelStatus_3.Size = new System.Drawing.Size(56, 12);
+			this.f_LabelStatus_3.TabIndex = 78;
+			this.f_LabelStatus_3.Text = "ステータス：";
+			// 
+			// f_TextBoxStatus5_3
+			// 
+			this.f_TextBoxStatus5_3.Location = new System.Drawing.Point(238, 82);
+			this.f_TextBoxStatus5_3.MaxLength = 3;
+			this.f_TextBoxStatus5_3.Name = "f_TextBoxStatus5_3";
+			this.f_TextBoxStatus5_3.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxStatus5_3.TabIndex = 7;
+			// 
+			// f_ButtonIvsCalc_3
+			// 
+			this.f_ButtonIvsCalc_3.BackColor = System.Drawing.Color.Transparent;
+			this.f_ButtonIvsCalc_3.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_ButtonIvsCalc_3.Location = new System.Drawing.Point(9, 47);
+			this.f_ButtonIvsCalc_3.Name = "f_ButtonIvsCalc_3";
+			this.f_ButtonIvsCalc_3.Size = new System.Drawing.Size(56, 39);
+			this.f_ButtonIvsCalc_3.TabIndex = 8;
+			this.f_ButtonIvsCalc_3.Text = "<- 計算";
+			this.f_ButtonIvsCalc_3.UseVisualStyleBackColor = false;
+			this.f_ButtonIvsCalc_3.Click += new System.EventHandler(this.f_ButtonIvsCalc_3_Click);
+			// 
+			// f_LabelStatus25_3
+			// 
+			this.f_LabelStatus25_3.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelStatus25_3.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus25_3.Location = new System.Drawing.Point(206, 85);
+			this.f_LabelStatus25_3.Name = "f_LabelStatus25_3";
+			this.f_LabelStatus25_3.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelStatus25_3.TabIndex = 77;
+			this.f_LabelStatus25_3.Text = "S";
+			this.f_LabelStatus25_3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_LabelPokemon_3
+			// 
+			this.f_LabelPokemon_3.AutoSize = true;
+			this.f_LabelPokemon_3.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelPokemon_3.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelPokemon_3.Location = new System.Drawing.Point(76, 7);
+			this.f_LabelPokemon_3.Name = "f_LabelPokemon_3";
+			this.f_LabelPokemon_3.Size = new System.Drawing.Size(48, 12);
+			this.f_LabelPokemon_3.TabIndex = 70;
+			this.f_LabelPokemon_3.Text = "ポケモン：";
+			// 
+			// f_TextBoxStatus4_3
+			// 
+			this.f_TextBoxStatus4_3.Location = new System.Drawing.Point(238, 57);
+			this.f_TextBoxStatus4_3.MaxLength = 3;
+			this.f_TextBoxStatus4_3.Name = "f_TextBoxStatus4_3";
+			this.f_TextBoxStatus4_3.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxStatus4_3.TabIndex = 6;
+			// 
+			// f_LabelLevel_3
+			// 
+			this.f_LabelLevel_3.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelLevel_3.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelLevel_3.Location = new System.Drawing.Point(270, 7);
+			this.f_LabelLevel_3.Name = "f_LabelLevel_3";
+			this.f_LabelLevel_3.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelLevel_3.TabIndex = 71;
+			this.f_LabelLevel_3.Text = "Lv";
+			this.f_LabelLevel_3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_LabelStatus24_3
+			// 
+			this.f_LabelStatus24_3.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelStatus24_3.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus24_3.Location = new System.Drawing.Point(206, 60);
+			this.f_LabelStatus24_3.Name = "f_LabelStatus24_3";
+			this.f_LabelStatus24_3.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelStatus24_3.TabIndex = 76;
+			this.f_LabelStatus24_3.Text = "D";
+			this.f_LabelStatus24_3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_TextBoxLevel_3
+			// 
+			this.f_TextBoxLevel_3.Location = new System.Drawing.Point(303, 4);
+			this.f_TextBoxLevel_3.MaxLength = 3;
+			this.f_TextBoxLevel_3.Name = "f_TextBoxLevel_3";
+			this.f_TextBoxLevel_3.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxLevel_3.TabIndex = 1;
+			// 
+			// f_TextBoxStatus3_3
+			// 
+			this.f_TextBoxStatus3_3.Location = new System.Drawing.Point(238, 32);
+			this.f_TextBoxStatus3_3.MaxLength = 3;
+			this.f_TextBoxStatus3_3.Name = "f_TextBoxStatus3_3";
+			this.f_TextBoxStatus3_3.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxStatus3_3.TabIndex = 5;
+			// 
+			// f_ComboBoxPokemon_3
+			// 
+			this.f_ComboBoxPokemon_3.Cursor = System.Windows.Forms.Cursors.Default;
+			this.f_ComboBoxPokemon_3.FormattingEnabled = true;
+			this.f_ComboBoxPokemon_3.Location = new System.Drawing.Point(137, 4);
+			this.f_ComboBoxPokemon_3.Name = "f_ComboBoxPokemon_3";
+			this.f_ComboBoxPokemon_3.Size = new System.Drawing.Size(133, 20);
+			this.f_ComboBoxPokemon_3.TabIndex = 0;
+			// 
+			// f_LabelStatus23_3
+			// 
+			this.f_LabelStatus23_3.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelStatus23_3.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus23_3.Location = new System.Drawing.Point(206, 35);
+			this.f_LabelStatus23_3.Name = "f_LabelStatus23_3";
+			this.f_LabelStatus23_3.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelStatus23_3.TabIndex = 75;
+			this.f_LabelStatus23_3.Text = "C";
+			this.f_LabelStatus23_3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_TextBoxStatus2_3
+			// 
+			this.f_TextBoxStatus2_3.Location = new System.Drawing.Point(158, 82);
+			this.f_TextBoxStatus2_3.MaxLength = 3;
+			this.f_TextBoxStatus2_3.Name = "f_TextBoxStatus2_3";
+			this.f_TextBoxStatus2_3.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxStatus2_3.TabIndex = 4;
+			// 
+			// f_LabelStatus22_3
+			// 
+			this.f_LabelStatus22_3.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelStatus22_3.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus22_3.Location = new System.Drawing.Point(126, 85);
+			this.f_LabelStatus22_3.Name = "f_LabelStatus22_3";
+			this.f_LabelStatus22_3.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelStatus22_3.TabIndex = 74;
+			this.f_LabelStatus22_3.Text = "B";
+			this.f_LabelStatus22_3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_TextBoxStatus1_3
+			// 
+			this.f_TextBoxStatus1_3.Location = new System.Drawing.Point(158, 57);
+			this.f_TextBoxStatus1_3.MaxLength = 3;
+			this.f_TextBoxStatus1_3.Name = "f_TextBoxStatus1_3";
+			this.f_TextBoxStatus1_3.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxStatus1_3.TabIndex = 3;
+			// 
+			// f_LabelStatus21_3
+			// 
+			this.f_LabelStatus21_3.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelStatus21_3.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus21_3.Location = new System.Drawing.Point(126, 60);
+			this.f_LabelStatus21_3.Name = "f_LabelStatus21_3";
+			this.f_LabelStatus21_3.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelStatus21_3.TabIndex = 73;
+			this.f_LabelStatus21_3.Text = "A";
+			this.f_LabelStatus21_3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_TextBoxStatus0_3
+			// 
+			this.f_TextBoxStatus0_3.Location = new System.Drawing.Point(158, 32);
+			this.f_TextBoxStatus0_3.MaxLength = 3;
+			this.f_TextBoxStatus0_3.Name = "f_TextBoxStatus0_3";
+			this.f_TextBoxStatus0_3.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxStatus0_3.TabIndex = 2;
+			// 
+			// f_LabelStatus20_3
+			// 
+			this.f_LabelStatus20_3.BackColor = System.Drawing.Color.LightCyan;
+			this.f_LabelStatus20_3.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus20_3.Location = new System.Drawing.Point(126, 35);
+			this.f_LabelStatus20_3.Name = "f_LabelStatus20_3";
+			this.f_LabelStatus20_3.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelStatus20_3.TabIndex = 72;
+			this.f_LabelStatus20_3.Text = "H";
+			this.f_LabelStatus20_3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_CheckBoxDream_3
+			// 
+			this.f_CheckBoxDream_3.AutoSize = true;
+			this.f_CheckBoxDream_3.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_CheckBoxDream_3.Location = new System.Drawing.Point(8, 25);
+			this.f_CheckBoxDream_3.Name = "f_CheckBoxDream_3";
+			this.f_CheckBoxDream_3.Size = new System.Drawing.Size(78, 16);
+			this.f_CheckBoxDream_3.TabIndex = 0;
+			this.f_CheckBoxDream_3.Text = "夢特性あり";
+			this.f_CheckBoxDream_3.UseVisualStyleBackColor = true;
+			// 
+			// f_CheckBoxNoGender_3
+			// 
+			this.f_CheckBoxNoGender_3.AutoSize = true;
+			this.f_CheckBoxNoGender_3.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_CheckBoxNoGender_3.Location = new System.Drawing.Point(405, 135);
+			this.f_CheckBoxNoGender_3.Name = "f_CheckBoxNoGender_3";
+			this.f_CheckBoxNoGender_3.Size = new System.Drawing.Size(102, 16);
+			this.f_CheckBoxNoGender_3.TabIndex = 10;
+			this.f_CheckBoxNoGender_3.Text = "性別固定/不明";
+			this.f_CheckBoxNoGender_3.UseVisualStyleBackColor = true;
+			// 
+			// f_ComboBoxAbility_3
+			// 
+			this.f_ComboBoxAbility_3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.f_ComboBoxAbility_3.FormattingEnabled = true;
+			this.f_ComboBoxAbility_3.Location = new System.Drawing.Point(284, 132);
+			this.f_ComboBoxAbility_3.Name = "f_ComboBoxAbility_3";
+			this.f_ComboBoxAbility_3.Size = new System.Drawing.Size(108, 20);
+			this.f_ComboBoxAbility_3.TabIndex = 9;
+			// 
+			// f_LabelNature_3
+			// 
+			this.f_LabelNature_3.AutoSize = true;
+			this.f_LabelNature_3.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelNature_3.Location = new System.Drawing.Point(6, 135);
+			this.f_LabelNature_3.Name = "f_LabelNature_3";
+			this.f_LabelNature_3.Size = new System.Drawing.Size(35, 12);
+			this.f_LabelNature_3.TabIndex = 14;
+			this.f_LabelNature_3.Text = "性格：";
+			// 
+			// f_ComboBoxNature_3
+			// 
+			this.f_ComboBoxNature_3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.f_ComboBoxNature_3.FormattingEnabled = true;
+			this.f_ComboBoxNature_3.Location = new System.Drawing.Point(47, 132);
+			this.f_ComboBoxNature_3.Name = "f_ComboBoxNature_3";
+			this.f_ComboBoxNature_3.Size = new System.Drawing.Size(74, 20);
+			this.f_ComboBoxNature_3.Sorted = true;
+			this.f_ComboBoxNature_3.TabIndex = 7;
+			// 
+			// f_TextBoxIv5_3
+			// 
+			this.f_TextBoxIv5_3.Location = new System.Drawing.Point(163, 101);
+			this.f_TextBoxIv5_3.MaxLength = 2;
+			this.f_TextBoxIv5_3.Name = "f_TextBoxIv5_3";
+			this.f_TextBoxIv5_3.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxIv5_3.TabIndex = 6;
+			// 
+			// f_LabelStatus5_3
+			// 
+			this.f_LabelStatus5_3.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus5_3.Location = new System.Drawing.Point(131, 104);
+			this.f_LabelStatus5_3.Name = "f_LabelStatus5_3";
+			this.f_LabelStatus5_3.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelStatus5_3.TabIndex = 11;
+			this.f_LabelStatus5_3.Text = "S";
+			this.f_LabelStatus5_3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_TextBoxIv4_3
+			// 
+			this.f_TextBoxIv4_3.Location = new System.Drawing.Point(163, 76);
+			this.f_TextBoxIv4_3.MaxLength = 2;
+			this.f_TextBoxIv4_3.Name = "f_TextBoxIv4_3";
+			this.f_TextBoxIv4_3.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxIv4_3.TabIndex = 5;
+			// 
+			// f_LabelStatus4_3
+			// 
+			this.f_LabelStatus4_3.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus4_3.Location = new System.Drawing.Point(131, 79);
+			this.f_LabelStatus4_3.Name = "f_LabelStatus4_3";
+			this.f_LabelStatus4_3.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelStatus4_3.TabIndex = 9;
+			this.f_LabelStatus4_3.Text = "D";
+			this.f_LabelStatus4_3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_TextBoxIv3_3
+			// 
+			this.f_TextBoxIv3_3.Location = new System.Drawing.Point(163, 51);
+			this.f_TextBoxIv3_3.MaxLength = 2;
+			this.f_TextBoxIv3_3.Name = "f_TextBoxIv3_3";
+			this.f_TextBoxIv3_3.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxIv3_3.TabIndex = 4;
+			// 
+			// f_LabelStatus3_3
+			// 
+			this.f_LabelStatus3_3.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus3_3.Location = new System.Drawing.Point(131, 54);
+			this.f_LabelStatus3_3.Name = "f_LabelStatus3_3";
+			this.f_LabelStatus3_3.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelStatus3_3.TabIndex = 7;
+			this.f_LabelStatus3_3.Text = "C";
+			this.f_LabelStatus3_3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_TextBoxIv2_3
+			// 
+			this.f_TextBoxIv2_3.Location = new System.Drawing.Point(83, 101);
+			this.f_TextBoxIv2_3.MaxLength = 2;
+			this.f_TextBoxIv2_3.Name = "f_TextBoxIv2_3";
+			this.f_TextBoxIv2_3.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxIv2_3.TabIndex = 3;
+			// 
+			// f_LabelStatus2_3
+			// 
+			this.f_LabelStatus2_3.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus2_3.Location = new System.Drawing.Point(51, 104);
+			this.f_LabelStatus2_3.Name = "f_LabelStatus2_3";
+			this.f_LabelStatus2_3.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelStatus2_3.TabIndex = 5;
+			this.f_LabelStatus2_3.Text = "B";
+			this.f_LabelStatus2_3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_TextBoxIv1_3
+			// 
+			this.f_TextBoxIv1_3.Location = new System.Drawing.Point(83, 76);
+			this.f_TextBoxIv1_3.MaxLength = 2;
+			this.f_TextBoxIv1_3.Name = "f_TextBoxIv1_3";
+			this.f_TextBoxIv1_3.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxIv1_3.TabIndex = 2;
+			// 
+			// f_LabelStatus1_3
+			// 
+			this.f_LabelStatus1_3.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus1_3.Location = new System.Drawing.Point(51, 79);
+			this.f_LabelStatus1_3.Name = "f_LabelStatus1_3";
+			this.f_LabelStatus1_3.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelStatus1_3.TabIndex = 3;
+			this.f_LabelStatus1_3.Text = "A";
+			this.f_LabelStatus1_3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_TextBoxIv0_3
+			// 
+			this.f_TextBoxIv0_3.Location = new System.Drawing.Point(83, 51);
+			this.f_TextBoxIv0_3.MaxLength = 2;
+			this.f_TextBoxIv0_3.Name = "f_TextBoxIv0_3";
+			this.f_TextBoxIv0_3.Size = new System.Drawing.Size(34, 19);
+			this.f_TextBoxIv0_3.TabIndex = 1;
+			// 
+			// f_LabelStatus0_3
+			// 
+			this.f_LabelStatus0_3.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelStatus0_3.Location = new System.Drawing.Point(51, 54);
+			this.f_LabelStatus0_3.Name = "f_LabelStatus0_3";
+			this.f_LabelStatus0_3.Size = new System.Drawing.Size(30, 12);
+			this.f_LabelStatus0_3.TabIndex = 1;
+			this.f_LabelStatus0_3.Text = "H";
+			this.f_LabelStatus0_3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// f_LabelIvs_3
+			// 
+			this.f_LabelIvs_3.AutoSize = true;
+			this.f_LabelIvs_3.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_LabelIvs_3.Location = new System.Drawing.Point(6, 79);
+			this.f_LabelIvs_3.Name = "f_LabelIvs_3";
+			this.f_LabelIvs_3.Size = new System.Drawing.Size(47, 12);
+			this.f_LabelIvs_3.TabIndex = 0;
+			this.f_LabelIvs_3.Text = "個体値：";
 			// 
 			// f_TabPage3
 			// 
@@ -2674,16 +3140,18 @@
 			this.f_TextBoxRerollsUpper.Size = new System.Drawing.Size(24, 19);
 			this.f_TextBoxRerollsUpper.TabIndex = 29;
 			// 
-			// f_CheckBoxEventDen
+			// f_CheckBoxThirdEnable
 			// 
-			this.f_CheckBoxEventDen.AutoSize = true;
-			this.f_CheckBoxEventDen.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_CheckBoxEventDen.Location = new System.Drawing.Point(119, 25);
-			this.f_CheckBoxEventDen.Name = "f_CheckBoxEventDen";
-			this.f_CheckBoxEventDen.Size = new System.Drawing.Size(87, 16);
-			this.f_CheckBoxEventDen.TabIndex = 1;
-			this.f_CheckBoxEventDen.Text = "イベントレイド";
-			this.f_CheckBoxEventDen.UseVisualStyleBackColor = true;
+			this.f_CheckBoxThirdEnable.AutoSize = true;
+			this.f_CheckBoxThirdEnable.BackColor = System.Drawing.Color.White;
+			this.f_CheckBoxThirdEnable.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_CheckBoxThirdEnable.Location = new System.Drawing.Point(21, 354);
+			this.f_CheckBoxThirdEnable.Name = "f_CheckBoxThirdEnable";
+			this.f_CheckBoxThirdEnable.Size = new System.Drawing.Size(54, 16);
+			this.f_CheckBoxThirdEnable.TabIndex = 2;
+			this.f_CheckBoxThirdEnable.Text = "3匹目";
+			this.f_CheckBoxThirdEnable.UseVisualStyleBackColor = false;
+			this.f_CheckBoxThirdEnable.CheckedChanged += new System.EventHandler(this.f_CheckBoxThirdEnable_CheckedChanged);
 			// 
 			// MainForm
 			// 
@@ -2727,6 +3195,11 @@
 			this.groupBox4.ResumeLayout(false);
 			this.groupBox4.PerformLayout();
 			this.f_TabPage2.ResumeLayout(false);
+			this.f_TabPage2.PerformLayout();
+			this.f_GroupBoxPokemon_3.ResumeLayout(false);
+			this.f_GroupBoxPokemon_3.PerformLayout();
+			this.panel6.ResumeLayout(false);
+			this.panel6.PerformLayout();
 			this.f_TabPage3.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
 			this.menuStrip1.ResumeLayout(false);
@@ -2969,5 +3442,45 @@
 		private System.Windows.Forms.TextBox f_TextBoxRerollsUpper;
 		private System.Windows.Forms.Label f_LabelRerollsRange;
 		private System.Windows.Forms.CheckBox f_CheckBoxEventDen;
+		private System.Windows.Forms.GroupBox f_GroupBoxPokemon_3;
+		private System.Windows.Forms.ComboBox f_ComboBoxCharacteristic_3;
+		private System.Windows.Forms.Panel panel6;
+		private System.Windows.Forms.Label f_LabelStatus_3;
+		private System.Windows.Forms.TextBox f_TextBoxStatus5_3;
+		private System.Windows.Forms.Button f_ButtonIvsCalc_3;
+		private System.Windows.Forms.Label f_LabelStatus25_3;
+		private System.Windows.Forms.Label f_LabelPokemon_3;
+		private System.Windows.Forms.TextBox f_TextBoxStatus4_3;
+		private System.Windows.Forms.Label f_LabelLevel_3;
+		private System.Windows.Forms.Label f_LabelStatus24_3;
+		private System.Windows.Forms.TextBox f_TextBoxLevel_3;
+		private System.Windows.Forms.TextBox f_TextBoxStatus3_3;
+		private System.Windows.Forms.ComboBox f_ComboBoxPokemon_3;
+		private System.Windows.Forms.Label f_LabelStatus23_3;
+		private System.Windows.Forms.TextBox f_TextBoxStatus2_3;
+		private System.Windows.Forms.Label f_LabelStatus22_3;
+		private System.Windows.Forms.TextBox f_TextBoxStatus1_3;
+		private System.Windows.Forms.Label f_LabelStatus21_3;
+		private System.Windows.Forms.TextBox f_TextBoxStatus0_3;
+		private System.Windows.Forms.Label f_LabelStatus20_3;
+		private System.Windows.Forms.CheckBox f_CheckBoxDream_3;
+		private System.Windows.Forms.CheckBox f_CheckBoxNoGender_3;
+		private System.Windows.Forms.ComboBox f_ComboBoxAbility_3;
+		private System.Windows.Forms.Label f_LabelNature_3;
+		private System.Windows.Forms.ComboBox f_ComboBoxNature_3;
+		private System.Windows.Forms.TextBox f_TextBoxIv5_3;
+		private System.Windows.Forms.Label f_LabelStatus5_3;
+		private System.Windows.Forms.TextBox f_TextBoxIv4_3;
+		private System.Windows.Forms.Label f_LabelStatus4_3;
+		private System.Windows.Forms.TextBox f_TextBoxIv3_3;
+		private System.Windows.Forms.Label f_LabelStatus3_3;
+		private System.Windows.Forms.TextBox f_TextBoxIv2_3;
+		private System.Windows.Forms.Label f_LabelStatus2_3;
+		private System.Windows.Forms.TextBox f_TextBoxIv1_3;
+		private System.Windows.Forms.Label f_LabelStatus1_3;
+		private System.Windows.Forms.TextBox f_TextBoxIv0_3;
+		private System.Windows.Forms.Label f_LabelStatus0_3;
+		private System.Windows.Forms.Label f_LabelIvs_3;
+		private System.Windows.Forms.CheckBox f_CheckBoxThirdEnable;
 	}
 }
