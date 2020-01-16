@@ -79,6 +79,7 @@
 		"Pokemon": "Pokemon",
 		"CalculateIVs": "Calculate IVs",
         "Status": "Stats.",
+        "EventDen": "Event Den",
 	},
 	"CheckIvsResult": [
 		"No Good！",

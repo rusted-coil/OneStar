@@ -260,6 +260,7 @@
 			this.f_MenuItemLanguageZh_TW = new System.Windows.Forms.ToolStripMenuItem();
 			this.f_LabelRerollsRange = new System.Windows.Forms.Label();
 			this.f_TextBoxRerollsUpper = new System.Windows.Forms.TextBox();
+			this.f_CheckBoxEventDen = new System.Windows.Forms.CheckBox();
 			this.f_GroupBoxPokemon_1.SuspendLayout();
 			this.panel4.SuspendLayout();
 			this.f_GroupBoxPokemon_2.SuspendLayout();
@@ -279,6 +280,7 @@
 			// 
 			// f_GroupBoxPokemon_1
 			// 
+			this.f_GroupBoxPokemon_1.Controls.Add(this.f_CheckBoxEventDen);
 			this.f_GroupBoxPokemon_1.Controls.Add(this.f_ComboBoxCharacteristic_1);
 			this.f_GroupBoxPokemon_1.Controls.Add(this.panel4);
 			this.f_GroupBoxPokemon_1.Controls.Add(this.f_CheckBoxDream_1);
@@ -314,7 +316,7 @@
 			this.f_ComboBoxCharacteristic_1.Name = "f_ComboBoxCharacteristic_1";
 			this.f_ComboBoxCharacteristic_1.Size = new System.Drawing.Size(125, 20);
 			this.f_ComboBoxCharacteristic_1.Sorted = true;
-			this.f_ComboBoxCharacteristic_1.TabIndex = 8;
+			this.f_ComboBoxCharacteristic_1.TabIndex = 9;
 			// 
 			// panel4
 			// 
@@ -341,7 +343,7 @@
 			this.panel4.Location = new System.Drawing.Point(210, 19);
 			this.panel4.Name = "panel4";
 			this.panel4.Size = new System.Drawing.Size(347, 105);
-			this.panel4.TabIndex = 11;
+			this.panel4.TabIndex = 12;
 			// 
 			// f_LabelStatus_1
 			// 
@@ -537,7 +539,7 @@
 			this.f_CheckBoxNoGender_1.Location = new System.Drawing.Point(405, 135);
 			this.f_CheckBoxNoGender_1.Name = "f_CheckBoxNoGender_1";
 			this.f_CheckBoxNoGender_1.Size = new System.Drawing.Size(102, 16);
-			this.f_CheckBoxNoGender_1.TabIndex = 10;
+			this.f_CheckBoxNoGender_1.TabIndex = 11;
 			this.f_CheckBoxNoGender_1.Text = "性別固定/不明";
 			this.f_CheckBoxNoGender_1.UseVisualStyleBackColor = true;
 			// 
@@ -548,7 +550,7 @@
 			this.f_ComboBoxAbility_1.Location = new System.Drawing.Point(284, 132);
 			this.f_ComboBoxAbility_1.Name = "f_ComboBoxAbility_1";
 			this.f_ComboBoxAbility_1.Size = new System.Drawing.Size(108, 20);
-			this.f_ComboBoxAbility_1.TabIndex = 9;
+			this.f_ComboBoxAbility_1.TabIndex = 10;
 			// 
 			// f_LabelNature_1
 			// 
@@ -568,7 +570,7 @@
 			this.f_ComboBoxNature_1.Name = "f_ComboBoxNature_1";
 			this.f_ComboBoxNature_1.Size = new System.Drawing.Size(74, 20);
 			this.f_ComboBoxNature_1.Sorted = true;
-			this.f_ComboBoxNature_1.TabIndex = 7;
+			this.f_ComboBoxNature_1.TabIndex = 8;
 			// 
 			// f_TextBoxIv5_1
 			// 
@@ -576,7 +578,7 @@
 			this.f_TextBoxIv5_1.MaxLength = 2;
 			this.f_TextBoxIv5_1.Name = "f_TextBoxIv5_1";
 			this.f_TextBoxIv5_1.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv5_1.TabIndex = 6;
+			this.f_TextBoxIv5_1.TabIndex = 7;
 			// 
 			// f_LabelStatus5_1
 			// 
@@ -594,7 +596,7 @@
 			this.f_TextBoxIv4_1.MaxLength = 2;
 			this.f_TextBoxIv4_1.Name = "f_TextBoxIv4_1";
 			this.f_TextBoxIv4_1.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv4_1.TabIndex = 5;
+			this.f_TextBoxIv4_1.TabIndex = 6;
 			// 
 			// f_LabelStatus4_1
 			// 
@@ -612,7 +614,7 @@
 			this.f_TextBoxIv3_1.MaxLength = 2;
 			this.f_TextBoxIv3_1.Name = "f_TextBoxIv3_1";
 			this.f_TextBoxIv3_1.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv3_1.TabIndex = 4;
+			this.f_TextBoxIv3_1.TabIndex = 5;
 			// 
 			// f_LabelStatus3_1
 			// 
@@ -630,7 +632,7 @@
 			this.f_TextBoxIv2_1.MaxLength = 2;
 			this.f_TextBoxIv2_1.Name = "f_TextBoxIv2_1";
 			this.f_TextBoxIv2_1.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv2_1.TabIndex = 3;
+			this.f_TextBoxIv2_1.TabIndex = 4;
 			// 
 			// f_LabelStatus2_1
 			// 
@@ -648,7 +650,7 @@
 			this.f_TextBoxIv1_1.MaxLength = 2;
 			this.f_TextBoxIv1_1.Name = "f_TextBoxIv1_1";
 			this.f_TextBoxIv1_1.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv1_1.TabIndex = 2;
+			this.f_TextBoxIv1_1.TabIndex = 3;
 			// 
 			// f_LabelStatus1_1
 			// 
@@ -666,7 +668,7 @@
 			this.f_TextBoxIv0_1.MaxLength = 2;
 			this.f_TextBoxIv0_1.Name = "f_TextBoxIv0_1";
 			this.f_TextBoxIv0_1.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv0_1.TabIndex = 1;
+			this.f_TextBoxIv0_1.TabIndex = 2;
 			// 
 			// f_LabelStatus0_1
 			// 
@@ -2672,6 +2674,17 @@
 			this.f_TextBoxRerollsUpper.Size = new System.Drawing.Size(24, 19);
 			this.f_TextBoxRerollsUpper.TabIndex = 29;
 			// 
+			// f_CheckBoxEventDen
+			// 
+			this.f_CheckBoxEventDen.AutoSize = true;
+			this.f_CheckBoxEventDen.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_CheckBoxEventDen.Location = new System.Drawing.Point(119, 25);
+			this.f_CheckBoxEventDen.Name = "f_CheckBoxEventDen";
+			this.f_CheckBoxEventDen.Size = new System.Drawing.Size(87, 16);
+			this.f_CheckBoxEventDen.TabIndex = 1;
+			this.f_CheckBoxEventDen.Text = "イベントレイド";
+			this.f_CheckBoxEventDen.UseVisualStyleBackColor = true;
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2692,7 +2705,7 @@
 			this.MainMenuStrip = this.menuStrip1;
 			this.MaximizeBox = false;
 			this.Name = "MainForm";
-			this.Text = "1-Star Seed Search v1.04";
+			this.Text = "1-Star Seed Search v1.04b";
 			this.f_GroupBoxPokemon_1.ResumeLayout(false);
 			this.f_GroupBoxPokemon_1.PerformLayout();
 			this.panel4.ResumeLayout(false);
@@ -2955,5 +2968,6 @@
 		private System.Windows.Forms.ComboBox f_ComboBoxCharacteristic_2;
 		private System.Windows.Forms.TextBox f_TextBoxRerollsUpper;
 		private System.Windows.Forms.Label f_LabelRerollsRange;
+		private System.Windows.Forms.CheckBox f_CheckBoxEventDen;
 	}
 }

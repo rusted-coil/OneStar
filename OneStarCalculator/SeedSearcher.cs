@@ -23,7 +23,7 @@ namespace OneStarCalculator
 		static extern void Prepare(int rerolls);
 
 		[DllImport("OneStarCalculatorLib.dll")]
-		public static extern void SetFirstCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, bool noGender, bool isDream);
+		public static extern void SetFirstCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, bool noGender, bool isDream, bool isEvent);
 
 		[DllImport("OneStarCalculatorLib.dll")]
 		public static extern void SetNextCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, bool noGender, bool isDream);

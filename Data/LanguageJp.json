@@ -79,6 +79,7 @@
         "Pokemon": "ポケモン：",
         "CalculateIVs": "<- 計算",
         "Status": "ステータス：",
+        "EventDen": "イベントレイド",
     },
     "CheckIvsResult": [
         "NG！",

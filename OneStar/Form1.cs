@@ -261,8 +261,6 @@ namespace OneStar
 				f_CheckBoxNoGender_353,
 				f_CheckBoxNoGender_List,
 			};
-			m_MultiLanguageControls["Pokemon35_1_2V"] = new Control[] {  };
-			m_MultiLanguageControls["Pokemon35_1_3V"] = new Control[] { };
 			m_MultiLanguageControls["Pokemon35_2"] = new Control[] { f_GroupBoxPokemon_352 };
 			m_MultiLanguageControls["Pokemon35_3"] = new Control[] { f_GroupBoxPokemon_353 };
 			m_MultiLanguageControls["Pokemon12_1"] = new Control[] { f_GroupBoxPokemon_1 };
@@ -279,6 +277,7 @@ namespace OneStar
 			m_MultiLanguageControls["Rerolls"] = new Control[] { f_LabelRerolls };
 			m_MultiLanguageControls["Range"] = new Control[] { f_LabelRerollsRange };
 			m_MultiLanguageControls["SearchStop"] = new Control[] { f_CheckBoxStop };
+			m_MultiLanguageControls["EventDen"] = new Control[] { f_CheckBoxEventDen };
 
 			// 言語を適用
 			ChangeLanguage(true, m_Preferences.Language);
@@ -546,9 +545,11 @@ namespace OneStar
 			bool isDream1 = f_CheckBoxDream_1.Checked;
 			bool isDream2 = f_CheckBoxDream_2.Checked;
 
+			bool isEvent = f_CheckBoxEventDen.Checked;
+
 			// 計算開始
 			SeedSearcher searcher = new SeedSearcher(SeedSearcher.Mode.Star12);
-			SeedSearcher.SetFirstCondition(ivs1[0], ivs1[1], ivs1[2], ivs1[3], ivs1[4], ivs1[5], ability1, nature1, noGender1, isDream1);
+			SeedSearcher.SetFirstCondition(ivs1[0], ivs1[1], ivs1[2], ivs1[3], ivs1[4], ivs1[5], ability1, nature1, noGender1, isDream1, isEvent);
 			SeedSearcher.SetNextCondition(ivs2[0], ivs2[1], ivs2[2], ivs2[3], ivs2[4], ivs2[5], ability2, nature2, noGender2, isDream2);
 
 			SearchImpl(searcher);
