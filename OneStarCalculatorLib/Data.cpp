@@ -16,9 +16,13 @@ _u64 g_SearchPattern[0x4000];
 
 _u64 l_Temp[256];
 
+bool l_isEnableECbit;
+
 // •ÏŠ·s—ñŒvZ
-void InitializeTransformationMatrix()
+void InitializeTransformationMatrix(bool isEnableECbit)
 {
+	l_isEnableECbit = isEnableECbit;
+
 	// r[0] ‚Í (C1, seed)
 	// r[1] ‚Í c_N * (C1, seed)
 

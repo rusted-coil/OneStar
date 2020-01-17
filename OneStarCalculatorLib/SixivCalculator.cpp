@@ -13,13 +13,26 @@ static int g_Ivs[6];
 
 static int g_IvOffset;
 
+static int g_ECbit; // -1は利用不可
+
 //#define LENGTH (60)
+
+inline bool IsEnableECBit()
+{
+	return g_ECbit >= 0;
+}
 
 void Set35Condition(int index, int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, int characteristic, bool isNoGender, int abilityFlag, int flawlessIvs)
 {
 	if(index < 0 || index >= 3)
 	{
 		return;
+	}
+
+	// 初期化
+	if(index == 0)
+	{
+		g_ECbit = -1;
 	}
 
 	l_Pokemon[index].ivs[0] = iv0;
@@ -34,6 +47,24 @@ void Set35Condition(int index, int iv0, int iv1, int iv2, int iv3, int iv4, int 
 	l_Pokemon[index].isNoGender = isNoGender;
 	l_Pokemon[index].abilityFlag = abilityFlag;
 	l_Pokemon[index].flawlessIvs = flawlessIvs;
+
+	// ECbitが利用できるか？
+	if(g_ECbit == -1)
+	{
+		int target = (characteristic == 0 ? 5 : characteristic - 1);
+		if(l_Pokemon[index].IsCharacterized(target))
+		{
+			// EC mod6 がcharacteristicで確定
+			if(index == 2) // NextのECbitなので反転させる
+			{
+				g_ECbit = 1 - characteristic % 2;
+			}
+			else
+			{
+				g_ECbit = characteristic % 2;
+			}
+		}
+	}
 }
 
 void SetTargetCondition6(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6)
@@ -71,7 +102,7 @@ void PrepareSix(int ivOffset)
 	// r[(11 - FixedIvs) + offset]からr[(11 - FixedIvs) + FixedIvs - 1 + offset]まで使う
 
 	// 変換行列を計算
-	InitializeTransformationMatrix(); // r[1]が得られる変換行列がセットされる
+	InitializeTransformationMatrix(IsEnableECBit()); // r[1]が得られる変換行列がセットされる
 	for(int i = 0; i <= 9 - g_FixedIvs + ivOffset; ++i)
 	{
 		ProceedTransformationMatrix(); // r[2 + i]が得られる
@@ -168,6 +199,11 @@ _u64 SearchSix(_u64 ivs)
 	for (_u64 search = 0; search <= max; ++search)
 	{
 		_u64 seed = (processedTarget ^ g_CoefficientData[search]) | g_SearchPattern[search];
+		if(g_ECbit >= 0 && ((seed & 1) != (1 - g_ECbit)))
+		{
+			continue;
+		}
+
 		_u64 nextSeed = seed + 0x82a2b175229d6a5bull;
 
 		// ここから絞り込み

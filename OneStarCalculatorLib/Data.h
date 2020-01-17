@@ -11,7 +11,7 @@ extern _u64 g_SearchPattern[0x4000];
 extern int g_FreeBit[64];
 extern int g_FreeId[64];
 
-void InitializeTransformationMatrix();
+void InitializeTransformationMatrix(bool isEnableECbit);
 void ProceedTransformationMatrix();
 _u64 GetMatrixMultiplier(int index);
 short GetMatrixConst(int index);
