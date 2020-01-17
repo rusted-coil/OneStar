@@ -105,6 +105,7 @@
 			this.f_TextBoxResultSeed = new System.Windows.Forms.TextBox();
 			this.f_ButtonListGenerate = new System.Windows.Forms.Button();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.f_ComboBoxPokemon_List = new System.Windows.Forms.ComboBox();
 			this.f_CheckBoxShowSeed = new System.Windows.Forms.CheckBox();
 			this.f_CheckBoxListShiny = new System.Windows.Forms.CheckBox();
 			this.f_TextBoxMaxFrame = new System.Windows.Forms.TextBox();
@@ -272,17 +273,16 @@
 			this.f_LabelRerollsRange = new System.Windows.Forms.Label();
 			this.f_TextBoxRerollsUpper = new System.Windows.Forms.TextBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.f_PicturePoint = new System.Windows.Forms.PictureBox();
 			this.f_ComboBoxRarity = new System.Windows.Forms.ComboBox();
 			this.f_LabelDenName = new System.Windows.Forms.Label();
 			this.f_LabelRarity = new System.Windows.Forms.Label();
+			this.DenMap = new System.Windows.Forms.PictureBox();
 			this.f_ComboBoxGameVersion = new System.Windows.Forms.ComboBox();
 			this.f_ComboBoxDenName = new System.Windows.Forms.ComboBox();
 			this.f_LabelGameVersion = new System.Windows.Forms.Label();
 			this.printDialog1 = new System.Windows.Forms.PrintDialog();
-			this.f_PicturePoint = new System.Windows.Forms.PictureBox();
-			this.DenMap = new System.Windows.Forms.PictureBox();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-			this.f_ComboBoxPokemon_List = new System.Windows.Forms.ComboBox();
 			this.f_GroupBoxPokemon_1.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			this.f_GroupBoxPokemon_2.SuspendLayout();
@@ -1095,6 +1095,16 @@
 			this.groupBox2.Size = new System.Drawing.Size(497, 162);
 			this.groupBox2.TabIndex = 0;
 			this.groupBox2.TabStop = false;
+			// 
+			// f_ComboBoxPokemon_List
+			// 
+			this.f_ComboBoxPokemon_List.Cursor = System.Windows.Forms.Cursors.Default;
+			this.f_ComboBoxPokemon_List.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.f_ComboBoxPokemon_List.FormattingEnabled = true;
+			this.f_ComboBoxPokemon_List.Location = new System.Drawing.Point(260, 18);
+			this.f_ComboBoxPokemon_List.Name = "f_ComboBoxPokemon_List";
+			this.f_ComboBoxPokemon_List.Size = new System.Drawing.Size(182, 20);
+			this.f_ComboBoxPokemon_List.TabIndex = 1;
 			// 
 			// f_CheckBoxShowSeed
 			// 
@@ -2833,6 +2843,17 @@
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			// 
+			// f_PicturePoint
+			// 
+			this.f_PicturePoint.BackColor = System.Drawing.Color.Transparent;
+			this.f_PicturePoint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+			this.f_PicturePoint.Image = global::OneStar.Properties.Resources.point;
+			this.f_PicturePoint.Location = new System.Drawing.Point(50, 147);
+			this.f_PicturePoint.Name = "f_PicturePoint";
+			this.f_PicturePoint.Size = new System.Drawing.Size(10, 10);
+			this.f_PicturePoint.TabIndex = 27;
+			this.f_PicturePoint.TabStop = false;
+			// 
 			// f_ComboBoxRarity
 			// 
 			this.f_ComboBoxRarity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -2865,6 +2886,17 @@
 			this.f_LabelRarity.Size = new System.Drawing.Size(51, 12);
 			this.f_LabelRarity.TabIndex = 26;
 			this.f_LabelRarity.Text = "柱の種類";
+			// 
+			// DenMap
+			// 
+			this.DenMap.BackgroundImage = global::OneStar.Properties.Resources.map;
+			this.DenMap.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.DenMap.Location = new System.Drawing.Point(7, 124);
+			this.DenMap.Margin = new System.Windows.Forms.Padding(2);
+			this.DenMap.Name = "DenMap";
+			this.DenMap.Size = new System.Drawing.Size(250, 581);
+			this.DenMap.TabIndex = 0;
+			this.DenMap.TabStop = false;
 			// 
 			// f_ComboBoxGameVersion
 			// 
@@ -2904,38 +2936,6 @@
 			// 
 			this.printDialog1.UseEXDialog = true;
 			// 
-			// f_PicturePoint
-			// 
-			this.f_PicturePoint.BackColor = System.Drawing.Color.Transparent;
-			this.f_PicturePoint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-			this.f_PicturePoint.Image = global::OneStar.Properties.Resources.point;
-			this.f_PicturePoint.Location = new System.Drawing.Point(50, 147);
-			this.f_PicturePoint.Name = "f_PicturePoint";
-			this.f_PicturePoint.Size = new System.Drawing.Size(10, 10);
-			this.f_PicturePoint.TabIndex = 27;
-			this.f_PicturePoint.TabStop = false;
-			// 
-			// DenMap
-			// 
-			this.DenMap.BackgroundImage = global::OneStar.Properties.Resources.map;
-			this.DenMap.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-			this.DenMap.Location = new System.Drawing.Point(7, 124);
-			this.DenMap.Margin = new System.Windows.Forms.Padding(2);
-			this.DenMap.Name = "DenMap";
-			this.DenMap.Size = new System.Drawing.Size(250, 581);
-			this.DenMap.TabIndex = 0;
-			this.DenMap.TabStop = false;
-			// 
-			// f_ComboBoxPokemon_List
-			// 
-			this.f_ComboBoxPokemon_List.Cursor = System.Windows.Forms.Cursors.Default;
-			this.f_ComboBoxPokemon_List.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.f_ComboBoxPokemon_List.FormattingEnabled = true;
-			this.f_ComboBoxPokemon_List.Location = new System.Drawing.Point(260, 18);
-			this.f_ComboBoxPokemon_List.Name = "f_ComboBoxPokemon_List";
-			this.f_ComboBoxPokemon_List.Size = new System.Drawing.Size(182, 20);
-			this.f_ComboBoxPokemon_List.TabIndex = 1;
-			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2957,7 +2957,7 @@
 			this.MainMenuStrip = this.menuStrip1;
 			this.MaximizeBox = false;
 			this.Name = "MainForm";
-			this.Text = "1-Star Seed Search v1.05";
+			this.Text = "1-Star Seed Search v1.05b";
 			this.f_GroupBoxPokemon_1.ResumeLayout(false);
 			this.f_GroupBoxPokemon_1.PerformLayout();
 			this.groupBox3.ResumeLayout(false);

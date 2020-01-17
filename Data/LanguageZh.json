@@ -102,6 +102,8 @@
 		"DialogTitle": "错误",
 		"IvsFormat": "个体值必须在0到31之间",
 		"IvsStrict1": "第一只怪至少1V",
+		"IvsStrict351_3V": "第4只怪-3V搜索模式下，第一个框的怪必须固定3V",
+		"IvsStrict351_2V": "第4只怪-2V搜索模式下，第一个框的怪必须固定2V",
         "IvsStrict": "The number of IV of 31 is wrong.",
 		"NotSearchTab": "请打开搜索界面再点击搜索",
 		"NotFound": "计算失败! 请尝试调整个体值误差范围",

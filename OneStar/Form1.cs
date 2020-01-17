@@ -605,6 +605,12 @@ namespace OneStar
 			string errorText = "";
 
 			// フォームから必要な情報を取得
+			RaidData.Pokemon[] pokemonData = new RaidData.Pokemon[3];
+			for (int i = 0; i < 3; ++i)
+			{
+				pokemonData[i] = m_PokemonInfo[3 + i].ComboBoxName.SelectedItem as RaidData.Pokemon;
+			}
+
 			int[] ivs = new int[18];
 			for (int i = 0; i < 18; ++i)
 			{
@@ -632,131 +638,128 @@ namespace OneStar
 				return;
 			}
 
-			// 1匹目はVが2or3箇所じゃないとエラー
+			// V箇所が足りなかったらエラー
 			int strict = (Get35Mode() == Star35PanelMode.From3V ? 3 : 2);
-			int c = 0;
-			for (int i = 0; i < 6; ++i)
+			for (int a = 0; a < 3; ++a)
 			{
-				if (ivs[i] == 31)
+				int c = 0;
+				for (int b = 0; b < 6; ++b)
 				{
-					++c;
-				}
-			}
-			if (c != strict)
-			{
-				// エラー
-				if (strict == 3)
-				{
-					CreateErrorDialog(Messages.Instance.ErrorMessage["IvsStrict351_3V"]);
-					return;
-				}
-				else
-				{
-					CreateErrorDialog(Messages.Instance.ErrorMessage["IvsStrict351_2V"]);
-					return;
-				}
-			}
-
-			int ability1 = f_ComboBoxAbility_351.SelectedIndex;
-			int ability2 = f_ComboBoxAbility_352.SelectedIndex;
-			int ability3 = f_ComboBoxAbility_353.SelectedIndex;
-			if (ability1 >= 2) { ability1 = ability1 * 3 - 7; }
-			if (ability2 >= 2) { ability2 = ability2 * 3 - 7; }
-			if (ability3 >= 2) { ability3 = ability3 * 3 - 7; }
-			int nature1 = Messages.Instance.Nature[m_PokemonInfo[3].ComboBoxNature.Text];
-			int nature2 = Messages.Instance.Nature[m_PokemonInfo[4].ComboBoxNature.Text];
-			int nature3 = Messages.Instance.Nature[m_PokemonInfo[5].ComboBoxNature.Text];
-
-			var pokemonData1 = m_PokemonInfo[3].ComboBoxName.SelectedItem as RaidData.Pokemon;
-			var pokemonData2 = m_PokemonInfo[4].ComboBoxName.SelectedItem as RaidData.Pokemon;
-			var pokemonData3 = m_PokemonInfo[5].ComboBoxName.SelectedItem as RaidData.Pokemon;
-
-			bool noGender1 = pokemonData1.IsFixedGender;
-			bool noGender2 = pokemonData2.IsFixedGender;
-			bool noGender3 = pokemonData3.IsFixedGender;
-
-			int abilityFlag1 = pokemonData1.Ability;
-			int abilityFlag2 = pokemonData2.Ability;
-			int abilityFlag3 = pokemonData3.Ability;
-
-			int characteristic1 = Messages.Instance.Characteristic[m_PokemonInfo[3].ComboBoxCharacteristic.Text];
-			int characteristic2 = Messages.Instance.Characteristic[m_PokemonInfo[4].ComboBoxCharacteristic.Text];
-			int characteristic3 = Messages.Instance.Characteristic[m_PokemonInfo[5].ComboBoxCharacteristic.Text];
-
-			var mode = Get35Mode();
-
-			// 計算開始
-			SeedSearcher searcher = new SeedSearcher(mode == Star35PanelMode.From2V ? SeedSearcher.Mode.Star35_6 : SeedSearcher.Mode.Star35_5);
-			SeedSearcher.Set35Condition(0, ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5], ability1, nature1, characteristic1, noGender1, abilityFlag1, pokemonData1.FlawlessIvs);
-			SeedSearcher.Set35Condition(1, ivs[6], ivs[7], ivs[8], ivs[9], ivs[10], ivs[11], ability2, nature2, characteristic2, noGender2, abilityFlag2, pokemonData2.FlawlessIvs);
-			SeedSearcher.Set35Condition(2, ivs[12], ivs[13], ivs[14], ivs[15], ivs[16], ivs[17], ability3, nature3, characteristic3, noGender3, abilityFlag3, pokemonData3.FlawlessIvs);
-
-			int vCount = 0;
-			for (int i = 0; i < 6; ++i)
-			{
-				if (ivs[6 + i] == 31)
-				{
-					++vCount;
-				}
-			}
-			// 3V+自然発生の4Vは考慮しない
-			if (vCount > 4)
-			{
-				vCount = 4;
-			}
-			// 遺伝箇所チェック
-			bool[] vFlag = { false, false, false, false, false, false };
-			for (int i = 0; i < 6; ++i)
-			{
-				if (ivs[i] == 31)
-				{
-					vFlag[i] = true;
-				}
-			}
-			c = (mode == Star35PanelMode.From3V ? 3 : 2);
-			int[] conditionIv = new int[6];
-			int cursor = 0;
-			for (int i = 0; i < 6; ++i)
-			{
-				if (ivs[i] != 31)
-				{
-					conditionIv[cursor++] = ivs[i];
-					int vPos = ivs[i] % 8;
-					if (vPos < 6 && vFlag[vPos] == false)
+					if (ivs[a * 6 + b] == 31)
 					{
-						vFlag[vPos] = true;
 						++c;
-						if (c == vCount) // 遺伝終わり
+					}
+				}
+				// 1匹目はVが2or3箇所じゃないとエラー
+				if (a == 0 && c != strict)
+				{
+					// エラー
+					if (strict == 3)
+					{
+						CreateErrorDialog(Messages.Instance.ErrorMessage["IvsStrict351_3V"]);
+						return;
+					}
+					else
+					{
+						CreateErrorDialog(Messages.Instance.ErrorMessage["IvsStrict351_2V"]);
+						return;
+					}
+				}
+				if (c < pokemonData[a].FlawlessIvs)
+				{
+					// エラー
+					CreateErrorDialog(Messages.Instance.ErrorMessage["IvsStrict"]);
+					return;
+				}
+			}
+
+			// 計算準備
+			var mode = Get35Mode();
+			SeedSearcher searcher = new SeedSearcher(mode == Star35PanelMode.From2V ? SeedSearcher.Mode.Star35_6 : SeedSearcher.Mode.Star35_5);
+
+			// 条件をセット
+			for (int i = 0; i < 3; ++i)
+			{
+				var pokemonInfo = m_PokemonInfo[3 + i];
+				var pokemon = pokemonData[i];
+
+				int ability = pokemonInfo.ComboBoxAbility.SelectedIndex;
+				if (ability >= 2) { ability = ability * 3 - 7; }
+				int nature = Messages.Instance.Nature[pokemonInfo.ComboBoxNature.Text];
+				bool noGender = pokemon.IsFixedGender;
+				int abilityFlag = pokemon.Ability;
+				int characteristic = Messages.Instance.Characteristic[pokemonInfo.ComboBoxCharacteristic.Text];
+				int flawlessIvs = pokemon.FlawlessIvs;
+
+				SeedSearcher.Set35Condition(
+					i,
+					ivs[i * 6],
+					ivs[i * 6 + 1],
+					ivs[i * 6 + 2],
+					ivs[i * 6 + 3],
+					ivs[i * 6 + 4],
+					ivs[i * 6 + 5],
+					ability, nature, characteristic, noGender, abilityFlag, flawlessIvs);
+			}
+
+			// 遺伝箇所チェック
+			{
+				int vCount = pokemonData[1].FlawlessIvs;
+
+				bool[] vFlag = { false, false, false, false, false, false };
+				for (int i = 0; i < 6; ++i)
+				{
+					if (ivs[i] == 31)
+					{
+						vFlag[i] = true;
+					}
+				}
+				int c = (mode == Star35PanelMode.From3V ? 3 : 2);
+				int[] conditionIv = new int[6];
+				int cursor = 0;
+				for (int i = 0; i < 6; ++i)
+				{
+					if (ivs[i] != 31)
+					{
+						conditionIv[cursor++] = ivs[i];
+						int vPos = ivs[i] % 8;
+						if (vPos < 6 && vFlag[vPos] == false)
+						{
+							vFlag[vPos] = true;
+							++c;
+							if (c == vCount) // 遺伝終わり
+							{
+								break;
+							}
+						}
+					}
+				}
+
+				// 条件ベクトルを求める
+				c = 0;
+				for (int i = 0; i < 6; ++i)
+				{
+					if (vFlag[i] == false)
+					{
+						conditionIv[cursor++] = ivs[i + 6];
+						if (cursor == 6)
 						{
 							break;
 						}
 					}
 				}
-			}
 
-			// 条件ベクトルを求める
-			c = 0;
-			for (int i = 0; i < 6; ++i)
-			{
-				if (vFlag[i] == false)
+				if (mode == Star35PanelMode.From2V)
 				{
-					conditionIv[cursor++] = ivs[i + 6];
-					if (cursor == 6)
-					{
-						break;
-					}
+					SeedSearcher.SetTargetCondition6(conditionIv[0], conditionIv[1], conditionIv[2], conditionIv[3], conditionIv[4], conditionIv[5]);
+				}
+				else if (mode == Star35PanelMode.From3V)
+				{
+					SeedSearcher.SetTargetCondition5(conditionIv[0], conditionIv[1], conditionIv[2], conditionIv[3], conditionIv[4]);
 				}
 			}
 
-			if (mode == Star35PanelMode.From2V)
-			{
-				SeedSearcher.SetTargetCondition6(conditionIv[0], conditionIv[1], conditionIv[2], conditionIv[3], conditionIv[4], conditionIv[5]);
-			}
-			else if (mode == Star35PanelMode.From3V)
-			{
-				SeedSearcher.SetTargetCondition5(conditionIv[0], conditionIv[1], conditionIv[2], conditionIv[3], conditionIv[4]);
-			}
-
+			// 計算開始
 			SearchImpl(searcher);
 		}
 

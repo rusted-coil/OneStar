@@ -102,6 +102,8 @@
 		"DialogTitle": "錯誤",
 		"IvsFormat": "無效的個體值。\n(0～31的半形數字有效)",
 		"IvsStrict1": "第一幀的寶可夢不能沒有V(個體值31)",
+		"IvsStrict351_3V": "第四幀-3V的寶可夢不能沒有3V(個體值31)",
+		"IvsStrict351_2V": "第四幀-2V的寶可夢不能沒有2V(個體值31)",
         "IvsStrict": "The number of IV of 31 is wrong.",
 		"NotSearchTab": "依照欲檢索的內容，打開★3～5或★1～2的標籤頁。",
 		"NotFound": "找不到種子。\n請試著增加「允許V偏差」回數看看，可能有機會找到。",
