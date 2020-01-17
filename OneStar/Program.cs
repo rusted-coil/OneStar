@@ -19,7 +19,7 @@ namespace OneStar
 			MainForm mainForm = new MainForm();
 			if (mainForm.IsInitialized)
 			{
-				Application.Run(new MainForm());
+				Application.Run(mainForm);
 			}
 		}
 	}

@@ -18,7 +18,7 @@ static int g_IvOffset;
 
 //#define LENGTH (60)
 
-void SetSixFirstCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability, int nature, int characteristic, bool isNoGender, bool isEnableDream)
+void SetSixFirstCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability, int nature, int characteristic, bool isNoGender, int abilityFlag)
 {
 	l_First.ivs[0] = iv1;
 	l_First.ivs[1] = iv2;
@@ -30,10 +30,10 @@ void SetSixFirstCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, 
 	l_First.nature = nature;
 	l_First.characteristic = characteristic;
 	l_First.isNoGender = isNoGender;
-	l_First.isEnableDream = isEnableDream;
+	l_First.abilityFlag = abilityFlag;
 }
 
-void SetSixSecondCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability, int nature, int characteristic, bool isNoGender, bool isEnableDream)
+void SetSixSecondCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability, int nature, int characteristic, bool isNoGender, int abilityFlag)
 {
 	l_Second.ivs[0] = iv1;
 	l_Second.ivs[1] = iv2;
@@ -45,7 +45,7 @@ void SetSixSecondCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6,
 	l_Second.nature = nature;
 	l_Second.characteristic = characteristic;
 	l_Second.isNoGender = isNoGender;
-	l_Second.isEnableDream = isEnableDream;
+	l_Second.abilityFlag = abilityFlag;
 	g_SecondIvCount = 0;
 	for (int i = 0; i < 6; ++i)
 	{
@@ -60,7 +60,7 @@ void SetSixSecondCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6,
 	}
 }
 
-void SetSixThirdCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability, int nature, int characteristic, bool isNoGender, bool isEnableDream)
+void SetSixThirdCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability, int nature, int characteristic, bool isNoGender, int abilityFlag)
 {
 	l_Third.ivs[0] = iv1;
 	l_Third.ivs[1] = iv2;
@@ -72,7 +72,7 @@ void SetSixThirdCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, 
 	l_Third.nature = nature;
 	l_Third.characteristic = characteristic;
 	l_Third.isNoGender = isNoGender;
-	l_Third.isEnableDream = isEnableDream;
+	l_Third.abilityFlag = abilityFlag;
 }
 
 void SetTargetCondition6(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6)
@@ -300,15 +300,15 @@ _u64 SearchSix(_u64 ivs)
 
 			// “Á«
 			int ability = 0;
-			if (l_First.isEnableDream)
+			if (l_First.abilityFlag == 3)
 			{
-				do {
-					ability = xoroshiro.Next(3);
-				} while (ability >= 3);
+				ability = xoroshiro.Next(1);
 			}
 			else
 			{			
-				ability = xoroshiro.Next(1);
+				do {
+					ability = xoroshiro.Next(3);
+				} while(ability >= 3);
 			}
 			if ((l_First.ability >= 0 && l_First.ability != ability) || (l_First.ability == -1 && ability >= 2))
 			{
@@ -378,15 +378,15 @@ _u64 SearchSix(_u64 ivs)
 
 			// “Á«
 			int ability = 0;
-			if (l_Second.isEnableDream)
+			if (l_Second.abilityFlag == 3)
 			{
-				do {
-					ability = xoroshiro.Next(3);
-				} while (ability >= 3);
+				ability = xoroshiro.Next(1);
 			}
 			else
 			{
-				ability = xoroshiro.Next(1);
+				do {
+					ability = xoroshiro.Next(3);
+				} while(ability >= 3);
 			}
 			if ((l_Second.ability >= 0 && l_Second.ability != ability) || (l_Second.ability == -1 && ability >= 2))
 			{
@@ -486,15 +486,15 @@ _u64 SearchSix(_u64 ivs)
 
 				// “Á«
 				int ability = 0;
-				if (l_Third.isEnableDream)
+				if (l_Third.abilityFlag == 3)
 				{
-					do {
-						ability = xoroshiro.Next(3);
-					} while (ability >= 3);
+					ability = xoroshiro.Next(1);
 				}
 				else
 				{
-					ability = xoroshiro.Next(1);
+					do {
+						ability = xoroshiro.Next(3);
+					} while(ability >= 3);
 				}
 				if ((l_Third.ability >= 0 && l_Third.ability != ability) || (l_Third.ability == -1 && ability >= 2))
 				{

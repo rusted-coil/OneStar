@@ -41,7 +41,6 @@ namespace OneStar
 		int m_CurrentGameVersion = -1;
 		int m_CurrentRarity = -1;
 		List<RaidData.Pokemon> m_EncounterList = new List<RaidData.Pokemon>();
-		Dictionary<string, int> m_EncounterIndex = new Dictionary<string, int>();
 
 		// ポケモン入力フォームごとのセット
 		class PokemonInfoForm {
@@ -51,18 +50,23 @@ namespace OneStar
 			public TextBox[] TextBoxStatus { get; set; } = new TextBox[6];
 			public ComboBox ComboBoxNature { get; set; } = null;
 			public ComboBox ComboBoxCharacteristic { get; set; } = null;
+			public ComboBox ComboBoxAbility { get; set; } = null;
 		};
 		PokemonInfoForm[] m_PokemonInfo = new PokemonInfoForm[6];
 
 		// 言語設定可能コントロール
 		Dictionary<string, Control[]> m_MultiLanguageControls;
 
+		int m_is2VEnable = -1;
 		enum Star35PanelMode {
 			From2V,
 			From3V
 		};
 
-		Star35PanelMode Get35Mode() { return (Star35PanelMode)f_ComboBoxModeSelector_35.SelectedIndex; }
+		Star35PanelMode Get35Mode()
+		{
+			return m_is2VEnable == 1 ? (Star35PanelMode)f_ComboBoxModeSelector_35.SelectedIndex : Star35PanelMode.From3V;
+		}
 
 		public MainForm()
 		{
@@ -81,49 +85,63 @@ namespace OneStar
 				return;
 			}
 
+			IVCalcNetFramework.IVCalculator.loadData();
+
 			InitializeComponent();
 
 			// ビューの初期化
 			InitializeView();
 
-            //initialize Pokemon comboboxes, and IV Calculator
-            populateComboBoxes();
-
             IsInitialized = true;
 
-			//			RaidTemplateTable toUse = 
 			// ポケモンデータチェック
-			for (int i = -1; i <= 99; ++i)
+			/*
+			using (StreamWriter sw = new StreamWriter("check.txt"))
 			{
-				if (i == 16)
+				for (int i = -1; i <= 99; ++i)
 				{
-					continue;
-				}
-
-				for (int a = 0; a < 2; ++a)
-				{
-					for (int b = 0; b < 2; ++b)
+					if (i == 16)
 					{
-						RaidTemplateTable raidTable = c_RaidData.GetRaidTemplateTable(i, a, b);
-						foreach (var entry in raidTable.Entries)
+						continue;
+					}
+
+					for (int a = 0; a < 2; ++a)
+					{
+						for (int b = 0; b < 2; ++b)
 						{
-							for (int c = 0; c < 5; ++c)
+							RaidTemplateTable raidTable = c_RaidData.GetRaidTemplateTable(i, a, b);
+							foreach (var entry in raidTable.Entries)
 							{
-								if (entry.Probabilities[c] > 0)
+								for (int c = 0; c < 5; ++c)
 								{
-									int species = entry.Species;
-									bool isExist = false;
-									foreach (var pokemon in Messages.Instance.Pokemon)
+									if (entry.Probabilities[c] > 0)
 									{
-										if (pokemon.Value == species)
+										bool isOutput = false;
+										if (entry.Gender != 0)
 										{
-											isExist = true;
-											break;
+											isOutput = true;
 										}
-									}
-									if (isExist == false)
-									{
-										;
+										if (isOutput)
+										{
+											string key = Messages.Instance.RankPrefix[c];
+											foreach (var pokemon in Messages.Instance.Pokemon)
+											{
+												if (pokemon.Value == entry.Species)
+												{
+													key = pokemon.Key;
+													break;
+												}
+											}
+											if (entry.IsGigantamax)
+											{
+												key += Messages.Instance.SystemLabel["Gigantamax"];
+											}
+											sw.WriteLine(key);
+											sw.WriteLine($"Gender: {entry.Gender}");
+											sw.WriteLine($"AltForm: {entry.AltForm}");
+											sw.WriteLine($"Version: {a}");
+											sw.WriteLine("-----");
+										}
 									}
 								}
 							}
@@ -131,6 +149,7 @@ namespace OneStar
 					}
 				}
 			}
+			*/
 		}
 
 		void InitializeComboBox()
@@ -140,22 +159,14 @@ namespace OneStar
 			{
 				f_ComboBoxDenName.Items.Add(key);
 			}
-			f_ComboBoxDenName.SelectedIndex = 0;
 			foreach (var version in Messages.Instance.Version)
 			{
 				f_ComboBoxGameVersion.Items.Add(version);
 			}
-			f_ComboBoxGameVersion.SelectedIndex = 0;
 			foreach (var rarity in Messages.Instance.DenRarity)
 			{
 				f_ComboBoxRarity.Items.Add(rarity);
 			}
-			f_ComboBoxRarity.SelectedIndex = 0;
-
-			// モード
-			f_ComboBoxModeSelector_35.Items.Clear();
-			f_ComboBoxModeSelector_35.Items.Add(Messages.Instance.SystemLabel["Pokemon35_1_2V"]);
-			f_ComboBoxModeSelector_35.Items.Add(Messages.Instance.SystemLabel["Pokemon35_1_3V"]);
 
 			// ★3～5パネル
 			PokemonFormUtility.SetNatureComboBox(f_ComboBoxNature_351);
@@ -211,6 +222,7 @@ namespace OneStar
 			m_PokemonInfo[0].TextBoxStatus[5] = f_TextBoxStatus5_1;
 			m_PokemonInfo[0].ComboBoxNature = f_ComboBoxNature_1;
 			m_PokemonInfo[0].ComboBoxCharacteristic = f_ComboBoxCharacteristic_1;
+			m_PokemonInfo[0].ComboBoxAbility = f_ComboBoxAbility_1;
 			m_PokemonInfo[1] = new PokemonInfoForm();
 			m_PokemonInfo[1].ComboBoxName = f_ComboBoxPokemon_2;
 			m_PokemonInfo[1].TextBoxLevel = f_TextBoxLevel_2;
@@ -228,6 +240,7 @@ namespace OneStar
 			m_PokemonInfo[1].TextBoxStatus[5] = f_TextBoxStatus5_2;
 			m_PokemonInfo[1].ComboBoxNature = f_ComboBoxNature_2;
 			m_PokemonInfo[1].ComboBoxCharacteristic = f_ComboBoxCharacteristic_2;
+			m_PokemonInfo[1].ComboBoxAbility = f_ComboBoxAbility_2;
 			m_PokemonInfo[2] = new PokemonInfoForm();
 			m_PokemonInfo[2].ComboBoxName = f_ComboBoxPokemon_3;
 			m_PokemonInfo[2].TextBoxLevel = f_TextBoxLevel_3;
@@ -245,6 +258,7 @@ namespace OneStar
 			m_PokemonInfo[2].TextBoxStatus[5] = f_TextBoxStatus5_3;
 			m_PokemonInfo[2].ComboBoxNature = f_ComboBoxNature_3;
 			m_PokemonInfo[2].ComboBoxCharacteristic = f_ComboBoxCharacteristic_3;
+			m_PokemonInfo[2].ComboBoxAbility = f_ComboBoxAbility_3;
 			m_PokemonInfo[3] = new PokemonInfoForm();
 			m_PokemonInfo[3].ComboBoxName = f_ComboBoxPokemon_351;
 			m_PokemonInfo[3].TextBoxLevel = f_TextBoxLevel_351;
@@ -262,6 +276,7 @@ namespace OneStar
 			m_PokemonInfo[3].TextBoxStatus[5] = f_TextBoxStatus5_351;
 			m_PokemonInfo[3].ComboBoxNature = f_ComboBoxNature_351;
 			m_PokemonInfo[3].ComboBoxCharacteristic = f_ComboBoxCharacteristic_351;
+			m_PokemonInfo[3].ComboBoxAbility = f_ComboBoxAbility_351;
 			m_PokemonInfo[4] = new PokemonInfoForm();
 			m_PokemonInfo[4].ComboBoxName = f_ComboBoxPokemon_352;
 			m_PokemonInfo[4].TextBoxLevel = f_TextBoxLevel_352;
@@ -279,6 +294,7 @@ namespace OneStar
 			m_PokemonInfo[4].TextBoxStatus[5] = f_TextBoxStatus5_352;
 			m_PokemonInfo[4].ComboBoxNature = f_ComboBoxNature_352;
 			m_PokemonInfo[4].ComboBoxCharacteristic = f_ComboBoxCharacteristic_352;
+			m_PokemonInfo[4].ComboBoxAbility = f_ComboBoxAbility_352;
 			m_PokemonInfo[5] = new PokemonInfoForm();
 			m_PokemonInfo[5].ComboBoxName = f_ComboBoxPokemon_353;
 			m_PokemonInfo[5].TextBoxLevel = f_TextBoxLevel_353;
@@ -296,6 +312,7 @@ namespace OneStar
 			m_PokemonInfo[5].TextBoxStatus[5] = f_TextBoxStatus5_353;
 			m_PokemonInfo[5].ComboBoxNature = f_ComboBoxNature_353;
 			m_PokemonInfo[5].ComboBoxCharacteristic = f_ComboBoxCharacteristic_353;
+			m_PokemonInfo[5].ComboBoxAbility = f_ComboBoxAbility_353;
 			// コールバックをセット
 			for (int a = 0; a < 6; ++a)
 			{
@@ -347,7 +364,6 @@ namespace OneStar
 			m_MultiLanguageControls["Rerolls"] = new Control[] { f_LabelRerolls };
 			m_MultiLanguageControls["Range"] = new Control[] { f_LabelRerollsRange };
 			m_MultiLanguageControls["SearchStop"] = new Control[] { f_CheckBoxStop };
-//			m_MultiLanguageControls["EventDen"] = new Control[] { f_CheckBoxEventDen };
 
 			// 言語を適用
 			ChangeLanguage(true, m_Preferences.Language);
@@ -644,23 +660,25 @@ namespace OneStar
 			int nature2 = Messages.Instance.Nature[m_PokemonInfo[1].ComboBoxNature.Text];
 			int nature3 = Messages.Instance.Nature[m_PokemonInfo[2].ComboBoxNature.Text];
 
-			bool noGender1 = false;
-			bool noGender2 = false;
-			bool noGender3 = false;
+			var pokemonData1 = m_PokemonInfo[0].ComboBoxName.SelectedItem as RaidData.Pokemon;
+			var pokemonData2 = m_PokemonInfo[1].ComboBoxName.SelectedItem as RaidData.Pokemon;
+			var pokemonData3 = m_PokemonInfo[2].ComboBoxName.SelectedItem as RaidData.Pokemon;
 
-			bool isDream1 = false;
-			bool isDream2 = false;
-			bool isDream3 = false;
+			bool noGender1 = pokemonData1.IsFixedGender;
+			bool noGender2 = pokemonData2.IsFixedGender;
+			bool noGender3 = pokemonData3.IsFixedGender;
 
-			bool isEvent = false;
+			int abilityFlag1 = pokemonData1.Ability;
+			int abilityFlag2 = pokemonData2.Ability;
+			int abilityFlag3 = pokemonData3.Ability;
 
 			// 計算開始
 			SeedSearcher searcher = new SeedSearcher(SeedSearcher.Mode.Star12);
-			SeedSearcher.SetFirstCondition(ivs1[0], ivs1[1], ivs1[2], ivs1[3], ivs1[4], ivs1[5], ability1, nature1, noGender1, isDream1, isEvent);
-			SeedSearcher.SetSecondCondition(ivs2[0], ivs2[1], ivs2[2], ivs2[3], ivs2[4], ivs2[5], ability2, nature2, noGender2, isDream2);
+			SeedSearcher.SetFirstCondition(ivs1[0], ivs1[1], ivs1[2], ivs1[3], ivs1[4], ivs1[5], ability1, nature1, noGender1, abilityFlag1);
+			SeedSearcher.SetSecondCondition(ivs2[0], ivs2[1], ivs2[2], ivs2[3], ivs2[4], ivs2[5], ability2, nature2, noGender2, abilityFlag2);
 			if (isEnableThird)
 			{
-				SeedSearcher.SetThirdCondition(ivs3[0], ivs3[1], ivs3[2], ivs3[3], ivs3[4], ivs3[5], ability3, nature3, noGender3, isDream3);
+				SeedSearcher.SetThirdCondition(ivs3[0], ivs3[1], ivs3[2], ivs3[3], ivs3[4], ivs3[5], ability3, nature3, noGender3, abilityFlag3);
 			}
 
 			SearchImpl(searcher);
@@ -735,13 +753,17 @@ namespace OneStar
 			int nature2 = Messages.Instance.Nature[m_PokemonInfo[4].ComboBoxNature.Text];
 			int nature3 = Messages.Instance.Nature[m_PokemonInfo[5].ComboBoxNature.Text];
 
-			bool noGender1 = false;
-			bool noGender2 = false;
-			bool noGender3 = false;
+			var pokemonData1 = m_PokemonInfo[3].ComboBoxName.SelectedItem as RaidData.Pokemon;
+			var pokemonData2 = m_PokemonInfo[4].ComboBoxName.SelectedItem as RaidData.Pokemon;
+			var pokemonData3 = m_PokemonInfo[5].ComboBoxName.SelectedItem as RaidData.Pokemon;
 
-			bool isDream1 = false;
-			bool isDream2 = false;
-			bool isDream3 = false;
+			bool noGender1 = pokemonData1.IsFixedGender;
+			bool noGender2 = pokemonData2.IsFixedGender;
+			bool noGender3 = pokemonData3.IsFixedGender;
+
+			int abilityFlag1 = pokemonData1.Ability;
+			int abilityFlag2 = pokemonData2.Ability;
+			int abilityFlag3 = pokemonData3.Ability;
 
 			int characteristic1 = Messages.Instance.Characteristic[m_PokemonInfo[3].ComboBoxCharacteristic.Text];
 			int characteristic2 = Messages.Instance.Characteristic[m_PokemonInfo[4].ComboBoxCharacteristic.Text];
@@ -751,9 +773,9 @@ namespace OneStar
 
 			// 計算開始
 			SeedSearcher searcher = new SeedSearcher(mode == Star35PanelMode.From2V ? SeedSearcher.Mode.Star35_6 : SeedSearcher.Mode.Star35_5);
-			SeedSearcher.SetSixFirstCondition(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5], ability1, nature1, characteristic1, noGender1, isDream1);
-			SeedSearcher.SetSixSecondCondition(ivs[6], ivs[7], ivs[8], ivs[9], ivs[10], ivs[11], ability2, nature2, characteristic2, noGender2, isDream2);
-			SeedSearcher.SetSixThirdCondition(ivs[12], ivs[13], ivs[14], ivs[15], ivs[16], ivs[17], ability3, nature3, characteristic3, noGender3, isDream3);
+			SeedSearcher.SetSixFirstCondition(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5], ability1, nature1, characteristic1, noGender1, abilityFlag1);
+			SeedSearcher.SetSixSecondCondition(ivs[6], ivs[7], ivs[8], ivs[9], ivs[10], ivs[11], ability2, nature2, characteristic2, noGender2, abilityFlag2);
+			SeedSearcher.SetSixThirdCondition(ivs[12], ivs[13], ivs[14], ivs[15], ivs[16], ivs[17], ability3, nature3, characteristic3, noGender3, abilityFlag3);
 
 			int vCount = 0;
 			for (int i = 0; i < 6; ++i)
@@ -990,98 +1012,35 @@ namespace OneStar
 		}
 		void ChangeLanguage(bool isFirst, Language language)
 		{
-            
-            int[] nature = new int[6];
-            int[] characteristic = new int[6];
-            decimal[] pokemon = new decimal[6];
-
-            if (!isFirst)
-            {
-                nature = new int[]{
-                    Messages.Instance.Nature[f_ComboBoxNature_1.Text],
-                    Messages.Instance.Nature[f_ComboBoxNature_2.Text],
-					Messages.Instance.Nature[f_ComboBoxNature_3.Text],
-					Messages.Instance.Nature[f_ComboBoxNature_351.Text],
-                    Messages.Instance.Nature[f_ComboBoxNature_352.Text],
-                    Messages.Instance.Nature[f_ComboBoxNature_353.Text],
-                };
-
-                characteristic = new int[]{
-					Messages.Instance.Characteristic[f_ComboBoxCharacteristic_1.Text],
-					Messages.Instance.Characteristic[f_ComboBoxCharacteristic_2.Text],
-					Messages.Instance.Characteristic[f_ComboBoxCharacteristic_3.Text],
-					Messages.Instance.Characteristic[f_ComboBoxCharacteristic_351.Text],
-                    Messages.Instance.Characteristic[f_ComboBoxCharacteristic_352.Text],
-                    Messages.Instance.Characteristic[f_ComboBoxCharacteristic_353.Text],
-                };
-
-                pokemon = new decimal[]
-                {
-					Messages.Instance.Pokemon.ContainsKey(f_ComboBoxPokemon_1.Text) ? Messages.Instance.Pokemon[f_ComboBoxPokemon_1.Text] : -1,
-					Messages.Instance.Pokemon.ContainsKey(f_ComboBoxPokemon_2.Text) ? Messages.Instance.Pokemon[f_ComboBoxPokemon_2.Text] : -1,
-					Messages.Instance.Pokemon.ContainsKey(f_ComboBoxPokemon_3.Text) ? Messages.Instance.Pokemon[f_ComboBoxPokemon_3.Text] : -1,
-					Messages.Instance.Pokemon.ContainsKey(f_ComboBoxPokemon_351.Text) ? Messages.Instance.Pokemon[f_ComboBoxPokemon_351.Text] : -1,
-                    Messages.Instance.Pokemon.ContainsKey(f_ComboBoxPokemon_352.Text) ? Messages.Instance.Pokemon[f_ComboBoxPokemon_352.Text] : -1,
-                    Messages.Instance.Pokemon.ContainsKey(f_ComboBoxPokemon_353.Text) ? Messages.Instance.Pokemon[f_ComboBoxPokemon_353.Text] : -1
-                };
-            }
-
-			// 言語のロード
-			if (!Messages.Initialize(language))
-			{
-				MessageBox.Show("言語ファイルの読み込みに失敗しました。\n----------\n" + Messages.ErrorText, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return;
-			}
-
 			// コンボボックスは一旦値を退避してセット
 			int modeIndex = 0;
+			int[] nature = new int[6];
+            int[] characteristic = new int[6];
+			int[] pokemon = new int[6];
 			int[] abilityIndex = new int[6];
-			int denIndex = 0;
+			int denIndex = -1;
 			int versionIndex = 0;
 			int rarityIndex = 0;
 
 			if (!isFirst)
-			{                
-                modeIndex = f_ComboBoxModeSelector_35.SelectedIndex;
+            {
+				modeIndex = f_ComboBoxModeSelector_35.SelectedIndex;
 				f_ComboBoxModeSelector_35.Items.Clear();
 
-				f_ComboBoxNature_1.Items.Clear();
-				f_ComboBoxNature_2.Items.Clear();
-				f_ComboBoxNature_3.Items.Clear();
-				f_ComboBoxNature_351.Items.Clear();
-				f_ComboBoxNature_352.Items.Clear();
-				f_ComboBoxNature_353.Items.Clear();
+				for (int i = 0; i < 6; ++i)
+				{
+					pokemon[i] = m_PokemonInfo[i].ComboBoxName.SelectedIndex;
+					nature[i] = Messages.Instance.Nature[m_PokemonInfo[i].ComboBoxNature.Text];
+					characteristic[i] = Messages.Instance.Characteristic[m_PokemonInfo[i].ComboBoxCharacteristic.Text];
+					abilityIndex[i] = m_PokemonInfo[i].ComboBoxAbility.SelectedIndex;
 
-				f_ComboBoxCharacteristic_1.Items.Clear();
-				f_ComboBoxCharacteristic_2.Items.Clear();
-				f_ComboBoxCharacteristic_3.Items.Clear();
-				f_ComboBoxCharacteristic_351.Items.Clear();
-				f_ComboBoxCharacteristic_352.Items.Clear();
-				f_ComboBoxCharacteristic_353.Items.Clear();
+					m_PokemonInfo[i].ComboBoxName.Items.Clear();
+					m_PokemonInfo[i].ComboBoxNature.Items.Clear();
+					m_PokemonInfo[i].ComboBoxCharacteristic.Items.Clear();
+					m_PokemonInfo[i].ComboBoxAbility.Items.Clear();
+				}
 
-				f_ComboBoxPokemon_1.Items.Clear();
-				f_ComboBoxPokemon_2.Items.Clear();
-				f_ComboBoxPokemon_3.Items.Clear();
-				f_ComboBoxPokemon_351.Items.Clear();
-				f_ComboBoxPokemon_352.Items.Clear();
-				f_ComboBoxPokemon_353.Items.Clear();
-
-				abilityIndex = new int[]{
-					f_ComboBoxAbility_1.SelectedIndex,
-					f_ComboBoxAbility_2.SelectedIndex,
-					f_ComboBoxAbility_3.SelectedIndex,
-					f_ComboBoxAbility_351.SelectedIndex,
-					f_ComboBoxAbility_352.SelectedIndex,
-					f_ComboBoxAbility_353.SelectedIndex,
-				};
-				f_ComboBoxAbility_1.Items.Clear();
-				f_ComboBoxAbility_2.Items.Clear();
-				f_ComboBoxAbility_3.Items.Clear();
-				f_ComboBoxAbility_351.Items.Clear();
-				f_ComboBoxAbility_352.Items.Clear();
-				f_ComboBoxAbility_353.Items.Clear();
-
-				denIndex = f_ComboBoxDenName.SelectedIndex;
+				denIndex = Messages.Instance.Den[f_ComboBoxDenName.Text];
 				f_ComboBoxDenName.Items.Clear();
 
 				versionIndex = f_ComboBoxGameVersion.SelectedIndex;
@@ -1089,6 +1048,13 @@ namespace OneStar
 
 				rarityIndex = f_ComboBoxRarity.SelectedIndex;
 				f_ComboBoxRarity.Items.Clear();
+			}
+
+			// 言語のロード
+			if (!Messages.Initialize(language))
+			{
+				MessageBox.Show("言語ファイルの読み込みに失敗しました。\n----------\n" + Messages.ErrorText, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
 			}
 
 			// 設定変更
@@ -1136,6 +1102,7 @@ namespace OneStar
 				}
 			}
 
+			#region パラメータラベル
 			// パラメータラベル
 			f_LabelStatus0_1.Text = Messages.Instance.Status[0];
 			f_LabelStatus1_1.Text = Messages.Instance.Status[1];
@@ -1221,89 +1188,62 @@ namespace OneStar
 			f_ButtonIvsCalc_351.Text = Messages.Instance.SystemLabel["CalculateIVs"];
 			f_ButtonIvsCalc_352.Text = Messages.Instance.SystemLabel["CalculateIVs"];
 			f_ButtonIvsCalc_353.Text = Messages.Instance.SystemLabel["CalculateIVs"];
+			#endregion
 
-            // コンボボックス再初期化
-            InitializeComboBox();
+			// コンボボックス再初期化
+			InitializeComboBox();
 
 			// 退避していた選択をセット
-			f_ComboBoxModeSelector_35.SelectedIndex = modeIndex;
-			if (!isFirst)
 			{
-				PokemonFormUtility.SelectNatureComboBox(f_ComboBoxNature_1, nature[0]);
-				PokemonFormUtility.SelectNatureComboBox(f_ComboBoxNature_2, nature[1]);
-				PokemonFormUtility.SelectNatureComboBox(f_ComboBoxNature_3, nature[2]);
-				PokemonFormUtility.SelectNatureComboBox(f_ComboBoxNature_351, nature[3]);
-				PokemonFormUtility.SelectNatureComboBox(f_ComboBoxNature_352, nature[4]);
-				PokemonFormUtility.SelectNatureComboBox(f_ComboBoxNature_353, nature[5]);
-				PokemonFormUtility.SelectCharacteristicComboBox(f_ComboBoxCharacteristic_1, characteristic[0]);
-				PokemonFormUtility.SelectCharacteristicComboBox(f_ComboBoxCharacteristic_2, characteristic[1]);
-				PokemonFormUtility.SelectCharacteristicComboBox(f_ComboBoxCharacteristic_3, characteristic[2]);
-				PokemonFormUtility.SelectCharacteristicComboBox(f_ComboBoxCharacteristic_351, characteristic[3]);
-				PokemonFormUtility.SelectCharacteristicComboBox(f_ComboBoxCharacteristic_352, characteristic[4]);
-				PokemonFormUtility.SelectCharacteristicComboBox(f_ComboBoxCharacteristic_353, characteristic[5]);
-				f_ComboBoxAbility_1.SelectedIndex = abilityIndex[0];
-				f_ComboBoxAbility_2.SelectedIndex = abilityIndex[1];
-				f_ComboBoxAbility_3.SelectedIndex = abilityIndex[2];
-				f_ComboBoxAbility_351.SelectedIndex = abilityIndex[3];
-				f_ComboBoxAbility_352.SelectedIndex = abilityIndex[4];
-				f_ComboBoxAbility_353.SelectedIndex = abilityIndex[5];
-
-                populateComboBoxes();
-				for (int a = 0; a < 6; ++a)
+				foreach (var item in f_ComboBoxDenName.Items)
 				{
-					if (pokemon[a] != -1)
+					if (Messages.Instance.Den[item.ToString()] == denIndex)
 					{
-						var idxa = (from i in Messages.Instance.Pokemon.Keys
-									where Messages.Instance.Pokemon[i] == pokemon[a]
-									select i).First();
-						m_PokemonInfo[a].ComboBoxName.SelectedIndex = m_PokemonInfo[a].ComboBoxName.Items.IndexOf(idxa);
+						f_ComboBoxDenName.SelectedItem = item;
+						break;
 					}
 				}
-
-				f_ComboBoxDenName.SelectedIndex = denIndex;
 				f_ComboBoxGameVersion.SelectedIndex = versionIndex;
 				f_ComboBoxRarity.SelectedIndex = rarityIndex;
+			}
+
+			if (isFirst)
+			{
+				f_ComboBoxModeSelector_35.SelectedIndex = modeIndex;
+
+				for (int a = 0; a < 6; ++a)
+				{
+					m_PokemonInfo[a].ComboBoxName.SelectedIndex = 0;
+				}
+			}
+			else
+			{
+				// 言語変更によりキーのみリフレッシュ
+				foreach (var encounter in m_EncounterList)
+				{
+					encounter.RefreshKey();
+				}
+
+				RefreshModeComboBox();
+				f_ComboBoxModeSelector_35.SelectedIndex = modeIndex;
+
+				RefreshPokemonComboBox();
+
+				for (int a = 0; a < 6; ++a)
+				{
+					m_PokemonInfo[a].ComboBoxName.SelectedIndex = pokemon[a];
+				}
+
+				for (int i = 0; i < 6; ++i)
+				{
+					PokemonFormUtility.SelectNatureComboBox(m_PokemonInfo[i].ComboBoxNature, nature[i]);
+					PokemonFormUtility.SelectCharacteristicComboBox(m_PokemonInfo[i].ComboBoxCharacteristic, characteristic[i]);
+					m_PokemonInfo[i].ComboBoxAbility.SelectedIndex = abilityIndex[i];
+				}
             }
 		}
 
-        bool firstRun = true;
-        private void populateComboBoxes()
-        {
-            if (firstRun)
-                IVCalcNetFramework.IVCalculator.loadData();
-
-            var Pokemon = Messages.Instance.Pokemon.Keys.ToList();
-            Pokemon.Sort();
-
-			/*
-			f_ComboBoxPokemon_1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-			f_ComboBoxPokemon_1.AutoCompleteSource = AutoCompleteSource.ListItems;
-			f_ComboBoxPokemon_1.Items.AddRange(Pokemon.ToArray());
-
-			f_ComboBoxPokemon_2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-			f_ComboBoxPokemon_2.AutoCompleteSource = AutoCompleteSource.ListItems;
-			f_ComboBoxPokemon_2.Items.AddRange(Pokemon.ToArray());
-
-			f_ComboBoxPokemon_3.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-			f_ComboBoxPokemon_3.AutoCompleteSource = AutoCompleteSource.ListItems;
-			f_ComboBoxPokemon_3.Items.AddRange(Pokemon.ToArray());
-
-			f_ComboBoxPokemon_351.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            f_ComboBoxPokemon_351.AutoCompleteSource = AutoCompleteSource.ListItems;
-            f_ComboBoxPokemon_351.Items.AddRange(Pokemon.ToArray());
-
-			f_ComboBoxPokemon_352.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-			f_ComboBoxPokemon_352.AutoCompleteSource = AutoCompleteSource.ListItems;
-			f_ComboBoxPokemon_352.Items.AddRange(Pokemon.ToArray());
-
-			f_ComboBoxPokemon_353.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-			f_ComboBoxPokemon_353.AutoCompleteSource = AutoCompleteSource.ListItems;
-			f_ComboBoxPokemon_353.Items.AddRange(Pokemon.ToArray());
-			*/
-
-			firstRun = false;
-        }
-
+		#region 個体値計算ボタン イベント定義
 		private void f_ButtonIvsCalc_1_Click(object sender, EventArgs e)
 		{
 			IvsCalculate(0);
@@ -1333,6 +1273,7 @@ namespace OneStar
 		{
 			IvsCalculate(5);
 		}
+		#endregion
 
 		void IvsCalculate(int index)
 		{
@@ -1347,7 +1288,7 @@ namespace OneStar
 			else
 			{
 				string levelText = pokemonInfo.TextBoxLevel.Text;
-				decimal pokemonID = encounterData.Species;
+				decimal pokemonID = encounterData.CalcSpecies;
 				try
 				{
 					int lv = int.Parse(levelText);
@@ -1388,11 +1329,11 @@ namespace OneStar
 						MessageBox.Show(Messages.Instance.SystemMessage["FindManyIvs"], Messages.Instance.SystemMessage["ResultDialogTitle"], MessageBoxButtons.OK, MessageBoxIcon.Information);
 					}
 				}
-				catch (FormatException except)
+				catch (FormatException)
 				{
 					CreateErrorDialog(Messages.Instance.ErrorMessage["VFormat"]);
 				}
-				catch (ArgumentOutOfRangeException except)
+				catch (ArgumentOutOfRangeException)
 				{
 					CreateErrorDialog(Messages.Instance.ErrorMessage["CouldNotCalculateIVs"]);
 				}
@@ -1446,6 +1387,11 @@ namespace OneStar
 			}
 		}
 
+		private void f_ComboBoxModeSelector_35_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			RefreshPokemonComboBox();
+		}
+
 		// 巣穴情報変更
 		void RefreshDen()
 		{
@@ -1457,47 +1403,74 @@ namespace OneStar
 
 			// データ構築
 			m_EncounterList.Clear();
-			m_EncounterIndex.Clear();
-			foreach (var entry in raidTable.Entries)
+			Dictionary<string, int> encounterIndex = new Dictionary<string, int>();
+			for (int c = 0; c < 5; ++c)
 			{
-				for (int c = 0; c < 5; ++c)
+				foreach (var entry in raidTable.Entries)
 				{
 					if (entry.Probabilities[c] > 0)
 					{
-						// キーを作成
-						string key = Messages.Instance.RankPrefix[c];
-						foreach (var pokemon in Messages.Instance.Pokemon)
-						{
-							if (pokemon.Value == entry.Species)
-							{
-								key += pokemon.Key;
-								break;
-							}
-						}
-						if (entry.IsGigantamax)
-						{
-							key += Messages.Instance.SystemLabel["Gigantamax"];
-						}
+						var pokemon = new RaidData.Pokemon(entry, c);
+						string key = pokemon.Key;
 
 						// 全く同じ見た目のポケモンの場合マージする
-						if (m_EncounterIndex.ContainsKey(key))
+						if (encounterIndex.ContainsKey(key))
 						{
-							m_EncounterList[m_EncounterIndex[key]].Merge(entry);
+							m_EncounterList[encounterIndex[key]].Merge(entry);
 						}
 						else
 						{
-							m_EncounterIndex.Add(key, m_EncounterList.Count);
-							m_EncounterList.Add(new RaidData.Pokemon(key, c, entry));
+							encounterIndex.Add(key, m_EncounterList.Count);
+							m_EncounterList.Add(pokemon);
 						}
 					}
 				}
+			}
+
+			// ★3以上かつ2Vがいるかチェック
+			bool isEnable2V = false;
+			foreach (var encounter in m_EncounterList)
+			{
+				if (encounter.FlawlessIvs <= 2 && encounter.Rank >= 2)
+				{
+					isEnable2V = true;
+					break;
+				}
+			}
+			if (m_is2VEnable == -1 || (m_is2VEnable == 1) != isEnable2V)
+			{
+				m_is2VEnable = (isEnable2V ? 1 : 0);
+				RefreshModeComboBox();
+				f_ComboBoxModeSelector_35.SelectedIndex = 0;
+			}
+
+			RefreshPokemonComboBox();
+		}
+		void RefreshModeComboBox()
+		{
+			// モード
+			f_ComboBoxModeSelector_35.Items.Clear();
+			if (m_is2VEnable == 1)
+			{
+				f_ComboBoxModeSelector_35.Items.Add(Messages.Instance.SystemLabel["Pokemon35_1_2V"]);
+			}
+			f_ComboBoxModeSelector_35.Items.Add(Messages.Instance.SystemLabel["Pokemon35_1_3V"]);
+		}
+		void RefreshPokemonComboBox()
+		{
+			var mode = Get35Mode();
+
+			// コンボボックスをクリア
+			for (int i = 0; i < 6; ++i)
+			{
+				m_PokemonInfo[i].ComboBoxName.Items.Clear();
 			}
 
 			// コンボボックスに反映
 			foreach (var encounter in m_EncounterList)
 			{
 				// 1Vのみ
-				if (encounter.Entry.FlawlessIVs == 1)
+				if (encounter.FlawlessIvs == 1)
 				{
 					f_ComboBoxPokemon_1.Items.Add(encounter);
 				}
@@ -1507,18 +1480,30 @@ namespace OneStar
 					f_ComboBoxPokemon_2.Items.Add(encounter);
 					f_ComboBoxPokemon_3.Items.Add(encounter);
 				}
-				f_ComboBoxPokemon_351.Items.Add(encounter);
-				f_ComboBoxPokemon_352.Items.Add(encounter);
-				f_ComboBoxPokemon_353.Items.Add(encounter);
+				// ★3以上
+				if (encounter.Rank >= 2)
+				{
+					// 2Vモードor3Vモード
+					if (mode == Star35PanelMode.From2V && encounter.FlawlessIvs == 2)
+					{
+						f_ComboBoxPokemon_351.Items.Add(encounter);
+					}
+					else if (mode == Star35PanelMode.From3V && encounter.FlawlessIvs == 3)
+					{
+						f_ComboBoxPokemon_351.Items.Add(encounter);
+					}
+					f_ComboBoxPokemon_352.Items.Add(encounter);
+					f_ComboBoxPokemon_353.Items.Add(encounter);
+				}
 			}
-			f_ComboBoxPokemon_1.SelectedIndex = 0;
-			f_ComboBoxPokemon_2.SelectedIndex = 0;
-			f_ComboBoxPokemon_3.SelectedIndex = 0;
-			f_ComboBoxPokemon_351.SelectedIndex = 0;
-			f_ComboBoxPokemon_352.SelectedIndex = 0;
-			f_ComboBoxPokemon_353.SelectedIndex = 0;
+
+			for (int i = 0; i < 6; ++i)
+			{
+				m_PokemonInfo[i].ComboBoxName.SelectedIndex = 0;
+			}
 		}
 
+		#region レイド情報ボタン イベント定義
 		private void f_ButtonEncounterInfo_1_Click(object sender, EventArgs e)
 		{
 			ShowEncounterInfo(0);
@@ -1548,6 +1533,7 @@ namespace OneStar
 		{
 			ShowEncounterInfo(5);
 		}
+		#endregion
 
 		void ShowEncounterInfo(int index)
 		{
@@ -1555,9 +1541,22 @@ namespace OneStar
 
 			string str = pokemon.Key;
 			str += "\n-----";
-			if (pokemon.IsFixedDream)
+			str += $"\nV固定数: {pokemon.FlawlessIvs}";
+			if (pokemon.Ability == 2)
 			{
 				str += "\n夢特性固定あり";
+			}
+			else if (pokemon.Ability == 3)
+			{
+				str += "\n通常特性のみ";
+			}
+			else if (pokemon.Ability == 4)
+			{
+				str += "\n夢特性あり";
+			}
+			if (pokemon.IsFixedGender)
+			{
+				str += "\n性別固定/不明";
 			}
 
 			MessageBox.Show(str, Messages.Instance.SystemMessage["EncounterInfoDialogTitle"], MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -23,13 +23,13 @@ namespace OneStarCalculator
 		static extern void Prepare(int rerolls);
 
 		[DllImport("OneStarCalculatorLib.dll")]
-		public static extern void SetFirstCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, bool noGender, bool isDream, bool isEvent);
+		public static extern void SetFirstCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, bool noGender, int abilityFlag);
 
 		[DllImport("OneStarCalculatorLib.dll")]
-		public static extern void SetSecondCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, bool noGender, bool isDream);
+		public static extern void SetSecondCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, bool noGender, int abilityFlag);
 
 		[DllImport("OneStarCalculatorLib.dll")]
-		public static extern void SetThirdCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, bool noGender, bool isDream);
+		public static extern void SetThirdCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, bool noGender, int abilityFlag);
 
 		[DllImport("OneStarCalculatorLib.dll")]
 		static extern ulong Search(ulong ivs);
@@ -39,13 +39,13 @@ namespace OneStarCalculator
 		static extern void PrepareSix(int ivOffset);
 
 		[DllImport("OneStarCalculatorLib.dll")]
-		public static extern void SetSixFirstCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability, int nature, int characteristic, bool noGender, bool isDream);
+		public static extern void SetSixFirstCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability, int nature, int characteristic, bool noGender, int abilityFlag);
 
 		[DllImport("OneStarCalculatorLib.dll")]
-		public static extern void SetSixSecondCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability, int nature, int characteristic, bool noGender, bool isDream);
+		public static extern void SetSixSecondCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability, int nature, int characteristic, bool noGender, int abilityFlag);
 
 		[DllImport("OneStarCalculatorLib.dll")]
-		public static extern void SetSixThirdCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability, int nature, int characteristic, bool noGender, bool isDream);
+		public static extern void SetSixThirdCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability, int nature, int characteristic, bool noGender, int abilityFlag);
 
 		[DllImport("OneStarCalculatorLib.dll")]
 		public static extern void SetTargetCondition6(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6);

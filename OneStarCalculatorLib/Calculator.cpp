@@ -13,7 +13,6 @@ static PokemonData l_Third;
 static int g_Rerolls;
 static int g_FixedIndex;
 static int g_VCount;
-static bool g_isEventDen;
 static bool g_isEnableThird;
 static int g_VCount3;
 
@@ -35,10 +34,10 @@ const int* g_IvsRef[30] = {
 // 夢特性あり→特性2の時のみAbilityBitが有効(1か3なので奇数)
 inline bool IsEnableAbilityBit()
 {
-	return (l_First.ability == 1) || (!l_First.isEnableDream && l_First.ability >= 0);
+	return (l_First.ability == 1) || (l_First.abilityFlag == 3 && l_First.ability >= 0);
 }
 
-void SetFirstCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, bool isNoGender, bool isEnableDream, bool isEventDen)
+void SetFirstCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, bool isNoGender, int abilityFlag)
 {
 	g_isEnableThird = false;
 	l_First.ivs[0] = iv0;
@@ -50,7 +49,7 @@ void SetFirstCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int
 	l_First.ability = ability;
 	l_First.nature = nature;
 	l_First.isNoGender = isNoGender;
-	l_First.isEnableDream = isEnableDream;
+	l_First.abilityFlag = abilityFlag;
 	g_FixedIndex = 0;
 	for (int i = 0; i < 6; ++i)
 	{
@@ -59,10 +58,9 @@ void SetFirstCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int
 			g_FixedIndex = i;
 		}
 	}
-	g_isEventDen = isEventDen;
 }
 
-void SetSecondCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, bool isNoGender, bool isEnableDream)
+void SetSecondCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, bool isNoGender, int abilityFlag)
 {
 	l_Second.ivs[0] = iv0;
 	l_Second.ivs[1] = iv1;
@@ -73,7 +71,7 @@ void SetSecondCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, in
 	l_Second.ability = ability;
 	l_Second.nature = nature;
 	l_Second.isNoGender = isNoGender;
-	l_Second.isEnableDream = isEnableDream;
+	l_Second.abilityFlag = abilityFlag;
 	g_VCount = 0;
 	for (int i = 0; i < 6; ++i)
 	{
@@ -84,7 +82,7 @@ void SetSecondCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, in
 	}
 }
 
-void SetThirdCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, bool isNoGender, bool isEnableDream)
+void SetThirdCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, bool isNoGender, int abilityFlag)
 {
 	g_isEnableThird = true;
 	l_Third.ivs[0] = iv0;
@@ -96,7 +94,7 @@ void SetThirdCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int
 	l_Third.ability = ability;
 	l_Third.nature = nature;
 	l_Third.isNoGender = isNoGender;
-	l_Third.isEnableDream = isEnableDream;
+	l_Third.abilityFlag = abilityFlag;
 	g_VCount3 = 0;
 	for(int i = 0; i < 6; ++i)
 	{
@@ -250,7 +248,7 @@ _u64 Search(_u64 ivs)
 
 			// イベントレイドの夢特性強制モード
 			bool isPassed = false;
-			if(g_isEventDen && l_First.ability == 2)
+			if(l_First.abilityFlag == 2 && l_First.ability == 2)
 			{
 				oshiroTemp2.Copy(&xoroshiro);
 
@@ -282,15 +280,15 @@ _u64 Search(_u64 ivs)
 				// 特性
 				{
 					int ability = 0;
-					if(l_First.isEnableDream)
+					if(l_First.abilityFlag == 3)
+					{
+						ability = xoroshiro.Next(1);
+					}
+					else
 					{
 						do {
 							ability = xoroshiro.Next(3);
 						} while(ability >= 3);
-					}
-					else
-					{
-						ability = xoroshiro.Next(1);
 					}
 					if((l_First.ability >= 0 && l_First.ability != ability) || (l_First.ability == -1 && ability >= 2))
 					{
@@ -373,7 +371,7 @@ _u64 Search(_u64 ivs)
 
 				// イベントレイドの夢特性強制モード
 				isPassed = false;
-				if(g_isEventDen && l_Second.ability == 2)
+				if(l_Second.abilityFlag == 2 && l_Second.ability == 2)
 				{
 					oshiroTemp2.Copy(&xoroshiro);
 
@@ -404,15 +402,15 @@ _u64 Search(_u64 ivs)
 				{
 					// 特性
 					int ability = 0;
-					if(l_Second.isEnableDream)
+					if(l_Second.abilityFlag == 3)
+					{
+						ability = xoroshiro.Next(1);
+					}
+					else
 					{
 						do {
 							ability = xoroshiro.Next(3);
 						} while(ability >= 3);
-					}
-					else
-					{
-						ability = xoroshiro.Next(1);
 					}
 					if((l_Second.ability >= 0 && l_Second.ability != ability) || (l_Second.ability == -1 && ability >= 2))
 					{
@@ -503,7 +501,7 @@ _u64 Search(_u64 ivs)
 
 					// イベントレイドの夢特性強制モード
 					isPassed = false;
-					if(g_isEventDen && l_Third.ability == 2)
+					if(l_Third.abilityFlag == 2 && l_Third.ability == 2)
 					{
 						oshiroTemp2.Copy(&xoroshiro);
 
@@ -534,15 +532,15 @@ _u64 Search(_u64 ivs)
 					{
 						// 特性
 						int ability = 0;
-						if(l_Third.isEnableDream)
+						if(l_Third.abilityFlag == 3)
+						{
+							ability = xoroshiro.Next(1);
+						}
+						else
 						{
 							do {
 								ability = xoroshiro.Next(3);
 							} while(ability >= 3);
-						}
-						else
-						{
-							ability = xoroshiro.Next(1);
 						}
 						if((l_Third.ability >= 0 && l_Third.ability != ability) || (l_Third.ability == -1 && ability >= 2))
 						{

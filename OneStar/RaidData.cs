@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using PKHeX_Raid_Plugin;
 
 namespace OneStar
@@ -7,6 +8,77 @@ namespace OneStar
 	{
 		// 巣穴データ（Raid_Pluginより）
 		readonly RaidTables c_RaidTables = new RaidTables();
+
+		// ガラルポケモン
+		static readonly Dictionary<int, decimal> c_GalarForms = new Dictionary<int, decimal>{
+			{ 562, 562.1m }, // デスマス
+			{ 618, 618.1m }, // マッギョ
+			{  77,  77.1m }, // ポニータ
+			{  78,  78.1m }, // ギャロップ
+			{ 122, 122.1m }, // バリヤード
+			{ 222, 222.1m }, // サニーゴ
+			{ 263, 263.1m }, // ジグザグマ
+			{ 264, 264.1m }, // マッスグマ
+			{  52,  52.2m }, // ニャース
+			{  83,  83.1m }, // カモネギ
+			{ 110, 110.1m }, // マタドガス
+			{ 555, 555.2m }, // ヒヒダルマ
+		};
+
+		// ♂のみ：バルキー系、エルレイド、ナゲキ、ダゲキ、ウォーグル系、オーロンゲ系
+		// ♀のみ：ビークイン、ユキメノコ、バルジーナ系、アマージョ系、ブリムオン系、マホイップ系
+		// 性別不明：メタモン、ヌケニン、ネンドール系、ドータクン系、ロトム、ギギギアル系、ゴルーグ系、シルヴァディ系、ダダリン、ポットデス系、タイレーツ、化石、伝説
+		static readonly Dictionary<int, int> c_FixedGender = new Dictionary<int, int> {
+			{ 236, 1 }, // バルキー
+			{ 106, 1 }, // サワムラー
+			{ 107, 1 }, // エビワラー
+			{ 237, 1 }, // カポエラー
+			{ 475, 1 }, // エルレイド
+			{ 538, 1 }, // ナゲキ
+			{ 539, 1 }, // ダゲキ
+			{ 627, 1 }, // ワシボン
+			{ 628, 1 }, // ウォーグル
+			{ 859, 1 }, // ベロバー
+			{ 860, 1 }, // ギモー
+			{ 861, 1 }, // オーロンゲ
+			{ 416, 2 }, // ビークイン
+			{ 478, 2 }, // ユキメノコ
+			{ 629, 2 }, // バルチャイ
+			{ 630, 2 }, // バルジーナ
+			{ 761, 2 }, // アマカジ
+			{ 762, 2 }, // アママイコ
+			{ 763, 2 }, // アマージョ
+			{ 856, 2 }, // ミブリム
+			{ 857, 2 }, // テブリム
+			{ 858, 2 }, // ブリムオン
+			{ 868, 2 }, // マホミル
+			{ 869, 2 }, // マホイップ
+			{ 132, 3 }, // メタモン
+			{ 292, 3 }, // ヌケニン
+			{ 343, 3 }, // ヤジロン
+			{ 344, 3 }, // ネンドール
+			{ 436, 3 }, // ドーミラー
+			{ 437, 3 }, // ドータクン
+			{ 479, 3 }, // ロトム
+			{ 599, 3 }, // ギアル
+			{ 600, 3 }, // ギギアル
+			{ 601, 3 }, // ギギギアル
+			{ 622, 3 }, // ゴビット
+			{ 623, 3 }, // ゴルーグ
+			{ 772, 3 }, // タイプ：ヌル
+			{ 773, 3 }, // シルヴァディ
+			{ 781, 3 }, // ダダリン
+			{ 854, 3 }, // ヤバチャ
+			{ 855, 3 }, // ポットデス
+			{ 870, 3 }, // タイレーツ
+			{ 880, 3 }, // パッチラゴン
+			{ 881, 3 }, // パッチルドン
+			{ 882, 3 }, // ウオノラゴン
+			{ 883, 3 }, // ウオチルドン
+			{ 888, 3 }, // ザシアン
+			{ 889, 3 }, // ザマゼンタ
+			{ 890, 3 }, // ムゲンダイナ
+		};
 
 		public RaidTemplateTable GetRaidTemplateTable(int raidIndex, int version, int rarity)
 		{
@@ -36,31 +108,105 @@ namespace OneStar
 		{
 			public string Key { get; private set; }
 			public int Rank { get; private set; }
-			public RaidTemplate Entry { get; private set; }
 
-			public decimal Species { get; private set; } // 個体値計算上の種族
-			public bool IsFixedDream { get; private set; }
+			public decimal CalcSpecies { get; private set; } // 個体値計算上の種族
+			public decimal DisplaySpecies { get; private set; } // 名前表示上の種族
+
+			public int FlawlessIvs { get; private set; }
+			public bool IsGigantamax { get; private set; }
+			public int Ability { get; private set; }
+			public bool IsFixedGender { get; private set; }
 
 			public override string ToString() { return Key; }
 
-			public Pokemon(string key, int rank, RaidTemplate entry)
+			public Pokemon(RaidTemplate entry, int rank)
 			{
-				Key = key;
 				Rank = rank;
-				Entry = entry;
 
 				int rawSpecies = entry.Species;
-				Species = rawSpecies;
+				decimal altForm = entry.AltForm;
 
-				// TODO ガラル
+				DisplaySpecies = rawSpecies;
 
-				IsFixedDream = (entry.Ability == 2);
+				// マホイップ、カラナクシ、トリトドンは無視
+				if (rawSpecies == 869 || rawSpecies == 422 || rawSpecies == 433)
+				{
+					altForm = 0;
+				}
+				// FCロトムは全て1に
+				else if (rawSpecies == 479)
+				{
+					if (altForm != 0)
+					{
+						altForm = 1;
+					}
+				}
+
+				// ダルマッカ
+				if (rawSpecies == 554)
+				{
+					CalcSpecies = 993;
+				}
+				else
+				{
+					CalcSpecies = rawSpecies + altForm / 10m;
+				}
+
+				// ガラル表示は省略
+				if (c_GalarForms.ContainsKey(rawSpecies))
+				{
+					DisplaySpecies = rawSpecies;
+				}
+				else
+				{
+					CalcSpecies = rawSpecies + altForm / 10m;
+				}
+
+				FlawlessIvs = entry.FlawlessIVs;
+				IsGigantamax = entry.IsGigantamax;
+				Ability = entry.Ability;
+				// レイドデータで固定されているのはイエッサン、ニャオニクス、エンニュートのみ
+				// ♂のみ：バルキー系、エルレイド、ナゲキ、ダゲキ、ウォーグル系、オーロンゲ系
+				// ♀のみ：ビークイン、ユキメノコ、バルジーナ系、アマージョ系、ブリムオン系、マホイップ系
+				if (c_FixedGender.ContainsKey(rawSpecies))
+				{
+					IsFixedGender = true;
+				}
+				else
+				{
+					IsFixedGender = (entry.Gender != 0);
+				}
+
+				RefreshKey();
 			}
 
 			public void Merge(RaidTemplate entry)
 			{
 				// 夢特性固定があれば上書き
-				IsFixedDream = IsFixedDream || (entry.Ability == 2);
+				if (entry.Ability == 2)
+				{
+					Ability = 2;
+				}
+			}
+
+			public void RefreshKey()
+			{
+				// キーを作成
+				string key = Messages.Instance.RankPrefix[Rank];
+				foreach (var pokemon in Messages.Instance.Pokemon)
+				{
+					if (pokemon.Value == DisplaySpecies)
+					{
+						key += pokemon.Key;
+						break;
+					}
+				}
+				if (IsGigantamax)
+				{
+					key += Messages.Instance.SystemLabel["Gigantamax"];
+				}
+
+				Key = key;
 			}
 		}
 	}
