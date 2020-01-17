@@ -6,73 +6,34 @@
 #include "Data.h"
 
 // åüçıèåèê›íË
-static PokemonData l_First;
-static PokemonData l_Second;
-static PokemonData l_Third;
+static PokemonData l_Pokemon[3];
 
 static int g_FixedIvs;
 static int g_Ivs[6];
-static int g_SecondIvCount;
 
 static int g_IvOffset;
 
 //#define LENGTH (60)
 
-void SetSixFirstCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability, int nature, int characteristic, bool isNoGender, int abilityFlag)
+void Set35Condition(int index, int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, int characteristic, bool isNoGender, int abilityFlag, int flawlessIvs)
 {
-	l_First.ivs[0] = iv1;
-	l_First.ivs[1] = iv2;
-	l_First.ivs[2] = iv3;
-	l_First.ivs[3] = iv4;
-	l_First.ivs[4] = iv5;
-	l_First.ivs[5] = iv6;
-	l_First.ability = ability;
-	l_First.nature = nature;
-	l_First.characteristic = characteristic;
-	l_First.isNoGender = isNoGender;
-	l_First.abilityFlag = abilityFlag;
-}
-
-void SetSixSecondCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability, int nature, int characteristic, bool isNoGender, int abilityFlag)
-{
-	l_Second.ivs[0] = iv1;
-	l_Second.ivs[1] = iv2;
-	l_Second.ivs[2] = iv3;
-	l_Second.ivs[3] = iv4;
-	l_Second.ivs[4] = iv5;
-	l_Second.ivs[5] = iv6;
-	l_Second.ability = ability;
-	l_Second.nature = nature;
-	l_Second.characteristic = characteristic;
-	l_Second.isNoGender = isNoGender;
-	l_Second.abilityFlag = abilityFlag;
-	g_SecondIvCount = 0;
-	for (int i = 0; i < 6; ++i)
+	if(index < 0 || index >= 3)
 	{
-		if (l_Second.ivs[i] == 31)
-		{
-			++g_SecondIvCount;
-		}
+		return;
 	}
-	if(g_SecondIvCount > 4)
-	{
-		g_SecondIvCount = 4;
-	}
-}
 
-void SetSixThirdCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability, int nature, int characteristic, bool isNoGender, int abilityFlag)
-{
-	l_Third.ivs[0] = iv1;
-	l_Third.ivs[1] = iv2;
-	l_Third.ivs[2] = iv3;
-	l_Third.ivs[3] = iv4;
-	l_Third.ivs[4] = iv5;
-	l_Third.ivs[5] = iv6;
-	l_Third.ability = ability;
-	l_Third.nature = nature;
-	l_Third.characteristic = characteristic;
-	l_Third.isNoGender = isNoGender;
-	l_Third.abilityFlag = abilityFlag;
+	l_Pokemon[index].ivs[0] = iv0;
+	l_Pokemon[index].ivs[1] = iv1;
+	l_Pokemon[index].ivs[2] = iv2;
+	l_Pokemon[index].ivs[3] = iv3;
+	l_Pokemon[index].ivs[4] = iv4;
+	l_Pokemon[index].ivs[5] = iv5;
+	l_Pokemon[index].ability = ability;
+	l_Pokemon[index].nature = nature;
+	l_Pokemon[index].characteristic = characteristic;
+	l_Pokemon[index].isNoGender = isNoGender;
+	l_Pokemon[index].abilityFlag = abilityFlag;
+	l_Pokemon[index].flawlessIvs = flawlessIvs;
 }
 
 void SetTargetCondition6(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6)
@@ -207,45 +168,74 @@ _u64 SearchSix(_u64 ivs)
 	for (_u64 search = 0; search <= max; ++search)
 	{
 		_u64 seed = (processedTarget ^ g_CoefficientData[search]) | g_SearchPattern[search];
+		_u64 nextSeed = seed + 0x82a2b175229d6a5bull;
 
 		// Ç±Ç±Ç©ÇÁçiÇËçûÇ›
+
+		// å¬ê´É`ÉFÉbÉN
+		{
+			xoroshiro.SetSeed(seed);
+
+			// EC
+			unsigned int ec = xoroshiro.Next(0xFFFFFFFFu);
+			// 1ïCñ⁄å¬ê´
+			{
+				int characteristic = ec % 6;
+				for(int i = 0; i < 6; ++i)
+				{
+					if(l_Pokemon[0].IsCharacterized((characteristic + i) % 6))
+					{
+						characteristic = (characteristic + i) % 6;
+						break;
+					}
+				}
+				if(characteristic != l_Pokemon[0].characteristic)
+				{
+					continue;
+				}
+			}
+			// 2ïCñ⁄å¬ê´
+			{
+				int characteristic = ec % 6;
+				for(int i = 0; i < 6; ++i)
+				{
+					if(l_Pokemon[1].IsCharacterized((characteristic + i) % 6))
+					{
+						characteristic = (characteristic + i) % 6;
+						break;
+					}
+				}
+				if(characteristic != l_Pokemon[1].characteristic)
+				{
+					continue;
+				}
+			}
+
+			xoroshiro.SetSeed(nextSeed);
+
+			// EC
+			ec = xoroshiro.Next(0xFFFFFFFFu);
+			// 3ïCñ⁄å¬ê´
+			{
+				int characteristic = ec % 6;
+				for(int i = 0; i < 6; ++i)
+				{
+					if(l_Pokemon[2].IsCharacterized((characteristic + i) % 6))
+					{
+						characteristic = (characteristic + i) % 6;
+						break;
+					}
+				}
+				if(characteristic != l_Pokemon[2].characteristic)
+				{
+					continue;
+				}
+			}
+		}
+
 		xoroshiro.SetSeed(seed);
 
-		// EC
-		unsigned int ec = xoroshiro.Next(0xFFFFFFFFu);
-		// 1ïCñ⁄å¬ê´
-		{
-			int characteristic = ec % 6;
-			for (int i = 0; i < 6; ++i)
-			{
-				if (l_First.IsCharacterized((characteristic + i) % 6))
-				{
-					characteristic = (characteristic + i) % 6;
-					break;
-				}
-			}
-			if (characteristic != l_First.characteristic)
-			{
-				continue;
-			}
-		}
-		// 2ïCñ⁄å¬ê´
-		{
-			int characteristic = ec % 6;
-			for (int i = 0; i < 6; ++i)
-			{
-				if (l_Second.IsCharacterized((characteristic + i) % 6))
-				{
-					characteristic = (characteristic + i) % 6;
-					break;
-				}
-			}
-			if (characteristic != l_Second.characteristic)
-			{
-				continue;
-			}
-		}
-
+		xoroshiro.Next(); // EC
 		xoroshiro.Next(); // OTID
 		xoroshiro.Next(); // PID
 		oshiroTemp.Copy(&xoroshiro); // èÛë‘Çï€ë∂
@@ -281,13 +271,13 @@ _u64 SearchSix(_u64 ivs)
 			{
 				if (ivs[i] == 31)
 				{
-					if (l_First.ivs[i] != 31)
+					if (l_Pokemon[0].ivs[i] != 31)
 					{
 						isPassed = false;
 						break;
 					}
 				}
-				else if (l_First.ivs[i] != xoroshiro.Next(0x1F))
+				else if (l_Pokemon[0].ivs[i] != xoroshiro.Next(0x1F))
 				{
 					isPassed = false;
 					break;
@@ -300,7 +290,7 @@ _u64 SearchSix(_u64 ivs)
 
 			// ì¡ê´
 			int ability = 0;
-			if (l_First.abilityFlag == 3)
+			if (l_Pokemon[0].abilityFlag == 3)
 			{
 				ability = xoroshiro.Next(1);
 			}
@@ -310,13 +300,13 @@ _u64 SearchSix(_u64 ivs)
 					ability = xoroshiro.Next(3);
 				} while(ability >= 3);
 			}
-			if ((l_First.ability >= 0 && l_First.ability != ability) || (l_First.ability == -1 && ability >= 2))
+			if ((l_Pokemon[0].ability >= 0 && l_Pokemon[0].ability != ability) || (l_Pokemon[0].ability == -1 && ability >= 2))
 			{
 				continue;
 			}
 
 			// ê´ï íl
-			if (!l_First.isNoGender)
+			if (!l_Pokemon[0].isNoGender)
 			{
 				int gender = 0;
 				do {
@@ -329,7 +319,7 @@ _u64 SearchSix(_u64 ivs)
 				nature = xoroshiro.Next(0x1F); // ê´äi
 			} while (nature >= 25);
 
-			if (nature != l_First.nature)
+			if (nature != l_Pokemon[0].nature)
 			{
 				continue;
 			}
@@ -337,6 +327,8 @@ _u64 SearchSix(_u64 ivs)
 
 		{
 			xoroshiro.Copy(&oshiroTemp); // Ç¬Ç√Ç´Ç©ÇÁ
+
+			int vCount = l_Pokemon[1].flawlessIvs;
 
 			int ivs[6] = { -1, -1, -1, -1, -1, -1 };
 			int fixedCount = 0;
@@ -351,7 +343,7 @@ _u64 SearchSix(_u64 ivs)
 					ivs[fixedIndex] = 31;
 					++fixedCount;
 				}
-			} while (fixedCount < g_SecondIvCount);
+			} while (fixedCount < vCount);
 
 			// å¬ëÃíl
 			bool isPassed = true;
@@ -359,13 +351,13 @@ _u64 SearchSix(_u64 ivs)
 			{
 				if (ivs[i] == 31)
 				{
-					if (l_Second.ivs[i] != 31)
+					if (l_Pokemon[1].ivs[i] != 31)
 					{
 						isPassed = false;
 						break;
 					}
 				}
-				else if (l_Second.ivs[i] != xoroshiro.Next(0x1F))
+				else if (l_Pokemon[1].ivs[i] != xoroshiro.Next(0x1F))
 				{
 					isPassed = false;
 					break;
@@ -378,7 +370,7 @@ _u64 SearchSix(_u64 ivs)
 
 			// ì¡ê´
 			int ability = 0;
-			if (l_Second.abilityFlag == 3)
+			if (l_Pokemon[1].abilityFlag == 3)
 			{
 				ability = xoroshiro.Next(1);
 			}
@@ -388,13 +380,13 @@ _u64 SearchSix(_u64 ivs)
 					ability = xoroshiro.Next(3);
 				} while(ability >= 3);
 			}
-			if ((l_Second.ability >= 0 && l_Second.ability != ability) || (l_Second.ability == -1 && ability >= 2))
+			if ((l_Pokemon[1].ability >= 0 && l_Pokemon[1].ability != ability) || (l_Pokemon[1].ability == -1 && ability >= 2))
 			{
 				continue;
 			}
 
 			// ê´ï íl
-			if (!l_Second.isNoGender)
+			if (!l_Pokemon[1].isNoGender)
 			{ 
 				int gender = 0;
 				do {
@@ -408,122 +400,97 @@ _u64 SearchSix(_u64 ivs)
 				nature = xoroshiro.Next(0x1F); // ê´äi
 			} while (nature >= 25);
 
-			if (nature != l_Second.nature)
+			if (nature != l_Pokemon[1].nature)
 			{
 				continue;
 			}
 		}
 
 		// 2ïCñ⁄
-		_u64 nextSeed = seed + 0x82a2b175229d6a5bull;
 		xoroshiro.SetSeed(nextSeed);
 
-		// EC
-		ec = xoroshiro.Next(0xFFFFFFFFu);
-		// 3ïCñ⁄å¬ê´
-		{
-			int characteristic = ec % 6;
-			for (int i = 0; i < 6; ++i)
+		xoroshiro.Next(); // EC
+		xoroshiro.Next(); // OTID
+		xoroshiro.Next(); // PID
+
+		int vCount = l_Pokemon[2].flawlessIvs;
+
+		int ivs[6] = { -1, -1, -1, -1, -1, -1 };
+		int fixedCount = 0;
+		do {
+			int fixedIndex = 0;
+			do {
+				fixedIndex = xoroshiro.Next(7); // Vâ”èä
+			} while (fixedIndex >= 6);
+
+			if (ivs[fixedIndex] == -1)
 			{
-				if (l_Third.IsCharacterized((characteristic + i) % 6))
+				ivs[fixedIndex] = 31;
+				++fixedCount;
+			}
+		} while (fixedCount < vCount);
+
+		// å¬ëÃíl
+		bool isPassed = true;
+		for (int i = 0; i < 6; ++i)
+		{
+			if (ivs[i] == 31)
+			{
+				if (l_Pokemon[2].ivs[i] != 31)
 				{
-					characteristic = (characteristic + i) % 6;
+					isPassed = false;
 					break;
 				}
 			}
-			if (characteristic != l_Third.characteristic)
+			else if (l_Pokemon[2].ivs[i] != xoroshiro.Next(0x1F))
 			{
-				continue;
+				isPassed = false;
+				break;
 			}
 		}
-
-		xoroshiro.Next(); // OTID
-		xoroshiro.Next(); // PID
-		oshiroTemp.Copy(&xoroshiro); // èÛë‘Çï€ë∂
+		if (!isPassed)
 		{
-			// Vêî2Å`4
-			for (int vCount = 2; vCount <= 4; ++vCount)
-			{
-				xoroshiro.Copy(&oshiroTemp); // Ç¬Ç√Ç´Ç©ÇÁ
-
-				int ivs[6] = { -1, -1, -1, -1, -1, -1 };
-				int fixedCount = 0;
-				do {
-					int fixedIndex = 0;
-					do {
-						fixedIndex = xoroshiro.Next(7); // Vâ”èä
-					} while (fixedIndex >= 6);
-
-					if (ivs[fixedIndex] == -1)
-					{
-						ivs[fixedIndex] = 31;
-						++fixedCount;
-					}
-				} while (fixedCount < vCount);
-
-				// å¬ëÃíl
-				bool isPassed = true;
-				for (int i = 0; i < 6; ++i)
-				{
-					if (ivs[i] == 31)
-					{
-						if (l_Third.ivs[i] != 31)
-						{
-							isPassed = false;
-							break;
-						}
-					}
-					else if (l_Third.ivs[i] != xoroshiro.Next(0x1F))
-					{
-						isPassed = false;
-						break;
-					}
-				}
-				if (!isPassed)
-				{
-					continue;
-				}
-
-				// ì¡ê´
-				int ability = 0;
-				if (l_Third.abilityFlag == 3)
-				{
-					ability = xoroshiro.Next(1);
-				}
-				else
-				{
-					do {
-						ability = xoroshiro.Next(3);
-					} while(ability >= 3);
-				}
-				if ((l_Third.ability >= 0 && l_Third.ability != ability) || (l_Third.ability == -1 && ability >= 2))
-				{
-					continue;
-				}
-
-				// ê´ï íl
-				if (!l_Third.isNoGender)
-				{
-					int gender = 0;
-					do {
-						gender = xoroshiro.Next(0xFF);
-					} while (gender >= 253);
-				}
-
-				// ê´äi
-				int nature = 0;
-				do {
-					nature = xoroshiro.Next(0x1F);
-				} while (nature >= 25);
-
-				if (nature != l_Third.nature)
-				{
-					continue;
-				}
-
-				return seed;
-			}
+			continue;
 		}
+
+		// ì¡ê´
+		int ability = 0;
+		if (l_Pokemon[2].abilityFlag == 3)
+		{
+			ability = xoroshiro.Next(1);
+		}
+		else
+		{
+			do {
+				ability = xoroshiro.Next(3);
+			} while(ability >= 3);
+		}
+		if ((l_Pokemon[2].ability >= 0 && l_Pokemon[2].ability != ability) || (l_Pokemon[2].ability == -1 && ability >= 2))
+		{
+			continue;
+		}
+
+		// ê´ï íl
+		if (!l_Pokemon[2].isNoGender)
+		{
+			int gender = 0;
+			do {
+				gender = xoroshiro.Next(0xFF);
+			} while (gender >= 253);
+		}
+
+		// ê´äi
+		int nature = 0;
+		do {
+			nature = xoroshiro.Next(0x1F);
+		} while (nature >= 25);
+
+		if (nature != l_Pokemon[2].nature)
+		{
+			continue;
+		}
+
+		return seed;
 	}
 	return 0;
 }

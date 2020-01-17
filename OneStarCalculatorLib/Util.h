@@ -19,6 +19,7 @@ struct PokemonData
 	int characteristic;
 	bool isNoGender;
 	int abilityFlag;
+	int flawlessIvs;
 
 	bool IsCharacterized(int index) // H A B "S" C D
 	{

@@ -93,63 +93,6 @@ namespace OneStar
 			InitializeView();
 
             IsInitialized = true;
-
-			// ポケモンデータチェック
-			/*
-			using (StreamWriter sw = new StreamWriter("check.txt"))
-			{
-				for (int i = -1; i <= 99; ++i)
-				{
-					if (i == 16)
-					{
-						continue;
-					}
-
-					for (int a = 0; a < 2; ++a)
-					{
-						for (int b = 0; b < 2; ++b)
-						{
-							RaidTemplateTable raidTable = c_RaidData.GetRaidTemplateTable(i, a, b);
-							foreach (var entry in raidTable.Entries)
-							{
-								for (int c = 0; c < 5; ++c)
-								{
-									if (entry.Probabilities[c] > 0)
-									{
-										bool isOutput = false;
-										if (entry.Gender != 0)
-										{
-											isOutput = true;
-										}
-										if (isOutput)
-										{
-											string key = Messages.Instance.RankPrefix[c];
-											foreach (var pokemon in Messages.Instance.Pokemon)
-											{
-												if (pokemon.Value == entry.Species)
-												{
-													key = pokemon.Key;
-													break;
-												}
-											}
-											if (entry.IsGigantamax)
-											{
-												key += Messages.Instance.SystemLabel["Gigantamax"];
-											}
-											sw.WriteLine(key);
-											sw.WriteLine($"Gender: {entry.Gender}");
-											sw.WriteLine($"AltForm: {entry.AltForm}");
-											sw.WriteLine($"Version: {a}");
-											sw.WriteLine("-----");
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-			*/
 		}
 
 		void InitializeComboBox()
@@ -193,6 +136,9 @@ namespace OneStar
 
 		void InitializeView()
 		{
+			f_PicturePoint.Parent = DenMap;
+			f_PicturePoint.Visible = false;
+
 			// ★3～5パネル
 			SetCheckResult(-1);
 
@@ -202,7 +148,6 @@ namespace OneStar
 			f_TextBoxRerollsLower.Text = "0";
 			f_TextBoxRerollsUpper.Text = "3";
 			f_CheckBoxStop.Checked = true;
-			f_TextBoxListVCount.Text = "4";
 
 			// 扱いやすいようにキャッシュ
 			m_PokemonInfo[0] = new PokemonInfoForm();
@@ -341,12 +286,6 @@ namespace OneStar
 				f_LabelIvs_352,
 				f_LabelIvs_353,
 			};
-			m_MultiLanguageControls["HiddenPossible"] = new Control[] {
-				f_CheckBoxDream_List,
-			};
-			m_MultiLanguageControls["GenderFixed"] = new Control[] {
-				f_CheckBoxNoGender_List,
-			};
 			m_MultiLanguageControls["Pokemon35_2"] = new Control[] { f_GroupBoxPokemon_352 };
 			m_MultiLanguageControls["Pokemon35_3"] = new Control[] { f_GroupBoxPokemon_353 };
 			m_MultiLanguageControls["Pokemon12_1"] = new Control[] { f_GroupBoxPokemon_1 };
@@ -354,7 +293,6 @@ namespace OneStar
 			m_MultiLanguageControls["Pokemon12_3"] = new Control[] { f_CheckBoxThirdEnable };
 			m_MultiLanguageControls["CheckIvsButton"] = new Control[] { f_ButtonIvsCheck };
 			m_MultiLanguageControls["CheckIvsResultTitle"] = new Control[] { f_LabelCheckResultTitle };
-			m_MultiLanguageControls["ListVCount"] = new Control[] { f_LabelListVCount };
 			m_MultiLanguageControls["MaxFrame"] = new Control[] { f_LabelMaxFrame };
 			m_MultiLanguageControls["OnlyShiny"] = new Control[] { f_CheckBoxListShiny };
 			m_MultiLanguageControls["ShowSeed"] = new Control[] { f_CheckBoxShowSeed };
@@ -364,6 +302,14 @@ namespace OneStar
 			m_MultiLanguageControls["Rerolls"] = new Control[] { f_LabelRerolls };
 			m_MultiLanguageControls["Range"] = new Control[] { f_LabelRerollsRange };
 			m_MultiLanguageControls["SearchStop"] = new Control[] { f_CheckBoxStop };
+			m_MultiLanguageControls["Information"] = new Control[] {
+				f_ButtonEncounterInfo_1,
+				f_ButtonEncounterInfo_2,
+				f_ButtonEncounterInfo_3,
+				f_ButtonEncounterInfo_351,
+				f_ButtonEncounterInfo_352,
+				f_ButtonEncounterInfo_353,
+			};
 
 			// 言語を適用
 			ChangeLanguage(true, m_Preferences.Language);
@@ -559,19 +505,18 @@ namespace OneStar
 			bool isEnableThird = f_CheckBoxThirdEnable.Checked;
 
 			// フォームから必要な情報を取得
-			int[] ivs1 = new int[6];
-			int[] ivs2 = new int[6];
-			int[] ivs3 = new int[6];
-			for (int i = 0; i < 6; ++i)
+			RaidData.Pokemon[] pokemonData = new RaidData.Pokemon[3];
+			for (int i = 0; i < 3; ++i)
+			{
+				pokemonData[i] = m_PokemonInfo[i].ComboBoxName.SelectedItem as RaidData.Pokemon;
+			}
+
+			int[] ivs = new int[18];
+			for (int i = 0; i < (isEnableThird ? 18 : 12); ++i)
 			{
 				try
 				{
-					ivs1[i] = int.Parse(m_PokemonInfo[0].TextBoxIvs[i].Text);
-					ivs2[i] = int.Parse(m_PokemonInfo[1].TextBoxIvs[i].Text);
-					if (isEnableThird)
-					{
-						ivs3[i] = int.Parse(m_PokemonInfo[2].TextBoxIvs[i].Text);
-					}
+					ivs[i] = int.Parse(m_PokemonInfo[i / 6].TextBoxIvs[i % 6].Text);
 				}
 				catch (Exception)
 				{
@@ -580,14 +525,7 @@ namespace OneStar
 					isCheckFailed = true;
 					break;
 				}
-				if (ivs1[i] < 0 || ivs1[i] > 31 || ivs2[i] < 0 || ivs2[i] > 31)
-				{
-					// エラー
-					errorText = Messages.Instance.ErrorMessage["IvsFormat"];
-					isCheckFailed = true;
-					break;
-				}
-				if (isEnableThird && (ivs3[i] < 0 || ivs3[i] > 31))
+				if (ivs[i] < 0 || ivs[i] > 31)
 				{
 					// エラー
 					errorText = Messages.Instance.ErrorMessage["IvsFormat"];
@@ -602,85 +540,61 @@ namespace OneStar
 				return;
 			}
 
-			// 1匹目はVが1箇所じゃないとエラー
-			int c = 0;
-			for (int i = 0; i < 6; ++i)
+			// V箇所が足りなかったらエラー
+			for (int a = 0; a < (isEnableThird ? 3 : 2); ++a)
 			{
-				if (ivs1[i] == 31)
+				int c = 0;
+				for (int b = 0; b < 6; ++b)
 				{
-					++c;
-				}
-			}
-			if (c != 1)
-			{
-				// エラー
-				CreateErrorDialog(Messages.Instance.ErrorMessage["IvsStrict1"]);
-				return;
-			}
-			// 2匹目はVが1箇所以上じゃないとエラー
-			c = 0;
-			for (int i = 0; i < 6; ++i)
-			{
-				if (ivs2[i] == 31)
-				{
-					++c;
-				}
-			}
-			if (c < 1)
-			{
-				// エラー
-				CreateErrorDialog(Messages.Instance.ErrorMessage["IvsStrict2"]);
-				return;
-			}
-			// 3匹目はVが1箇所以上じゃないとエラー
-			if (isEnableThird)
-			{
-				c = 0;
-				for (int i = 0; i < 6; ++i)
-				{
-					if (ivs3[i] == 31)
+					if (ivs[a * 6 + b] == 31)
 					{
 						++c;
 					}
 				}
-				if (c < 1)
+				// 1匹目は1Vじゃないとエラー
+				if (a == 0 && c != 1)
 				{
 					// エラー
-					CreateErrorDialog(Messages.Instance.ErrorMessage["IvsStrict3"]);
+					CreateErrorDialog(Messages.Instance.ErrorMessage["IvsStrict1"]);
+					return;
+				}
+				if (c < pokemonData[a].FlawlessIvs)
+				{
+					// エラー
+					CreateErrorDialog(Messages.Instance.ErrorMessage["IvsStrict"]);
 					return;
 				}
 			}
-			int ability1 = f_ComboBoxAbility_1.SelectedIndex;
-			int ability2 = f_ComboBoxAbility_2.SelectedIndex;
-			int ability3 = f_ComboBoxAbility_3.SelectedIndex;
-			if (ability1 >= 2) { ability1 = ability1 * 3 - 7; }
-			if (ability2 >= 2) { ability2 = ability2 * 3 - 7; }
-			if (ability3 >= 2) { ability3 = ability3 * 3 - 7; }
-			int nature1 = Messages.Instance.Nature[m_PokemonInfo[0].ComboBoxNature.Text];
-			int nature2 = Messages.Instance.Nature[m_PokemonInfo[1].ComboBoxNature.Text];
-			int nature3 = Messages.Instance.Nature[m_PokemonInfo[2].ComboBoxNature.Text];
 
-			var pokemonData1 = m_PokemonInfo[0].ComboBoxName.SelectedItem as RaidData.Pokemon;
-			var pokemonData2 = m_PokemonInfo[1].ComboBoxName.SelectedItem as RaidData.Pokemon;
-			var pokemonData3 = m_PokemonInfo[2].ComboBoxName.SelectedItem as RaidData.Pokemon;
-
-			bool noGender1 = pokemonData1.IsFixedGender;
-			bool noGender2 = pokemonData2.IsFixedGender;
-			bool noGender3 = pokemonData3.IsFixedGender;
-
-			int abilityFlag1 = pokemonData1.Ability;
-			int abilityFlag2 = pokemonData2.Ability;
-			int abilityFlag3 = pokemonData3.Ability;
-
-			// 計算開始
+			// 計算準備
 			SeedSearcher searcher = new SeedSearcher(SeedSearcher.Mode.Star12);
-			SeedSearcher.SetFirstCondition(ivs1[0], ivs1[1], ivs1[2], ivs1[3], ivs1[4], ivs1[5], ability1, nature1, noGender1, abilityFlag1);
-			SeedSearcher.SetSecondCondition(ivs2[0], ivs2[1], ivs2[2], ivs2[3], ivs2[4], ivs2[5], ability2, nature2, noGender2, abilityFlag2);
-			if (isEnableThird)
+
+			// 条件をセット
+			for (int i = 0; i < (isEnableThird ? 3 : 2); ++i)
 			{
-				SeedSearcher.SetThirdCondition(ivs3[0], ivs3[1], ivs3[2], ivs3[3], ivs3[4], ivs3[5], ability3, nature3, noGender3, abilityFlag3);
+				var pokemonInfo = m_PokemonInfo[i];
+				var pokemon = pokemonData[i];
+				
+				int ability = pokemonInfo.ComboBoxAbility.SelectedIndex;
+				if (ability >= 2) { ability = ability * 3 - 7; }
+				int nature = Messages.Instance.Nature[pokemonInfo.ComboBoxNature.Text];
+				bool noGender = pokemon.IsFixedGender;
+				int abilityFlag = pokemon.Ability;
+				int characteristic = Messages.Instance.Characteristic[pokemonInfo.ComboBoxCharacteristic.Text];
+				int flawlessIvs = pokemon.FlawlessIvs;
+				
+				SeedSearcher.Set12Condition(
+					i,
+					ivs[i * 6],
+					ivs[i * 6 + 1],
+					ivs[i * 6 + 2],
+					ivs[i * 6 + 3],
+					ivs[i * 6 + 4],
+					ivs[i * 6 + 5],
+					ability, nature, characteristic, noGender, abilityFlag, flawlessIvs);
 			}
 
+			// 計算開始
 			SearchImpl(searcher);
 		}
 
@@ -773,9 +687,9 @@ namespace OneStar
 
 			// 計算開始
 			SeedSearcher searcher = new SeedSearcher(mode == Star35PanelMode.From2V ? SeedSearcher.Mode.Star35_6 : SeedSearcher.Mode.Star35_5);
-			SeedSearcher.SetSixFirstCondition(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5], ability1, nature1, characteristic1, noGender1, abilityFlag1);
-			SeedSearcher.SetSixSecondCondition(ivs[6], ivs[7], ivs[8], ivs[9], ivs[10], ivs[11], ability2, nature2, characteristic2, noGender2, abilityFlag2);
-			SeedSearcher.SetSixThirdCondition(ivs[12], ivs[13], ivs[14], ivs[15], ivs[16], ivs[17], ability3, nature3, characteristic3, noGender3, abilityFlag3);
+			SeedSearcher.Set35Condition(0, ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5], ability1, nature1, characteristic1, noGender1, abilityFlag1, pokemonData1.FlawlessIvs);
+			SeedSearcher.Set35Condition(1, ivs[6], ivs[7], ivs[8], ivs[9], ivs[10], ivs[11], ability2, nature2, characteristic2, noGender2, abilityFlag2, pokemonData2.FlawlessIvs);
+			SeedSearcher.Set35Condition(2, ivs[12], ivs[13], ivs[14], ivs[15], ivs[16], ivs[17], ability3, nature3, characteristic3, noGender3, abilityFlag3, pokemonData3.FlawlessIvs);
 
 			int vCount = 0;
 			for (int i = 0; i < 6; ++i)
@@ -957,25 +871,17 @@ namespace OneStar
 				return;
 			}
 
-			int vCount = 0;
-			try
-			{
-				vCount = int.Parse(f_TextBoxListVCount.Text);
-			}
-			catch (Exception)
-			{
-				// エラー
-				CreateErrorDialog(Messages.Instance.ErrorMessage["VCountFormat"]);
-				return;
-			}
+			var pokemon = f_ComboBoxPokemon_List.SelectedItem as RaidData.Pokemon;
+
+			int vCount = pokemon.FlawlessIvs;
+			bool isNoGender = pokemon.IsFixedGender;
+			int abilityFlag = pokemon.Ability;
 
 			bool isShinyCheck = f_CheckBoxListShiny.Checked;
 
-			bool isNoGender = f_CheckBoxNoGender_List.Checked;
-			bool isDream = f_CheckBoxDream_List.Checked;
 			bool isShowSeed = f_CheckBoxShowSeed.Checked;
 
-			ListGenerator listGenerator = new ListGenerator(denSeed, maxFrameCount, vCount, isShinyCheck, isNoGender, isDream, isShowSeed);
+			ListGenerator listGenerator = new ListGenerator(denSeed, maxFrameCount, vCount, isNoGender, abilityFlag, isShinyCheck, isShowSeed);
 			listGenerator.Generate();
 		}
 
@@ -1016,10 +922,10 @@ namespace OneStar
 			int modeIndex = 0;
 			int[] nature = new int[6];
             int[] characteristic = new int[6];
-			int[] pokemon = new int[6];
+			int[] pokemon = new int[7];
 			int[] abilityIndex = new int[6];
 			int denIndex = -1;
-			int versionIndex = 0;
+			int versionIndex = m_Preferences.GameVersion;
 			int rarityIndex = 0;
 
 			if (!isFirst)
@@ -1039,6 +945,7 @@ namespace OneStar
 					m_PokemonInfo[i].ComboBoxCharacteristic.Items.Clear();
 					m_PokemonInfo[i].ComboBoxAbility.Items.Clear();
 				}
+				pokemon[6] = f_ComboBoxPokemon_List.SelectedIndex;
 
 				denIndex = Messages.Instance.Den[f_ComboBoxDenName.Text];
 				f_ComboBoxDenName.Items.Clear();
@@ -1215,6 +1122,7 @@ namespace OneStar
 				{
 					m_PokemonInfo[a].ComboBoxName.SelectedIndex = 0;
 				}
+				f_ComboBoxPokemon_List.SelectedIndex = 0;
 			}
 			else
 			{
@@ -1233,6 +1141,7 @@ namespace OneStar
 				{
 					m_PokemonInfo[a].ComboBoxName.SelectedIndex = pokemon[a];
 				}
+				f_ComboBoxPokemon_List.SelectedIndex = pokemon[6];
 
 				for (int i = 0; i < 6; ++i)
 				{
@@ -1372,6 +1281,7 @@ namespace OneStar
 			if (gameVersion != m_CurrentGameVersion)
 			{
 				m_CurrentGameVersion = gameVersion;
+				m_Preferences.GameVersion = gameVersion;
 				RefreshDen();
 			}
 		}
@@ -1400,6 +1310,17 @@ namespace OneStar
 				return;
 			}
 			RaidTemplateTable raidTable = c_RaidData.GetRaidTemplateTable(m_CurrentDenIndex, m_CurrentGameVersion, m_CurrentRarity);
+
+			if (m_CurrentDenIndex >= 0)
+			{
+				var location = c_RaidData.GetRaidLocation(m_CurrentDenIndex);
+				f_PicturePoint.Location = new System.Drawing.Point(location.X - 5, location.Y - 5);
+				f_PicturePoint.Visible = true;
+			}
+			else
+			{
+				f_PicturePoint.Visible = false;
+			}
 
 			// データ構築
 			m_EncounterList.Clear();
@@ -1465,6 +1386,7 @@ namespace OneStar
 			{
 				m_PokemonInfo[i].ComboBoxName.Items.Clear();
 			}
+			f_ComboBoxPokemon_List.Items.Clear();
 
 			// コンボボックスに反映
 			foreach (var encounter in m_EncounterList)
@@ -1492,15 +1414,21 @@ namespace OneStar
 					{
 						f_ComboBoxPokemon_351.Items.Add(encounter);
 					}
-					f_ComboBoxPokemon_352.Items.Add(encounter);
+					// 3V～4V
+					if (encounter.FlawlessIvs >= 3 && encounter.FlawlessIvs <= 4)
+					{
+						f_ComboBoxPokemon_352.Items.Add(encounter);
+					}
 					f_ComboBoxPokemon_353.Items.Add(encounter);
 				}
+				f_ComboBoxPokemon_List.Items.Add(encounter);
 			}
 
 			for (int i = 0; i < 6; ++i)
 			{
 				m_PokemonInfo[i].ComboBoxName.SelectedIndex = 0;
 			}
+			f_ComboBoxPokemon_List.SelectedIndex = 0;
 		}
 
 		#region レイド情報ボタン イベント定義
@@ -1541,22 +1469,22 @@ namespace OneStar
 
 			string str = pokemon.Key;
 			str += "\n-----";
-			str += $"\nV固定数: {pokemon.FlawlessIvs}";
+			str += $"\n{Messages.Instance.SystemLabel["ListVCount"]} {pokemon.FlawlessIvs}";
 			if (pokemon.Ability == 2)
 			{
-				str += "\n夢特性固定あり";
+				str += $"\n{Messages.Instance.SystemLabel["HiddenFixed"]}";
 			}
 			else if (pokemon.Ability == 3)
 			{
-				str += "\n通常特性のみ";
+				str += $"\n{Messages.Instance.SystemLabel["NoHidden"]}";
 			}
 			else if (pokemon.Ability == 4)
 			{
-				str += "\n夢特性あり";
+				str += $"\n{Messages.Instance.SystemLabel["HiddenPossible"]}";
 			}
 			if (pokemon.IsFixedGender)
 			{
-				str += "\n性別固定/不明";
+				str += $"\n{Messages.Instance.SystemLabel["GenderFixed"]}";
 			}
 
 			MessageBox.Show(str, Messages.Instance.SystemMessage["EncounterInfoDialogTitle"], MessageBoxButtons.OK, MessageBoxIcon.Information);

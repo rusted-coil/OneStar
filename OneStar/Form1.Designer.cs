@@ -106,10 +106,6 @@
 			this.f_ButtonListGenerate = new System.Windows.Forms.Button();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.f_CheckBoxShowSeed = new System.Windows.Forms.CheckBox();
-			this.f_CheckBoxNoGender_List = new System.Windows.Forms.CheckBox();
-			this.f_CheckBoxDream_List = new System.Windows.Forms.CheckBox();
-			this.f_TextBoxListVCount = new System.Windows.Forms.TextBox();
-			this.f_LabelListVCount = new System.Windows.Forms.Label();
 			this.f_CheckBoxListShiny = new System.Windows.Forms.CheckBox();
 			this.f_TextBoxMaxFrame = new System.Windows.Forms.TextBox();
 			this.f_LabelMaxFrame = new System.Windows.Forms.Label();
@@ -279,12 +275,14 @@
 			this.f_ComboBoxRarity = new System.Windows.Forms.ComboBox();
 			this.f_LabelDenName = new System.Windows.Forms.Label();
 			this.f_LabelRarity = new System.Windows.Forms.Label();
-			this.DenMap = new System.Windows.Forms.PictureBox();
 			this.f_ComboBoxGameVersion = new System.Windows.Forms.ComboBox();
 			this.f_ComboBoxDenName = new System.Windows.Forms.ComboBox();
 			this.f_LabelGameVersion = new System.Windows.Forms.Label();
-			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.printDialog1 = new System.Windows.Forms.PrintDialog();
+			this.f_PicturePoint = new System.Windows.Forms.PictureBox();
+			this.DenMap = new System.Windows.Forms.PictureBox();
+			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+			this.f_ComboBoxPokemon_List = new System.Windows.Forms.ComboBox();
 			this.f_GroupBoxPokemon_1.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			this.f_GroupBoxPokemon_2.SuspendLayout();
@@ -305,6 +303,7 @@
 			this.f_TabPage3.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.f_PicturePoint)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.DenMap)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
 			this.SuspendLayout();
@@ -358,7 +357,7 @@
 			this.groupBox3.Location = new System.Drawing.Point(228, 77);
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.Size = new System.Drawing.Size(260, 100);
-			this.groupBox3.TabIndex = 79;
+			this.groupBox3.TabIndex = 11;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "ステータス";
 			// 
@@ -369,7 +368,7 @@
 			this.f_ButtonIvsCalc_1.Location = new System.Drawing.Point(24, 49);
 			this.f_ButtonIvsCalc_1.Name = "f_ButtonIvsCalc_1";
 			this.f_ButtonIvsCalc_1.Size = new System.Drawing.Size(56, 39);
-			this.f_ButtonIvsCalc_1.TabIndex = 8;
+			this.f_ButtonIvsCalc_1.TabIndex = 7;
 			this.f_ButtonIvsCalc_1.Text = "<- 計算";
 			this.f_ButtonIvsCalc_1.UseVisualStyleBackColor = false;
 			this.f_ButtonIvsCalc_1.Click += new System.EventHandler(this.f_ButtonIvsCalc_1_Click);
@@ -380,7 +379,7 @@
 			this.f_TextBoxStatus5_1.MaxLength = 3;
 			this.f_TextBoxStatus5_1.Name = "f_TextBoxStatus5_1";
 			this.f_TextBoxStatus5_1.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus5_1.TabIndex = 7;
+			this.f_TextBoxStatus5_1.TabIndex = 6;
 			// 
 			// f_LabelStatus20_1
 			// 
@@ -399,7 +398,7 @@
 			this.f_TextBoxStatus0_1.MaxLength = 3;
 			this.f_TextBoxStatus0_1.Name = "f_TextBoxStatus0_1";
 			this.f_TextBoxStatus0_1.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus0_1.TabIndex = 2;
+			this.f_TextBoxStatus0_1.TabIndex = 1;
 			// 
 			// f_LabelStatus25_1
 			// 
@@ -429,7 +428,7 @@
 			this.f_TextBoxStatus4_1.MaxLength = 3;
 			this.f_TextBoxStatus4_1.Name = "f_TextBoxStatus4_1";
 			this.f_TextBoxStatus4_1.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus4_1.TabIndex = 6;
+			this.f_TextBoxStatus4_1.TabIndex = 5;
 			// 
 			// f_TextBoxStatus1_1
 			// 
@@ -437,7 +436,7 @@
 			this.f_TextBoxStatus1_1.MaxLength = 3;
 			this.f_TextBoxStatus1_1.Name = "f_TextBoxStatus1_1";
 			this.f_TextBoxStatus1_1.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus1_1.TabIndex = 3;
+			this.f_TextBoxStatus1_1.TabIndex = 2;
 			// 
 			// f_LabelLevel_1
 			// 
@@ -478,7 +477,7 @@
 			this.f_TextBoxStatus2_1.MaxLength = 3;
 			this.f_TextBoxStatus2_1.Name = "f_TextBoxStatus2_1";
 			this.f_TextBoxStatus2_1.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus2_1.TabIndex = 4;
+			this.f_TextBoxStatus2_1.TabIndex = 3;
 			// 
 			// f_TextBoxLevel_1
 			// 
@@ -486,7 +485,7 @@
 			this.f_TextBoxLevel_1.MaxLength = 3;
 			this.f_TextBoxLevel_1.Name = "f_TextBoxLevel_1";
 			this.f_TextBoxLevel_1.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxLevel_1.TabIndex = 1;
+			this.f_TextBoxLevel_1.TabIndex = 0;
 			// 
 			// f_LabelStatus23_1
 			// 
@@ -505,7 +504,7 @@
 			this.f_TextBoxStatus3_1.MaxLength = 3;
 			this.f_TextBoxStatus3_1.Name = "f_TextBoxStatus3_1";
 			this.f_TextBoxStatus3_1.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus3_1.TabIndex = 5;
+			this.f_TextBoxStatus3_1.TabIndex = 4;
 			// 
 			// f_ButtonEncounterInfo_1
 			// 
@@ -513,7 +512,7 @@
 			this.f_ButtonEncounterInfo_1.Location = new System.Drawing.Point(210, 18);
 			this.f_ButtonEncounterInfo_1.Name = "f_ButtonEncounterInfo_1";
 			this.f_ButtonEncounterInfo_1.Size = new System.Drawing.Size(54, 22);
-			this.f_ButtonEncounterInfo_1.TabIndex = 15;
+			this.f_ButtonEncounterInfo_1.TabIndex = 1;
 			this.f_ButtonEncounterInfo_1.Text = "情報";
 			this.f_ButtonEncounterInfo_1.UseVisualStyleBackColor = true;
 			this.f_ButtonEncounterInfo_1.Click += new System.EventHandler(this.f_ButtonEncounterInfo_1_Click);
@@ -526,7 +525,7 @@
 			this.f_ComboBoxCharacteristic_1.Name = "f_ComboBoxCharacteristic_1";
 			this.f_ComboBoxCharacteristic_1.Size = new System.Drawing.Size(125, 20);
 			this.f_ComboBoxCharacteristic_1.Sorted = true;
-			this.f_ComboBoxCharacteristic_1.TabIndex = 9;
+			this.f_ComboBoxCharacteristic_1.TabIndex = 3;
 			// 
 			// f_ComboBoxAbility_1
 			// 
@@ -535,7 +534,7 @@
 			this.f_ComboBoxAbility_1.Location = new System.Drawing.Point(252, 48);
 			this.f_ComboBoxAbility_1.Name = "f_ComboBoxAbility_1";
 			this.f_ComboBoxAbility_1.Size = new System.Drawing.Size(108, 20);
-			this.f_ComboBoxAbility_1.TabIndex = 10;
+			this.f_ComboBoxAbility_1.TabIndex = 4;
 			// 
 			// f_ComboBoxNature_1
 			// 
@@ -545,7 +544,7 @@
 			this.f_ComboBoxNature_1.Name = "f_ComboBoxNature_1";
 			this.f_ComboBoxNature_1.Size = new System.Drawing.Size(74, 20);
 			this.f_ComboBoxNature_1.Sorted = true;
-			this.f_ComboBoxNature_1.TabIndex = 8;
+			this.f_ComboBoxNature_1.TabIndex = 2;
 			// 
 			// f_TextBoxIv5_1
 			// 
@@ -553,7 +552,7 @@
 			this.f_TextBoxIv5_1.MaxLength = 2;
 			this.f_TextBoxIv5_1.Name = "f_TextBoxIv5_1";
 			this.f_TextBoxIv5_1.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv5_1.TabIndex = 7;
+			this.f_TextBoxIv5_1.TabIndex = 10;
 			// 
 			// f_ComboBoxPokemon_1
 			// 
@@ -581,7 +580,7 @@
 			this.f_TextBoxIv4_1.MaxLength = 2;
 			this.f_TextBoxIv4_1.Name = "f_TextBoxIv4_1";
 			this.f_TextBoxIv4_1.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv4_1.TabIndex = 6;
+			this.f_TextBoxIv4_1.TabIndex = 9;
 			// 
 			// f_LabelStatus4_1
 			// 
@@ -599,7 +598,7 @@
 			this.f_TextBoxIv3_1.MaxLength = 2;
 			this.f_TextBoxIv3_1.Name = "f_TextBoxIv3_1";
 			this.f_TextBoxIv3_1.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv3_1.TabIndex = 5;
+			this.f_TextBoxIv3_1.TabIndex = 8;
 			// 
 			// f_LabelStatus3_1
 			// 
@@ -617,7 +616,7 @@
 			this.f_TextBoxIv2_1.MaxLength = 2;
 			this.f_TextBoxIv2_1.Name = "f_TextBoxIv2_1";
 			this.f_TextBoxIv2_1.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv2_1.TabIndex = 4;
+			this.f_TextBoxIv2_1.TabIndex = 7;
 			// 
 			// f_LabelStatus2_1
 			// 
@@ -635,7 +634,7 @@
 			this.f_TextBoxIv1_1.MaxLength = 2;
 			this.f_TextBoxIv1_1.Name = "f_TextBoxIv1_1";
 			this.f_TextBoxIv1_1.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv1_1.TabIndex = 3;
+			this.f_TextBoxIv1_1.TabIndex = 6;
 			// 
 			// f_LabelStatus1_1
 			// 
@@ -653,7 +652,7 @@
 			this.f_TextBoxIv0_1.MaxLength = 2;
 			this.f_TextBoxIv0_1.Name = "f_TextBoxIv0_1";
 			this.f_TextBoxIv0_1.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv0_1.TabIndex = 2;
+			this.f_TextBoxIv0_1.TabIndex = 5;
 			// 
 			// f_LabelStatus0_1
 			// 
@@ -709,7 +708,7 @@
 			this.f_ButtonEncounterInfo_2.Location = new System.Drawing.Point(210, 18);
 			this.f_ButtonEncounterInfo_2.Name = "f_ButtonEncounterInfo_2";
 			this.f_ButtonEncounterInfo_2.Size = new System.Drawing.Size(54, 22);
-			this.f_ButtonEncounterInfo_2.TabIndex = 80;
+			this.f_ButtonEncounterInfo_2.TabIndex = 1;
 			this.f_ButtonEncounterInfo_2.Text = "情報";
 			this.f_ButtonEncounterInfo_2.UseVisualStyleBackColor = true;
 			this.f_ButtonEncounterInfo_2.Click += new System.EventHandler(this.f_ButtonEncounterInfo_2_Click);
@@ -735,7 +734,7 @@
 			this.groupBox5.Location = new System.Drawing.Point(228, 77);
 			this.groupBox5.Name = "groupBox5";
 			this.groupBox5.Size = new System.Drawing.Size(260, 100);
-			this.groupBox5.TabIndex = 80;
+			this.groupBox5.TabIndex = 11;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "ステータス";
 			// 
@@ -746,7 +745,7 @@
 			this.f_ButtonIvsCalc_2.Location = new System.Drawing.Point(24, 49);
 			this.f_ButtonIvsCalc_2.Name = "f_ButtonIvsCalc_2";
 			this.f_ButtonIvsCalc_2.Size = new System.Drawing.Size(56, 39);
-			this.f_ButtonIvsCalc_2.TabIndex = 8;
+			this.f_ButtonIvsCalc_2.TabIndex = 7;
 			this.f_ButtonIvsCalc_2.Text = "<- 計算";
 			this.f_ButtonIvsCalc_2.UseVisualStyleBackColor = false;
 			this.f_ButtonIvsCalc_2.Click += new System.EventHandler(this.f_ButtonIvsCalc_2_Click);
@@ -757,7 +756,7 @@
 			this.f_TextBoxStatus5_2.MaxLength = 3;
 			this.f_TextBoxStatus5_2.Name = "f_TextBoxStatus5_2";
 			this.f_TextBoxStatus5_2.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus5_2.TabIndex = 7;
+			this.f_TextBoxStatus5_2.TabIndex = 6;
 			// 
 			// f_LabelLevel_2
 			// 
@@ -776,7 +775,7 @@
 			this.f_TextBoxLevel_2.MaxLength = 3;
 			this.f_TextBoxLevel_2.Name = "f_TextBoxLevel_2";
 			this.f_TextBoxLevel_2.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxLevel_2.TabIndex = 1;
+			this.f_TextBoxLevel_2.TabIndex = 0;
 			// 
 			// f_LabelStatus25_2
 			// 
@@ -806,7 +805,7 @@
 			this.f_TextBoxStatus4_2.MaxLength = 3;
 			this.f_TextBoxStatus4_2.Name = "f_TextBoxStatus4_2";
 			this.f_TextBoxStatus4_2.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus4_2.TabIndex = 6;
+			this.f_TextBoxStatus4_2.TabIndex = 5;
 			// 
 			// f_TextBoxStatus2_2
 			// 
@@ -814,7 +813,7 @@
 			this.f_TextBoxStatus2_2.MaxLength = 3;
 			this.f_TextBoxStatus2_2.Name = "f_TextBoxStatus2_2";
 			this.f_TextBoxStatus2_2.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus2_2.TabIndex = 4;
+			this.f_TextBoxStatus2_2.TabIndex = 3;
 			// 
 			// f_TextBoxStatus0_2
 			// 
@@ -822,7 +821,7 @@
 			this.f_TextBoxStatus0_2.MaxLength = 3;
 			this.f_TextBoxStatus0_2.Name = "f_TextBoxStatus0_2";
 			this.f_TextBoxStatus0_2.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus0_2.TabIndex = 2;
+			this.f_TextBoxStatus0_2.TabIndex = 1;
 			// 
 			// f_LabelStatus24_2
 			// 
@@ -863,7 +862,7 @@
 			this.f_TextBoxStatus3_2.MaxLength = 3;
 			this.f_TextBoxStatus3_2.Name = "f_TextBoxStatus3_2";
 			this.f_TextBoxStatus3_2.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus3_2.TabIndex = 5;
+			this.f_TextBoxStatus3_2.TabIndex = 4;
 			// 
 			// f_TextBoxStatus1_2
 			// 
@@ -871,7 +870,7 @@
 			this.f_TextBoxStatus1_2.MaxLength = 3;
 			this.f_TextBoxStatus1_2.Name = "f_TextBoxStatus1_2";
 			this.f_TextBoxStatus1_2.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus1_2.TabIndex = 3;
+			this.f_TextBoxStatus1_2.TabIndex = 2;
 			// 
 			// f_LabelStatus23_2
 			// 
@@ -892,7 +891,7 @@
 			this.f_ComboBoxCharacteristic_2.Name = "f_ComboBoxCharacteristic_2";
 			this.f_ComboBoxCharacteristic_2.Size = new System.Drawing.Size(125, 20);
 			this.f_ComboBoxCharacteristic_2.Sorted = true;
-			this.f_ComboBoxCharacteristic_2.TabIndex = 8;
+			this.f_ComboBoxCharacteristic_2.TabIndex = 3;
 			// 
 			// f_ComboBoxAbility_2
 			// 
@@ -901,7 +900,7 @@
 			this.f_ComboBoxAbility_2.Location = new System.Drawing.Point(252, 48);
 			this.f_ComboBoxAbility_2.Name = "f_ComboBoxAbility_2";
 			this.f_ComboBoxAbility_2.Size = new System.Drawing.Size(108, 20);
-			this.f_ComboBoxAbility_2.TabIndex = 9;
+			this.f_ComboBoxAbility_2.TabIndex = 4;
 			// 
 			// f_ComboBoxNature_2
 			// 
@@ -911,7 +910,7 @@
 			this.f_ComboBoxNature_2.Name = "f_ComboBoxNature_2";
 			this.f_ComboBoxNature_2.Size = new System.Drawing.Size(74, 20);
 			this.f_ComboBoxNature_2.Sorted = true;
-			this.f_ComboBoxNature_2.TabIndex = 7;
+			this.f_ComboBoxNature_2.TabIndex = 2;
 			// 
 			// f_TextBoxIv5_2
 			// 
@@ -919,7 +918,7 @@
 			this.f_TextBoxIv5_2.MaxLength = 2;
 			this.f_TextBoxIv5_2.Name = "f_TextBoxIv5_2";
 			this.f_TextBoxIv5_2.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv5_2.TabIndex = 6;
+			this.f_TextBoxIv5_2.TabIndex = 10;
 			// 
 			// f_LabelStatus5_2
 			// 
@@ -937,7 +936,7 @@
 			this.f_TextBoxIv4_2.MaxLength = 2;
 			this.f_TextBoxIv4_2.Name = "f_TextBoxIv4_2";
 			this.f_TextBoxIv4_2.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv4_2.TabIndex = 5;
+			this.f_TextBoxIv4_2.TabIndex = 9;
 			// 
 			// f_LabelStatus4_2
 			// 
@@ -965,7 +964,7 @@
 			this.f_TextBoxIv3_2.MaxLength = 2;
 			this.f_TextBoxIv3_2.Name = "f_TextBoxIv3_2";
 			this.f_TextBoxIv3_2.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv3_2.TabIndex = 4;
+			this.f_TextBoxIv3_2.TabIndex = 8;
 			// 
 			// f_LabelStatus3_2
 			// 
@@ -983,7 +982,7 @@
 			this.f_TextBoxIv2_2.MaxLength = 2;
 			this.f_TextBoxIv2_2.Name = "f_TextBoxIv2_2";
 			this.f_TextBoxIv2_2.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv2_2.TabIndex = 3;
+			this.f_TextBoxIv2_2.TabIndex = 7;
 			// 
 			// f_LabelStatus2_2
 			// 
@@ -1001,7 +1000,7 @@
 			this.f_TextBoxIv1_2.MaxLength = 2;
 			this.f_TextBoxIv1_2.Name = "f_TextBoxIv1_2";
 			this.f_TextBoxIv1_2.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv1_2.TabIndex = 2;
+			this.f_TextBoxIv1_2.TabIndex = 6;
 			// 
 			// f_LabelStatus1_2
 			// 
@@ -1019,7 +1018,7 @@
 			this.f_TextBoxIv0_2.MaxLength = 2;
 			this.f_TextBoxIv0_2.Name = "f_TextBoxIv0_2";
 			this.f_TextBoxIv0_2.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv0_2.TabIndex = 1;
+			this.f_TextBoxIv0_2.TabIndex = 5;
 			// 
 			// f_LabelStatus0_2
 			// 
@@ -1045,10 +1044,10 @@
 			// 
 			this.f_ButtonStartSearch.BackColor = System.Drawing.Color.GreenYellow;
 			this.f_ButtonStartSearch.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_ButtonStartSearch.Location = new System.Drawing.Point(413, 690);
+			this.f_ButtonStartSearch.Location = new System.Drawing.Point(433, 690);
 			this.f_ButtonStartSearch.Name = "f_ButtonStartSearch";
 			this.f_ButtonStartSearch.Size = new System.Drawing.Size(176, 42);
-			this.f_ButtonStartSearch.TabIndex = 2;
+			this.f_ButtonStartSearch.TabIndex = 3;
 			this.f_ButtonStartSearch.Text = "検索開始";
 			this.f_ButtonStartSearch.UseVisualStyleBackColor = false;
 			this.f_ButtonStartSearch.Click += new System.EventHandler(this.ButtonStartSearch_Click);
@@ -1068,26 +1067,23 @@
 			this.f_TextBoxResultSeed.Location = new System.Drawing.Point(86, 18);
 			this.f_TextBoxResultSeed.Name = "f_TextBoxResultSeed";
 			this.f_TextBoxResultSeed.Size = new System.Drawing.Size(138, 19);
-			this.f_TextBoxResultSeed.TabIndex = 1;
+			this.f_TextBoxResultSeed.TabIndex = 0;
 			// 
 			// f_ButtonListGenerate
 			// 
 			this.f_ButtonListGenerate.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_ButtonListGenerate.Location = new System.Drawing.Point(312, 92);
+			this.f_ButtonListGenerate.Location = new System.Drawing.Point(278, 92);
 			this.f_ButtonListGenerate.Name = "f_ButtonListGenerate";
 			this.f_ButtonListGenerate.Size = new System.Drawing.Size(154, 52);
-			this.f_ButtonListGenerate.TabIndex = 10;
+			this.f_ButtonListGenerate.TabIndex = 5;
 			this.f_ButtonListGenerate.Text = "リスト出力";
 			this.f_ButtonListGenerate.UseVisualStyleBackColor = true;
 			this.f_ButtonListGenerate.Click += new System.EventHandler(this.f_ButtonListGenerate_Click);
 			// 
 			// groupBox2
 			// 
+			this.groupBox2.Controls.Add(this.f_ComboBoxPokemon_List);
 			this.groupBox2.Controls.Add(this.f_CheckBoxShowSeed);
-			this.groupBox2.Controls.Add(this.f_CheckBoxNoGender_List);
-			this.groupBox2.Controls.Add(this.f_CheckBoxDream_List);
-			this.groupBox2.Controls.Add(this.f_TextBoxListVCount);
-			this.groupBox2.Controls.Add(this.f_LabelListVCount);
 			this.groupBox2.Controls.Add(this.f_CheckBoxListShiny);
 			this.groupBox2.Controls.Add(this.f_TextBoxMaxFrame);
 			this.groupBox2.Controls.Add(this.f_LabelMaxFrame);
@@ -1107,73 +1103,33 @@
 			this.f_CheckBoxShowSeed.Location = new System.Drawing.Point(16, 128);
 			this.f_CheckBoxShowSeed.Name = "f_CheckBoxShowSeed";
 			this.f_CheckBoxShowSeed.Size = new System.Drawing.Size(123, 16);
-			this.f_CheckBoxShowSeed.TabIndex = 9;
+			this.f_CheckBoxShowSeed.TabIndex = 4;
 			this.f_CheckBoxShowSeed.Text = "Seedの値を表示する";
 			this.f_CheckBoxShowSeed.UseVisualStyleBackColor = true;
-			// 
-			// f_CheckBoxNoGender_List
-			// 
-			this.f_CheckBoxNoGender_List.AutoSize = true;
-			this.f_CheckBoxNoGender_List.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_CheckBoxNoGender_List.Location = new System.Drawing.Point(304, 55);
-			this.f_CheckBoxNoGender_List.Name = "f_CheckBoxNoGender_List";
-			this.f_CheckBoxNoGender_List.Size = new System.Drawing.Size(102, 16);
-			this.f_CheckBoxNoGender_List.TabIndex = 5;
-			this.f_CheckBoxNoGender_List.Text = "性別固定/不明";
-			this.f_CheckBoxNoGender_List.UseVisualStyleBackColor = true;
-			// 
-			// f_CheckBoxDream_List
-			// 
-			this.f_CheckBoxDream_List.AutoSize = true;
-			this.f_CheckBoxDream_List.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_CheckBoxDream_List.Location = new System.Drawing.Point(16, 55);
-			this.f_CheckBoxDream_List.Name = "f_CheckBoxDream_List";
-			this.f_CheckBoxDream_List.Size = new System.Drawing.Size(78, 16);
-			this.f_CheckBoxDream_List.TabIndex = 2;
-			this.f_CheckBoxDream_List.Text = "夢特性あり";
-			this.f_CheckBoxDream_List.UseVisualStyleBackColor = true;
-			// 
-			// f_TextBoxListVCount
-			// 
-			this.f_TextBoxListVCount.Location = new System.Drawing.Point(241, 51);
-			this.f_TextBoxListVCount.Name = "f_TextBoxListVCount";
-			this.f_TextBoxListVCount.Size = new System.Drawing.Size(30, 19);
-			this.f_TextBoxListVCount.TabIndex = 4;
-			// 
-			// f_LabelListVCount
-			// 
-			this.f_LabelListVCount.AutoSize = true;
-			this.f_LabelListVCount.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelListVCount.Location = new System.Drawing.Point(188, 56);
-			this.f_LabelListVCount.Name = "f_LabelListVCount";
-			this.f_LabelListVCount.Size = new System.Drawing.Size(55, 12);
-			this.f_LabelListVCount.TabIndex = 3;
-			this.f_LabelListVCount.Text = "V固定数：";
-			this.f_LabelListVCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// f_CheckBoxListShiny
 			// 
 			this.f_CheckBoxListShiny.AutoSize = true;
 			this.f_CheckBoxListShiny.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_CheckBoxListShiny.Location = new System.Drawing.Point(189, 91);
+			this.f_CheckBoxListShiny.Location = new System.Drawing.Point(16, 92);
 			this.f_CheckBoxListShiny.Name = "f_CheckBoxListShiny";
 			this.f_CheckBoxListShiny.Size = new System.Drawing.Size(79, 16);
-			this.f_CheckBoxListShiny.TabIndex = 8;
+			this.f_CheckBoxListShiny.TabIndex = 3;
 			this.f_CheckBoxListShiny.Text = "色違いのみ";
 			this.f_CheckBoxListShiny.UseVisualStyleBackColor = true;
 			// 
 			// f_TextBoxMaxFrame
 			// 
-			this.f_TextBoxMaxFrame.Location = new System.Drawing.Point(86, 89);
+			this.f_TextBoxMaxFrame.Location = new System.Drawing.Point(84, 54);
 			this.f_TextBoxMaxFrame.Name = "f_TextBoxMaxFrame";
 			this.f_TextBoxMaxFrame.Size = new System.Drawing.Size(67, 19);
-			this.f_TextBoxMaxFrame.TabIndex = 7;
+			this.f_TextBoxMaxFrame.TabIndex = 2;
 			// 
 			// f_LabelMaxFrame
 			// 
 			this.f_LabelMaxFrame.AutoSize = true;
 			this.f_LabelMaxFrame.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelMaxFrame.Location = new System.Drawing.Point(16, 92);
+			this.f_LabelMaxFrame.Location = new System.Drawing.Point(14, 57);
 			this.f_LabelMaxFrame.Name = "f_LabelMaxFrame";
 			this.f_LabelMaxFrame.Size = new System.Drawing.Size(71, 12);
 			this.f_LabelMaxFrame.TabIndex = 6;
@@ -1185,10 +1141,10 @@
 			this.f_CheckBoxStop.AutoSize = true;
 			this.f_CheckBoxStop.BackColor = System.Drawing.SystemColors.Control;
 			this.f_CheckBoxStop.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_CheckBoxStop.Location = new System.Drawing.Point(607, 718);
+			this.f_CheckBoxStop.Location = new System.Drawing.Point(627, 718);
 			this.f_CheckBoxStop.Name = "f_CheckBoxStop";
 			this.f_CheckBoxStop.Size = new System.Drawing.Size(111, 16);
-			this.f_CheckBoxStop.TabIndex = 4;
+			this.f_CheckBoxStop.TabIndex = 6;
 			this.f_CheckBoxStop.Text = "1つ見つけたら終了";
 			this.f_CheckBoxStop.UseVisualStyleBackColor = false;
 			// 
@@ -1201,11 +1157,11 @@
 			this.f_TabControlMain.Controls.Add(this.f_TabPage1);
 			this.f_TabControlMain.Controls.Add(this.f_TabPage2);
 			this.f_TabControlMain.Controls.Add(this.f_TabPage3);
-			this.f_TabControlMain.Location = new System.Drawing.Point(274, 27);
+			this.f_TabControlMain.Location = new System.Drawing.Point(294, 27);
 			this.f_TabControlMain.Name = "f_TabControlMain";
 			this.f_TabControlMain.SelectedIndex = 0;
 			this.f_TabControlMain.Size = new System.Drawing.Size(523, 653);
-			this.f_TabControlMain.TabIndex = 0;
+			this.f_TabControlMain.TabIndex = 1;
 			// 
 			// f_TabPage1
 			// 
@@ -1244,7 +1200,7 @@
 			this.f_GroupBoxPokemon_352.Location = new System.Drawing.Point(11, 238);
 			this.f_GroupBoxPokemon_352.Name = "f_GroupBoxPokemon_352";
 			this.f_GroupBoxPokemon_352.Size = new System.Drawing.Size(497, 185);
-			this.f_GroupBoxPokemon_352.TabIndex = 2;
+			this.f_GroupBoxPokemon_352.TabIndex = 1;
 			this.f_GroupBoxPokemon_352.TabStop = false;
 			this.f_GroupBoxPokemon_352.Text = "4匹目-3V～4V";
 			// 
@@ -1254,7 +1210,7 @@
 			this.f_ButtonEncounterInfo_352.Location = new System.Drawing.Point(210, 18);
 			this.f_ButtonEncounterInfo_352.Name = "f_ButtonEncounterInfo_352";
 			this.f_ButtonEncounterInfo_352.Size = new System.Drawing.Size(54, 22);
-			this.f_ButtonEncounterInfo_352.TabIndex = 82;
+			this.f_ButtonEncounterInfo_352.TabIndex = 1;
 			this.f_ButtonEncounterInfo_352.Text = "情報";
 			this.f_ButtonEncounterInfo_352.UseVisualStyleBackColor = true;
 			this.f_ButtonEncounterInfo_352.Click += new System.EventHandler(this.f_ButtonEncounterInfo_352_Click);
@@ -1280,7 +1236,7 @@
 			this.groupBox8.Location = new System.Drawing.Point(228, 77);
 			this.groupBox8.Name = "groupBox8";
 			this.groupBox8.Size = new System.Drawing.Size(260, 100);
-			this.groupBox8.TabIndex = 81;
+			this.groupBox8.TabIndex = 11;
 			this.groupBox8.TabStop = false;
 			this.groupBox8.Text = "ステータス";
 			// 
@@ -1312,7 +1268,7 @@
 			this.f_TextBoxLevel_352.MaxLength = 3;
 			this.f_TextBoxLevel_352.Name = "f_TextBoxLevel_352";
 			this.f_TextBoxLevel_352.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxLevel_352.TabIndex = 12;
+			this.f_TextBoxLevel_352.TabIndex = 0;
 			// 
 			// f_ButtonIvsCalc_352
 			// 
@@ -1321,7 +1277,7 @@
 			this.f_ButtonIvsCalc_352.Location = new System.Drawing.Point(24, 49);
 			this.f_ButtonIvsCalc_352.Name = "f_ButtonIvsCalc_352";
 			this.f_ButtonIvsCalc_352.Size = new System.Drawing.Size(56, 39);
-			this.f_ButtonIvsCalc_352.TabIndex = 19;
+			this.f_ButtonIvsCalc_352.TabIndex = 7;
 			this.f_ButtonIvsCalc_352.Text = "<- 計算";
 			this.f_ButtonIvsCalc_352.UseVisualStyleBackColor = false;
 			this.f_ButtonIvsCalc_352.Click += new System.EventHandler(this.f_ButtonIvsCalc_352_Click);
@@ -1332,7 +1288,7 @@
 			this.f_TextBoxStatus5_352.MaxLength = 3;
 			this.f_TextBoxStatus5_352.Name = "f_TextBoxStatus5_352";
 			this.f_TextBoxStatus5_352.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus5_352.TabIndex = 18;
+			this.f_TextBoxStatus5_352.TabIndex = 6;
 			// 
 			// f_TextBoxStatus0_352
 			// 
@@ -1340,7 +1296,7 @@
 			this.f_TextBoxStatus0_352.MaxLength = 3;
 			this.f_TextBoxStatus0_352.Name = "f_TextBoxStatus0_352";
 			this.f_TextBoxStatus0_352.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus0_352.TabIndex = 13;
+			this.f_TextBoxStatus0_352.TabIndex = 1;
 			// 
 			// f_LabelStatus21_352
 			// 
@@ -1370,7 +1326,7 @@
 			this.f_TextBoxStatus1_352.MaxLength = 3;
 			this.f_TextBoxStatus1_352.Name = "f_TextBoxStatus1_352";
 			this.f_TextBoxStatus1_352.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus1_352.TabIndex = 14;
+			this.f_TextBoxStatus1_352.TabIndex = 2;
 			// 
 			// f_TextBoxStatus4_352
 			// 
@@ -1378,7 +1334,7 @@
 			this.f_TextBoxStatus4_352.MaxLength = 3;
 			this.f_TextBoxStatus4_352.Name = "f_TextBoxStatus4_352";
 			this.f_TextBoxStatus4_352.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus4_352.TabIndex = 17;
+			this.f_TextBoxStatus4_352.TabIndex = 5;
 			// 
 			// f_LabelStatus22_352
 			// 
@@ -1397,7 +1353,7 @@
 			this.f_TextBoxStatus2_352.MaxLength = 3;
 			this.f_TextBoxStatus2_352.Name = "f_TextBoxStatus2_352";
 			this.f_TextBoxStatus2_352.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus2_352.TabIndex = 15;
+			this.f_TextBoxStatus2_352.TabIndex = 3;
 			// 
 			// f_LabelStatus24_352
 			// 
@@ -1427,7 +1383,7 @@
 			this.f_TextBoxStatus3_352.MaxLength = 3;
 			this.f_TextBoxStatus3_352.Name = "f_TextBoxStatus3_352";
 			this.f_TextBoxStatus3_352.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus3_352.TabIndex = 16;
+			this.f_TextBoxStatus3_352.TabIndex = 4;
 			// 
 			// f_ComboBoxPokemon_352
 			// 
@@ -1437,7 +1393,7 @@
 			this.f_ComboBoxPokemon_352.Location = new System.Drawing.Point(15, 19);
 			this.f_ComboBoxPokemon_352.Name = "f_ComboBoxPokemon_352";
 			this.f_ComboBoxPokemon_352.Size = new System.Drawing.Size(182, 20);
-			this.f_ComboBoxPokemon_352.TabIndex = 11;
+			this.f_ComboBoxPokemon_352.TabIndex = 0;
 			// 
 			// f_ComboBoxCharacteristic_352
 			// 
@@ -1447,7 +1403,7 @@
 			this.f_ComboBoxCharacteristic_352.Name = "f_ComboBoxCharacteristic_352";
 			this.f_ComboBoxCharacteristic_352.Size = new System.Drawing.Size(125, 20);
 			this.f_ComboBoxCharacteristic_352.Sorted = true;
-			this.f_ComboBoxCharacteristic_352.TabIndex = 8;
+			this.f_ComboBoxCharacteristic_352.TabIndex = 3;
 			// 
 			// f_ComboBoxAbility_352
 			// 
@@ -1456,7 +1412,7 @@
 			this.f_ComboBoxAbility_352.Location = new System.Drawing.Point(252, 48);
 			this.f_ComboBoxAbility_352.Name = "f_ComboBoxAbility_352";
 			this.f_ComboBoxAbility_352.Size = new System.Drawing.Size(108, 20);
-			this.f_ComboBoxAbility_352.TabIndex = 9;
+			this.f_ComboBoxAbility_352.TabIndex = 4;
 			// 
 			// f_ComboBoxNature_352
 			// 
@@ -1466,7 +1422,7 @@
 			this.f_ComboBoxNature_352.Name = "f_ComboBoxNature_352";
 			this.f_ComboBoxNature_352.Size = new System.Drawing.Size(74, 20);
 			this.f_ComboBoxNature_352.Sorted = true;
-			this.f_ComboBoxNature_352.TabIndex = 7;
+			this.f_ComboBoxNature_352.TabIndex = 2;
 			// 
 			// f_TextBoxIv5_352
 			// 
@@ -1474,7 +1430,7 @@
 			this.f_TextBoxIv5_352.MaxLength = 2;
 			this.f_TextBoxIv5_352.Name = "f_TextBoxIv5_352";
 			this.f_TextBoxIv5_352.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv5_352.TabIndex = 6;
+			this.f_TextBoxIv5_352.TabIndex = 10;
 			// 
 			// f_LabelStatus5_352
 			// 
@@ -1492,7 +1448,7 @@
 			this.f_TextBoxIv4_352.MaxLength = 2;
 			this.f_TextBoxIv4_352.Name = "f_TextBoxIv4_352";
 			this.f_TextBoxIv4_352.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv4_352.TabIndex = 5;
+			this.f_TextBoxIv4_352.TabIndex = 9;
 			// 
 			// f_LabelStatus4_352
 			// 
@@ -1510,7 +1466,7 @@
 			this.f_TextBoxIv3_352.MaxLength = 2;
 			this.f_TextBoxIv3_352.Name = "f_TextBoxIv3_352";
 			this.f_TextBoxIv3_352.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv3_352.TabIndex = 4;
+			this.f_TextBoxIv3_352.TabIndex = 8;
 			// 
 			// f_LabelStatus3_352
 			// 
@@ -1528,7 +1484,7 @@
 			this.f_TextBoxIv2_352.MaxLength = 2;
 			this.f_TextBoxIv2_352.Name = "f_TextBoxIv2_352";
 			this.f_TextBoxIv2_352.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv2_352.TabIndex = 3;
+			this.f_TextBoxIv2_352.TabIndex = 7;
 			// 
 			// f_LabelStatus2_352
 			// 
@@ -1546,7 +1502,7 @@
 			this.f_TextBoxIv1_352.MaxLength = 2;
 			this.f_TextBoxIv1_352.Name = "f_TextBoxIv1_352";
 			this.f_TextBoxIv1_352.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv1_352.TabIndex = 2;
+			this.f_TextBoxIv1_352.TabIndex = 6;
 			// 
 			// f_LabelStatus1_352
 			// 
@@ -1564,7 +1520,7 @@
 			this.f_TextBoxIv0_352.MaxLength = 2;
 			this.f_TextBoxIv0_352.Name = "f_TextBoxIv0_352";
 			this.f_TextBoxIv0_352.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv0_352.TabIndex = 1;
+			this.f_TextBoxIv0_352.TabIndex = 5;
 			// 
 			// f_LabelStatus0_352
 			// 
@@ -1623,7 +1579,7 @@
 			this.f_ButtonEncounterInfo_351.Location = new System.Drawing.Point(210, 30);
 			this.f_ButtonEncounterInfo_351.Name = "f_ButtonEncounterInfo_351";
 			this.f_ButtonEncounterInfo_351.Size = new System.Drawing.Size(54, 22);
-			this.f_ButtonEncounterInfo_351.TabIndex = 81;
+			this.f_ButtonEncounterInfo_351.TabIndex = 2;
 			this.f_ButtonEncounterInfo_351.Text = "情報";
 			this.f_ButtonEncounterInfo_351.UseVisualStyleBackColor = true;
 			this.f_ButtonEncounterInfo_351.Click += new System.EventHandler(this.f_ButtonEncounterInfo_351_Click);
@@ -1634,7 +1590,7 @@
 			this.f_ButtonIvsCheck.Location = new System.Drawing.Point(132, 195);
 			this.f_ButtonIvsCheck.Name = "f_ButtonIvsCheck";
 			this.f_ButtonIvsCheck.Size = new System.Drawing.Size(115, 24);
-			this.f_ButtonIvsCheck.TabIndex = 1;
+			this.f_ButtonIvsCheck.TabIndex = 12;
 			this.f_ButtonIvsCheck.Text = "個体値チェック";
 			this.f_ButtonIvsCheck.UseVisualStyleBackColor = true;
 			this.f_ButtonIvsCheck.Click += new System.EventHandler(this.f_ButtonIvsCheck_Click);
@@ -1670,7 +1626,7 @@
 			this.groupBox7.Location = new System.Drawing.Point(228, 89);
 			this.groupBox7.Name = "groupBox7";
 			this.groupBox7.Size = new System.Drawing.Size(260, 100);
-			this.groupBox7.TabIndex = 80;
+			this.groupBox7.TabIndex = 13;
 			this.groupBox7.TabStop = false;
 			this.groupBox7.Text = "ステータス";
 			// 
@@ -1681,7 +1637,7 @@
 			this.f_ButtonIvsCalc_351.Location = new System.Drawing.Point(24, 49);
 			this.f_ButtonIvsCalc_351.Name = "f_ButtonIvsCalc_351";
 			this.f_ButtonIvsCalc_351.Size = new System.Drawing.Size(56, 39);
-			this.f_ButtonIvsCalc_351.TabIndex = 20;
+			this.f_ButtonIvsCalc_351.TabIndex = 7;
 			this.f_ButtonIvsCalc_351.Text = "<- 計算";
 			this.f_ButtonIvsCalc_351.UseVisualStyleBackColor = false;
 			this.f_ButtonIvsCalc_351.Click += new System.EventHandler(this.f_ButtonIvsCalc_351_Click);
@@ -1703,7 +1659,7 @@
 			this.f_TextBoxLevel_351.MaxLength = 3;
 			this.f_TextBoxLevel_351.Name = "f_TextBoxLevel_351";
 			this.f_TextBoxLevel_351.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxLevel_351.TabIndex = 13;
+			this.f_TextBoxLevel_351.TabIndex = 0;
 			// 
 			// f_TextBoxStatus5_351
 			// 
@@ -1711,7 +1667,7 @@
 			this.f_TextBoxStatus5_351.MaxLength = 3;
 			this.f_TextBoxStatus5_351.Name = "f_TextBoxStatus5_351";
 			this.f_TextBoxStatus5_351.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus5_351.TabIndex = 19;
+			this.f_TextBoxStatus5_351.TabIndex = 6;
 			// 
 			// f_LabelStatus20_351
 			// 
@@ -1741,7 +1697,7 @@
 			this.f_TextBoxStatus0_351.MaxLength = 3;
 			this.f_TextBoxStatus0_351.Name = "f_TextBoxStatus0_351";
 			this.f_TextBoxStatus0_351.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus0_351.TabIndex = 14;
+			this.f_TextBoxStatus0_351.TabIndex = 1;
 			// 
 			// f_TextBoxStatus4_351
 			// 
@@ -1749,7 +1705,7 @@
 			this.f_TextBoxStatus4_351.MaxLength = 3;
 			this.f_TextBoxStatus4_351.Name = "f_TextBoxStatus4_351";
 			this.f_TextBoxStatus4_351.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus4_351.TabIndex = 18;
+			this.f_TextBoxStatus4_351.TabIndex = 5;
 			// 
 			// f_LabelStatus21_351
 			// 
@@ -1768,7 +1724,7 @@
 			this.f_TextBoxStatus1_351.MaxLength = 3;
 			this.f_TextBoxStatus1_351.Name = "f_TextBoxStatus1_351";
 			this.f_TextBoxStatus1_351.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus1_351.TabIndex = 15;
+			this.f_TextBoxStatus1_351.TabIndex = 2;
 			// 
 			// f_LabelStatus24_351
 			// 
@@ -1798,7 +1754,7 @@
 			this.f_TextBoxStatus2_351.MaxLength = 3;
 			this.f_TextBoxStatus2_351.Name = "f_TextBoxStatus2_351";
 			this.f_TextBoxStatus2_351.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus2_351.TabIndex = 16;
+			this.f_TextBoxStatus2_351.TabIndex = 3;
 			// 
 			// f_TextBoxStatus3_351
 			// 
@@ -1806,7 +1762,7 @@
 			this.f_TextBoxStatus3_351.MaxLength = 3;
 			this.f_TextBoxStatus3_351.Name = "f_TextBoxStatus3_351";
 			this.f_TextBoxStatus3_351.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus3_351.TabIndex = 17;
+			this.f_TextBoxStatus3_351.TabIndex = 4;
 			// 
 			// f_LabelStatus23_351
 			// 
@@ -1837,7 +1793,7 @@
 			this.f_ComboBoxPokemon_351.Location = new System.Drawing.Point(15, 31);
 			this.f_ComboBoxPokemon_351.Name = "f_ComboBoxPokemon_351";
 			this.f_ComboBoxPokemon_351.Size = new System.Drawing.Size(182, 20);
-			this.f_ComboBoxPokemon_351.TabIndex = 12;
+			this.f_ComboBoxPokemon_351.TabIndex = 1;
 			// 
 			// f_ComboBoxModeSelector_35
 			// 
@@ -1858,7 +1814,7 @@
 			this.f_ComboBoxCharacteristic_351.Name = "f_ComboBoxCharacteristic_351";
 			this.f_ComboBoxCharacteristic_351.Size = new System.Drawing.Size(125, 20);
 			this.f_ComboBoxCharacteristic_351.Sorted = true;
-			this.f_ComboBoxCharacteristic_351.TabIndex = 9;
+			this.f_ComboBoxCharacteristic_351.TabIndex = 4;
 			// 
 			// f_ComboBoxAbility_351
 			// 
@@ -1867,7 +1823,7 @@
 			this.f_ComboBoxAbility_351.Location = new System.Drawing.Point(252, 60);
 			this.f_ComboBoxAbility_351.Name = "f_ComboBoxAbility_351";
 			this.f_ComboBoxAbility_351.Size = new System.Drawing.Size(108, 20);
-			this.f_ComboBoxAbility_351.TabIndex = 10;
+			this.f_ComboBoxAbility_351.TabIndex = 5;
 			// 
 			// f_ComboBoxNature_351
 			// 
@@ -1877,7 +1833,7 @@
 			this.f_ComboBoxNature_351.Name = "f_ComboBoxNature_351";
 			this.f_ComboBoxNature_351.Size = new System.Drawing.Size(74, 20);
 			this.f_ComboBoxNature_351.Sorted = true;
-			this.f_ComboBoxNature_351.TabIndex = 8;
+			this.f_ComboBoxNature_351.TabIndex = 3;
 			// 
 			// f_TextBoxIv5_351
 			// 
@@ -1885,7 +1841,7 @@
 			this.f_TextBoxIv5_351.MaxLength = 2;
 			this.f_TextBoxIv5_351.Name = "f_TextBoxIv5_351";
 			this.f_TextBoxIv5_351.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv5_351.TabIndex = 7;
+			this.f_TextBoxIv5_351.TabIndex = 11;
 			// 
 			// f_LabelStatus5_351
 			// 
@@ -1903,7 +1859,7 @@
 			this.f_TextBoxIv4_351.MaxLength = 2;
 			this.f_TextBoxIv4_351.Name = "f_TextBoxIv4_351";
 			this.f_TextBoxIv4_351.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv4_351.TabIndex = 6;
+			this.f_TextBoxIv4_351.TabIndex = 10;
 			// 
 			// f_LabelStatus4_351
 			// 
@@ -1921,7 +1877,7 @@
 			this.f_TextBoxIv3_351.MaxLength = 2;
 			this.f_TextBoxIv3_351.Name = "f_TextBoxIv3_351";
 			this.f_TextBoxIv3_351.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv3_351.TabIndex = 5;
+			this.f_TextBoxIv3_351.TabIndex = 9;
 			// 
 			// f_LabelStatus3_351
 			// 
@@ -1939,7 +1895,7 @@
 			this.f_TextBoxIv2_351.MaxLength = 2;
 			this.f_TextBoxIv2_351.Name = "f_TextBoxIv2_351";
 			this.f_TextBoxIv2_351.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv2_351.TabIndex = 4;
+			this.f_TextBoxIv2_351.TabIndex = 8;
 			// 
 			// f_LabelStatus2_351
 			// 
@@ -1957,7 +1913,7 @@
 			this.f_TextBoxIv1_351.MaxLength = 2;
 			this.f_TextBoxIv1_351.Name = "f_TextBoxIv1_351";
 			this.f_TextBoxIv1_351.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv1_351.TabIndex = 3;
+			this.f_TextBoxIv1_351.TabIndex = 7;
 			// 
 			// f_LabelStatus1_351
 			// 
@@ -1975,7 +1931,7 @@
 			this.f_TextBoxIv0_351.MaxLength = 2;
 			this.f_TextBoxIv0_351.Name = "f_TextBoxIv0_351";
 			this.f_TextBoxIv0_351.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv0_351.TabIndex = 2;
+			this.f_TextBoxIv0_351.TabIndex = 6;
 			// 
 			// f_LabelStatus0_351
 			// 
@@ -2021,7 +1977,7 @@
 			this.f_GroupBoxPokemon_353.Location = new System.Drawing.Point(11, 429);
 			this.f_GroupBoxPokemon_353.Name = "f_GroupBoxPokemon_353";
 			this.f_GroupBoxPokemon_353.Size = new System.Drawing.Size(497, 185);
-			this.f_GroupBoxPokemon_353.TabIndex = 3;
+			this.f_GroupBoxPokemon_353.TabIndex = 2;
 			this.f_GroupBoxPokemon_353.TabStop = false;
 			this.f_GroupBoxPokemon_353.Text = "5匹目";
 			// 
@@ -2031,7 +1987,7 @@
 			this.f_ButtonEncounterInfo_353.Location = new System.Drawing.Point(210, 18);
 			this.f_ButtonEncounterInfo_353.Name = "f_ButtonEncounterInfo_353";
 			this.f_ButtonEncounterInfo_353.Size = new System.Drawing.Size(54, 22);
-			this.f_ButtonEncounterInfo_353.TabIndex = 83;
+			this.f_ButtonEncounterInfo_353.TabIndex = 1;
 			this.f_ButtonEncounterInfo_353.Text = "情報";
 			this.f_ButtonEncounterInfo_353.UseVisualStyleBackColor = true;
 			this.f_ButtonEncounterInfo_353.Click += new System.EventHandler(this.f_ButtonEncounterInfo_353_Click);
@@ -2057,7 +2013,7 @@
 			this.groupBox9.Location = new System.Drawing.Point(228, 77);
 			this.groupBox9.Name = "groupBox9";
 			this.groupBox9.Size = new System.Drawing.Size(260, 100);
-			this.groupBox9.TabIndex = 82;
+			this.groupBox9.TabIndex = 11;
 			this.groupBox9.TabStop = false;
 			this.groupBox9.Text = "ステータス";
 			// 
@@ -2068,7 +2024,7 @@
 			this.f_ButtonIvsCalc_353.Location = new System.Drawing.Point(24, 49);
 			this.f_ButtonIvsCalc_353.Name = "f_ButtonIvsCalc_353";
 			this.f_ButtonIvsCalc_353.Size = new System.Drawing.Size(56, 39);
-			this.f_ButtonIvsCalc_353.TabIndex = 19;
+			this.f_ButtonIvsCalc_353.TabIndex = 7;
 			this.f_ButtonIvsCalc_353.Text = "<- 計算";
 			this.f_ButtonIvsCalc_353.UseVisualStyleBackColor = false;
 			this.f_ButtonIvsCalc_353.Click += new System.EventHandler(this.f_ButtonIvsCalc_353_Click);
@@ -2090,7 +2046,7 @@
 			this.f_TextBoxLevel_353.MaxLength = 3;
 			this.f_TextBoxLevel_353.Name = "f_TextBoxLevel_353";
 			this.f_TextBoxLevel_353.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxLevel_353.TabIndex = 12;
+			this.f_TextBoxLevel_353.TabIndex = 0;
 			// 
 			// f_LabelStatus20_353
 			// 
@@ -2109,7 +2065,7 @@
 			this.f_TextBoxStatus5_353.MaxLength = 3;
 			this.f_TextBoxStatus5_353.Name = "f_TextBoxStatus5_353";
 			this.f_TextBoxStatus5_353.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus5_353.TabIndex = 18;
+			this.f_TextBoxStatus5_353.TabIndex = 6;
 			// 
 			// f_TextBoxStatus0_353
 			// 
@@ -2117,7 +2073,7 @@
 			this.f_TextBoxStatus0_353.MaxLength = 3;
 			this.f_TextBoxStatus0_353.Name = "f_TextBoxStatus0_353";
 			this.f_TextBoxStatus0_353.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus0_353.TabIndex = 13;
+			this.f_TextBoxStatus0_353.TabIndex = 1;
 			// 
 			// f_LabelStatus25_353
 			// 
@@ -2147,7 +2103,7 @@
 			this.f_TextBoxStatus4_353.MaxLength = 3;
 			this.f_TextBoxStatus4_353.Name = "f_TextBoxStatus4_353";
 			this.f_TextBoxStatus4_353.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus4_353.TabIndex = 17;
+			this.f_TextBoxStatus4_353.TabIndex = 5;
 			// 
 			// f_TextBoxStatus1_353
 			// 
@@ -2155,7 +2111,7 @@
 			this.f_TextBoxStatus1_353.MaxLength = 3;
 			this.f_TextBoxStatus1_353.Name = "f_TextBoxStatus1_353";
 			this.f_TextBoxStatus1_353.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus1_353.TabIndex = 14;
+			this.f_TextBoxStatus1_353.TabIndex = 2;
 			// 
 			// f_LabelStatus24_353
 			// 
@@ -2185,7 +2141,7 @@
 			this.f_TextBoxStatus3_353.MaxLength = 3;
 			this.f_TextBoxStatus3_353.Name = "f_TextBoxStatus3_353";
 			this.f_TextBoxStatus3_353.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus3_353.TabIndex = 16;
+			this.f_TextBoxStatus3_353.TabIndex = 4;
 			// 
 			// f_TextBoxStatus2_353
 			// 
@@ -2193,7 +2149,7 @@
 			this.f_TextBoxStatus2_353.MaxLength = 3;
 			this.f_TextBoxStatus2_353.Name = "f_TextBoxStatus2_353";
 			this.f_TextBoxStatus2_353.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus2_353.TabIndex = 15;
+			this.f_TextBoxStatus2_353.TabIndex = 3;
 			// 
 			// f_LabelStatus23_353
 			// 
@@ -2214,7 +2170,7 @@
 			this.f_ComboBoxPokemon_353.Location = new System.Drawing.Point(15, 19);
 			this.f_ComboBoxPokemon_353.Name = "f_ComboBoxPokemon_353";
 			this.f_ComboBoxPokemon_353.Size = new System.Drawing.Size(182, 20);
-			this.f_ComboBoxPokemon_353.TabIndex = 11;
+			this.f_ComboBoxPokemon_353.TabIndex = 0;
 			// 
 			// f_ComboBoxCharacteristic_353
 			// 
@@ -2224,7 +2180,7 @@
 			this.f_ComboBoxCharacteristic_353.Name = "f_ComboBoxCharacteristic_353";
 			this.f_ComboBoxCharacteristic_353.Size = new System.Drawing.Size(125, 20);
 			this.f_ComboBoxCharacteristic_353.Sorted = true;
-			this.f_ComboBoxCharacteristic_353.TabIndex = 8;
+			this.f_ComboBoxCharacteristic_353.TabIndex = 3;
 			// 
 			// f_ComboBoxAbility_353
 			// 
@@ -2233,7 +2189,7 @@
 			this.f_ComboBoxAbility_353.Location = new System.Drawing.Point(252, 48);
 			this.f_ComboBoxAbility_353.Name = "f_ComboBoxAbility_353";
 			this.f_ComboBoxAbility_353.Size = new System.Drawing.Size(108, 20);
-			this.f_ComboBoxAbility_353.TabIndex = 9;
+			this.f_ComboBoxAbility_353.TabIndex = 4;
 			// 
 			// f_ComboBoxNature_353
 			// 
@@ -2243,7 +2199,7 @@
 			this.f_ComboBoxNature_353.Name = "f_ComboBoxNature_353";
 			this.f_ComboBoxNature_353.Size = new System.Drawing.Size(74, 20);
 			this.f_ComboBoxNature_353.Sorted = true;
-			this.f_ComboBoxNature_353.TabIndex = 7;
+			this.f_ComboBoxNature_353.TabIndex = 2;
 			// 
 			// f_TextBoxIv5_353
 			// 
@@ -2251,7 +2207,7 @@
 			this.f_TextBoxIv5_353.MaxLength = 2;
 			this.f_TextBoxIv5_353.Name = "f_TextBoxIv5_353";
 			this.f_TextBoxIv5_353.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv5_353.TabIndex = 6;
+			this.f_TextBoxIv5_353.TabIndex = 10;
 			// 
 			// f_LabelStatus5_353
 			// 
@@ -2269,7 +2225,7 @@
 			this.f_TextBoxIv4_353.MaxLength = 2;
 			this.f_TextBoxIv4_353.Name = "f_TextBoxIv4_353";
 			this.f_TextBoxIv4_353.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv4_353.TabIndex = 5;
+			this.f_TextBoxIv4_353.TabIndex = 9;
 			// 
 			// f_LabelStatus4_353
 			// 
@@ -2287,7 +2243,7 @@
 			this.f_TextBoxIv3_353.MaxLength = 2;
 			this.f_TextBoxIv3_353.Name = "f_TextBoxIv3_353";
 			this.f_TextBoxIv3_353.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv3_353.TabIndex = 4;
+			this.f_TextBoxIv3_353.TabIndex = 8;
 			// 
 			// f_LabelStatus3_353
 			// 
@@ -2305,7 +2261,7 @@
 			this.f_TextBoxIv2_353.MaxLength = 2;
 			this.f_TextBoxIv2_353.Name = "f_TextBoxIv2_353";
 			this.f_TextBoxIv2_353.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv2_353.TabIndex = 3;
+			this.f_TextBoxIv2_353.TabIndex = 7;
 			// 
 			// f_LabelStatus2_353
 			// 
@@ -2323,7 +2279,7 @@
 			this.f_TextBoxIv1_353.MaxLength = 2;
 			this.f_TextBoxIv1_353.Name = "f_TextBoxIv1_353";
 			this.f_TextBoxIv1_353.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv1_353.TabIndex = 2;
+			this.f_TextBoxIv1_353.TabIndex = 6;
 			// 
 			// f_LabelStatus1_353
 			// 
@@ -2341,7 +2297,7 @@
 			this.f_TextBoxIv0_353.MaxLength = 2;
 			this.f_TextBoxIv0_353.Name = "f_TextBoxIv0_353";
 			this.f_TextBoxIv0_353.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv0_353.TabIndex = 1;
+			this.f_TextBoxIv0_353.TabIndex = 5;
 			// 
 			// f_LabelStatus0_353
 			// 
@@ -2415,7 +2371,7 @@
 			this.f_GroupBoxPokemon_3.Location = new System.Drawing.Point(12, 388);
 			this.f_GroupBoxPokemon_3.Name = "f_GroupBoxPokemon_3";
 			this.f_GroupBoxPokemon_3.Size = new System.Drawing.Size(497, 185);
-			this.f_GroupBoxPokemon_3.TabIndex = 3;
+			this.f_GroupBoxPokemon_3.TabIndex = 2;
 			this.f_GroupBoxPokemon_3.TabStop = false;
 			// 
 			// f_ButtonEncounterInfo_3
@@ -2424,7 +2380,7 @@
 			this.f_ButtonEncounterInfo_3.Location = new System.Drawing.Point(210, 18);
 			this.f_ButtonEncounterInfo_3.Name = "f_ButtonEncounterInfo_3";
 			this.f_ButtonEncounterInfo_3.Size = new System.Drawing.Size(54, 22);
-			this.f_ButtonEncounterInfo_3.TabIndex = 81;
+			this.f_ButtonEncounterInfo_3.TabIndex = 1;
 			this.f_ButtonEncounterInfo_3.Text = "情報";
 			this.f_ButtonEncounterInfo_3.UseVisualStyleBackColor = true;
 			this.f_ButtonEncounterInfo_3.Click += new System.EventHandler(this.f_ButtonEncounterInfo_3_Click);
@@ -2450,7 +2406,7 @@
 			this.groupBox6.Location = new System.Drawing.Point(228, 77);
 			this.groupBox6.Name = "groupBox6";
 			this.groupBox6.Size = new System.Drawing.Size(260, 100);
-			this.groupBox6.TabIndex = 81;
+			this.groupBox6.TabIndex = 11;
 			this.groupBox6.TabStop = false;
 			this.groupBox6.Text = "ステータス";
 			// 
@@ -2461,7 +2417,7 @@
 			this.f_ButtonIvsCalc_3.Location = new System.Drawing.Point(24, 49);
 			this.f_ButtonIvsCalc_3.Name = "f_ButtonIvsCalc_3";
 			this.f_ButtonIvsCalc_3.Size = new System.Drawing.Size(56, 39);
-			this.f_ButtonIvsCalc_3.TabIndex = 8;
+			this.f_ButtonIvsCalc_3.TabIndex = 7;
 			this.f_ButtonIvsCalc_3.Text = "<- 計算";
 			this.f_ButtonIvsCalc_3.UseVisualStyleBackColor = false;
 			this.f_ButtonIvsCalc_3.Click += new System.EventHandler(this.f_ButtonIvsCalc_3_Click);
@@ -2472,7 +2428,7 @@
 			this.f_TextBoxStatus5_3.MaxLength = 3;
 			this.f_TextBoxStatus5_3.Name = "f_TextBoxStatus5_3";
 			this.f_TextBoxStatus5_3.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus5_3.TabIndex = 7;
+			this.f_TextBoxStatus5_3.TabIndex = 6;
 			// 
 			// f_LabelStatus20_3
 			// 
@@ -2491,7 +2447,7 @@
 			this.f_TextBoxStatus0_3.MaxLength = 3;
 			this.f_TextBoxStatus0_3.Name = "f_TextBoxStatus0_3";
 			this.f_TextBoxStatus0_3.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus0_3.TabIndex = 2;
+			this.f_TextBoxStatus0_3.TabIndex = 1;
 			// 
 			// f_LabelStatus21_3
 			// 
@@ -2521,7 +2477,7 @@
 			this.f_TextBoxStatus1_3.MaxLength = 3;
 			this.f_TextBoxStatus1_3.Name = "f_TextBoxStatus1_3";
 			this.f_TextBoxStatus1_3.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus1_3.TabIndex = 3;
+			this.f_TextBoxStatus1_3.TabIndex = 2;
 			// 
 			// f_TextBoxStatus4_3
 			// 
@@ -2529,7 +2485,7 @@
 			this.f_TextBoxStatus4_3.MaxLength = 3;
 			this.f_TextBoxStatus4_3.Name = "f_TextBoxStatus4_3";
 			this.f_TextBoxStatus4_3.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus4_3.TabIndex = 6;
+			this.f_TextBoxStatus4_3.TabIndex = 5;
 			// 
 			// f_LabelStatus22_3
 			// 
@@ -2548,7 +2504,7 @@
 			this.f_TextBoxStatus2_3.MaxLength = 3;
 			this.f_TextBoxStatus2_3.Name = "f_TextBoxStatus2_3";
 			this.f_TextBoxStatus2_3.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus2_3.TabIndex = 4;
+			this.f_TextBoxStatus2_3.TabIndex = 3;
 			// 
 			// f_LabelLevel_3
 			// 
@@ -2578,7 +2534,7 @@
 			this.f_TextBoxStatus3_3.MaxLength = 3;
 			this.f_TextBoxStatus3_3.Name = "f_TextBoxStatus3_3";
 			this.f_TextBoxStatus3_3.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxStatus3_3.TabIndex = 5;
+			this.f_TextBoxStatus3_3.TabIndex = 4;
 			// 
 			// f_LabelStatus24_3
 			// 
@@ -2597,7 +2553,7 @@
 			this.f_TextBoxLevel_3.MaxLength = 3;
 			this.f_TextBoxLevel_3.Name = "f_TextBoxLevel_3";
 			this.f_TextBoxLevel_3.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxLevel_3.TabIndex = 1;
+			this.f_TextBoxLevel_3.TabIndex = 0;
 			// 
 			// f_ComboBoxCharacteristic_3
 			// 
@@ -2607,7 +2563,7 @@
 			this.f_ComboBoxCharacteristic_3.Name = "f_ComboBoxCharacteristic_3";
 			this.f_ComboBoxCharacteristic_3.Size = new System.Drawing.Size(125, 20);
 			this.f_ComboBoxCharacteristic_3.Sorted = true;
-			this.f_ComboBoxCharacteristic_3.TabIndex = 8;
+			this.f_ComboBoxCharacteristic_3.TabIndex = 3;
 			// 
 			// f_ComboBoxAbility_3
 			// 
@@ -2616,7 +2572,7 @@
 			this.f_ComboBoxAbility_3.Location = new System.Drawing.Point(252, 48);
 			this.f_ComboBoxAbility_3.Name = "f_ComboBoxAbility_3";
 			this.f_ComboBoxAbility_3.Size = new System.Drawing.Size(108, 20);
-			this.f_ComboBoxAbility_3.TabIndex = 9;
+			this.f_ComboBoxAbility_3.TabIndex = 4;
 			// 
 			// f_ComboBoxNature_3
 			// 
@@ -2626,7 +2582,7 @@
 			this.f_ComboBoxNature_3.Name = "f_ComboBoxNature_3";
 			this.f_ComboBoxNature_3.Size = new System.Drawing.Size(74, 20);
 			this.f_ComboBoxNature_3.Sorted = true;
-			this.f_ComboBoxNature_3.TabIndex = 7;
+			this.f_ComboBoxNature_3.TabIndex = 2;
 			// 
 			// f_TextBoxIv5_3
 			// 
@@ -2634,7 +2590,7 @@
 			this.f_TextBoxIv5_3.MaxLength = 2;
 			this.f_TextBoxIv5_3.Name = "f_TextBoxIv5_3";
 			this.f_TextBoxIv5_3.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv5_3.TabIndex = 6;
+			this.f_TextBoxIv5_3.TabIndex = 10;
 			// 
 			// f_LabelStatus5_3
 			// 
@@ -2652,7 +2608,7 @@
 			this.f_TextBoxIv4_3.MaxLength = 2;
 			this.f_TextBoxIv4_3.Name = "f_TextBoxIv4_3";
 			this.f_TextBoxIv4_3.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv4_3.TabIndex = 5;
+			this.f_TextBoxIv4_3.TabIndex = 9;
 			// 
 			// f_ComboBoxPokemon_3
 			// 
@@ -2680,7 +2636,7 @@
 			this.f_TextBoxIv3_3.MaxLength = 2;
 			this.f_TextBoxIv3_3.Name = "f_TextBoxIv3_3";
 			this.f_TextBoxIv3_3.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv3_3.TabIndex = 4;
+			this.f_TextBoxIv3_3.TabIndex = 8;
 			// 
 			// f_LabelStatus3_3
 			// 
@@ -2698,7 +2654,7 @@
 			this.f_TextBoxIv2_3.MaxLength = 2;
 			this.f_TextBoxIv2_3.Name = "f_TextBoxIv2_3";
 			this.f_TextBoxIv2_3.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv2_3.TabIndex = 3;
+			this.f_TextBoxIv2_3.TabIndex = 7;
 			// 
 			// f_LabelStatus2_3
 			// 
@@ -2716,7 +2672,7 @@
 			this.f_TextBoxIv1_3.MaxLength = 2;
 			this.f_TextBoxIv1_3.Name = "f_TextBoxIv1_3";
 			this.f_TextBoxIv1_3.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv1_3.TabIndex = 2;
+			this.f_TextBoxIv1_3.TabIndex = 6;
 			// 
 			// f_LabelStatus1_3
 			// 
@@ -2734,7 +2690,7 @@
 			this.f_TextBoxIv0_3.MaxLength = 2;
 			this.f_TextBoxIv0_3.Name = "f_TextBoxIv0_3";
 			this.f_TextBoxIv0_3.Size = new System.Drawing.Size(34, 19);
-			this.f_TextBoxIv0_3.TabIndex = 1;
+			this.f_TextBoxIv0_3.TabIndex = 5;
 			// 
 			// f_LabelStatus0_3
 			// 
@@ -2770,7 +2726,7 @@
 			// 
 			this.f_LabelRerolls.AutoSize = true;
 			this.f_LabelRerolls.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelRerolls.Location = new System.Drawing.Point(607, 696);
+			this.f_LabelRerolls.Location = new System.Drawing.Point(627, 696);
 			this.f_LabelRerolls.Name = "f_LabelRerolls";
 			this.f_LabelRerolls.Size = new System.Drawing.Size(121, 12);
 			this.f_LabelRerolls.TabIndex = 25;
@@ -2778,19 +2734,19 @@
 			// 
 			// f_TextBoxRerollsLower
 			// 
-			this.f_TextBoxRerollsLower.Location = new System.Drawing.Point(728, 693);
+			this.f_TextBoxRerollsLower.Location = new System.Drawing.Point(748, 693);
 			this.f_TextBoxRerollsLower.Name = "f_TextBoxRerollsLower";
 			this.f_TextBoxRerollsLower.Size = new System.Drawing.Size(24, 19);
-			this.f_TextBoxRerollsLower.TabIndex = 3;
+			this.f_TextBoxRerollsLower.TabIndex = 4;
 			// 
 			// f_CheckBoxShowResultTime
 			// 
 			this.f_CheckBoxShowResultTime.AutoSize = true;
 			this.f_CheckBoxShowResultTime.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_CheckBoxShowResultTime.Location = new System.Drawing.Point(277, 704);
+			this.f_CheckBoxShowResultTime.Location = new System.Drawing.Point(297, 704);
 			this.f_CheckBoxShowResultTime.Name = "f_CheckBoxShowResultTime";
 			this.f_CheckBoxShowResultTime.Size = new System.Drawing.Size(105, 16);
-			this.f_CheckBoxShowResultTime.TabIndex = 1;
+			this.f_CheckBoxShowResultTime.TabIndex = 2;
 			this.f_CheckBoxShowResultTime.Text = "計算時間を表示";
 			this.f_CheckBoxShowResultTime.UseVisualStyleBackColor = true;
 			// 
@@ -2800,8 +2756,8 @@
             this.languageToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(809, 24);
-			this.menuStrip1.TabIndex = 27;
+			this.menuStrip1.Size = new System.Drawing.Size(829, 24);
+			this.menuStrip1.TabIndex = 7;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
 			// languageToolStripMenuItem
@@ -2848,7 +2804,7 @@
 			// 
 			this.f_LabelRerollsRange.AutoSize = true;
 			this.f_LabelRerollsRange.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_LabelRerollsRange.Location = new System.Drawing.Point(756, 697);
+			this.f_LabelRerollsRange.Location = new System.Drawing.Point(776, 697);
 			this.f_LabelRerollsRange.Name = "f_LabelRerollsRange";
 			this.f_LabelRerollsRange.Size = new System.Drawing.Size(17, 12);
 			this.f_LabelRerollsRange.TabIndex = 28;
@@ -2856,13 +2812,14 @@
 			// 
 			// f_TextBoxRerollsUpper
 			// 
-			this.f_TextBoxRerollsUpper.Location = new System.Drawing.Point(772, 693);
+			this.f_TextBoxRerollsUpper.Location = new System.Drawing.Point(792, 693);
 			this.f_TextBoxRerollsUpper.Name = "f_TextBoxRerollsUpper";
 			this.f_TextBoxRerollsUpper.Size = new System.Drawing.Size(24, 19);
-			this.f_TextBoxRerollsUpper.TabIndex = 29;
+			this.f_TextBoxRerollsUpper.TabIndex = 5;
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.f_PicturePoint);
 			this.groupBox1.Controls.Add(this.f_ComboBoxRarity);
 			this.groupBox1.Controls.Add(this.f_LabelDenName);
 			this.groupBox1.Controls.Add(this.f_LabelRarity);
@@ -2872,8 +2829,8 @@
 			this.groupBox1.Controls.Add(this.f_LabelGameVersion);
 			this.groupBox1.Location = new System.Drawing.Point(16, 31);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(245, 672);
-			this.groupBox1.TabIndex = 30;
+			this.groupBox1.Size = new System.Drawing.Size(265, 714);
+			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			// 
 			// f_ComboBoxRarity
@@ -2884,7 +2841,7 @@
 			this.f_ComboBoxRarity.Margin = new System.Windows.Forms.Padding(2);
 			this.f_ComboBoxRarity.Name = "f_ComboBoxRarity";
 			this.f_ComboBoxRarity.Size = new System.Drawing.Size(160, 20);
-			this.f_ComboBoxRarity.TabIndex = 3;
+			this.f_ComboBoxRarity.TabIndex = 2;
 			this.f_ComboBoxRarity.SelectedIndexChanged += new System.EventHandler(this.f_ComboBoxRarity_SelectedIndexChanged);
 			// 
 			// f_LabelDenName
@@ -2909,17 +2866,6 @@
 			this.f_LabelRarity.TabIndex = 26;
 			this.f_LabelRarity.Text = "柱の種類";
 			// 
-			// DenMap
-			// 
-			this.DenMap.BackgroundImage = global::OneStar.Properties.Resources.map;
-			this.DenMap.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-			this.DenMap.Location = new System.Drawing.Point(7, 124);
-			this.DenMap.Margin = new System.Windows.Forms.Padding(2);
-			this.DenMap.Name = "DenMap";
-			this.DenMap.Size = new System.Drawing.Size(233, 543);
-			this.DenMap.TabIndex = 0;
-			this.DenMap.TabStop = false;
-			// 
 			// f_ComboBoxGameVersion
 			// 
 			this.f_ComboBoxGameVersion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -2928,7 +2874,7 @@
 			this.f_ComboBoxGameVersion.Margin = new System.Windows.Forms.Padding(2);
 			this.f_ComboBoxGameVersion.Name = "f_ComboBoxGameVersion";
 			this.f_ComboBoxGameVersion.Size = new System.Drawing.Size(160, 20);
-			this.f_ComboBoxGameVersion.TabIndex = 2;
+			this.f_ComboBoxGameVersion.TabIndex = 1;
 			this.f_ComboBoxGameVersion.SelectedIndexChanged += new System.EventHandler(this.f_ComboBoxGameVersion_SelectedIndexChanged);
 			// 
 			// f_ComboBoxDenName
@@ -2939,7 +2885,8 @@
 			this.f_ComboBoxDenName.Margin = new System.Windows.Forms.Padding(2);
 			this.f_ComboBoxDenName.Name = "f_ComboBoxDenName";
 			this.f_ComboBoxDenName.Size = new System.Drawing.Size(160, 20);
-			this.f_ComboBoxDenName.TabIndex = 1;
+			this.f_ComboBoxDenName.Sorted = true;
+			this.f_ComboBoxDenName.TabIndex = 0;
 			this.f_ComboBoxDenName.SelectedIndexChanged += new System.EventHandler(this.f_ComboBoxDenName_SelectedIndexChanged);
 			// 
 			// f_LabelGameVersion
@@ -2957,11 +2904,43 @@
 			// 
 			this.printDialog1.UseEXDialog = true;
 			// 
+			// f_PicturePoint
+			// 
+			this.f_PicturePoint.BackColor = System.Drawing.Color.Transparent;
+			this.f_PicturePoint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+			this.f_PicturePoint.Image = global::OneStar.Properties.Resources.point;
+			this.f_PicturePoint.Location = new System.Drawing.Point(50, 147);
+			this.f_PicturePoint.Name = "f_PicturePoint";
+			this.f_PicturePoint.Size = new System.Drawing.Size(10, 10);
+			this.f_PicturePoint.TabIndex = 27;
+			this.f_PicturePoint.TabStop = false;
+			// 
+			// DenMap
+			// 
+			this.DenMap.BackgroundImage = global::OneStar.Properties.Resources.map;
+			this.DenMap.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.DenMap.Location = new System.Drawing.Point(7, 124);
+			this.DenMap.Margin = new System.Windows.Forms.Padding(2);
+			this.DenMap.Name = "DenMap";
+			this.DenMap.Size = new System.Drawing.Size(250, 581);
+			this.DenMap.TabIndex = 0;
+			this.DenMap.TabStop = false;
+			// 
+			// f_ComboBoxPokemon_List
+			// 
+			this.f_ComboBoxPokemon_List.Cursor = System.Windows.Forms.Cursors.Default;
+			this.f_ComboBoxPokemon_List.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.f_ComboBoxPokemon_List.FormattingEnabled = true;
+			this.f_ComboBoxPokemon_List.Location = new System.Drawing.Point(260, 18);
+			this.f_ComboBoxPokemon_List.Name = "f_ComboBoxPokemon_List";
+			this.f_ComboBoxPokemon_List.Size = new System.Drawing.Size(182, 20);
+			this.f_ComboBoxPokemon_List.TabIndex = 1;
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(809, 757);
+			this.ClientSize = new System.Drawing.Size(829, 757);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.f_TextBoxRerollsUpper);
 			this.Controls.Add(this.f_LabelRerollsRange);
@@ -3015,6 +2994,7 @@
 			this.menuStrip1.PerformLayout();
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.f_PicturePoint)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.DenMap)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
 			this.ResumeLayout(false);
@@ -3122,15 +3102,11 @@
 		private System.Windows.Forms.Button f_ButtonIvsCheck;
 		private System.Windows.Forms.TextBox f_TextBoxRerollsLower;
 		private System.Windows.Forms.Label f_LabelRerolls;
-		private System.Windows.Forms.TextBox f_TextBoxListVCount;
-		private System.Windows.Forms.Label f_LabelListVCount;
 		private System.Windows.Forms.TabPage f_TabPage3;
 		private System.Windows.Forms.BindingSource bindingSource1;
 		private System.Windows.Forms.ComboBox f_ComboBoxCharacteristic_351;
 		private System.Windows.Forms.ComboBox f_ComboBoxCharacteristic_353;
 		private System.Windows.Forms.ComboBox f_ComboBoxCharacteristic_352;
-		private System.Windows.Forms.CheckBox f_CheckBoxNoGender_List;
-		private System.Windows.Forms.CheckBox f_CheckBoxDream_List;
 		private System.Windows.Forms.CheckBox f_CheckBoxShowSeed;
 		private System.Windows.Forms.CheckBox f_CheckBoxShowResultTime;
 		private System.Windows.Forms.ComboBox f_ComboBoxModeSelector_35;
@@ -3279,5 +3255,7 @@
 		private System.Windows.Forms.Button f_ButtonEncounterInfo_351;
 		private System.Windows.Forms.Button f_ButtonEncounterInfo_353;
 		private System.Windows.Forms.GroupBox groupBox9;
+		private System.Windows.Forms.PictureBox f_PicturePoint;
+		private System.Windows.Forms.ComboBox f_ComboBoxPokemon_List;
 	}
 }

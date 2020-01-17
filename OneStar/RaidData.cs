@@ -9,6 +9,9 @@ namespace OneStar
 		// 巣穴データ（Raid_Pluginより）
 		readonly RaidTables c_RaidTables = new RaidTables();
 
+		// マップスケール
+		readonly float c_MapScale = 250.0f / 458.0f; // ビュー上の幅/画像の幅
+
 		// ガラルポケモン
 		static readonly Dictionary<int, decimal> c_GalarForms = new Dictionary<int, decimal>{
 			{ 562, 562.1m }, // デスマス
@@ -100,6 +103,18 @@ namespace OneStar
 				{
 					return Array.Find(raidTables, table => table.TableID == detail.RareHash);
 				}
+			}
+		}
+		public System.Drawing.Point GetRaidLocation(int raidIndex)
+		{
+			if (raidIndex == -1)
+			{
+				return System.Drawing.Point.Empty;
+			}
+			else
+			{
+				var detail = NestLocations.Nests[raidIndex];
+				return new System.Drawing.Point((int)(detail.MapX * c_MapScale), (int)(detail.MapY * c_MapScale));
 			}
 		}
 

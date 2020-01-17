@@ -10,6 +10,9 @@ namespace OneStar
 		// 言語設定
 		[JsonProperty] Language m_Language = Language.Japanese;
 
+		// バージョン
+		[JsonProperty] int m_GameVersion = 0;
+
 		[JsonIgnore]
 		public Language Language {
 			get { return m_Language; }
@@ -18,17 +21,27 @@ namespace OneStar
 				Serialize();
 			}
 		}
+		[JsonIgnore]
+		public int GameVersion {
+			get { return m_GameVersion; }
+			set {
+				m_GameVersion = value;
+				Serialize();
+			}
+		}
 
 		// 初期設定
 		public void Initialize()
 		{
 			m_Language = Language.Japanese;
+			m_GameVersion = 0;
 		}
 
 		// コピー
 		void Copy(Preferences src)
 		{
 			m_Language = src.m_Language;
+			m_GameVersion = src.m_GameVersion;
 		}
 
 		// 設定をファイルに保存

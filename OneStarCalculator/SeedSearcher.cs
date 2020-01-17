@@ -23,13 +23,7 @@ namespace OneStarCalculator
 		static extern void Prepare(int rerolls);
 
 		[DllImport("OneStarCalculatorLib.dll")]
-		public static extern void SetFirstCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, bool noGender, int abilityFlag);
-
-		[DllImport("OneStarCalculatorLib.dll")]
-		public static extern void SetSecondCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, bool noGender, int abilityFlag);
-
-		[DllImport("OneStarCalculatorLib.dll")]
-		public static extern void SetThirdCondition(int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, bool noGender, int abilityFlag);
+		public static extern void Set12Condition(int index, int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, int characteristic, bool noGender, int abilityFlag, int flawlessIvs);
 
 		[DllImport("OneStarCalculatorLib.dll")]
 		static extern ulong Search(ulong ivs);
@@ -39,13 +33,7 @@ namespace OneStarCalculator
 		static extern void PrepareSix(int ivOffset);
 
 		[DllImport("OneStarCalculatorLib.dll")]
-		public static extern void SetSixFirstCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability, int nature, int characteristic, bool noGender, int abilityFlag);
-
-		[DllImport("OneStarCalculatorLib.dll")]
-		public static extern void SetSixSecondCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability, int nature, int characteristic, bool noGender, int abilityFlag);
-
-		[DllImport("OneStarCalculatorLib.dll")]
-		public static extern void SetSixThirdCondition(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6, int ability, int nature, int characteristic, bool noGender, int abilityFlag);
+		public static extern void Set35Condition(int index, int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, int characteristic, bool noGender, int abilityFlag, int flawlessIvs);
 
 		[DllImport("OneStarCalculatorLib.dll")]
 		public static extern void SetTargetCondition6(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6);
@@ -73,16 +61,18 @@ namespace OneStarCalculator
 				int searchUpper = 0xFFFFFFF;
 
 				// 途中経過
+				int chunkPart = 16;
+
 				int progress = 0;
-				int chunkSize = searchUpper / 16;
-				int chunkMax = 16 * (maxRerolls - minRerolls + 1);
+				int chunkSize = searchUpper / chunkPart;
+				int chunkMax = chunkPart * (maxRerolls - minRerolls + 1);
 				int chunkCount = 1;
 
 				p.Report(0);
 
 				for (int i = minRerolls; i <= maxRerolls; ++i)
 				{
-					int chunkOffset = (i - minRerolls) * 16;
+					int chunkOffset = (i - minRerolls) * chunkPart;
 
 					progress = 0;
 					chunkCount = 0;
@@ -153,16 +143,18 @@ namespace OneStarCalculator
 				int searchUpper = (m_Mode == Mode.Star35_5 ? 0x1FFFFFF : 0x3FFFFFFF);
 
 				// 途中経過
+				int chunkPart = 32;
+
 				int progress = 0;
-				int chunkSize = searchUpper / 16;
-				int chunkMax = 16 * (maxRerolls - minRerolls + 1);
+				int chunkSize = searchUpper / chunkPart;
+				int chunkMax = chunkPart * (maxRerolls - minRerolls + 1);
 				int chunkCount = 1;
 
 				p.Report(0);
 
 				for (int i = minRerolls; i <= maxRerolls; ++i)
 				{
-					int chunkOffset = (i - minRerolls) * 16;
+					int chunkOffset = (i - minRerolls) * chunkPart;
 
 					progress = 0;
 					chunkCount = 0;
@@ -208,19 +200,19 @@ namespace OneStarCalculator
 							{
 								Result.Add(result);
 							}
-						});
-						Interlocked.Increment(ref progress);
-						if (progress >= chunkCount * chunkSize)
-						{
-							lock (lockObj)
+							Interlocked.Increment(ref progress);
+							if (progress >= chunkCount * chunkSize)
 							{
-								if (progress >= chunkCount * chunkSize)
+								lock (lockObj)
 								{
-									p.Report((chunkCount + chunkOffset) * 1000 / chunkMax);
-									++chunkCount;
+									if (progress >= chunkCount * chunkSize)
+									{
+										p.Report((chunkCount + chunkOffset) * 1000 / chunkMax);
+										++chunkCount;
+									}
 								}
 							}
-						}
+						});
 					}
 				}
 
