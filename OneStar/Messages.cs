@@ -12,11 +12,16 @@ namespace OneStar
 		public Dictionary<string, int> Characteristic;
 		public List<string> Ability;
 		public List<string> Status;
+		public List<string> RankPrefix;
 		public Dictionary<string, string> SystemLabel;
 		public List<string> CheckIvsResult;
 		public Dictionary<string, string> ErrorMessage;
 		public Dictionary<string, string> SystemMessage;
 		public Dictionary<string, string> ListLabel;
+        public Dictionary<string, decimal> Pokemon;
+		public Dictionary<string, int> Den;
+		public List<string> Version;
+		public List<string> DenRarity;
 
 		[JsonIgnore] public static Messages Instance { get; private set; }
 		[JsonIgnore] public static string ErrorText { get; private set; }
@@ -30,6 +35,8 @@ namespace OneStar
 			{
 				case Language.Japanese: fileName = "LanguageJp.json"; break;
 				case Language.English: fileName = "LanguageEn.json"; break;
+				case Language.ChineseZh: fileName = "LanguageZh.json"; break;
+				case Language.ChineseZh_TW: fileName = "LanguageZh_TW.json"; break;
 			}
 			try
 			{

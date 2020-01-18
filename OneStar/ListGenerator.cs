@@ -9,19 +9,19 @@ namespace OneStar
 		UInt64 m_DenSeed;
 		int m_MaxCount;
 		int m_VCount;
-		bool m_isShinyCheck;
 		bool m_isNoGender;
-		bool m_isDream;
+		int m_AbilityFlag;
+		bool m_isShinyCheck;
 		bool m_isShowSeed;
 
-		public ListGenerator(UInt64 denSeed, int maxCount, int vCount, bool isShinyCheck, bool isNoGender, bool isDream, bool isShowSeed)
+		public ListGenerator(UInt64 denSeed, int maxCount, int vCount, bool isNoGender, int abilityFlag, bool isShinyCheck, bool isShowSeed)
 		{
 			m_DenSeed = denSeed;
 			m_MaxCount = maxCount;
 			m_VCount = vCount;
-			m_isShinyCheck = isShinyCheck;
 			m_isNoGender = isNoGender;
-			m_isDream = isDream;
+			m_AbilityFlag = abilityFlag;
+			m_isShinyCheck = isShinyCheck;
 			m_isShowSeed = isShowSeed;
 		}
 
@@ -101,7 +101,11 @@ namespace OneStar
 					}
 
 					// 特性
-					if (m_isDream)
+					if (m_AbilityFlag == 2)
+					{
+						ability = 2;
+					}
+					else if(m_AbilityFlag == 4)
 					{
 						do
 						{
@@ -135,14 +139,7 @@ namespace OneStar
 						sw.Write($"{seed:X16},");
 					}
 					sw.Write($"{ivs[0]},{ivs[1]},{ivs[2]},{ivs[3]},{ivs[4]},{ivs[5]},");
-					if (ability == 2)
-					{
-						sw.Write($"{Messages.Instance.ListLabel["HiddenAbility"]},");
-					}
-					else
-					{
-						sw.Write($"{ ability + 1},");
-					}
+					sw.Write(ability == 2 ? $"{Messages.Instance.ListLabel["HiddenAbility"]}," : $"{ability + 1},");
 					sw.Write($"{PokemonFormUtility.GetNatureString((int)nature)},");
 					if (isShiny)
 					{
@@ -150,7 +147,7 @@ namespace OneStar
 					}
 					else if(!m_isShinyCheck)
 					{
-						sw.WriteLine($"");
+						sw.WriteLine("");
 					}
 
 					seed = seed + 0x82a2b175229d6a5bul;
