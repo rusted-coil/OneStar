@@ -91,6 +91,10 @@
         "EventDen": "イベントレイド",
         "Gigantamax": "（キョダイ）",
         "Information": "情報",
+        "Language": "言語",
+        "WindowSize": "ウィンドウサイズ",
+        "WindowSizeNormal": "標準",
+        "WindowSizeSmall": "小",
     },
     "CheckIvsResult": [
         "NG！",

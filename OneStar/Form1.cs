@@ -1003,6 +1003,10 @@ namespace OneStar
 			}
 
 			// コントロールにメッセージを適用
+			f_StripMenuItemLanguage.Text = Messages.Instance.SystemLabel["Language"];
+			f_StripMenuItemWindowSize.Text = Messages.Instance.SystemLabel["WindowSize"];
+			f_MenuItemWindowSizeNormal.Text = Messages.Instance.SystemLabel["WindowSizeNormal"];
+			f_MenuItemWindowSizeSmall.Text = Messages.Instance.SystemLabel["WindowSizeSmall"];
 			foreach (var pair in m_MultiLanguageControls)
 			{
 				string str = Messages.Instance.SystemLabel[pair.Key];
@@ -1491,6 +1495,16 @@ namespace OneStar
 			}
 
 			MessageBox.Show(str, Messages.Instance.SystemMessage["EncounterInfoDialogTitle"], MessageBoxButtons.OK, MessageBoxIcon.Information);
+		}
+
+		private void f_MenuItemWindowSizeNormal_Click(object sender, EventArgs e)
+		{
+			MainForm.ActiveForm.Size = new System.Drawing.Size(845, 796);
+		}
+
+		private void f_MenuItemWindowSizeSmall_Click(object sender, EventArgs e)
+		{
+			MainForm.ActiveForm.Size = new System.Drawing.Size(860, 640);
 		}
 
 		/*

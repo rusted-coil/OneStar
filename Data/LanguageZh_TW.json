@@ -91,6 +91,10 @@
         "EventDen": "Event Den",
         "Gigantamax": " (G-Max)",
         "Information": "Info.",
+        "Language": "Language",
+        "WindowSize": "Window Size",
+        "WindowSizeNormal": "Normal",
+        "WindowSizeSmall": "Small",
 	},
 	"CheckIvsResult": [
 		"No Good！",
