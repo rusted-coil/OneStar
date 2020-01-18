@@ -15,6 +15,8 @@ static int g_IvOffset;
 
 static int g_ECbit; // -1は利用不可
 
+static bool l_EnableEcMod[3][6];
+
 //#define LENGTH (60)
 
 inline bool IsEnableECBit()
@@ -55,14 +57,31 @@ void Set35Condition(int index, int iv0, int iv1, int iv2, int iv3, int iv4, int 
 		if(l_Pokemon[index].IsCharacterized(target))
 		{
 			// EC mod6 がcharacteristicで確定
-			if(index == 2) // NextのECbitなので反転させる
+			if(index != 2) // SeedのECbitなので反転させる
 			{
 				g_ECbit = 1 - characteristic % 2;
 			}
-			else
+			else // Nextなのでさらに反転されてそのまま
 			{
 				g_ECbit = characteristic % 2;
 			}
+		}
+	}
+
+	// EC mod6として考えられるもののフラグを立てる
+	bool flag = true;
+	l_EnableEcMod[index][characteristic] = true;
+	for(int i = 1; i < 6; ++i)
+	{
+		int target = (characteristic + 6 - i) % 6;
+		if(flag && l_Pokemon[index].IsCharacterized(target) == false)
+		{
+			l_EnableEcMod[index][target] = true;
+		}
+		else
+		{
+			l_EnableEcMod[index][target] = false;
+			flag = false;
 		}
 	}
 }
@@ -135,6 +154,7 @@ _u64 SearchSix(_u64 ivs)
 	const int length = g_FixedIvs * 10;
 
 	XoroshiroState xoroshiro;
+	XoroshiroState nextoshiro;
 	XoroshiroState oshiroTemp;
 
 	_u64 target = 0;
@@ -199,7 +219,8 @@ _u64 SearchSix(_u64 ivs)
 	for (_u64 search = 0; search <= max; ++search)
 	{
 		_u64 seed = (processedTarget ^ g_CoefficientData[search]) | g_SearchPattern[search];
-		if(g_ECbit >= 0 && ((seed & 1) != (1 - g_ECbit)))
+
+		if(g_ECbit >= 0 && ((seed & 1) != g_ECbit))
 		{
 			continue;
 		}
@@ -211,73 +232,119 @@ _u64 SearchSix(_u64 ivs)
 		// 個性チェック
 		{
 			xoroshiro.SetSeed(seed);
+			nextoshiro.SetSeed(nextSeed);
 
 			// EC
 			unsigned int ec = xoroshiro.Next(0xFFFFFFFFu);
 			// 1匹目個性
+			if(l_EnableEcMod[0][ec % 6] == false)
 			{
-				int characteristic = ec % 6;
-				for(int i = 0; i < 6; ++i)
-				{
-					if(l_Pokemon[0].IsCharacterized((characteristic + i) % 6))
-					{
-						characteristic = (characteristic + i) % 6;
-						break;
-					}
-				}
-				if(characteristic != l_Pokemon[0].characteristic)
-				{
-					continue;
-				}
+				continue;
 			}
 			// 2匹目個性
+			if(l_EnableEcMod[1][ec % 6] == false)
 			{
-				int characteristic = ec % 6;
-				for(int i = 0; i < 6; ++i)
-				{
-					if(l_Pokemon[1].IsCharacterized((characteristic + i) % 6))
-					{
-						characteristic = (characteristic + i) % 6;
-						break;
-					}
-				}
-				if(characteristic != l_Pokemon[1].characteristic)
-				{
-					continue;
-				}
+				continue;
 			}
 
-			xoroshiro.SetSeed(nextSeed);
-
 			// EC
-			ec = xoroshiro.Next(0xFFFFFFFFu);
+			ec = nextoshiro.Next(0xFFFFFFFFu);
 			// 3匹目個性
+			if(l_EnableEcMod[2][ec % 6] == false)
 			{
-				int characteristic = ec % 6;
-				for(int i = 0; i < 6; ++i)
-				{
-					if(l_Pokemon[2].IsCharacterized((characteristic + i) % 6))
-					{
-						characteristic = (characteristic + i) % 6;
-						break;
-					}
-				}
-				if(characteristic != l_Pokemon[2].characteristic)
-				{
-					continue;
-				}
+				continue;
 			}
 		}
 
-		xoroshiro.SetSeed(seed);
+		// 2匹目を先にチェック
+		nextoshiro.Next(); // OTID
+		nextoshiro.Next(); // PID
 
-		xoroshiro.Next(); // EC
-		xoroshiro.Next(); // OTID
-		xoroshiro.Next(); // PID
-		oshiroTemp.Copy(&xoroshiro); // 状態を保存
+		int vCount = l_Pokemon[2].flawlessIvs;
+
+		int ivs[6] = { -1, -1, -1, -1, -1, -1 };
+		int fixedCount = 0;
+		do {
+			int fixedIndex = 0;
+			do {
+				fixedIndex = nextoshiro.Next(7); // V箇所
+			} while(fixedIndex >= 6);
+
+			if(ivs[fixedIndex] == -1)
+			{
+				ivs[fixedIndex] = 31;
+				++fixedCount;
+			}
+		} while(fixedCount < vCount);
+
+		// 個体値
+		bool isPassed = true;
+		for(int i = 0; i < 6; ++i)
+		{
+			if(ivs[i] == 31)
+			{
+				if(l_Pokemon[2].ivs[i] != 31)
+				{
+					isPassed = false;
+					break;
+				}
+			}
+			else if(l_Pokemon[2].ivs[i] != nextoshiro.Next(0x1F))
+			{
+				isPassed = false;
+				break;
+			}
+		}
+		if(!isPassed)
+		{
+			continue;
+		}
+
+		// 特性
+		int ability = 0;
+		if(l_Pokemon[2].abilityFlag == 3)
+		{
+			ability = nextoshiro.Next(1);
+		}
+		else
+		{
+			do {
+				ability = nextoshiro.Next(3);
+			} while(ability >= 3);
+		}
+		if((l_Pokemon[2].ability >= 0 && l_Pokemon[2].ability != ability) || (l_Pokemon[2].ability == -1 && ability >= 2))
+		{
+			continue;
+		}
+
+		// 性別値
+		if(!l_Pokemon[2].isNoGender)
+		{
+			int gender = 0;
+			do {
+				gender = nextoshiro.Next(0xFF);
+			} while(gender >= 253);
+		}
+
+		// 性格
+		int nature = 0;
+		do {
+			nature = nextoshiro.Next(0x1F);
+		} while(nature >= 25);
+
+		if(nature != l_Pokemon[2].nature)
+		{
+			continue;
+		}
 
 		// 1匹目
+		xoroshiro.Next(); // OTID
+		xoroshiro.Next(); // PID
+
 		{
+			// 状態を保存
+			oshiroTemp.Copy(&xoroshiro);
+
 			int ivs[6] = { -1, -1, -1, -1, -1, -1 };
 			int fixedCount = 0;
 			int offset = -(8 - g_FixedIvs);
@@ -440,90 +507,6 @@ _u64 SearchSix(_u64 ivs)
 			{
 				continue;
 			}
-		}
-
-		// 2匹目
-		xoroshiro.SetSeed(nextSeed);
-
-		xoroshiro.Next(); // EC
-		xoroshiro.Next(); // OTID
-		xoroshiro.Next(); // PID
-
-		int vCount = l_Pokemon[2].flawlessIvs;
-
-		int ivs[6] = { -1, -1, -1, -1, -1, -1 };
-		int fixedCount = 0;
-		do {
-			int fixedIndex = 0;
-			do {
-				fixedIndex = xoroshiro.Next(7); // V箇所
-			} while (fixedIndex >= 6);
-
-			if (ivs[fixedIndex] == -1)
-			{
-				ivs[fixedIndex] = 31;
-				++fixedCount;
-			}
-		} while (fixedCount < vCount);
-
-		// 個体値
-		bool isPassed = true;
-		for (int i = 0; i < 6; ++i)
-		{
-			if (ivs[i] == 31)
-			{
-				if (l_Pokemon[2].ivs[i] != 31)
-				{
-					isPassed = false;
-					break;
-				}
-			}
-			else if (l_Pokemon[2].ivs[i] != xoroshiro.Next(0x1F))
-			{
-				isPassed = false;
-				break;
-			}
-		}
-		if (!isPassed)
-		{
-			continue;
-		}
-
-		// 特性
-		int ability = 0;
-		if (l_Pokemon[2].abilityFlag == 3)
-		{
-			ability = xoroshiro.Next(1);
-		}
-		else
-		{
-			do {
-				ability = xoroshiro.Next(3);
-			} while(ability >= 3);
-		}
-		if ((l_Pokemon[2].ability >= 0 && l_Pokemon[2].ability != ability) || (l_Pokemon[2].ability == -1 && ability >= 2))
-		{
-			continue;
-		}
-
-		// 性別値
-		if (!l_Pokemon[2].isNoGender)
-		{
-			int gender = 0;
-			do {
-				gender = xoroshiro.Next(0xFF);
-			} while (gender >= 253);
-		}
-
-		// 性格
-		int nature = 0;
-		do {
-			nature = xoroshiro.Next(0x1F);
-		} while (nature >= 25);
-
-		if (nature != l_Pokemon[2].nature)
-		{
-			continue;
 		}
 
 		return seed;
