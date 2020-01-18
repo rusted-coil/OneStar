@@ -2800,7 +2800,7 @@
 			// 
 			this.f_MenuItemLanguageZh.Name = "f_MenuItemLanguageZh";
 			this.f_MenuItemLanguageZh.Size = new System.Drawing.Size(112, 22);
-			this.f_MenuItemLanguageZh.Text = "简体字";
+			this.f_MenuItemLanguageZh.Text = "简体中文";
 			this.f_MenuItemLanguageZh.Click += new System.EventHandler(this.f_MenuItemLanguageZh_Click);
 			// 
 			// f_MenuItemLanguageZh_TW
