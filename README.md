@@ -8,7 +8,6 @@ Please edit Data/Language**.json and give a pull request.
   * "HiddenFixed": "Hidden Abil. Fixed",
   * "IvsStrict": "The number of IV of 31 is wrong.",
 * 簡体字: Data/LanguageZh.json
-* 繁体字: Data/LanguageZn_TW.json
   * "NoHidden": "Only Normal Abil.",
   * "HiddenFixed": "Hidden Abil. Fixed",
   * "Pokemon": "Pokemon",
@@ -17,6 +16,10 @@ Please edit Data/Language**.json and give a pull request.
   * "EventDen": "Event Den",
   * "Gigantamax": " (G-Max)",
   * "Information": "Info.",
+  * "Language": "Language",
+  * "WindowSize": "Window Size",
+  * "WindowSizeNormal": "Normal",
+  * "WindowSizeSmall": "Small",
   * "IvsStrict": "The number of IV of 31 is wrong.",
   * "VFormat": "Levels, HP, Atk, Def, Sp.Atk., Sp.Def., Spd. must be numbers!",
   * "LevelRange": "Levels must be between 1 and 100.",
@@ -30,3 +33,8 @@ Please edit Data/Language**.json and give a pull request.
   * All den names
   * Game titles
   * Den rarities
+* 繁体字: Data/LanguageZn_TW.json
+  * "Language": "Language",
+  * "WindowSize": "Window Size",
+  * "WindowSizeNormal": "Normal",
+  * "WindowSizeSmall": "Small",
