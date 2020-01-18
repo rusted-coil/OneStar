@@ -57,15 +57,40 @@ namespace OneStar
 		// 言語設定可能コントロール
 		Dictionary<string, Control[]> m_MultiLanguageControls;
 
-		int m_is2VEnable = -1;
-		enum Star35PanelMode {
-			From2V,
-			From3V
+		class Star35PanelMode
+		{
+			public enum ModeType {
+				From2V,
+				From3V
+			};
+
+			public ModeType Mode { get; private set; }
+
+			public override string ToString()
+			{
+				if (Mode == ModeType.From2V)
+				{
+					return Messages.Instance.SystemLabel["Pokemon35_1_2V"];
+				}
+				else if (Mode == ModeType.From3V)
+				{
+					return Messages.Instance.SystemLabel["Pokemon35_1_3V"];
+				}
+				return "";
+			}
+
+			public Star35PanelMode(ModeType mode)
+			{
+				Mode = mode;
+			}
 		};
 
-		Star35PanelMode Get35Mode()
+		int m_is2VEnable = -1;
+		int m_is3VEnable = -1;
+
+		Star35PanelMode.ModeType Get35Mode()
 		{
-			return m_is2VEnable == 1 ? (Star35PanelMode)f_ComboBoxModeSelector_35.SelectedIndex : Star35PanelMode.From3V;
+			return (f_ComboBoxModeSelector_35.SelectedItem as Star35PanelMode).Mode;
 		}
 
 		public MainForm()
@@ -385,7 +410,7 @@ namespace OneStar
 			}
 
 			// 1匹目はVが2or3箇所じゃないとエラー
-			int strict = (Get35Mode() == Star35PanelMode.From3V ? 3 : 2);
+			int strict = (Get35Mode() == Star35PanelMode.ModeType.From3V ? 3 : 2);
 			int c = 0;
 			for (int i = 0; i < 6; ++i)
 			{
@@ -424,7 +449,7 @@ namespace OneStar
 
 			// 2V+3Vor4Vで6個確定
 			// 3V+4Vで5個確定
-			int needNumber = (Get35Mode() == Star35PanelMode.From2V ? 6 : 5);
+			int needNumber = (Get35Mode() == Star35PanelMode.ModeType.From2V ? 6 : 5);
 
 			for (int vCount = fixedCount + 1; vCount <= 4; ++vCount)
 			{
@@ -639,7 +664,7 @@ namespace OneStar
 			}
 
 			// V箇所が足りなかったらエラー
-			int strict = (Get35Mode() == Star35PanelMode.From3V ? 3 : 2);
+			int strict = (Get35Mode() == Star35PanelMode.ModeType.From3V ? 3 : 2);
 			for (int a = 0; a < 3; ++a)
 			{
 				int c = 0;
@@ -675,7 +700,7 @@ namespace OneStar
 
 			// 計算準備
 			var mode = Get35Mode();
-			SeedSearcher searcher = new SeedSearcher(mode == Star35PanelMode.From2V ? SeedSearcher.Mode.Star35_6 : SeedSearcher.Mode.Star35_5);
+			SeedSearcher searcher = new SeedSearcher(mode == Star35PanelMode.ModeType.From2V ? SeedSearcher.Mode.Star35_6 : SeedSearcher.Mode.Star35_5);
 
 			// 条件をセット
 			for (int i = 0; i < 3; ++i)
@@ -714,7 +739,7 @@ namespace OneStar
 						vFlag[i] = true;
 					}
 				}
-				int c = (mode == Star35PanelMode.From3V ? 3 : 2);
+				int c = (mode == Star35PanelMode.ModeType.From3V ? 3 : 2);
 				int[] conditionIv = new int[6];
 				int cursor = 0;
 				for (int i = 0; i < 6; ++i)
@@ -749,11 +774,11 @@ namespace OneStar
 					}
 				}
 
-				if (mode == Star35PanelMode.From2V)
+				if (mode == Star35PanelMode.ModeType.From2V)
 				{
 					SeedSearcher.SetTargetCondition6(conditionIv[0], conditionIv[1], conditionIv[2], conditionIv[3], conditionIv[4], conditionIv[5]);
 				}
-				else if (mode == Star35PanelMode.From3V)
+				else if (mode == Star35PanelMode.ModeType.From3V)
 				{
 					SeedSearcher.SetTargetCondition5(conditionIv[0], conditionIv[1], conditionIv[2], conditionIv[3], conditionIv[4]);
 				}
@@ -1357,17 +1382,23 @@ namespace OneStar
 
 			// ★3以上かつ2Vがいるかチェック
 			bool isEnable2V = false;
+			bool isEnable3V = false;
 			foreach (var encounter in m_EncounterList)
 			{
 				if (encounter.FlawlessIvs <= 2 && encounter.Rank >= 2)
 				{
 					isEnable2V = true;
-					break;
+				}
+				if (encounter.FlawlessIvs == 3 && encounter.Rank >= 2)
+				{
+					isEnable3V = true;
 				}
 			}
-			if (m_is2VEnable == -1 || (m_is2VEnable == 1) != isEnable2V)
+			if (m_is2VEnable == -1 || (m_is2VEnable == 1) != isEnable2V
+				|| m_is3VEnable == -1 || (m_is3VEnable == 1) != isEnable3V)
 			{
 				m_is2VEnable = (isEnable2V ? 1 : 0);
+				m_is3VEnable = (isEnable3V ? 1 : 0);
 				RefreshModeComboBox();
 				f_ComboBoxModeSelector_35.SelectedIndex = 0;
 			}
@@ -1380,9 +1411,12 @@ namespace OneStar
 			f_ComboBoxModeSelector_35.Items.Clear();
 			if (m_is2VEnable == 1)
 			{
-				f_ComboBoxModeSelector_35.Items.Add(Messages.Instance.SystemLabel["Pokemon35_1_2V"]);
+				f_ComboBoxModeSelector_35.Items.Add(new Star35PanelMode(Star35PanelMode.ModeType.From2V));
 			}
-			f_ComboBoxModeSelector_35.Items.Add(Messages.Instance.SystemLabel["Pokemon35_1_3V"]);
+			if (m_is3VEnable == 1)
+			{
+				f_ComboBoxModeSelector_35.Items.Add(new Star35PanelMode(Star35PanelMode.ModeType.From3V));
+			}
 		}
 		void RefreshPokemonComboBox()
 		{
@@ -1413,11 +1447,11 @@ namespace OneStar
 				if (encounter.Rank >= 2)
 				{
 					// 2Vモードor3Vモード
-					if (mode == Star35PanelMode.From2V && encounter.FlawlessIvs == 2)
+					if (mode == Star35PanelMode.ModeType.From2V && encounter.FlawlessIvs == 2)
 					{
 						f_ComboBoxPokemon_351.Items.Add(encounter);
 					}
-					else if (mode == Star35PanelMode.From3V && encounter.FlawlessIvs == 3)
+					else if (mode == Star35PanelMode.ModeType.From3V && encounter.FlawlessIvs == 3)
 					{
 						f_ComboBoxPokemon_351.Items.Add(encounter);
 					}
