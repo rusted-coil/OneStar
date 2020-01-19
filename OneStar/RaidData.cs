@@ -174,7 +174,7 @@ namespace OneStar
 				}
 				else
 				{
-					CalcSpecies = rawSpecies + altForm / 10m;
+					DisplaySpecies = rawSpecies + altForm / 10m;
 				}
 
 				FlawlessIvs = entry.FlawlessIVs;
