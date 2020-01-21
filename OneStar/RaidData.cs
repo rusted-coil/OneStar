@@ -144,7 +144,7 @@ namespace OneStar
 				DisplaySpecies = rawSpecies;
 
 				// マホイップ、カラナクシ、トリトドンは無視
-				if (rawSpecies == 869 || rawSpecies == 422 || rawSpecies == 433)
+				if (rawSpecies == 869 || rawSpecies == 422 || rawSpecies == 423)
 				{
 					altForm = 0;
 				}
