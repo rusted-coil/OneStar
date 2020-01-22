@@ -17,7 +17,7 @@ namespace IVCalcNetFramework
             foreach (var f in fs)
             {
                 var fsplit = f.Split(':');
-                decimal form = decimal.Parse(fsplit[0]);
+                decimal form = fsplit[0].ToDecimal();
                 int id = int.Parse(fsplit[1]);
                 forms[form] = id;
             }
