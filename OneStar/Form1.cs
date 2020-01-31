@@ -513,6 +513,10 @@ namespace OneStar
 		// 検索開始ボタン
 		private void ButtonStartSearch_Click(object sender, EventArgs e)
 		{
+			// CUDA
+			CudaSearchTest();
+			return;
+
 			// ★3～5
 			if (f_TabControlMain.SelectedIndex == 0)
 			{
@@ -527,6 +531,21 @@ namespace OneStar
 			{
 				CreateErrorDialog(Messages.Instance.ErrorMessage["NotSearchTab"]);
 			}
+		}
+
+		// TODO CUDA検索
+		void CudaSearchTest()
+		{
+			SeedSearcher searcher = new SeedSearcher(SeedSearcher.Mode.CudaTest);
+
+			// 条件セット
+			SeedSearcher.SetCudaCondition(0, 31, 27, 3, 19, 18, 31, 1, 15, 3, false, 3, 2);
+			SeedSearcher.SetCudaCondition(1, 31, 9, 31, 31, 15, 31, 1, 18, 2, false, 3, 4);
+			SeedSearcher.SetCudaCondition(2, 31, 31, 31, 1, 31, 27, 1, 6, 2, true, 4, 4);
+			SeedSearcher.SetCudaTargetCondition6(27, 3, 19, 18, 9, 15);
+
+			// 計算開始
+			SearchImpl(searcher);
 		}
 
 		// ★1～2検索
