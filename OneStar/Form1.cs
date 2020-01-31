@@ -42,6 +42,9 @@ namespace OneStar
 		int m_CurrentRarity = -1;
 		List<RaidData.Pokemon> m_EncounterList = new List<RaidData.Pokemon>();
 
+		// イベントレイドIDボタン
+		List<ToolStripMenuItem> m_MenuItemEventIdList = new List<ToolStripMenuItem>();
+
 		// ポケモン入力フォームごとのセット
 		class PokemonInfoForm {
 			public ComboBox ComboBoxName { get; set; } = null;
@@ -297,6 +300,11 @@ namespace OneStar
 				var tb3 = m_PokemonInfo[a].TextBoxLevel;
 				m_PokemonInfo[a].TextBoxLevel.Enter += new System.EventHandler((object sender, EventArgs e) => { EnterTextBoxAllSelect(tb3); });
 			}
+
+			// イベントレイドID
+			m_MenuItemEventIdList.Add(f_MenuItemEventId20200109);
+			m_MenuItemEventIdList.Add(f_MenuItemEventId20200131);
+			RefreshEventId();
 
 			// 言語設定用コントロールをセット
 			m_MultiLanguageControls = new Dictionary<string, Control[]>();
@@ -1032,6 +1040,7 @@ namespace OneStar
 			f_StripMenuItemWindowSize.Text = Messages.Instance.SystemLabel["WindowSize"];
 			f_MenuItemWindowSizeNormal.Text = Messages.Instance.SystemLabel["WindowSizeNormal"];
 			f_MenuItemWindowSizeSmall.Text = Messages.Instance.SystemLabel["WindowSizeSmall"];
+			f_StripMenuItemEventId.Text = Messages.Instance.SystemLabel["EventDen"];
 			foreach (var pair in m_MultiLanguageControls)
 			{
 				string str = Messages.Instance.SystemLabel[pair.Key];
@@ -1341,7 +1350,11 @@ namespace OneStar
 			{
 				return;
 			}
-			RaidTemplateTable raidTable = c_RaidData.GetRaidTemplateTable(m_CurrentDenIndex, m_CurrentGameVersion, m_CurrentRarity);
+			RaidTemplate[] raidEntries = (
+				m_CurrentDenIndex < 0
+				? c_RaidData.GetEventRaidEntries(m_Preferences.EventId, m_CurrentGameVersion)
+				: c_RaidData.GetRaidEntries(m_CurrentDenIndex, m_CurrentGameVersion, m_CurrentRarity)
+				);				
 
 			if (m_CurrentDenIndex >= 0)
 			{
@@ -1359,7 +1372,7 @@ namespace OneStar
 			Dictionary<string, int> encounterIndex = new Dictionary<string, int>();
 			for (int c = 0; c < 5; ++c)
 			{
-				foreach (var entry in raidTable.Entries)
+				foreach (var entry in raidEntries)
 				{
 					if (entry.Probabilities[c] > 0)
 					{
@@ -1539,6 +1552,42 @@ namespace OneStar
 		private void f_MenuItemWindowSizeSmall_Click(object sender, EventArgs e)
 		{
 			MainForm.ActiveForm.Size = new System.Drawing.Size(860, 640);
+		}
+
+		#region イベントレイドIDボタン イベント定義
+		private void f_MenuItemEventId20200131_Click(object sender, EventArgs e)
+		{
+			m_Preferences.EventId = f_MenuItemEventId20200131.Text;
+			RefreshEventId();
+			if (m_CurrentDenIndex == -1)
+			{
+				RefreshDen();
+			}
+		}
+		private void f_MenuItemEventId20200109_Click(object sender, EventArgs e)
+		{
+			m_Preferences.EventId = f_MenuItemEventId20200109.Text;
+			RefreshEventId();
+			if (m_CurrentDenIndex == -1)
+			{
+				RefreshDen();
+			}
+		}
+		#endregion
+
+		void RefreshEventId()
+		{
+			foreach (var menuItem in m_MenuItemEventIdList)
+			{
+				if (m_Preferences.EventId == menuItem.Text)
+				{
+					menuItem.Checked = true;
+				}
+				else
+				{
+					menuItem.Checked = false;
+				}
+			}
 		}
 
 		/*

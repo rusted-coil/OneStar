@@ -9,6 +9,9 @@ namespace OneStar
 		// 巣穴データ（Raid_Pluginより）
 		readonly RaidTables c_RaidTables = new RaidTables();
 
+		// イベントレイドデータ
+		readonly EventDenList c_EventDenList;
+
 		// マップスケール
 		readonly float c_MapScale = 250.0f / 458.0f; // ビュー上の幅/画像の幅
 
@@ -83,13 +86,20 @@ namespace OneStar
 			{ 890, 3 }, // ムゲンダイナ
 		};
 
-		public RaidTemplateTable GetRaidTemplateTable(int raidIndex, int version, int rarity)
+		public RaidData()
+		{
+			c_EventDenList = new EventDenList();
+			c_EventDenList.Load();
+		}
+
+		// 恒常レイド
+		public RaidTemplate[] GetRaidEntries(int raidIndex, int version, int rarity)
 		{
 			// イベントレイド
 			if (raidIndex == -1)
 			{
 				RaidTemplateTable[] raidTables = (version == 0 ? c_RaidTables.SwordNestsEvent : c_RaidTables.ShieldNestsEvent);
-				return Array.Find(raidTables, table => table.TableID == NestLocations.EventHash);
+				return Array.Find(raidTables, table => table.TableID == NestLocations.EventHash).Entries;
 			}
 			else
 			{
@@ -97,11 +107,11 @@ namespace OneStar
 				RaidTemplateTable[] raidTables = (version == 0 ? c_RaidTables.SwordNests : c_RaidTables.ShieldNests);
 				if (rarity == 0)
 				{
-					return Array.Find(raidTables, table => table.TableID == detail.CommonHash);
+					return Array.Find(raidTables, table => table.TableID == detail.CommonHash).Entries;
 				}
 				else
 				{
-					return Array.Find(raidTables, table => table.TableID == detail.RareHash);
+					return Array.Find(raidTables, table => table.TableID == detail.RareHash).Entries;
 				}
 			}
 		}
@@ -115,6 +125,28 @@ namespace OneStar
 			{
 				var detail = NestLocations.Nests[raidIndex];
 				return new System.Drawing.Point((int)(detail.MapX * c_MapScale), (int)(detail.MapY * c_MapScale));
+			}
+		}
+
+		// イベントレイド
+		public RaidTemplate[] GetEventRaidEntries(string id, int version)
+		{
+			if (version == 0)
+			{
+				id += "_Sw";
+			}
+			else
+			{
+				id += "_Sh";
+			}
+
+			if (c_EventDenList.EventList.ContainsKey(id))
+			{
+				return c_EventDenList.EventList[id].RaidEntries;
+			}
+			else
+			{
+				return GetRaidEntries(-1, version, 0);
 			}
 		}
 

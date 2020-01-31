@@ -13,6 +13,9 @@ namespace OneStar
 		// バージョン
 		[JsonProperty] int m_GameVersion = 0;
 
+		// イベントレイド
+		[JsonProperty] string m_EventId = "20200131";
+
 		[JsonIgnore]
 		public Language Language {
 			get { return m_Language; }
@@ -29,12 +32,21 @@ namespace OneStar
 				Serialize();
 			}
 		}
+		[JsonIgnore]
+		public string EventId {
+			get { return m_EventId; }
+			set {
+				m_EventId = value;
+				Serialize();
+			}
+		}
 
 		// 初期設定
 		public void Initialize()
 		{
 			m_Language = Language.Japanese;
 			m_GameVersion = 0;
+			m_EventId = "20200131";
 		}
 
 		// コピー
@@ -42,6 +54,7 @@ namespace OneStar
 		{
 			m_Language = src.m_Language;
 			m_GameVersion = src.m_GameVersion;
+			m_EventId = src.m_EventId;
 		}
 
 		// 設定をファイルに保存

@@ -270,6 +270,9 @@
 			this.f_MenuItemLanguageEn = new System.Windows.Forms.ToolStripMenuItem();
 			this.f_MenuItemLanguageZh = new System.Windows.Forms.ToolStripMenuItem();
 			this.f_MenuItemLanguageZh_TW = new System.Windows.Forms.ToolStripMenuItem();
+			this.f_StripMenuItemWindowSize = new System.Windows.Forms.ToolStripMenuItem();
+			this.f_MenuItemWindowSizeNormal = new System.Windows.Forms.ToolStripMenuItem();
+			this.f_MenuItemWindowSizeSmall = new System.Windows.Forms.ToolStripMenuItem();
 			this.f_LabelRerollsRange = new System.Windows.Forms.Label();
 			this.f_TextBoxRerollsUpper = new System.Windows.Forms.TextBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -283,9 +286,9 @@
 			this.f_LabelGameVersion = new System.Windows.Forms.Label();
 			this.printDialog1 = new System.Windows.Forms.PrintDialog();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-			this.f_StripMenuItemWindowSize = new System.Windows.Forms.ToolStripMenuItem();
-			this.f_MenuItemWindowSizeNormal = new System.Windows.Forms.ToolStripMenuItem();
-			this.f_MenuItemWindowSizeSmall = new System.Windows.Forms.ToolStripMenuItem();
+			this.f_StripMenuItemEventId = new System.Windows.Forms.ToolStripMenuItem();
+			this.f_MenuItemEventId20200131 = new System.Windows.Forms.ToolStripMenuItem();
+			this.f_MenuItemEventId20200109 = new System.Windows.Forms.ToolStripMenuItem();
 			this.f_GroupBoxPokemon_1.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			this.f_GroupBoxPokemon_2.SuspendLayout();
@@ -2767,7 +2770,8 @@
 			// 
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.f_StripMenuItemLanguage,
-            this.f_StripMenuItemWindowSize});
+            this.f_StripMenuItemWindowSize,
+            this.f_StripMenuItemEventId});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Size = new System.Drawing.Size(829, 24);
@@ -2813,6 +2817,30 @@
 			this.f_MenuItemLanguageZh_TW.Size = new System.Drawing.Size(180, 22);
 			this.f_MenuItemLanguageZh_TW.Text = "正體字";
 			this.f_MenuItemLanguageZh_TW.Click += new System.EventHandler(this.f_MenuItemLanguageZh_TW_Click);
+			// 
+			// f_StripMenuItemWindowSize
+			// 
+			this.f_StripMenuItemWindowSize.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.f_MenuItemWindowSizeNormal,
+            this.f_MenuItemWindowSizeSmall});
+			this.f_StripMenuItemWindowSize.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_StripMenuItemWindowSize.Name = "f_StripMenuItemWindowSize";
+			this.f_StripMenuItemWindowSize.Size = new System.Drawing.Size(89, 20);
+			this.f_StripMenuItemWindowSize.Text = "ウィンドウサイズ";
+			// 
+			// f_MenuItemWindowSizeNormal
+			// 
+			this.f_MenuItemWindowSizeNormal.Name = "f_MenuItemWindowSizeNormal";
+			this.f_MenuItemWindowSizeNormal.Size = new System.Drawing.Size(180, 22);
+			this.f_MenuItemWindowSizeNormal.Text = "標準";
+			this.f_MenuItemWindowSizeNormal.Click += new System.EventHandler(this.f_MenuItemWindowSizeNormal_Click);
+			// 
+			// f_MenuItemWindowSizeSmall
+			// 
+			this.f_MenuItemWindowSizeSmall.Name = "f_MenuItemWindowSizeSmall";
+			this.f_MenuItemWindowSizeSmall.Size = new System.Drawing.Size(180, 22);
+			this.f_MenuItemWindowSizeSmall.Text = "小";
+			this.f_MenuItemWindowSizeSmall.Click += new System.EventHandler(this.f_MenuItemWindowSizeSmall_Click);
 			// 
 			// f_LabelRerollsRange
 			// 
@@ -2940,29 +2968,29 @@
 			// 
 			this.printDialog1.UseEXDialog = true;
 			// 
-			// f_StripMenuItemWindowSize
+			// f_StripMenuItemEventId
 			// 
-			this.f_StripMenuItemWindowSize.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.f_MenuItemWindowSizeNormal,
-            this.f_MenuItemWindowSizeSmall});
-			this.f_StripMenuItemWindowSize.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_StripMenuItemWindowSize.Name = "f_StripMenuItemWindowSize";
-			this.f_StripMenuItemWindowSize.Size = new System.Drawing.Size(89, 20);
-			this.f_StripMenuItemWindowSize.Text = "ウィンドウサイズ";
+			this.f_StripMenuItemEventId.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.f_MenuItemEventId20200131,
+            this.f_MenuItemEventId20200109});
+			this.f_StripMenuItemEventId.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.f_StripMenuItemEventId.Name = "f_StripMenuItemEventId";
+			this.f_StripMenuItemEventId.Size = new System.Drawing.Size(81, 20);
+			this.f_StripMenuItemEventId.Text = "イベントレイド";
 			// 
-			// f_MenuItemWindowSizeNormal
+			// f_MenuItemEventId20200131
 			// 
-			this.f_MenuItemWindowSizeNormal.Name = "f_MenuItemWindowSizeNormal";
-			this.f_MenuItemWindowSizeNormal.Size = new System.Drawing.Size(180, 22);
-			this.f_MenuItemWindowSizeNormal.Text = "標準";
-			this.f_MenuItemWindowSizeNormal.Click += new System.EventHandler(this.f_MenuItemWindowSizeNormal_Click);
+			this.f_MenuItemEventId20200131.Name = "f_MenuItemEventId20200131";
+			this.f_MenuItemEventId20200131.Size = new System.Drawing.Size(180, 22);
+			this.f_MenuItemEventId20200131.Text = "20200131";
+			this.f_MenuItemEventId20200131.Click += new System.EventHandler(this.f_MenuItemEventId20200131_Click);
 			// 
-			// f_MenuItemWindowSizeSmall
+			// f_MenuItemEventId20200109
 			// 
-			this.f_MenuItemWindowSizeSmall.Name = "f_MenuItemWindowSizeSmall";
-			this.f_MenuItemWindowSizeSmall.Size = new System.Drawing.Size(180, 22);
-			this.f_MenuItemWindowSizeSmall.Text = "小";
-			this.f_MenuItemWindowSizeSmall.Click += new System.EventHandler(this.f_MenuItemWindowSizeSmall_Click);
+			this.f_MenuItemEventId20200109.Name = "f_MenuItemEventId20200109";
+			this.f_MenuItemEventId20200109.Size = new System.Drawing.Size(180, 22);
+			this.f_MenuItemEventId20200109.Text = "20200109";
+			this.f_MenuItemEventId20200109.Click += new System.EventHandler(this.f_MenuItemEventId20200109_Click);
 			// 
 			// MainForm
 			// 
@@ -2985,7 +3013,7 @@
 			this.MainMenuStrip = this.menuStrip1;
 			this.MaximizeBox = false;
 			this.Name = "MainForm";
-			this.Text = "1-Star Seed Search v1.05b";
+			this.Text = "1-Star Seed Search v1.05d";
 			this.f_GroupBoxPokemon_1.ResumeLayout(false);
 			this.f_GroupBoxPokemon_1.PerformLayout();
 			this.groupBox3.ResumeLayout(false);
@@ -3288,5 +3316,8 @@
 		private System.Windows.Forms.ToolStripMenuItem f_StripMenuItemWindowSize;
 		private System.Windows.Forms.ToolStripMenuItem f_MenuItemWindowSizeNormal;
 		private System.Windows.Forms.ToolStripMenuItem f_MenuItemWindowSizeSmall;
+		private System.Windows.Forms.ToolStripMenuItem f_StripMenuItemEventId;
+		private System.Windows.Forms.ToolStripMenuItem f_MenuItemEventId20200131;
+		private System.Windows.Forms.ToolStripMenuItem f_MenuItemEventId20200109;
 	}
 }
