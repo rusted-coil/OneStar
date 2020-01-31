@@ -1041,7 +1041,18 @@ namespace OneStar
 			f_MenuItemWindowSizeNormal.Text = Messages.Instance.SystemLabel["WindowSizeNormal"];
 			f_MenuItemWindowSizeSmall.Text = Messages.Instance.SystemLabel["WindowSizeSmall"];
 			f_StripMenuItemEventId.Text = Messages.Instance.SystemLabel["EventDen"];
-			foreach (var pair in m_MultiLanguageControls)
+
+            f_LabelDenName.Text = Messages.Instance.SystemLabel["Den"];
+            f_LabelGameVersion.Text = Messages.Instance.SystemLabel["GameVersion"];
+            f_LabelRarity.Text = Messages.Instance.SystemLabel["DenType"];
+            groupBox3.Text = Messages.Instance.SystemLabel["Attribute"];
+            groupBox5.Text = Messages.Instance.SystemLabel["Attribute"];
+            groupBox6.Text = Messages.Instance.SystemLabel["Attribute"];
+            groupBox7.Text = Messages.Instance.SystemLabel["Attribute"];
+            groupBox8.Text = Messages.Instance.SystemLabel["Attribute"];
+            groupBox9.Text = Messages.Instance.SystemLabel["Attribute"];
+
+            foreach (var pair in m_MultiLanguageControls)
 			{
 				string str = Messages.Instance.SystemLabel[pair.Key];
 				foreach (var control in pair.Value)
