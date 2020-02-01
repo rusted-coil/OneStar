@@ -89,7 +89,7 @@ void Prepare(int rerolls)
 	// r[3+rerolls]をV箇所、r[4+rerolls]からr[8+rerolls]を個体値として使う
 
 	// 変換行列を計算
-	InitializeTransformationMatrix(false); // r[1]が得られる変換行列がセットされる
+	InitializeTransformationMatrix(); // r[1]が得られる変換行列がセットされる
 	for(int i = 0; i <= rerolls + 1; ++i)
 	{
 		ProceedTransformationMatrix(); // r[2 + i]が得られる

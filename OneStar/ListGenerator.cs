@@ -55,6 +55,17 @@ namespace OneStar
 				{
 					Xoroshiro xoroshiro = new Xoroshiro(seed);
 
+					sw.WriteLine($"{xoroshiro.s0:X16} {xoroshiro.s1:X16}");
+					xoroshiro.Next(0xFFFFFFFFu);
+					sw.WriteLine($"{xoroshiro.s0:X16} {xoroshiro.s1:X16}");
+					xoroshiro.Next(0xFFFFFFFFu);
+					sw.WriteLine($"{xoroshiro.s0:X16} {xoroshiro.s1:X16}");
+					xoroshiro.Next(0xFFFFFFFFu);
+					sw.WriteLine($"{xoroshiro.s0:X16} {xoroshiro.s1:X16}");
+					sw.WriteLine("-----");
+					seed = seed + 0x82a2b175229d6a5bul;
+					continue;
+
 					// seedを進める
 					ec = xoroshiro.Next(0xFFFFFFFFu);
 					otid = xoroshiro.Next(0xFFFFFFFFu);

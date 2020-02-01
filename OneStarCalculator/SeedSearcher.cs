@@ -47,7 +47,7 @@ namespace OneStarCalculator
 
 		// CUDAテスト
 		[DllImport("OneStarCalculatorLib.dll")]
-		static extern void PrepareCuda(int ivOffset);
+		public static extern void CudaInitialize();
 
 		[DllImport("OneStarCalculatorLib.dll")]
 		public static extern void SetCudaCondition(int index, int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, int characteristic, bool noGender, int abilityFlag, int flawlessIvs);
@@ -57,6 +57,9 @@ namespace OneStarCalculator
 
 		[DllImport("OneStarCalculatorLib.dll")]
 		public static extern void SetCudaTargetCondition5(int iv1, int iv2, int iv3, int iv4, int iv5);
+
+		[DllImport("OneStarCalculatorLib.dll")]
+		static extern void PrepareCuda(int ivOffset);
 
 		[DllImport("OneStarCalculatorLib.dll")]
 		static extern void PreCalc(uint ivs, int freeBit);
@@ -87,14 +90,11 @@ namespace OneStarCalculator
 				for (int i = searchLower; i <= searchUpper; ++i)
 				{
 					PreCalc((uint)i, 24);
-					Parallel.For(0, 1024 * 1024 * 16, (threadId) =>
+					ulong result = SearchCuda(0);
+					if (result != 0)
 					{
-						ulong result = SearchCuda(threadId);
-						if (result != 0)
-						{
-							Result.Add(result);
-						}
-					});
+						Result.Add(result);
+					}
 				}
 			}
 

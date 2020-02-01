@@ -538,6 +538,8 @@ namespace OneStar
 		{
 			SeedSearcher searcher = new SeedSearcher(SeedSearcher.Mode.CudaTest);
 
+			SeedSearcher.CudaInitialize();
+
 			// 条件セット
 			SeedSearcher.SetCudaCondition(0, 31, 27, 3, 19, 18, 31, 1, 15, 3, false, 3, 2);
 			SeedSearcher.SetCudaCondition(1, 31, 9, 31, 31, 15, 31, 1, 18, 2, false, 3, 4);

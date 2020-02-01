@@ -121,7 +121,7 @@ void PrepareSix(int ivOffset)
 	// r[(11 - FixedIvs) + offset]からr[(11 - FixedIvs) + FixedIvs - 1 + offset]まで使う
 
 	// 変換行列を計算
-	InitializeTransformationMatrix(IsEnableECBit()); // r[1]が得られる変換行列がセットされる
+	InitializeTransformationMatrix(); // r[1]が得られる変換行列がセットされる
 	for(int i = 0; i <= 9 - g_FixedIvs + ivOffset; ++i)
 	{
 		ProceedTransformationMatrix(); // r[2 + i]が得られる
