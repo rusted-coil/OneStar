@@ -59,7 +59,7 @@ namespace OneStarCalculator
 		public static extern void SetCudaTargetCondition5(int iv1, int iv2, int iv3, int iv4, int iv5);
 
 		[DllImport("OneStarCalculatorLib.dll")]
-		static extern void PreCalc(ulong ivs, int freeBit);
+		static extern void PreCalc(uint ivs, int freeBit);
 
 		[DllImport("OneStarCalculatorLib.dll")]
 		static extern ulong SearchCuda(int threadId);
@@ -86,7 +86,7 @@ namespace OneStarCalculator
 
 				for (int i = searchLower; i <= searchUpper; ++i)
 				{
-					PreCalc((ulong)i, 24);
+					PreCalc((uint)i, 24);
 					Parallel.For(0, 1024 * 1024 * 16, (threadId) =>
 					{
 						ulong result = SearchCuda(threadId);

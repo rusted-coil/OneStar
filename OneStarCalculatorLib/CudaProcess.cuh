@@ -4,18 +4,13 @@
 struct CudaInputMaster
 {
 	int ivs[6];
-	_u64 constantTermVector;
-	_u64 answerFlag[64];
+	_u32 constantTermVector[2];
+	_u32 answerFlag[128];
 };
 
-//ホストメモリのポインタ
-extern CudaInputMaster* pHostMaster; // 固定データ
-extern _u64* cu_HostResult;
-
-//デバイスメモリのポインタ
-extern CudaInputMaster* pDeviceMaster;
-extern _u64* pDeviceResult;
+// 結果
+extern _u32* cu_HostResult;
 
 void CudaInitialize(int* pIvs);
-void CudaProcess(_u64 ivs, int freeBit); //処理関数
+void CudaProcess(_u32 ivs, int freeBit); //処理関数
 void CudaFinalize();

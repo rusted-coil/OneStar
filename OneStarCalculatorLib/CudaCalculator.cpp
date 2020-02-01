@@ -151,7 +151,7 @@ void PrepareCuda(int ivOffset)
 	CudaInitialize(g_CudaIvs);
 }
 
-void PreCalc(_u64 ivs, int freeBit)
+void PreCalc(_u32 ivs, int freeBit)
 {
 	CudaProcess(ivs << 24, 24);
 }
@@ -167,7 +167,8 @@ _u64 SearchCuda(int threadId)
 	_u64 max = ((1 << (64 - length)) - 1);
 	for(_u64 search = 0; search <= max; ++search)
 	{
-		_u64 seed = (cu_HostResult[threadId] ^ g_CoefficientData[search]) | g_SearchPattern[search];
+		_u64 processedTarget = ((_u64)cu_HostResult[threadId * 2] << 32 | cu_HostResult[threadId * 2 + 1]);
+		_u64 seed = (processedTarget ^ g_CoefficientData[search]) | g_SearchPattern[search];
 
 		if(g_CudaECbit >= 0 && ((seed & 1) != g_CudaECbit))
 		{
