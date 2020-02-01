@@ -324,6 +324,7 @@ namespace OneStar
                 new_event.Text = event_id;
                 new_event.Click += new System.EventHandler(this.new_event_Click);
                 f_StripMenuItemEventId.DropDownItems.Add(new_event);
+                m_MenuItemEventIdList.Add(new_event);
             }
 
             RefreshEventId();
