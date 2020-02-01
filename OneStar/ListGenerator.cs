@@ -51,7 +51,7 @@ namespace OneStar
 				sw.Write($"{Messages.Instance.ListLabel["Nature"]},");
 				sw.WriteLine($"{Messages.Instance.ListLabel["Shiny"]}");
 
-				for (int frame = 0; frame <= m_MaxCount; ++frame)
+				for (int frame = 1; frame <= m_MaxCount; ++frame)
 				{
 					Xoroshiro xoroshiro = new Xoroshiro(seed);
 
