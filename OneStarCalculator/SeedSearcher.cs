@@ -59,7 +59,10 @@ namespace OneStarCalculator
 		public static extern void SetCudaTargetCondition5(int iv1, int iv2, int iv3, int iv4, int iv5);
 
 		[DllImport("OneStarCalculatorLib.dll")]
-		static extern ulong SearchCuda(ulong ivs, int freeBit);
+		static extern void PreCalc(ulong ivs, int freeBit);
+
+		[DllImport("OneStarCalculatorLib.dll")]
+		static extern ulong SearchCuda(int threadId);
 
 
 		public SeedSearcher(Mode mode)
@@ -76,18 +79,22 @@ namespace OneStarCalculator
 			{
 				// 探索範囲
 				int searchLower = 0;
-				int searchUpper = 0xFFFF;
+				int searchUpper = 0x3F;
 
 				// C++ライブラリ側の事前計算
 				PrepareCuda(minRerolls);
 
 				for (int i = searchLower; i <= searchUpper; ++i)
 				{
-					ulong result = SearchCuda((ulong)i, 14);
-					if (result != 0)
+					PreCalc((ulong)i, 24);
+					Parallel.For(0, 1024 * 1024 * 16, (threadId) =>
 					{
-						Result.Add(result);
-					}
+						ulong result = SearchCuda(threadId);
+						if (result != 0)
+						{
+							Result.Add(result);
+						}
+					});
 				}
 			}
 

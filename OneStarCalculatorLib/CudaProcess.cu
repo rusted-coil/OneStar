@@ -10,6 +10,16 @@ _u64* cu_HostResult;
 CudaInputMaster* pDeviceMaster;
 _u64* pDeviceResult;
 
+__device__ inline _u64 GetSignature(_u64 value)
+{
+	unsigned int a = (unsigned int)(value ^ (value >> 32));
+	a = a ^ (a >> 16);
+	a = a ^ (a >> 8);
+	a = a ^ (a >> 4);
+	a = a ^ (a >> 2);
+	return (a ^ (a >> 1)) & 1;
+}
+
 // 計算するカーネル
 __global__ void kernel_calc(CudaInputMaster* pSrc, _u64 *pResult, _u64 ivs)
 {
@@ -42,16 +52,19 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, _u64 *pResult, _u64 ivs)
 
 	_u64 processedTarget = 0;
 	_u64 v;
-	unsigned int a;
+//	unsigned int a;
 	for(int i = 0; i < 60; ++i)
 	{
+		processedTarget |= (GetSignature(pSrc->answerFlag[i] & target) << (63 - i));
+		/*
 		v = pSrc->answerFlag[i] & target;
-		a = (unsigned int)(v ^ (v >> 32));
-		a = a ^ (a >> 16);
-		a = a ^ (a >> 8);
-		a = a ^ (a >> 4);
-		a = a ^ (a >> 2);
-		processedTarget |= (_u64)((a ^ (a >> 1)) & 1) << (63 - i);
+		v = (v ^ (v >> 32));
+		v = v ^ (v >> 16);
+		v = v ^ (v >> 8);
+		v = v ^ (v >> 4);
+		v = v ^ (v >> 2);
+		processedTarget |= ((v ^ (v >> 1)) & 1) << (63 - i);
+		*/
 	}
 
 	pResult[idx] = processedTarget;
@@ -63,11 +76,11 @@ void CudaInitialize(int* pIvs)
 {
 	// ホストメモリの確保
 	cudaMallocHost(&pHostMaster, sizeof(CudaInputMaster));
-	cudaMallocHost(&cu_HostResult, sizeof(_u64) * 1024 * 16);
+	cudaMallocHost(&cu_HostResult, sizeof(_u64) * 1024 * 1024 * 16);
 
 	// デバイスメモリの確保
 	cudaMalloc(&pDeviceMaster, sizeof(CudaInputMaster));
-	cudaMalloc(&pDeviceResult, sizeof(_u64) * 1024 * 16);
+	cudaMalloc(&pDeviceResult, sizeof(_u64) * 1024 * 1024 * 16);
 
 	// マスターデータのセット
 	for(int i = 0; i < 6; ++i)
@@ -88,12 +101,12 @@ void CudaInitialize(int* pIvs)
 void CudaProcess(_u64 ivs, int freeBit)
 {
 	//カーネル
-	dim3 block(32 * 4, 1, 1);
-	dim3 grid(32 * 4, 1, 1);
+	dim3 block(1024, 1, 1);
+	dim3 grid(1024*16, 1, 1);
 	kernel_calc << < grid, block >> > (pDeviceMaster, pDeviceResult, ivs);
 
 	//デバイス->ホストへ結果を転送
-	cudaMemcpy(cu_HostResult, pDeviceResult, sizeof(_u64) * 1024 * 16, cudaMemcpyDeviceToHost);
+	cudaMemcpy(cu_HostResult, pDeviceResult, sizeof(_u64) * 1024 * 1024 * 16, cudaMemcpyDeviceToHost);
 }
 
 void Finish()

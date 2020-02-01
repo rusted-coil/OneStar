@@ -151,7 +151,11 @@ void PrepareCuda(int ivOffset)
 	CudaInitialize(g_CudaIvs);
 }
 
-_u64 SearchCuda(_u64 ivs, int freeBit)
+void PreCalc(_u64 ivs, int freeBit)
+{
+	CudaProcess(ivs << 24, 24);
+}
+_u64 SearchCuda(int threadId)
 {
 	const int length = g_CudaFixedIvs * 10;
 
@@ -159,64 +163,231 @@ _u64 SearchCuda(_u64 ivs, int freeBit)
 	XoroshiroState nextoshiro;
 	XoroshiroState oshiroTemp;
 
-	CudaProcess(ivs << 14, 14);
-
 	// ‰ºˆÊ‚ðŒˆ‚ß‚é
 	_u64 max = ((1 << (64 - length)) - 1);
-	for(int threadId = 0; threadId < 1024 * 16; ++threadId)
+	for(_u64 search = 0; search <= max; ++search)
 	{
-		for(_u64 search = 0; search <= max; ++search)
-		{
-			_u64 seed = (cu_HostResult[threadId] ^ g_CoefficientData[search]) | g_SearchPattern[search];
+		_u64 seed = (cu_HostResult[threadId] ^ g_CoefficientData[search]) | g_SearchPattern[search];
 
-			if(g_CudaECbit >= 0 && ((seed & 1) != g_CudaECbit))
+		if(g_CudaECbit >= 0 && ((seed & 1) != g_CudaECbit))
+		{
+			continue;
+		}
+
+		_u64 nextSeed = seed + 0x82a2b175229d6a5bull;
+
+		// ‚±‚±‚©‚çi‚èž‚Ý
+
+		// ŒÂ«ƒ`ƒFƒbƒN
+		{
+			xoroshiro.SetSeed(seed);
+			nextoshiro.SetSeed(nextSeed);
+
+			// EC
+			unsigned int ec = xoroshiro.Next(0xFFFFFFFFu);
+			// 1•C–ÚŒÂ«
+			if(l_CudaEnableEcMod[0][ec % 6] == false)
+			{
+				continue;
+			}
+			// 2•C–ÚŒÂ«
+			if(l_CudaEnableEcMod[1][ec % 6] == false)
 			{
 				continue;
 			}
 
-			_u64 nextSeed = seed + 0x82a2b175229d6a5bull;
-
-			// ‚±‚±‚©‚çi‚èž‚Ý
-
-			// ŒÂ«ƒ`ƒFƒbƒN
+			// EC
+			ec = nextoshiro.Next(0xFFFFFFFFu);
+			// 3•C–ÚŒÂ«
+			if(l_CudaEnableEcMod[2][ec % 6] == false)
 			{
-				xoroshiro.SetSeed(seed);
-				nextoshiro.SetSeed(nextSeed);
+				continue;
+			}
+		}
 
-				// EC
-				unsigned int ec = xoroshiro.Next(0xFFFFFFFFu);
-				// 1•C–ÚŒÂ«
-				if(l_CudaEnableEcMod[0][ec % 6] == false)
-				{
-					continue;
-				}
-				// 2•C–ÚŒÂ«
-				if(l_CudaEnableEcMod[1][ec % 6] == false)
-				{
-					continue;
-				}
+		// 2•C–Ú‚ðæ‚Éƒ`ƒFƒbƒN
+		nextoshiro.Next(); // OTID
+		nextoshiro.Next(); // PID
 
-				// EC
-				ec = nextoshiro.Next(0xFFFFFFFFu);
-				// 3•C–ÚŒÂ«
-				if(l_CudaEnableEcMod[2][ec % 6] == false)
+		int vCount = l_CudaPokemon[2].flawlessIvs;
+
+		int ivs[6] = { -1, -1, -1, -1, -1, -1 };
+		int fixedCount = 0;
+		do {
+			int fixedIndex = 0;
+			do {
+				fixedIndex = nextoshiro.Next(7); // V‰ÓŠ
+			} while(fixedIndex >= 6);
+
+			if(ivs[fixedIndex] == -1)
+			{
+				ivs[fixedIndex] = 31;
+				++fixedCount;
+			}
+		} while(fixedCount < vCount);
+
+		// ŒÂ‘Ì’l
+		bool isPassed = true;
+		for(int i = 0; i < 6; ++i)
+		{
+			if(ivs[i] == 31)
+			{
+				if(l_CudaPokemon[2].ivs[i] != 31)
 				{
-					continue;
+					isPassed = false;
+					break;
 				}
 			}
+			else if(l_CudaPokemon[2].ivs[i] != nextoshiro.Next(0x1F))
+			{
+				isPassed = false;
+				break;
+			}
+		}
+		if(!isPassed)
+		{
+			continue;
+		}
 
-			// 2•C–Ú‚ðæ‚Éƒ`ƒFƒbƒN
-			nextoshiro.Next(); // OTID
-			nextoshiro.Next(); // PID
+		// “Á«
+		int ability = 0;
+		if(l_CudaPokemon[2].abilityFlag == 3)
+		{
+			ability = nextoshiro.Next(1);
+		}
+		else
+		{
+			do {
+				ability = nextoshiro.Next(3);
+			} while(ability >= 3);
+		}
+		if((l_CudaPokemon[2].ability >= 0 && l_CudaPokemon[2].ability != ability) || (l_CudaPokemon[2].ability == -1 && ability >= 2))
+		{
+			continue;
+		}
 
-			int vCount = l_CudaPokemon[2].flawlessIvs;
+		// «•Ê’l
+		if(!l_CudaPokemon[2].isNoGender)
+		{
+			int gender = 0;
+			do {
+				gender = nextoshiro.Next(0xFF);
+			} while(gender >= 253);
+		}
+
+		// «Ši
+		int nature = 0;
+		do {
+			nature = nextoshiro.Next(0x1F);
+		} while(nature >= 25);
+
+		if(nature != l_CudaPokemon[2].nature)
+		{
+			continue;
+		}
+
+		// 1•C–Ú
+		xoroshiro.Next(); // OTID
+		xoroshiro.Next(); // PID
+
+		{
+			// ó‘Ô‚ð•Û‘¶
+			oshiroTemp.Copy(&xoroshiro);
+
+			int ivs[6] = { -1, -1, -1, -1, -1, -1 };
+			int fixedCount = 0;
+			int offset = -(8 - g_CudaFixedIvs);
+			do {
+				int fixedIndex = 0;
+				do {
+					fixedIndex = xoroshiro.Next(7); // V‰ÓŠ
+					++offset;
+				} while(fixedIndex >= 6);
+
+				if(ivs[fixedIndex] == -1)
+				{
+					ivs[fixedIndex] = 31;
+					++fixedCount;
+				}
+			} while(fixedCount < (8 - g_CudaFixedIvs));
+
+			// reroll‰ñ”
+			if(offset != g_CudaIvOffset)
+			{
+				continue;
+			}
+
+			// ŒÂ‘Ì’l
+			bool isPassed = true;
+			for(int i = 0; i < 6; ++i)
+			{
+				if(ivs[i] == 31)
+				{
+					if(l_CudaPokemon[0].ivs[i] != 31)
+					{
+						isPassed = false;
+						break;
+					}
+				}
+				else if(l_CudaPokemon[0].ivs[i] != xoroshiro.Next(0x1F))
+				{
+					isPassed = false;
+					break;
+				}
+			}
+			if(!isPassed)
+			{
+				continue;
+			}
+
+			// “Á«
+			int ability = 0;
+			if(l_CudaPokemon[0].abilityFlag == 3)
+			{
+				ability = xoroshiro.Next(1);
+			}
+			else
+			{
+				do {
+					ability = xoroshiro.Next(3);
+				} while(ability >= 3);
+			}
+			if((l_CudaPokemon[0].ability >= 0 && l_CudaPokemon[0].ability != ability) || (l_CudaPokemon[0].ability == -1 && ability >= 2))
+			{
+				continue;
+			}
+
+			// «•Ê’l
+			if(!l_CudaPokemon[0].isNoGender)
+			{
+				int gender = 0;
+				do {
+					gender = xoroshiro.Next(0xFF); // «•Ê’l
+				} while(gender >= 253);
+			}
+
+			int nature = 0;
+			do {
+				nature = xoroshiro.Next(0x1F); // «Ši
+			} while(nature >= 25);
+
+			if(nature != l_CudaPokemon[0].nature)
+			{
+				continue;
+			}
+		}
+
+		{
+			xoroshiro.Copy(&oshiroTemp); // ‚Â‚Ã‚«‚©‚ç
+
+			int vCount = l_CudaPokemon[1].flawlessIvs;
 
 			int ivs[6] = { -1, -1, -1, -1, -1, -1 };
 			int fixedCount = 0;
 			do {
 				int fixedIndex = 0;
 				do {
-					fixedIndex = nextoshiro.Next(7); // V‰ÓŠ
+					fixedIndex = xoroshiro.Next(7); // V‰ÓŠ
 				} while(fixedIndex >= 6);
 
 				if(ivs[fixedIndex] == -1)
@@ -232,13 +403,13 @@ _u64 SearchCuda(_u64 ivs, int freeBit)
 			{
 				if(ivs[i] == 31)
 				{
-					if(l_CudaPokemon[2].ivs[i] != 31)
+					if(l_CudaPokemon[1].ivs[i] != 31)
 					{
 						isPassed = false;
 						break;
 					}
 				}
-				else if(l_CudaPokemon[2].ivs[i] != nextoshiro.Next(0x1F))
+				else if(l_CudaPokemon[1].ivs[i] != xoroshiro.Next(0x1F))
 				{
 					isPassed = false;
 					break;
@@ -251,215 +422,43 @@ _u64 SearchCuda(_u64 ivs, int freeBit)
 
 			// “Á«
 			int ability = 0;
-			if(l_CudaPokemon[2].abilityFlag == 3)
+			if(l_CudaPokemon[1].abilityFlag == 3)
 			{
-				ability = nextoshiro.Next(1);
+				ability = xoroshiro.Next(1);
 			}
 			else
 			{
 				do {
-					ability = nextoshiro.Next(3);
+					ability = xoroshiro.Next(3);
 				} while(ability >= 3);
 			}
-			if((l_CudaPokemon[2].ability >= 0 && l_CudaPokemon[2].ability != ability) || (l_CudaPokemon[2].ability == -1 && ability >= 2))
+			if((l_CudaPokemon[1].ability >= 0 && l_CudaPokemon[1].ability != ability) || (l_CudaPokemon[1].ability == -1 && ability >= 2))
 			{
 				continue;
 			}
 
 			// «•Ê’l
-			if(!l_CudaPokemon[2].isNoGender)
+			if(!l_CudaPokemon[1].isNoGender)
 			{
 				int gender = 0;
 				do {
-					gender = nextoshiro.Next(0xFF);
+					gender = xoroshiro.Next(0xFF); // «•Ê’l
 				} while(gender >= 253);
 			}
 
 			// «Ši
 			int nature = 0;
 			do {
-				nature = nextoshiro.Next(0x1F);
+				nature = xoroshiro.Next(0x1F); // «Ši
 			} while(nature >= 25);
 
-			if(nature != l_CudaPokemon[2].nature)
+			if(nature != l_CudaPokemon[1].nature)
 			{
 				continue;
 			}
-
-			// 1•C–Ú
-			xoroshiro.Next(); // OTID
-			xoroshiro.Next(); // PID
-
-			{
-				// ó‘Ô‚ð•Û‘¶
-				oshiroTemp.Copy(&xoroshiro);
-
-				int ivs[6] = { -1, -1, -1, -1, -1, -1 };
-				int fixedCount = 0;
-				int offset = -(8 - g_CudaFixedIvs);
-				do {
-					int fixedIndex = 0;
-					do {
-						fixedIndex = xoroshiro.Next(7); // V‰ÓŠ
-						++offset;
-					} while(fixedIndex >= 6);
-
-					if(ivs[fixedIndex] == -1)
-					{
-						ivs[fixedIndex] = 31;
-						++fixedCount;
-					}
-				} while(fixedCount < (8 - g_CudaFixedIvs));
-
-				// reroll‰ñ”
-				if(offset != g_CudaIvOffset)
-				{
-					continue;
-				}
-
-				// ŒÂ‘Ì’l
-				bool isPassed = true;
-				for(int i = 0; i < 6; ++i)
-				{
-					if(ivs[i] == 31)
-					{
-						if(l_CudaPokemon[0].ivs[i] != 31)
-						{
-							isPassed = false;
-							break;
-						}
-					}
-					else if(l_CudaPokemon[0].ivs[i] != xoroshiro.Next(0x1F))
-					{
-						isPassed = false;
-						break;
-					}
-				}
-				if(!isPassed)
-				{
-					continue;
-				}
-
-				// “Á«
-				int ability = 0;
-				if(l_CudaPokemon[0].abilityFlag == 3)
-				{
-					ability = xoroshiro.Next(1);
-				}
-				else
-				{
-					do {
-						ability = xoroshiro.Next(3);
-					} while(ability >= 3);
-				}
-				if((l_CudaPokemon[0].ability >= 0 && l_CudaPokemon[0].ability != ability) || (l_CudaPokemon[0].ability == -1 && ability >= 2))
-				{
-					continue;
-				}
-
-				// «•Ê’l
-				if(!l_CudaPokemon[0].isNoGender)
-				{
-					int gender = 0;
-					do {
-						gender = xoroshiro.Next(0xFF); // «•Ê’l
-					} while(gender >= 253);
-				}
-
-				int nature = 0;
-				do {
-					nature = xoroshiro.Next(0x1F); // «Ši
-				} while(nature >= 25);
-
-				if(nature != l_CudaPokemon[0].nature)
-				{
-					continue;
-				}
-			}
-
-			{
-				xoroshiro.Copy(&oshiroTemp); // ‚Â‚Ã‚«‚©‚ç
-
-				int vCount = l_CudaPokemon[1].flawlessIvs;
-
-				int ivs[6] = { -1, -1, -1, -1, -1, -1 };
-				int fixedCount = 0;
-				do {
-					int fixedIndex = 0;
-					do {
-						fixedIndex = xoroshiro.Next(7); // V‰ÓŠ
-					} while(fixedIndex >= 6);
-
-					if(ivs[fixedIndex] == -1)
-					{
-						ivs[fixedIndex] = 31;
-						++fixedCount;
-					}
-				} while(fixedCount < vCount);
-
-				// ŒÂ‘Ì’l
-				bool isPassed = true;
-				for(int i = 0; i < 6; ++i)
-				{
-					if(ivs[i] == 31)
-					{
-						if(l_CudaPokemon[1].ivs[i] != 31)
-						{
-							isPassed = false;
-							break;
-						}
-					}
-					else if(l_CudaPokemon[1].ivs[i] != xoroshiro.Next(0x1F))
-					{
-						isPassed = false;
-						break;
-					}
-				}
-				if(!isPassed)
-				{
-					continue;
-				}
-
-				// “Á«
-				int ability = 0;
-				if(l_CudaPokemon[1].abilityFlag == 3)
-				{
-					ability = xoroshiro.Next(1);
-				}
-				else
-				{
-					do {
-						ability = xoroshiro.Next(3);
-					} while(ability >= 3);
-				}
-				if((l_CudaPokemon[1].ability >= 0 && l_CudaPokemon[1].ability != ability) || (l_CudaPokemon[1].ability == -1 && ability >= 2))
-				{
-					continue;
-				}
-
-				// «•Ê’l
-				if(!l_CudaPokemon[1].isNoGender)
-				{
-					int gender = 0;
-					do {
-						gender = xoroshiro.Next(0xFF); // «•Ê’l
-					} while(gender >= 253);
-				}
-
-				// «Ši
-				int nature = 0;
-				do {
-					nature = xoroshiro.Next(0x1F); // «Ši
-				} while(nature >= 25);
-
-				if(nature != l_CudaPokemon[1].nature)
-				{
-					continue;
-				}
-			}
-
-			return seed;
 		}
+
+		return seed;
 	}
 	return 0;
 }
