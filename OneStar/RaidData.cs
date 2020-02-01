@@ -150,8 +150,18 @@ namespace OneStar
 			}
 		}
 
-		// 1ランク1ポケモンごとに対応するデータ
-		public class Pokemon
+        public List<string> GetAllEventRaidEntries()
+        {
+            List<string> ret_string = new List<string>();
+            foreach (string key in c_EventDenList.EventList.Keys)
+            {
+                ret_string.Add(key);
+            }
+            return ret_string;
+        }
+
+        // 1ランク1ポケモンごとに対応するデータ
+        public class Pokemon
 		{
 			public string Key { get; private set; }
 			public int Rank { get; private set; }

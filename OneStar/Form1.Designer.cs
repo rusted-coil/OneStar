@@ -274,8 +274,7 @@
             this.f_MenuItemWindowSizeNormal = new System.Windows.Forms.ToolStripMenuItem();
             this.f_MenuItemWindowSizeSmall = new System.Windows.Forms.ToolStripMenuItem();
             this.f_StripMenuItemEventId = new System.Windows.Forms.ToolStripMenuItem();
-            this.f_MenuItemEventId20200131 = new System.Windows.Forms.ToolStripMenuItem();
-            this.f_MenuItemEventId20200109 = new System.Windows.Forms.ToolStripMenuItem();
+            this.UpdateEventToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.f_LabelRerollsRange = new System.Windows.Forms.Label();
             this.f_TextBoxRerollsUpper = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -2771,7 +2770,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.f_StripMenuItemLanguage,
             this.f_StripMenuItemWindowSize,
-            this.f_StripMenuItemEventId});
+            this.f_StripMenuItemEventId,
+            this.UpdateEventToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(829, 25);
@@ -2844,27 +2844,17 @@
             // 
             // f_StripMenuItemEventId
             // 
-            this.f_StripMenuItemEventId.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.f_MenuItemEventId20200131,
-            this.f_MenuItemEventId20200109});
             this.f_StripMenuItemEventId.ForeColor = System.Drawing.SystemColors.ControlText;
             this.f_StripMenuItemEventId.Name = "f_StripMenuItemEventId";
             this.f_StripMenuItemEventId.Size = new System.Drawing.Size(104, 21);
             this.f_StripMenuItemEventId.Text = "イベントレイド";
             // 
-            // f_MenuItemEventId20200131
+            // UpdateEventToolStripMenuItem
             // 
-            this.f_MenuItemEventId20200131.Name = "f_MenuItemEventId20200131";
-            this.f_MenuItemEventId20200131.Size = new System.Drawing.Size(132, 22);
-            this.f_MenuItemEventId20200131.Text = "20200131";
-            this.f_MenuItemEventId20200131.Click += new System.EventHandler(this.f_MenuItemEventId20200131_Click);
-            // 
-            // f_MenuItemEventId20200109
-            // 
-            this.f_MenuItemEventId20200109.Name = "f_MenuItemEventId20200109";
-            this.f_MenuItemEventId20200109.Size = new System.Drawing.Size(132, 22);
-            this.f_MenuItemEventId20200109.Text = "20200109";
-            this.f_MenuItemEventId20200109.Click += new System.EventHandler(this.f_MenuItemEventId20200109_Click);
+            this.UpdateEventToolStripMenuItem.Name = "UpdateEventToolStripMenuItem";
+            this.UpdateEventToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
+            this.UpdateEventToolStripMenuItem.Text = "更新活动事件";
+            this.UpdateEventToolStripMenuItem.Click += new System.EventHandler(this.UpdateEventToolStripMenuItem_Click);
             // 
             // f_LabelRerollsRange
             // 
@@ -3317,7 +3307,6 @@
 		private System.Windows.Forms.ToolStripMenuItem f_MenuItemWindowSizeNormal;
 		private System.Windows.Forms.ToolStripMenuItem f_MenuItemWindowSizeSmall;
 		private System.Windows.Forms.ToolStripMenuItem f_StripMenuItemEventId;
-		private System.Windows.Forms.ToolStripMenuItem f_MenuItemEventId20200131;
-		private System.Windows.Forms.ToolStripMenuItem f_MenuItemEventId20200109;
-	}
+        private System.Windows.Forms.ToolStripMenuItem UpdateEventToolStripMenuItem;
+    }
 }

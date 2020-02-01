@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using IVCalcNetFramework;
 using System.Linq;
 using PKHeX_Raid_Plugin;
+using System.Net;
 
 namespace OneStar
 {
@@ -301,10 +302,31 @@ namespace OneStar
 				m_PokemonInfo[a].TextBoxLevel.Enter += new System.EventHandler((object sender, EventArgs e) => { EnterTextBoxAllSelect(tb3); });
 			}
 
-			// イベントレイドID
-			m_MenuItemEventIdList.Add(f_MenuItemEventId20200109);
-			m_MenuItemEventIdList.Add(f_MenuItemEventId20200131);
-			RefreshEventId();
+            // イベントレイドID
+            // first clear all items
+            f_StripMenuItemEventId.DropDownItems.Clear();
+
+            List<string> event_strings = c_RaidData.GetAllEventRaidEntries();
+            List<string> event_strings_distinct = new List<string>();
+
+            foreach (string event_id in event_strings)
+            {
+                event_strings_distinct.Add(event_id.Substring(0, event_id.Length - 3));
+            }
+            event_strings_distinct = event_strings_distinct.Distinct().ToList();
+
+            foreach (string event_id in event_strings_distinct)
+            {
+                // add new one
+                ToolStripMenuItem new_event = new ToolStripMenuItem();
+                new_event.Name = event_id;
+                new_event.Size = new System.Drawing.Size(152, 22);
+                new_event.Text = event_id;
+                new_event.Click += new System.EventHandler(this.new_event_Click);
+                f_StripMenuItemEventId.DropDownItems.Add(new_event);
+            }
+
+            RefreshEventId();
 
 			// 言語設定用コントロールをセット
 			m_MultiLanguageControls = new Dictionary<string, Control[]>();
@@ -1565,27 +1587,6 @@ namespace OneStar
 			MainForm.ActiveForm.Size = new System.Drawing.Size(860, 640);
 		}
 
-		#region イベントレイドIDボタン イベント定義
-		private void f_MenuItemEventId20200131_Click(object sender, EventArgs e)
-		{
-			m_Preferences.EventId = f_MenuItemEventId20200131.Text;
-			RefreshEventId();
-			if (m_CurrentDenIndex == -1)
-			{
-				RefreshDen();
-			}
-		}
-		private void f_MenuItemEventId20200109_Click(object sender, EventArgs e)
-		{
-			m_Preferences.EventId = f_MenuItemEventId20200109.Text;
-			RefreshEventId();
-			if (m_CurrentDenIndex == -1)
-			{
-				RefreshDen();
-			}
-		}
-		#endregion
-
 		void RefreshEventId()
 		{
 			foreach (var menuItem in m_MenuItemEventIdList)
@@ -1601,25 +1602,42 @@ namespace OneStar
 			}
 		}
 
-		/*
-		bool testFlag = false;
-		private void f_TextBoxIv0_351_Enter(object sender, EventArgs e)
-		{
-			f_TextBoxIv0_351.SelectAll();
-			if (Control.MouseButtons != MouseButtons.None)
-			{
-				testFlag = true;
-			}
-		}
+        private void new_event_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem cur_event = (ToolStripMenuItem)sender;
+            m_Preferences.EventId = cur_event.Text;
+            RefreshEventId();
+            if (m_CurrentDenIndex == -1)
+            {
+                RefreshDen();
+            }
+        }
 
-		private void f_TextBoxIv0_351_MouseDown(object sender, MouseEventArgs e)
-		{
-			if (testFlag)
-			{
-				f_TextBoxIv0_351.SelectAll();
-				testFlag = false;
-			}
-		}
-		*/
-	}
+        private void UpdateEventToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string url = "https://raw.githubusercontent.com/rusted-coil/OneStar/master/Data/EventDen.json";
+            string path = Directory.GetCurrentDirectory() + "//EventDen.json";
+
+            // 设置参数
+            HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
+            //发送请求并获取相应回应数据
+            HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+            //直到request.GetResponse()程序才开始向目标网页发送Post请求
+            Stream responseStream = response.GetResponseStream();
+            //创建本地文件写入流
+            Stream stream = new FileStream(path, FileMode.Create);
+            byte[] bArr = new byte[1024];
+            int size = responseStream.Read(bArr, 0, (int)bArr.Length);
+            while (size > 0)
+            {
+                stream.Write(bArr, 0, size);
+                size = responseStream.Read(bArr, 0, (int)bArr.Length);
+            }
+            stream.Close();
+            responseStream.Close();
+
+            // comfirm close and reopen
+            MessageBox.Show("更新完成，请重启软件");
+        }
+    }
 }
