@@ -366,6 +366,17 @@ namespace OneStar
 				f_ButtonEncounterInfo_352,
 				f_ButtonEncounterInfo_353,
 			};
+			m_MultiLanguageControls["Den"] = new Control[] { f_LabelDenName };
+			m_MultiLanguageControls["GameVersion"] = new Control[] { f_LabelGameVersion };
+			m_MultiLanguageControls["DenType"] = new Control[] { f_LabelRarity };
+			m_MultiLanguageControls["Attribute"] = new Control[] {
+				f_GroupBoxStatus1,
+				f_GroupBoxStatus2,
+				f_GroupBoxStatus3,
+				f_GroupBoxStatus351,
+				f_GroupBoxStatus352,
+				f_GroupBoxStatus353,
+			};
 
 			// 言語を適用
 			ChangeLanguage(true, m_Preferences.Language);
@@ -1064,16 +1075,7 @@ namespace OneStar
 			f_MenuItemWindowSizeNormal.Text = Messages.Instance.SystemLabel["WindowSizeNormal"];
 			f_MenuItemWindowSizeSmall.Text = Messages.Instance.SystemLabel["WindowSizeSmall"];
 			f_StripMenuItemEventId.Text = Messages.Instance.SystemLabel["EventDen"];
-
-            f_LabelDenName.Text = Messages.Instance.SystemLabel["Den"];
-            f_LabelGameVersion.Text = Messages.Instance.SystemLabel["GameVersion"];
-            f_LabelRarity.Text = Messages.Instance.SystemLabel["DenType"];
-            groupBox3.Text = Messages.Instance.SystemLabel["Attribute"];
-            groupBox5.Text = Messages.Instance.SystemLabel["Attribute"];
-            groupBox6.Text = Messages.Instance.SystemLabel["Attribute"];
-            groupBox7.Text = Messages.Instance.SystemLabel["Attribute"];
-            groupBox8.Text = Messages.Instance.SystemLabel["Attribute"];
-            groupBox9.Text = Messages.Instance.SystemLabel["Attribute"];
+			f_StripMenuItemUpdateEventData.Text = Messages.Instance.SystemLabel["UpdateEventDen"];
 
             foreach (var pair in m_MultiLanguageControls)
 			{
