@@ -261,8 +261,6 @@ namespace IVCalcNetFramework
                 var max = calculateStat(pokemonID, pokelvl, pnature, pstat, 31, statev);
                 var min = calculateStat(pokemonID, pokelvl, pnature, pstat, 0, statev);
 
-                
-
                 if (stat > max || stat < min)
                 {
                     throw new StatException(statNames[pstat] + " should be between " + min + " and " + max,pstat,min,max);
