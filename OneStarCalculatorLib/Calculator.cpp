@@ -173,7 +173,7 @@ _u64 Search(_u64 ivs)
 
 	// 56~57bit側の計算結果キャッシュ
 	_u64 processedTarget = 0;
-	for (int i = 0; i < length; ++i)
+	for (int i = 0; i < 64; ++i)
 	{
 		if(g_AnswerFlag[i] != 0)
 		{
