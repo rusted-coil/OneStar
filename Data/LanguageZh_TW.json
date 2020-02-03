@@ -99,7 +99,7 @@
         "GameVersion": "游戏版本",
         "DenType": "坑类型",
         "Attribute": "属性",
-        "UpdateEventDen": "更新活动事件",
+        "UpdateEventDen": "Update Data",
     },
 	"CheckIvsResult": [
 		"No Good！",
@@ -125,12 +125,14 @@
 		"StatError": "Issue with Stat: ",
 		"StatErrorTitle": "Stat Error",
 		"InvalidPokemon": "Please select a valid Pokemon",
+        "UpdateEventDenFailed": "Update Data Failed.",
 	},
 	"SystemMessage": {
 		"ResultDialogTitle": "結果",
 		"FindManySeeds": "找到複數的種子，詳見seeds.txt。",
 		"FindManyIvs": "Multiple possible Ivs were found. Try another level.",
         "EncounterInfoDialogTitle": "Encounter Info",
+        "UpdateEventDenSuccessed": "Update Data Successed.",
 	},
 	"ListLabel": {
 		"Frame": "幀數",

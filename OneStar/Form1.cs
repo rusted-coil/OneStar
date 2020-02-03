@@ -1639,8 +1639,8 @@ namespace OneStar
             stream.Close();
             responseStream.Close();
 
-            // comfirm close and reopen
-            MessageBox.Show("更新完成，请重启软件");
-        }
-    }
+			// comfirm close and reopen
+			MessageBox.Show(Messages.Instance.SystemMessage["UpdateEventDenSuccessed"]);
+		}
+	}
 }

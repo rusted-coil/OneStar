@@ -125,12 +125,14 @@
 		"StatError": "可能有问题的能力值: ",
 		"StatErrorTitle": "能力值错误",
 		"InvalidPokemon": "请选择一个宝可梦",
+        "UpdateEventDenFailed": "Update Data Failed.",
 	},
 	"SystemMessage": {
 		"ResultDialogTitle": "结果",
 		"FindManySeeds": "找到了多个种子，详见seeds.txt",
 		"FindManyIvs": "个体值存在误差，请尝试提升等级(Lv)",
         "EncounterInfoDialogTitle": "遇敌信息",
+        "UpdateEventDenSuccessed": "更新完成，请重启软件",
 	},
 	"ListLabel": {
 		"Frame": "帧数",

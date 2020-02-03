@@ -2853,8 +2853,8 @@
 			// 
 			this.f_StripMenuItemUpdateEventData.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.f_StripMenuItemUpdateEventData.Name = "f_StripMenuItemUpdateEventData";
-			this.f_StripMenuItemUpdateEventData.Size = new System.Drawing.Size(91, 20);
-			this.f_StripMenuItemUpdateEventData.Text = "更新活动事件";
+			this.f_StripMenuItemUpdateEventData.Size = new System.Drawing.Size(69, 20);
+			this.f_StripMenuItemUpdateEventData.Text = "データ更新";
 			this.f_StripMenuItemUpdateEventData.Click += new System.EventHandler(this.UpdateEventToolStripMenuItem_Click);
 			// 
 			// f_LabelRerollsRange

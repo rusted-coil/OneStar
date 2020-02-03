@@ -125,12 +125,14 @@
         "StatError": "ステータスに問題があります：",
         "StatErrorTitle": "ステータスエラー",
         "InvalidPokemon": "ポケモン名の入力が不正です。",
+        "UpdateEventDenFailed": "データの取得に失敗しました。",
     },
     "SystemMessage": {
         "ResultDialogTitle": "結果",
         "FindManySeeds": "複数のDen Seedが見つかりました。\n全ての候補はseeds.txtをご確認ください。",
         "FindManyIvs": "個体値を絞り込めなかったステータスがあります。\n他のレベルで計算してみてください。",
         "EncounterInfoDialogTitle": "レイド情報",
+        "UpdateEventDenSuccessed": "イベントレイドのデータを更新しました。",
     },
     "ListLabel": {
         "Frame": "消費数",

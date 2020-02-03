@@ -125,12 +125,14 @@
         "StatError": "Issue with Stat: ",
         "StatErrorTitle": "Stat Error",
         "InvalidPokemon": "Please select a valid Pokemon",
+        "UpdateEventDenFailed": "Update Data Failed.",
     },
     "SystemMessage": {
         "ResultDialogTitle": "Results",
         "FindManySeeds": "Multiple possible Den Seeds were found. Check seeds.text for more details.",
         "FindManyIvs": "Multiple possible Ivs were found. Try another level.",
         "EncounterInfoDialogTitle": "Encounter Info",
+        "UpdateEventDenSuccessed": "Update Data Successed.",
     },
     "ListLabel": {
         "Frame": "Frames",
