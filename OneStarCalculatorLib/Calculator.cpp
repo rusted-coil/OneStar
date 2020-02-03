@@ -173,14 +173,12 @@ _u64 Search(_u64 ivs)
 
 	// 56~57bit側の計算結果キャッシュ
 	_u64 processedTarget = 0;
-	int offset = 0;
 	for (int i = 0; i < length; ++i)
 	{
-		while (g_FreeBit[i + offset] > 0)
+		if(g_AnswerFlag[i] != 0)
 		{
-			++offset;
+			processedTarget |= (GetSignature(g_AnswerFlag[i] & target) << (63 - i));
 		}
-		processedTarget |= (GetSignature(g_AnswerFlag[i] & target) << (63 - (i + offset)));
 	}
 
 	// 下位7bitを決める

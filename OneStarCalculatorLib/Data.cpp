@@ -139,11 +139,27 @@ void CalculateInverseMatrix(int length)
 			++skip;
 		}
 	}
+
+	// AnserFlagを使用する項のところにセットしておく
+	for(int c = skip, i = length + skip; c > 0; --i)
+	{
+		if(g_FreeBit[i] == 0)
+		{
+			g_AnswerFlag[i] = g_AnswerFlag[i - skip];
+		}
+		else
+		{
+			g_AnswerFlag[i] = 0;
+			--c;
+		}
+	}
+
 	// 自由bit
 	for (int i = length + skip; i < 64; ++i)
 	{
 		g_FreeBit[i] = 1;
 		g_FreeId[i - length] = i;
+		++skip;
 	}
 
 	// 係数部分だけ抜き出し
