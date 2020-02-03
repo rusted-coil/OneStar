@@ -26,29 +26,31 @@ void CudaInitialize()
 
 void SetCudaCondition(int index, int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, int characteristic, bool isNoGender, int abilityFlag, int flawlessIvs)
 {
-	if(index < 0 || index >= 3)
+	if(index < 0 || index >= 4)
 	{
 		return;
 	}
 
-	cu_HostPokemon[index].ivs[0] = iv0;
-	cu_HostPokemon[index].ivs[1] = iv1;
-	cu_HostPokemon[index].ivs[2] = iv2;
-	cu_HostPokemon[index].ivs[3] = iv3;
-	cu_HostPokemon[index].ivs[4] = iv4;
-	cu_HostPokemon[index].ivs[5] = iv5;
-	cu_HostPokemon[index].ability = ability;
-	cu_HostPokemon[index].nature = nature;
-	cu_HostPokemon[index].characteristic = characteristic;
-	cu_HostPokemon[index].isNoGender = isNoGender;
-	cu_HostPokemon[index].abilityFlag = abilityFlag;
-	cu_HostPokemon[index].flawlessIvs = flawlessIvs;
+	PokemonData* pokemon = &cu_HostMaster->pokemon[index];
+
+	pokemon->ivs[0] = iv0;
+	pokemon->ivs[1] = iv1;
+	pokemon->ivs[2] = iv2;
+	pokemon->ivs[3] = iv3;
+	pokemon->ivs[4] = iv4;
+	pokemon->ivs[5] = iv5;
+	pokemon->ability = ability;
+	pokemon->nature = nature;
+	pokemon->characteristic = characteristic;
+	pokemon->isNoGender = isNoGender;
+	pokemon->abilityFlag = abilityFlag;
+	pokemon->flawlessIvs = flawlessIvs;
 
 	// ECbit‚ª—˜—p‚Å‚«‚é‚©H
 	if(cu_HostMaster->ecBit == -1)
 	{
 		int target = (characteristic == 0 ? 5 : characteristic - 1);
-		if(cu_HostPokemon[index].IsCharacterized(target))
+		if(pokemon->IsCharacterized(target))
 		{
 			// EC mod6 ‚ªcharacteristic‚ÅŠm’è
 			if(index != 2) // Seed‚ÌECbit‚È‚Ì‚Å”½“]‚³‚¹‚é
@@ -68,7 +70,7 @@ void SetCudaCondition(int index, int iv0, int iv1, int iv2, int iv3, int iv4, in
 	for(int i = 1; i < 6; ++i)
 	{
 		int target = (characteristic + 6 - i) % 6;
-		if(flag && cu_HostPokemon[index].IsCharacterized(target) == false)
+		if(flag && pokemon->IsCharacterized(target) == false)
 		{
 			cu_HostMaster->ecMod[index][target] = true;
 		}

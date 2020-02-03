@@ -4,17 +4,15 @@
 
 //ホストメモリのポインタ
 CudaInputMaster* cu_HostMaster;
-PokemonData* cu_HostPokemon;
 _u64* cu_HostResult;
 
 //デバイスメモリのポインタ
 static CudaInputMaster* pDeviceMaster;
-static PokemonData* pDevicePokemon;
 static _u64* pDeviceResult;
 
 // 並列実行定数
 const int c_SizeBlock = 1024;
-const int c_SizeGrid = 1024 * 16;
+const int c_SizeGrid = 1024 * 1024;
 const int c_SizeResult = 16;
 
 // GPUコード
@@ -67,9 +65,10 @@ __device__ inline void Next(_u32* seeds)
 }
 
 // 計算するカーネル
-__global__ void kernel_calc(CudaInputMaster* pSrc, PokemonData* pPokemon, _u64 *pResult, _u32 ivs)
+__global__ void kernel_calc(CudaInputMaster* pSrc, _u64 *pResult, _u32 ivs)
 {
 	int idx = blockDim.x * blockIdx.x + threadIdx.x; //自分のスレッドxのindex
+	int idy = blockDim.y * blockIdx.y + threadIdx.y;
 
 	ivs |= idx;
 
@@ -90,7 +89,8 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, PokemonData* pPokemon, _u64 *
 	targetUpper |= ((32ul + pSrc->ivs[1] - ((ivs &  0x1F00000ul) >> 20)) & 0x1F) << 10;
 	targetLower |= ((32ul + pSrc->ivs[4] - ((ivs &      0x3E0ul) >> 5)) & 0x1F) << 10;
 	targetUpper |= ((32ul + pSrc->ivs[2] - ((ivs &    0xF8000ul) >> 15)) & 0x1F);
-	targetLower |= ((32ul + pSrc->ivs[5] - (ivs &        0x1Ful)) & 0x1F);
+//	targetLower |= ((32ul + pSrc->ivs[5] - (ivs &        0x1Ful)) & 0x1F);
+	targetLower |= ((32ul + idy - (ivs &        0x1Ful)) & 0x1F);
 
 	// targetベクトル入力完了
 
@@ -111,6 +111,9 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, PokemonData* pPokemon, _u64 *
 		processedTargetUpper |= (GetSignature(pSrc->answerFlag[i * 2] & targetUpper) ^ GetSignature(pSrc->answerFlag[i * 2 + 1] & targetLower)) << (31 - i);
 	}
 
+//	_u64 seed;
+//	_u64 next;
+
 	_u32 seeds[4]; // S0Upper、S0Lower、S1Upper、S1Lower
 	_u32 next[4]; // S0Upper、S0Lower、S1Upper、S1Lower
 	_u64 temp64;
@@ -120,6 +123,16 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, PokemonData* pPokemon, _u64 *
 	{
 		seeds[0] = processedTargetUpper ^ pSrc->coefficientData[i * 2];
 		seeds[1] = processedTargetLower ^ pSrc->coefficientData[i * 2 + 1] | pSrc->searchPattern[i];
+//		seeds[2] = 0x82a2b175ul;
+//		seeds[3] = 0x229d6a5bul;
+
+//		seed = ((_u64)seeds[0] << 32 | seeds[1]);
+
+//		Next(seeds); // EC
+//		Next(seeds); // OTID
+//		Next(seeds); // PID
+
+		// 遺伝箇所
 
 		if(pSrc->ecBit >= 0 && (seeds[1] & 1) != pSrc->ecBit)
 		{
@@ -179,7 +192,7 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, PokemonData* pPokemon, _u64 *
 					ivs[fixedIndex] = 31;
 					++temp32;
 				}
-			} while(temp32 < pPokemon[2].flawlessIvs);
+			} while(temp32 < pSrc->pokemon[2].flawlessIvs);
 
 			// 個体値
 			temp32 = 1;
@@ -187,13 +200,13 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, PokemonData* pPokemon, _u64 *
 			{
 				if(ivs[i] == 31)
 				{
-					if(pPokemon[2].ivs[i] != 31)
+					if(pSrc->pokemon[2].ivs[i] != 31)
 					{
 						temp32 = 0;
 						break;
 					}
 				}
-				else if(pPokemon[2].ivs[i] != Next(next, 0x1F))
+				else if(pSrc->pokemon[2].ivs[i] != Next(next, 0x1F))
 				{
 					temp32 = 0;
 					break;
@@ -203,10 +216,10 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, PokemonData* pPokemon, _u64 *
 			{
 				continue;
 			}
-
+			
 			// 特性
 			temp32 = 0;
-			if(pPokemon[2].abilityFlag == 3)
+			if(pSrc->pokemon[2].abilityFlag == 3)
 			{
 				temp32 = Next(next, 1);
 			}
@@ -216,13 +229,13 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, PokemonData* pPokemon, _u64 *
 					temp32 = Next(next, 3);
 				} while(temp32 >= 3);
 			}
-			if((pPokemon[2].ability >= 0 && pPokemon[2].ability != temp32) || (pPokemon[2].ability == -1 && temp32 >= 2))
+			if((pSrc->pokemon[2].ability >= 0 && pSrc->pokemon[2].ability != temp32) || (pSrc->pokemon[2].ability == -1 && temp32 >= 2))
 			{
 				continue;
 			}
 
 			// 性別値
-			if(!pPokemon[2].isNoGender)
+			if(!pSrc->pokemon[2].isNoGender)
 			{
 				temp32 = 0;
 				do {
@@ -236,7 +249,7 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, PokemonData* pPokemon, _u64 *
 				temp32 = Next(next, 0x1F);
 			} while(temp32 >= 25);
 
-			if(temp32 != pPokemon[2].nature)
+			if(temp32 != pSrc->pokemon[2].nature)
 			{
 				continue;
 			}
@@ -267,7 +280,7 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, PokemonData* pPokemon, _u64 *
 						ivs[fixedIndex] = 31;
 						++temp32;
 					}
-				} while(temp32 < pPokemon[0].flawlessIvs);
+				} while(temp32 < pSrc->pokemon[0].flawlessIvs);
 
 				// 個体値
 				temp32 = 1;
@@ -275,13 +288,13 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, PokemonData* pPokemon, _u64 *
 				{
 					if(ivs[i] == 31)
 					{
-						if(pPokemon[0].ivs[i] != 31)
+						if(pSrc->pokemon[0].ivs[i] != 31)
 						{
 							temp32 = 0;
 							break;
 						}
 					}
-					else if(pPokemon[0].ivs[i] != Next(seeds, 0x1F))
+					else if(pSrc->pokemon[0].ivs[i] != Next(seeds, 0x1F))
 					{
 						temp32 = 0;
 						break;
@@ -306,7 +319,7 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, PokemonData* pPokemon, _u64 *
 						ivs[fixedIndex] = 31;
 						++temp32;
 					}
-				} while(temp32 < pPokemon[1].flawlessIvs);
+				} while(temp32 < pSrc->pokemon[1].flawlessIvs);
 
 				// 個体値
 				temp32 = 1;
@@ -314,13 +327,13 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, PokemonData* pPokemon, _u64 *
 				{
 					if(ivs[i] == 31)
 					{
-						if(pPokemon[1].ivs[i] != 31)
+						if(pSrc->pokemon[1].ivs[i] != 31)
 						{
 							temp32 = 0;
 							break;
 						}
 					}
-					else if(pPokemon[1].ivs[i] != Next(next, 0x1F))
+					else if(pSrc->pokemon[1].ivs[i] != Next(next, 0x1F))
 					{
 						temp32 = 0;
 						break;
@@ -334,7 +347,7 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, PokemonData* pPokemon, _u64 *
 
 			// 特性
 			temp32 = 0;
-			if(pPokemon[0].abilityFlag == 3)
+			if(pSrc->pokemon[0].abilityFlag == 3)
 			{
 				temp32 = Next(seeds, 1);
 			}
@@ -344,12 +357,12 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, PokemonData* pPokemon, _u64 *
 					temp32 = Next(seeds, 3);
 				} while(temp32 >= 3);
 			}
-			if((pPokemon[0].ability >= 0 && pPokemon[0].ability != temp32) || (pPokemon[0].ability == -1 && temp32 >= 2))
+			if((pSrc->pokemon[0].ability >= 0 && pSrc->pokemon[0].ability != temp32) || (pSrc->pokemon[0].ability == -1 && temp32 >= 2))
 			{
 				continue;
 			}
 			temp32 = 0;
-			if(pPokemon[1].abilityFlag == 3)
+			if(pSrc->pokemon[1].abilityFlag == 3)
 			{
 				temp32 = Next(next, 1);
 			}
@@ -359,20 +372,20 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, PokemonData* pPokemon, _u64 *
 					temp32 = Next(next, 3);
 				} while(temp32 >= 3);
 			}
-			if((pPokemon[1].ability >= 0 && pPokemon[1].ability != temp32) || (pPokemon[1].ability == -1 && temp32 >= 2))
+			if((pSrc->pokemon[1].ability >= 0 && pSrc->pokemon[1].ability != temp32) || (pSrc->pokemon[1].ability == -1 && temp32 >= 2))
 			{
 				continue;
 			}
 
 			// 性別値
-			if(!pPokemon[0].isNoGender)
+			if(!pSrc->pokemon[0].isNoGender)
 			{
 				temp32 = 0;
 				do {
 					temp32 = Next(seeds, 0xFF);
 				} while(temp32 >= 253);
 			}
-			if(!pPokemon[1].isNoGender)
+			if(!pSrc->pokemon[1].isNoGender)
 			{
 				temp32 = 0;
 				do {
@@ -385,7 +398,7 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, PokemonData* pPokemon, _u64 *
 			do {
 				temp32 = Next(seeds, 0x1F);
 			} while(temp32 >= 25);
-			if(temp32 != pPokemon[0].nature)
+			if(temp32 != pSrc->pokemon[0].nature)
 			{
 				continue;
 			}
@@ -393,7 +406,7 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, PokemonData* pPokemon, _u64 *
 			do {
 				temp32 = Next(next, 0x1F);
 			} while(temp32 >= 25);
-			if(temp32 != pPokemon[1].nature)
+			if(temp32 != pSrc->pokemon[1].nature)
 			{
 				continue;
 			}
@@ -410,7 +423,6 @@ void CudaInitializeImpl()
 {
 	// ホストメモリの確保
 	cudaMallocHost(&cu_HostMaster, sizeof(CudaInputMaster));
-	cudaMallocHost(&cu_HostPokemon, sizeof(PokemonData) * 3);
 	cudaMallocHost(&cu_HostResult, sizeof(_u64) * c_SizeResult);
 
 	// データの初期化
@@ -418,7 +430,6 @@ void CudaInitializeImpl()
 
 	// デバイスメモリの確保
 	cudaMalloc(&pDeviceMaster, sizeof(CudaInputMaster));
-	cudaMalloc(&pDevicePokemon, sizeof(PokemonData) * 3);
 	cudaMalloc(&pDeviceResult, sizeof(_u64) * c_SizeResult);
 }
 
@@ -441,7 +452,6 @@ void CudaSetMasterData()
 
 	// データを転送
 	cudaMemcpy(pDeviceMaster, cu_HostMaster, sizeof(CudaInputMaster), cudaMemcpyHostToDevice);
-	cudaMemcpy(pDevicePokemon, cu_HostPokemon, sizeof(PokemonData) * 3, cudaMemcpyHostToDevice);
 }
 
 // 計算
@@ -449,8 +459,8 @@ void CudaProcess(_u32 ivs, int freeBit)
 {
 	//カーネル
 	dim3 block(c_SizeBlock, 1, 1);
-	dim3 grid(c_SizeGrid, 1, 1);
-	kernel_calc << < grid, block >> > (pDeviceMaster, pDevicePokemon, pDeviceResult, ivs);
+	dim3 grid(c_SizeGrid, 32, 1);
+	kernel_calc << < grid, block >> > (pDeviceMaster, pDeviceResult, ivs);
 
 	//デバイス->ホストへ結果を転送
 	cudaMemcpy(cu_HostResult, pDeviceResult, sizeof(_u64) * c_SizeResult, cudaMemcpyDeviceToHost);
@@ -460,10 +470,8 @@ void Finish()
 {
 	//デバイスメモリの開放
 	cudaFree(pDeviceResult);
-	cudaFree(pDevicePokemon);
 	cudaFree(pDeviceMaster);
 	//ホストメモリの開放
 	cudaFreeHost(cu_HostResult);
-	cudaFreeHost(cu_HostPokemon);
 	cudaFreeHost(cu_HostMaster);
 }

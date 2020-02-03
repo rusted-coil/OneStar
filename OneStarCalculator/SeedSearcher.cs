@@ -87,9 +87,9 @@ namespace OneStarCalculator
 				// C++ライブラリ側の事前計算
 				PrepareCuda(minRerolls);
 
-				for (int i = searchLower; i <= searchUpper; ++i)
+//				for (int i = searchLower; i <= searchUpper; ++i)
 				{
-					PreCalc((uint)i, 24);
+					PreCalc(0, 24);
 					ulong result = SearchCuda(0);
 					if (result != 0)
 					{
