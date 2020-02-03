@@ -322,7 +322,7 @@ namespace OneStar
                 new_event.Name = event_id;
                 new_event.Size = new System.Drawing.Size(152, 22);
                 new_event.Text = event_id;
-                new_event.Click += new System.EventHandler(this.new_event_Click);
+                new_event.Click += new System.EventHandler(this.MenuItemEventIdSelect);
                 f_StripMenuItemEventId.DropDownItems.Add(new_event);
                 m_MenuItemEventIdList.Add(new_event);
             }
@@ -1605,10 +1605,10 @@ namespace OneStar
 			}
 		}
 
-        private void new_event_Click(object sender, EventArgs e)
+		// イベントレイドIDボタン
+        private void MenuItemEventIdSelect(object sender, EventArgs e)
         {
-            ToolStripMenuItem cur_event = (ToolStripMenuItem)sender;
-            m_Preferences.EventId = cur_event.Text;
+            m_Preferences.EventId = ((ToolStripMenuItem)sender).Text;
             RefreshEventId();
             if (m_CurrentDenIndex == -1)
             {
