@@ -44,7 +44,7 @@ namespace OneStar
 		// 初期設定
 		public void Initialize()
 		{
-			m_Language = Language.ChineseZh;
+			m_Language = Language.Japanese;
 			m_GameVersion = 0;
 			m_EventId = "20200131";
 		}
