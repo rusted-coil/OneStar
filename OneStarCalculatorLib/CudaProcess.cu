@@ -11,8 +11,9 @@ static CudaInputMaster* pDeviceMaster;
 static _u64* pDeviceResult;
 
 // 並列実行定数
-const int c_SizeBlock = 1024;
-const int c_SizeGrid = 1024 * 1024;
+const int c_SizeBlockX = 64;
+const int c_SizeBlockY = 16;
+const int c_SizeGrid = 1024 * 16;
 const int c_SizeResult = 16;
 
 // GPUコード
@@ -26,42 +27,39 @@ __device__ inline _u32 GetSignature(_u32 value)
 }
 __device__ inline _u32 Next(_u32* seeds, _u32 mask)
 {
-	_u32 tmp;
 	_u32 value = (seeds[1] + seeds[3]) & mask;
 
 	// m_S1 = m_S0 ^ m_S1;
-	seeds[2] ^= seeds[0];
-	seeds[3] ^= seeds[1];
-
-	// m_S0 = RotateLeft(m_S0, 24) ^ m_S1 ^ (m_S1 << 16);
-	tmp = (seeds[0] << 24 | seeds[1] >> 8) ^ seeds[2] ^ (seeds[2] << 16 | seeds[3] >> 16);
-	seeds[1] = (seeds[1] << 24 | seeds[0] >> 8) ^ seeds[3] ^ (seeds[3] << 16);
-	seeds[0] = tmp;
+	seeds[4] = seeds[0] ^ seeds[2];
+	seeds[5] = seeds[1] ^ seeds[3];
 
 	// m_S1 = RotateLeft(m_S1, 37);
-	tmp = seeds[3] << 5 | seeds[2] >> 27;
-	seeds[3] = seeds[2] << 5 | seeds[3] >> 27;
-	seeds[2] = tmp;
+	seeds[2] = seeds[5] << 5 | seeds[4] >> 27;
+	seeds[3] = seeds[4] << 5 | seeds[5] >> 27;
+
+	// m_S0 = RotateLeft(m_S0, 24) ^ m_S1 ^ (m_S1 << 16)
+	seeds[6] = (seeds[0] << 24 | seeds[1] >> 8) ^ seeds[4] ^ (seeds[4] << 16 | seeds[5] >> 16);
+	seeds[1] = (seeds[1] << 24 | seeds[0] >> 8) ^ seeds[5] ^ (seeds[5] << 16);
+
+	seeds[0] = seeds[6];
 
 	return value;
 }
 __device__ inline void Next(_u32* seeds)
 {
-	_u32 tmp;
-
 	// m_S1 = m_S0 ^ m_S1;
-	seeds[2] ^= seeds[0];
-	seeds[3] ^= seeds[1];
-	
-	// m_S0 = RotateLeft(m_S0, 24) ^ m_S1 ^ (m_S1 << 16)
-	tmp = (seeds[0] << 24 | seeds[1] >> 8) ^ seeds[2] ^ (seeds[2] << 16 | seeds[3] >> 16);
-	seeds[1] = (seeds[1] << 24 | seeds[0] >> 8) ^ seeds[3] ^ (seeds[3] << 16);
-	seeds[0] = tmp;
+	seeds[4] = seeds[0] ^ seeds[2];
+	seeds[5] = seeds[1] ^ seeds[3];
 
 	// m_S1 = RotateLeft(m_S1, 37);
-	tmp = seeds[3] << 5 | seeds[2] >> 27;
-	seeds[3] = seeds[2] << 5 | seeds[3] >> 27;
-	seeds[2] = tmp;
+	seeds[2] = seeds[5] << 5 | seeds[4] >> 27;
+	seeds[3] = seeds[4] << 5 | seeds[5] >> 27;
+
+	// m_S0 = RotateLeft(m_S0, 24) ^ m_S1 ^ (m_S1 << 16)
+	seeds[6] = (seeds[0] << 24 | seeds[1] >> 8) ^ seeds[4] ^ (seeds[4] << 16 | seeds[5] >> 16);
+	seeds[1] = (seeds[1] << 24 | seeds[0] >> 8) ^ seeds[5] ^ (seeds[5] << 16);
+
+	seeds[0] = seeds[6];
 }
 
 // 計算するカーネル
@@ -89,8 +87,8 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, _u64 *pResult, _u32 ivs)
 	targetUpper |= ((32ul + pSrc->ivs[1] - ((ivs &  0x1F00000ul) >> 20)) & 0x1F) << 10;
 	targetLower |= ((32ul + pSrc->ivs[4] - ((ivs &      0x3E0ul) >> 5)) & 0x1F) << 10;
 	targetUpper |= ((32ul + pSrc->ivs[2] - ((ivs &    0xF8000ul) >> 15)) & 0x1F);
-//	targetLower |= ((32ul + pSrc->ivs[5] - (ivs &        0x1Ful)) & 0x1F);
-	targetLower |= ((32ul + idy - (ivs &        0x1Ful)) & 0x1F);
+	targetLower |= ((32ul + pSrc->ivs[5] - (ivs &        0x1Ful)) & 0x1F);
+//	targetLower |= ((32ul + idy - (ivs &        0x1Ful)) & 0x1F);
 
 	// targetベクトル入力完了
 
@@ -99,44 +97,36 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, _u64 *pResult, _u32 ivs)
 
 	// 60bit側の計算結果キャッシュ
 
-	_u32 processedTargetUpper = 0;
-	_u32 processedTargetLower = 0;
-	for(int i = 0; i < 28; ++i)
+	__shared__ _u32 processedTargetUpper[64];
+	__shared__ _u32 processedTargetLower[64];
+
+//	_u32 processedTargetUpper = 0;
+//	_u32 processedTargetLower = 0;
+	processedTargetUpper[threadIdx.x] = 0;
+	processedTargetLower[threadIdx.x] = 0;
+	for(int i = 0; i < 32; ++i)
 	{
-		processedTargetUpper |= (GetSignature(pSrc->answerFlag[i * 2] & targetUpper) ^ GetSignature(pSrc->answerFlag[i * 2 + 1] & targetLower)) << (31 - i);
-		processedTargetLower |= (GetSignature(pSrc->answerFlag[(i + 32) * 2] & targetUpper) ^ GetSignature(pSrc->answerFlag[(i + 32) * 2 + 1] & targetLower)) << (31 - i);
-	}
-	for(int i = 28; i < 32; ++i)
-	{
-		processedTargetUpper |= (GetSignature(pSrc->answerFlag[i * 2] & targetUpper) ^ GetSignature(pSrc->answerFlag[i * 2 + 1] & targetLower)) << (31 - i);
+		processedTargetUpper[threadIdx.x] |= (GetSignature(pSrc->answerFlag[i * 2] & targetUpper) ^ GetSignature(pSrc->answerFlag[i * 2 + 1] & targetLower)) << (31 - i);
+		processedTargetLower[threadIdx.x] |= (GetSignature(pSrc->answerFlag[(i + 32) * 2] & targetUpper) ^ GetSignature(pSrc->answerFlag[(i + 32) * 2 + 1] & targetLower)) << (31 - i);
 	}
 
-//	_u64 seed;
-//	_u64 next;
+	// スレッドを同期
+	__syncthreads();
 
-	_u32 seeds[4]; // S0Upper、S0Lower、S1Upper、S1Lower
-	_u32 next[4]; // S0Upper、S0Lower、S1Upper、S1Lower
+	_u32 seeds[7]; // S0Upper、S0Lower、S1Upper、S1Lower
+	_u32 next[7]; // S0Upper、S0Lower、S1Upper、S1Lower
 	_u64 temp64;
 	_u32 temp32;
-	_u32 temp32_2;
-	for(int i = 0; i < 16; ++i)
+//	for(int i = 0; i < 16; ++i)
 	{
-		seeds[0] = processedTargetUpper ^ pSrc->coefficientData[i * 2];
-		seeds[1] = processedTargetLower ^ pSrc->coefficientData[i * 2 + 1] | pSrc->searchPattern[i];
-//		seeds[2] = 0x82a2b175ul;
-//		seeds[3] = 0x229d6a5bul;
-
-//		seed = ((_u64)seeds[0] << 32 | seeds[1]);
-
-//		Next(seeds); // EC
-//		Next(seeds); // OTID
-//		Next(seeds); // PID
+		seeds[0] = processedTargetUpper[threadIdx.x] ^ pSrc->coefficientData[idy * 2];
+		seeds[1] = processedTargetLower[threadIdx.x] ^ pSrc->coefficientData[idy * 2 + 1] | pSrc->searchPattern[idy];
 
 		// 遺伝箇所
 
 		if(pSrc->ecBit >= 0 && (seeds[1] & 1) != pSrc->ecBit)
 		{
-			continue;
+			return;
 		}
 
 		temp64 = ((_u64)seeds[0] << 32 | seeds[1]) + 0x82a2b175229d6a5bull;
@@ -158,12 +148,12 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, _u64 *pResult, _u32 ivs)
 		// 1匹目個性
 		if(pSrc->ecMod[0][temp32 % 6] == false)
 		{
-			continue;
+			return;
 		}
 		// 2匹目個性
 		if(pSrc->ecMod[1][temp32 % 6] == false)
 		{
-			continue;
+			return;
 		}
 
 		// EC
@@ -171,7 +161,7 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, _u64 *pResult, _u32 ivs)
 		// 3匹目個性
 		if(pSrc->ecMod[2][temp32 % 6] == false)
 		{
-			continue;
+			return;
 		}
 
 		// 2匹目を先にチェック
@@ -214,7 +204,7 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, _u64 *pResult, _u32 ivs)
 			}
 			if(temp32 == 0)
 			{
-				continue;
+				return;
 			}
 			
 			// 特性
@@ -231,7 +221,7 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, _u64 *pResult, _u32 ivs)
 			}
 			if((pSrc->pokemon[2].ability >= 0 && pSrc->pokemon[2].ability != temp32) || (pSrc->pokemon[2].ability == -1 && temp32 >= 2))
 			{
-				continue;
+				return;
 			}
 
 			// 性別値
@@ -251,7 +241,7 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, _u64 *pResult, _u32 ivs)
 
 			if(temp32 != pSrc->pokemon[2].nature)
 			{
-				continue;
+				return;
 			}
 		}
 
@@ -302,7 +292,7 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, _u64 *pResult, _u32 ivs)
 				}
 				if(temp32 == 0)
 				{
-					continue;
+					return;
 				}
 			}
 			{
@@ -341,7 +331,7 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, _u64 *pResult, _u32 ivs)
 				}
 				if(temp32 == 0)
 				{
-					continue;
+					return;
 				}
 			}
 
@@ -359,7 +349,7 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, _u64 *pResult, _u32 ivs)
 			}
 			if((pSrc->pokemon[0].ability >= 0 && pSrc->pokemon[0].ability != temp32) || (pSrc->pokemon[0].ability == -1 && temp32 >= 2))
 			{
-				continue;
+				return;
 			}
 			temp32 = 0;
 			if(pSrc->pokemon[1].abilityFlag == 3)
@@ -374,7 +364,7 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, _u64 *pResult, _u32 ivs)
 			}
 			if((pSrc->pokemon[1].ability >= 0 && pSrc->pokemon[1].ability != temp32) || (pSrc->pokemon[1].ability == -1 && temp32 >= 2))
 			{
-				continue;
+				return;
 			}
 
 			// 性別値
@@ -400,7 +390,7 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, _u64 *pResult, _u32 ivs)
 			} while(temp32 >= 25);
 			if(temp32 != pSrc->pokemon[0].nature)
 			{
-				continue;
+				return;
 			}
 			temp32 = 0;
 			do {
@@ -408,12 +398,11 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, _u64 *pResult, _u32 ivs)
 			} while(temp32 >= 25);
 			if(temp32 != pSrc->pokemon[1].nature)
 			{
-				continue;
+				return;
 			}
 		}
 
 		pResult[0] = temp64;
-		break;
 	}
 	return;
 }
@@ -423,14 +412,41 @@ void CudaInitializeImpl()
 {
 	// ホストメモリの確保
 	cudaMallocHost(&cu_HostMaster, sizeof(CudaInputMaster));
+
+	{
+		auto errorCode = cudaGetLastError();
+		auto errorStr = cudaGetErrorName(errorCode);
+		;
+	}
+
 	cudaMallocHost(&cu_HostResult, sizeof(_u64) * c_SizeResult);
+
+	{
+		auto errorCode = cudaGetLastError();
+		auto errorStr = cudaGetErrorName(errorCode);
+		;
+	}
 
 	// データの初期化
 	cu_HostMaster->ecBit = -1;
 
 	// デバイスメモリの確保
 	cudaMalloc(&pDeviceMaster, sizeof(CudaInputMaster));
+
+	{
+		auto errorCode = cudaGetLastError();
+		auto errorStr = cudaGetErrorName(errorCode);
+		;
+	}
+
 	cudaMalloc(&pDeviceResult, sizeof(_u64) * c_SizeResult);
+
+	{
+		auto errorCode = cudaGetLastError();
+		auto errorStr = cudaGetErrorName(errorCode);
+		;
+	}
+
 }
 
 // データセット
@@ -458,9 +474,12 @@ void CudaSetMasterData()
 void CudaProcess(_u32 ivs, int freeBit)
 {
 	//カーネル
-	dim3 block(c_SizeBlock, 1, 1);
-	dim3 grid(c_SizeGrid, 32, 1);
+	dim3 block(c_SizeBlockX, c_SizeBlockY, 1);
+	dim3 grid(c_SizeGrid, 1, 1);
 	kernel_calc << < grid, block >> > (pDeviceMaster, pDeviceResult, ivs);
+
+	auto errorCode = cudaGetLastError();
+	auto errorStr = cudaGetErrorName(errorCode);
 
 	//デバイス->ホストへ結果を転送
 	cudaMemcpy(cu_HostResult, pDeviceResult, sizeof(_u64) * c_SizeResult, cudaMemcpyDeviceToHost);

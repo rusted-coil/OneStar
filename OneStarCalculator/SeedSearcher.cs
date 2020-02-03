@@ -82,14 +82,14 @@ namespace OneStarCalculator
 			{
 				// 探索範囲
 				int searchLower = 0;
-				int searchUpper = 0x3F;
+				int searchUpper = 0x3FF;
 
 				// C++ライブラリ側の事前計算
 				PrepareCuda(minRerolls);
 
-//				for (int i = searchLower; i <= searchUpper; ++i)
+				for (int i = searchLower; i <= searchUpper; ++i)
 				{
-					PreCalc(0, 24);
+					PreCalc((uint)i, 24);
 					ulong result = SearchCuda(0);
 					if (result != 0)
 					{

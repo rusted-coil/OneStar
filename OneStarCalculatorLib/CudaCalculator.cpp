@@ -151,7 +151,7 @@ void PrepareCuda(int ivOffset)
 
 void PreCalc(_u32 ivs, int freeBit)
 {
-	CudaProcess(ivs << 24, 24);
+	CudaProcess(ivs << 20, 24);
 }
 _u64 SearchCuda(int threadId)
 {
