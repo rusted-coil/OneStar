@@ -89,7 +89,7 @@ void Prepare(int rerolls)
 	// r[3+rerolls]をV箇所、r[4+rerolls]からr[8+rerolls]を個体値として使う
 
 	// 変換行列を計算
-	InitializeTransformationMatrix(false); // r[1]が得られる変換行列がセットされる
+	InitializeTransformationMatrix(); // r[1]が得られる変換行列がセットされる
 	for(int i = 0; i <= rerolls + 1; ++i)
 	{
 		ProceedTransformationMatrix(); // r[2 + i]が得られる
@@ -173,14 +173,12 @@ _u64 Search(_u64 ivs)
 
 	// 56~57bit側の計算結果キャッシュ
 	_u64 processedTarget = 0;
-	int offset = 0;
-	for (int i = 0; i < length; ++i)
+	for (int i = 0; i < 64; ++i)
 	{
-		while (g_FreeBit[i + offset] > 0)
+		if(g_AnswerFlag[i] != 0)
 		{
-			++offset;
+			processedTarget |= (GetSignature(g_AnswerFlag[i] & target) << (63 - i));
 		}
-		processedTarget |= (GetSignature(g_AnswerFlag[i] & target) << (63 - (i + offset)));
 	}
 
 	// 下位7bitを決める

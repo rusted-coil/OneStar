@@ -11,7 +11,8 @@ namespace OneStarCalculator
 		public enum Mode {
 			Star12,
 			Star35_5,
-			Star35_6
+			Star35_6,
+			CudaTest,
 		};
 		Mode m_Mode;
 
@@ -44,6 +45,29 @@ namespace OneStarCalculator
 		[DllImport("OneStarCalculatorLib.dll")]
 		static extern ulong SearchSix(ulong ivs);
 
+		// CUDAテスト
+		[DllImport("OneStarCalculatorLib.dll")]
+		public static extern void CudaInitialize();
+
+		[DllImport("OneStarCalculatorLib.dll")]
+		public static extern void SetCudaCondition(int index, int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, int characteristic, bool noGender, int abilityFlag, int flawlessIvs);
+
+		[DllImport("OneStarCalculatorLib.dll")]
+		public static extern void SetCudaTargetCondition6(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6);
+
+		[DllImport("OneStarCalculatorLib.dll")]
+		public static extern void SetCudaTargetCondition5(int iv1, int iv2, int iv3, int iv4, int iv5);
+
+		[DllImport("OneStarCalculatorLib.dll")]
+		static extern void PrepareCuda(int ivOffset);
+
+		[DllImport("OneStarCalculatorLib.dll")]
+		static extern void PreCalc(uint ivs, int freeBit);
+
+		[DllImport("OneStarCalculatorLib.dll")]
+		static extern ulong SearchCuda(int threadId);
+
+
 		public SeedSearcher(Mode mode)
 		{
 			m_Mode = mode;
@@ -54,7 +78,27 @@ namespace OneStarCalculator
 		{
 			Result.Clear();
 
-			if (m_Mode == Mode.Star12)
+			if (m_Mode == Mode.CudaTest)
+			{
+				// 探索範囲
+				int searchLower = 0;
+				int searchUpper = 0;
+
+				// C++ライブラリ側の事前計算
+				PrepareCuda(minRerolls);
+
+				for (int i = searchLower; i <= searchUpper; ++i)
+				{
+					PreCalc((uint)i, 24);
+					ulong result = SearchCuda(0);
+					if (result != 0)
+					{
+						Result.Add(result);
+					}
+				}
+			}
+
+			else if (m_Mode == Mode.Star12)
 			{
 				// 探索範囲
 				int searchLower = 0;
@@ -166,7 +210,8 @@ namespace OneStarCalculator
 					if (isEnableStop)
 					{
 						// 中断あり
-						Parallel.For(searchLower, searchUpper, (ivs, state) => {
+						Parallel.For(searchLower, searchUpper, (ivs, state) =>
+						{
 							ulong result = SearchSix((ulong)ivs);
 							if (result != 0)
 							{
@@ -194,7 +239,8 @@ namespace OneStarCalculator
 					else
 					{
 						// 中断なし
-						Parallel.For(searchLower, searchUpper, (ivs) => {
+						Parallel.For(searchLower, searchUpper, (ivs) =>
+						{
 							ulong result = SearchSix((ulong)ivs);
 							if (result != 0)
 							{

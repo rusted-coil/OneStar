@@ -121,7 +121,7 @@ void PrepareSix(int ivOffset)
 	// r[(11 - FixedIvs) + offset]からr[(11 - FixedIvs) + FixedIvs - 1 + offset]まで使う
 
 	// 変換行列を計算
-	InitializeTransformationMatrix(IsEnableECBit()); // r[1]が得られる変換行列がセットされる
+	InitializeTransformationMatrix(); // r[1]が得られる変換行列がセットされる
 	for(int i = 0; i <= 9 - g_FixedIvs + ivOffset; ++i)
 	{
 		ProceedTransformationMatrix(); // r[2 + i]が得られる
@@ -204,14 +204,12 @@ _u64 SearchSix(_u64 ivs)
 
 	// 60bit側の計算結果キャッシュ
 	_u64 processedTarget = 0;
-	int offset = 0;
-	for (int i = 0; i < length; ++i)
+	for (int i = 0; i < 64; ++i)
 	{
-		while (g_FreeBit[i + offset] > 0)
+		if(g_AnswerFlag[i] != 0)
 		{
-			++offset;
+			processedTarget |= (GetSignature(g_AnswerFlag[i] & target) << (63 - i));
 		}
-		processedTarget |= (GetSignature(g_AnswerFlag[i] & target) << (63 - (i + offset)));
 	}
 
 	// 下位を決める

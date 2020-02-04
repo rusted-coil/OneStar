@@ -16,13 +16,9 @@ _u64 g_SearchPattern[0x4000];
 
 _u64 l_Temp[256];
 
-bool l_isEnableECbit;
-
 // 変換行列計算
-void InitializeTransformationMatrix(bool isEnableECbit)
+void InitializeTransformationMatrix()
 {
-	l_isEnableECbit = isEnableECbit;
-
 	// r[0] は (C1, seed)
 	// r[1] は c_N * (C1, seed)
 
@@ -143,11 +139,27 @@ void CalculateInverseMatrix(int length)
 			++skip;
 		}
 	}
+
+	// AnserFlagを使用する項のところにセットしておく
+	for(int c = skip, i = length + skip - 1; c > 0; --i)
+	{
+		if(g_FreeBit[i] == 0)
+		{
+			g_AnswerFlag[i] = g_AnswerFlag[i - c];
+		}
+		else
+		{
+			g_AnswerFlag[i] = 0;
+			--c;
+		}
+	}
+
 	// 自由bit
 	for (int i = length + skip; i < 64; ++i)
 	{
 		g_FreeBit[i] = 1;
 		g_FreeId[i - length] = i;
+		++skip;
 	}
 
 	// 係数部分だけ抜き出し
