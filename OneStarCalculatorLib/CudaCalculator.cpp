@@ -149,9 +149,9 @@ void PrepareCuda(int ivOffset)
 	CudaSetMasterData(length);
 }
 
-void PreCalc(_u32 ivs, int freeBit)
+void PreCalc(_u32 ivs, int partitionBit)
 {
-	CudaProcess(ivs << 20, 24);
+	CudaProcess(ivs << (25 - partitionBit), 1 << partitionBit);
 }
 _u64 SearchCuda(int threadId)
 {

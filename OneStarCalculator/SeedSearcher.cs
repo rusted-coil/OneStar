@@ -62,7 +62,7 @@ namespace OneStarCalculator
 		static extern void PrepareCuda(int ivOffset);
 
 		[DllImport("OneStarCalculatorLib.dll")]
-		static extern void PreCalc(uint ivs, int freeBit);
+		static extern void PreCalc(uint ivs, int partitionBit);
 
 		[DllImport("OneStarCalculatorLib.dll")]
 		static extern ulong SearchCuda(int threadId);
@@ -80,16 +80,19 @@ namespace OneStarCalculator
 
 			if (m_Mode == Mode.CudaTest)
 			{
+				// 分割bit数
+				int partitionBit = 7;
+
 				// 探索範囲
 				int searchLower = 0;
-				int searchUpper = 0;
+				int searchUpper = (1 << partitionBit) - 1;
 
 				// C++ライブラリ側の事前計算
 				PrepareCuda(minRerolls);
 
 				for (int i = searchLower; i <= searchUpper; ++i)
 				{
-					PreCalc((uint)i, 24);
+					PreCalc((uint)i, partitionBit);
 					ulong result = SearchCuda(0);
 					if (result != 0)
 					{

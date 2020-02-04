@@ -14,11 +14,7 @@ static _u64* pDeviceResult;
 
 // 並列実行定数
 const int c_SizeBlockX = 1024;
-//const int c_SizeBlockX = 1;
-const int c_SizeBlockY = 1;
 const int c_SizeGridX = 1024 * 512;
-const int c_SizeGridY = 1;
-//const int c_SizeGrid = 1;
 const int c_SizeResult = 32;
 
 // GPUコード
@@ -68,31 +64,31 @@ __device__ inline void Next(_u32* seeds)
 }
 
 // 計算するカーネル
-__global__ void kernel_calc(CudaInputMaster* pSrc, int* pResultCount, _u64 *pResult, _u32 ivs)
+__global__ void kernel_calc(CudaInputMaster* pSrc, int* pResultCount, _u64 *pResult, _u32 param)
 {
 //	int idx = blockDim.x * blockIdx.x + threadIdx.x; //自分のスレッドxのindex
 //	int idy = blockDim.y * blockIdx.y + threadIdx.y;
 	int targetId = (blockIdx.x / 16) * 1024 + threadIdx.x;
 	int chunkId = blockIdx.x % 16;
 
-	ivs |= targetId;
+	param |= targetId;
 
 	_u32 targetUpper = 0;
 	_u32 targetLower = 0;
 
 	// 下位25bit = 個体値
-	targetUpper |= (ivs &  0x1F00000ul); // iv0_0
-	targetLower |= ((ivs &     0x3E0ul) << 10); // iv3_0
-	targetUpper |= ((ivs &   0xF8000ul) >> 5); // iv1_0
-	targetLower |= ((ivs &      0x1Ful) << 5); // iv4_0
-	targetUpper |= ((ivs &    0x7C00ul) >> 10); // iv2_0
+	targetUpper |= (param &  0x1F00000ul); // iv0_0
+	targetLower |= ((param &     0x3E0ul) << 10); // iv3_0
+	targetUpper |= ((param &   0xF8000ul) >> 5); // iv1_0
+	targetLower |= ((param &      0x1Ful) << 5); // iv4_0
+	targetUpper |= ((param &    0x7C00ul) >> 10); // iv2_0
 
 	// 隠された値を推定
-	targetUpper |= ((32ul + pSrc->ivs[0] - ((ivs & 0x1F00000ul) >> 20)) & 0x1F) << 15;
-	targetLower |= ((32ul + pSrc->ivs[3] - ((ivs &     0x3E0ul) >> 5))  & 0x1F) << 10;
-	targetUpper |= ((32ul + pSrc->ivs[1] - ((ivs &   0xF8000ul) >> 15)) & 0x1F) <<  5;
-	targetLower |= ((32ul + pSrc->ivs[4] - (ivs &      0x1Ful))         & 0x1F);
-	targetLower |= ((32ul + pSrc->ivs[2] - ((ivs &    0x7C00ul) >> 10)) & 0x1F) << 20;
+	targetUpper |= ((32ul + pSrc->ivs[0] - ((param & 0x1F00000ul) >> 20)) & 0x1F) << 15;
+	targetLower |= ((32ul + pSrc->ivs[3] - ((param &     0x3E0ul) >> 5))  & 0x1F) << 10;
+	targetUpper |= ((32ul + pSrc->ivs[1] - ((param &   0xF8000ul) >> 15)) & 0x1F) <<  5;
+	targetLower |= ((32ul + pSrc->ivs[4] - (param &      0x1Ful))         & 0x1F);
+	targetLower |= ((32ul + pSrc->ivs[2] - ((param &    0x7C00ul) >> 10)) & 0x1F) << 20;
 //	targetLower |= ((32ul + pSrc->ivs[5] - (ivs &        0x1Ful)) & 0x1F);
 //	targetLower |= ((32ul + idy - (ivs &        0x1Ful)) & 0x1F);
 
@@ -176,7 +172,7 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, int* pResultCount, _u64 *pRes
 	_u32 next[7]; // S0Upper、S0Lower、S1Upper、S1Lower
 	_u64 temp64;
 	_u32 temp32;
-	for(int i = 0; i < 1024; ++i)
+	for(int i = 0; i < 128; ++i)
 	{
 		seeds[0] = processedTargetUpper ^ coefficientData[i * 2];
 		seeds[1] = processedTargetLower ^ coefficientData[i * 2 + 1] | searchPattern[i];
@@ -266,6 +262,9 @@ __global__ void kernel_calc(CudaInputMaster* pSrc, int* pResultCount, _u64 *pRes
 				continue;
 			}
 			
+			pResult[0] = temp64;
+			return;
+
 			// 特性
 			temp32 = 0;
 			if(pokemon[2].abilityFlag == 3)
@@ -510,12 +509,12 @@ void CudaSetMasterData(int length)
 }
 
 // 計算
-void CudaProcess(_u32 ivs, int freeBit)
+void CudaProcess(_u32 param, int partition)
 {
 	//カーネル
-	dim3 block(c_SizeBlockX, c_SizeBlockY, 1);
-	dim3 grid(c_SizeGridX, c_SizeGridY, 1);
-	kernel_calc << < grid, block >> > (pDeviceMaster, pDeviceResultCount, pDeviceResult, ivs);
+	dim3 block(c_SizeBlockX, 1, 1);
+	dim3 grid(c_SizeGridX / partition, 1, 1);
+	kernel_calc << < grid, block >> > (pDeviceMaster, pDeviceResultCount, pDeviceResult, param);
 
 	//デバイス->ホストへ結果を転送
 	cudaMemcpy(cu_HostResult, pDeviceResult, sizeof(_u64) * c_SizeResult, cudaMemcpyDeviceToHost);
