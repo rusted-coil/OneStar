@@ -141,11 +141,11 @@ void CalculateInverseMatrix(int length)
 	}
 
 	// AnserFlagを使用する項のところにセットしておく
-	for(int c = skip, i = length + skip; c > 0; --i)
+	for(int c = skip, i = length + skip - 1; c > 0; --i)
 	{
 		if(g_FreeBit[i] == 0)
 		{
-			g_AnswerFlag[i] = g_AnswerFlag[i - skip];
+			g_AnswerFlag[i] = g_AnswerFlag[i - c];
 		}
 		else
 		{

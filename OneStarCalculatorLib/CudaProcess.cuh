@@ -7,8 +7,10 @@ struct CudaInputMaster
 	// seedŒvZ’è”
 	_u32 constantTermVector[2];
 	_u32 answerFlag[128];
-	_u32 coefficientData[32];
-	_u32 searchPattern[16];
+//	_u32 coefficientData[32];
+//	_u32 searchPattern[16];
+	_u32 coefficientData[0x8000];
+	_u32 searchPattern[0x4000];
 
 	// ŒŸõğŒ
 	int ecBit;
@@ -25,7 +27,7 @@ extern int* cu_HostResultCount;
 extern _u64* cu_HostResult;
 
 void CudaInitializeImpl();
-void CudaSetMasterData();
+void CudaSetMasterData(int length);
 
 void CudaProcess(_u32 ivs, int freeBit); //ˆ—ŠÖ”
 void CudaFinalize();

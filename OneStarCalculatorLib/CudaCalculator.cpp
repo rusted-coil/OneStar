@@ -119,7 +119,7 @@ void PrepareCuda(int ivOffset)
 
 	// 変換行列を計算
 	InitializeTransformationMatrix(); // r[1]が得られる変換行列がセットされる
-	for(int i = 0; i <= 9 - g_CudaFixedIvs + ivOffset; ++i)
+	for(int i = 0; i <= 9 - g_CudaFixedIvs + ivOffset - 1; ++i)
 	{
 		ProceedTransformationMatrix(); // r[2 + i]が得られる
 	}
@@ -146,7 +146,7 @@ void PrepareCuda(int ivOffset)
 	CalculateCoefficientData(length);
 
 	// Cuda初期化
-	CudaSetMasterData();
+	CudaSetMasterData(length);
 }
 
 void PreCalc(_u32 ivs, int freeBit)
