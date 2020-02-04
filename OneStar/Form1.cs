@@ -178,8 +178,12 @@ namespace OneStar
 			f_TextBoxRerollsUpper.Text = "3";
 			f_CheckBoxStop.Checked = true;
 
-			// 扱いやすいようにキャッシュ
-			m_PokemonInfo[0] = new PokemonInfoForm();
+			// 設定をセット
+			f_MenuItemUseGpu.Checked = m_Preferences.IsUseGpu;
+
+            #region ポケモンフォーム情報キャッシュ
+            // 扱いやすいようにキャッシュ
+            m_PokemonInfo[0] = new PokemonInfoForm();
 			m_PokemonInfo[0].ComboBoxName = f_ComboBoxPokemon_1;
 			m_PokemonInfo[0].TextBoxLevel = f_TextBoxLevel_1;
 			m_PokemonInfo[0].TextBoxIvs[0] = f_TextBoxIv0_1;
@@ -301,6 +305,7 @@ namespace OneStar
 				var tb3 = m_PokemonInfo[a].TextBoxLevel;
 				m_PokemonInfo[a].TextBoxLevel.Enter += new System.EventHandler((object sender, EventArgs e) => { EnterTextBoxAllSelect(tb3); });
 			}
+            #endregion
 
             // イベントレイドID
             // first clear all items
@@ -547,10 +552,6 @@ namespace OneStar
 		// 検索開始ボタン
 		private void ButtonStartSearch_Click(object sender, EventArgs e)
 		{
-			// CUDA
-			CudaSearchTest();
-			return;
-
 			// ★3～5
 			if (f_TabControlMain.SelectedIndex == 0)
 			{
@@ -990,7 +991,8 @@ namespace OneStar
 			listGenerator.Generate();
 		}
 
-		private void f_MenuItemLanguageJp_Click(object sender, EventArgs e)
+        #region 言語設定変更
+        private void f_MenuItemLanguageJp_Click(object sender, EventArgs e)
 		{
 			if (!f_MenuItemLanguageJp.Checked)
 			{
@@ -1263,9 +1265,10 @@ namespace OneStar
 				}
             }
 		}
+        #endregion
 
-		#region 個体値計算ボタン イベント定義
-		private void f_ButtonIvsCalc_1_Click(object sender, EventArgs e)
+        #region 個体値計算ボタン イベント定義
+        private void f_ButtonIvsCalc_1_Click(object sender, EventArgs e)
 		{
 			IvsCalculate(0);
 		}
@@ -1676,6 +1679,13 @@ namespace OneStar
 
 			// comfirm close and reopen
 			MessageBox.Show(Messages.Instance.SystemMessage["UpdateEventDenSuccessed"]);
+		}
+
+		private void f_MenuItemUseGpu_Click(object sender, EventArgs e)
+		{
+			bool current = f_MenuItemUseGpu.Checked;
+			m_Preferences.IsUseGpu = !current;
+			f_MenuItemUseGpu.Checked = !current;
 		}
 	}
 }

@@ -16,6 +16,9 @@ namespace OneStar
 		// イベントレイド
 		[JsonProperty] string m_EventId = "20200131";
 
+		// GPU使用
+		[JsonProperty] bool m_isUseGpu = false;
+
 		[JsonIgnore]
 		public Language Language {
 			get { return m_Language; }
@@ -40,6 +43,14 @@ namespace OneStar
 				Serialize();
 			}
 		}
+		[JsonIgnore]
+		public bool IsUseGpu { 
+			get { return m_isUseGpu; }
+			set {
+				m_isUseGpu = value;
+				Serialize();
+			}
+		}
 
 		// 初期設定
 		public void Initialize()
@@ -47,6 +58,7 @@ namespace OneStar
 			m_Language = Language.Japanese;
 			m_GameVersion = 0;
 			m_EventId = "20200131";
+			m_isUseGpu = false;
 		}
 
 		// コピー
@@ -55,6 +67,7 @@ namespace OneStar
 			m_Language = src.m_Language;
 			m_GameVersion = src.m_GameVersion;
 			m_EventId = src.m_EventId;
+			m_isUseGpu = src.m_isUseGpu;
 		}
 
 		// 設定をファイルに保存

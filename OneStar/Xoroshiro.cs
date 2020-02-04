@@ -8,7 +8,7 @@ namespace OneStar
 {
 	public class Xoroshiro
 	{
-		public UInt64 s0, s1;
+		UInt64 s0, s1;
 
 		public int GetRaw(int index, UInt32 mask)
 		{

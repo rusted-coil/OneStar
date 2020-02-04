@@ -112,7 +112,7 @@ namespace OneStarCalculator
 				int chunkMax = chunkPart * (maxRerolls - minRerolls + 1);
 				int chunkCount = 1;
 
-				p.Report(0);
+				p?.Report(0);
 
 				for (int i = minRerolls; i <= maxRerolls; ++i)
 				{
@@ -143,7 +143,7 @@ namespace OneStarCalculator
 								{
 									if (progress >= chunkCount * chunkSize)
 									{
-										p.Report((chunkCount + chunkOffset) * 1000 / chunkMax);
+										p?.Report((chunkCount + chunkOffset) * 1000 / chunkMax);
 										++chunkCount;
 									}
 								}
@@ -171,7 +171,7 @@ namespace OneStarCalculator
 								{
 									if (progress >= chunkCount * chunkSize)
 									{
-										p.Report((chunkCount + chunkOffset) * 1000 / chunkMax);
+										p?.Report((chunkCount + chunkOffset) * 1000 / chunkMax);
 										++chunkCount;
 									}
 								}
@@ -194,7 +194,7 @@ namespace OneStarCalculator
 				int chunkMax = chunkPart * (maxRerolls - minRerolls + 1);
 				int chunkCount = 1;
 
-				p.Report(0);
+				p?.Report(0);
 
 				for (int i = minRerolls; i <= maxRerolls; ++i)
 				{
@@ -225,7 +225,7 @@ namespace OneStarCalculator
 								{
 									if (progress >= chunkCount * chunkSize)
 									{
-										p.Report((chunkCount + chunkOffset) * 1000 / chunkMax);
+										p?.Report((chunkCount + chunkOffset) * 1000 / chunkMax);
 										++chunkCount;
 									}
 								}
@@ -253,7 +253,7 @@ namespace OneStarCalculator
 								{
 									if (progress >= chunkCount * chunkSize)
 									{
-										p.Report((chunkCount + chunkOffset) * 1000 / chunkMax);
+										p?.Report((chunkCount + chunkOffset) * 1000 / chunkMax);
 										++chunkCount;
 									}
 								}
