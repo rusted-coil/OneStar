@@ -21,6 +21,7 @@ struct CudaInputMaster
 extern CudaInputMaster* cu_HostMaster;
 
 // Œ‹‰Ê
+extern int* cu_HostResultCount;
 extern _u64* cu_HostResult;
 
 void CudaInitializeImpl();
