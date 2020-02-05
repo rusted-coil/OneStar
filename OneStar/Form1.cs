@@ -380,6 +380,7 @@ namespace OneStar
 			m_MultiLanguageControls["MaxFrame"] = new Control[] { f_LabelMaxFrame };
 			m_MultiLanguageControls["OnlyShiny"] = new Control[] { f_CheckBoxListShiny };
 			m_MultiLanguageControls["ShowSeed"] = new Control[] { f_CheckBoxShowSeed };
+			m_MultiLanguageControls["ShowEC"] = new Control[] { f_CheckBoxShowEC };
 			m_MultiLanguageControls["ListButton"] = new Control[] { f_ButtonListGenerate };
 			m_MultiLanguageControls["ShowDuration"] = new Control[] { f_CheckBoxShowResultTime };
 			m_MultiLanguageControls["StartSearch"] = new Control[] { f_ButtonStartSearch };

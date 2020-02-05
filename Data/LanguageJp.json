@@ -78,6 +78,7 @@
         "MaxFrame": "最大消費数：",
         "OnlyShiny": "色違いのみ",
         "ShowSeed": "Seedの値を表示する",
+        "ShowEC": "ECを表示する",
         "ListButton": "リスト出力",
         "ShowDuration": "計算時間を表示",
         "StartSearch": "検索開始",
