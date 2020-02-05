@@ -16,13 +16,6 @@ Please edit Data/Language**.json and give a pull request.
   * "GpuCheck": "Run Test",
   * "GpuCheckFailed": "Test failed.",
   * "GpuCheckSuccessed": "Test successed.\nTime:",
-* 簡体字: Data/LanguageZh.json
-  * "GpuSettings": "GPU Settings",
-  * "UseGpu": "Use GPU Calculation",
-  * "ThreadSetting": "Thread Count",
-  * "GpuCheck": "Run Test",
-  * "GpuCheckFailed": "Test failed.",
-  * "GpuCheckSuccessed": "Test successed.\nTime:",
 * 繁体字: Data/LanguageZn_TW.json
   * "NoHidden": "Only Normal Abil.",
   * "HiddenFixed": "Hidden Abil. Fixed",
