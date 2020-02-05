@@ -3603,7 +3603,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "1-Star Seed Search v1.06";
+            this.Text = "NS宝可梦剑盾 一群 490570154 二群车主群27775142 三群宝可梦交换群946057081 乱数讨论群 755843002";
             this.f_GroupBoxPokemon_1.ResumeLayout(false);
             this.f_GroupBoxPokemon_1.PerformLayout();
             this.f_GroupBoxStatus1.ResumeLayout(false);

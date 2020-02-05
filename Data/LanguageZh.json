@@ -77,6 +77,7 @@
     "ListVCount": "(如果实际抓的宝可梦对应v数大于这里的固定V数,请+1重来)固定V数",
     "MaxFrame": "最大帧数",
     "OnlyShiny": "仅列出异色",
+    "ShowEC": "显示EC",
     "ShowSeed": "显示种子",
     "ListButton": "生成列表",
     "ShowDuration": "显示计算时间",
@@ -130,7 +131,7 @@
     "StatErrorTitle": "能力值错误",
     "InvalidPokemon": "请选择一个宝可梦",
     "UpdateEventDenFailed": "更新活动坑数据失败",
-    "GpuCheckFailed": "Test failed."
+    "GpuCheckFailed": "GPU测试失败"
   },
   "SystemMessage": {
     "ResultDialogTitle": "结果",
