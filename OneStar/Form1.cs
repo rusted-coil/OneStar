@@ -46,6 +46,9 @@ namespace OneStar
 		// イベントレイドIDボタン
 		List<ToolStripMenuItem> m_MenuItemEventIdList = new List<ToolStripMenuItem>();
 
+		// GPUスレッド数ボタン
+		ToolStripMenuItem[] m_MenuItemGpuLoopList;
+
 		// ポケモン入力フォームごとのセット
 		class PokemonInfoForm {
 			public ComboBox ComboBoxName { get; set; } = null;
@@ -179,6 +182,30 @@ namespace OneStar
 			f_TextBoxRerollsUpper.Text = "3";
 			f_CheckBoxStop.Checked = true;
 
+			// 設定をセット
+			f_MenuItemUseGpu.Checked = m_Preferences.IsUseGpu;
+			m_MenuItemGpuLoopList = new ToolStripMenuItem[]{ 
+				f_MenuItemGpuLoop29,
+				f_MenuItemGpuLoop28,
+				f_MenuItemGpuLoop27,
+				f_MenuItemGpuLoop26,
+				f_MenuItemGpuLoop25,
+				f_MenuItemGpuLoop24,
+				f_MenuItemGpuLoop23,
+				f_MenuItemGpuLoop22,
+				f_MenuItemGpuLoop21,
+			};
+			if (m_Preferences.GpuLoop < 0)
+			{
+				m_Preferences.GpuLoop = 0;
+			}
+			else if (m_Preferences.GpuLoop > 8)
+			{
+				m_Preferences.GpuLoop = 8;
+			}
+			m_MenuItemGpuLoopList[m_Preferences.GpuLoop].Checked = true;
+
+			#region ポケモンフォーム情報キャッシュ
 			// 扱いやすいようにキャッシュ
 			m_PokemonInfo[0] = new PokemonInfoForm();
 			m_PokemonInfo[0].ComboBoxName = f_ComboBoxPokemon_1;
@@ -338,6 +365,7 @@ namespace OneStar
 				var tb3 = m_PokemonInfo[a].TextBoxLevel;
 				m_PokemonInfo[a].TextBoxLevel.Enter += new System.EventHandler((object sender, EventArgs e) => { EnterTextBoxAllSelect(tb3); });
 			}
+            #endregion
 
             // イベントレイドID
             // first clear all items
@@ -359,7 +387,7 @@ namespace OneStar
                 new_event.Name = event_id;
                 new_event.Size = new System.Drawing.Size(152, 22);
                 new_event.Text = event_id;
-                new_event.Click += new System.EventHandler(this.new_event_Click);
+                new_event.Click += new System.EventHandler(this.MenuItemEventIdSelect);
                 f_StripMenuItemEventId.DropDownItems.Add(new_event);
                 m_MenuItemEventIdList.Add(new_event);
             }
@@ -402,6 +430,17 @@ namespace OneStar
 				f_ButtonEncounterInfo_351,
 				f_ButtonEncounterInfo_352,
 				f_ButtonEncounterInfo_353,
+			};
+			m_MultiLanguageControls["Den"] = new Control[] { f_LabelDenName };
+			m_MultiLanguageControls["GameVersion"] = new Control[] { f_LabelGameVersion };
+			m_MultiLanguageControls["DenType"] = new Control[] { f_LabelRarity };
+			m_MultiLanguageControls["Attribute"] = new Control[] {
+				f_GroupBoxStatus1,
+				f_GroupBoxStatus2,
+				f_GroupBoxStatus3,
+				f_GroupBoxStatus351,
+				f_GroupBoxStatus352,
+				f_GroupBoxStatus353,
 			};
 
 			// 言語を適用
@@ -768,7 +807,17 @@ namespace OneStar
 
 			// 計算準備
 			var mode = Get35Mode();
-			SeedSearcher searcher = new SeedSearcher(mode == Star35PanelMode.ModeType.From2V ? SeedSearcher.Mode.Star35_6 : SeedSearcher.Mode.Star35_5);
+			SeedSearcher.Mode searchMode;
+			if (m_Preferences.IsUseGpu)
+			{
+				searchMode = SeedSearcher.Mode.Cuda35;
+				SeedSearcher.CudaInitialize();
+			}
+			else
+			{
+				searchMode = (mode == Star35PanelMode.ModeType.From2V ? SeedSearcher.Mode.Star35_6 : SeedSearcher.Mode.Star35_5);
+			}
+			SeedSearcher searcher = new SeedSearcher(searchMode);
 
 			// 条件をセット
 			for (int i = 0; i < 3; ++i)
@@ -784,15 +833,30 @@ namespace OneStar
 				int characteristic = Messages.Instance.Characteristic[pokemonInfo.ComboBoxCharacteristic.Text];
 				int flawlessIvs = pokemon.FlawlessIvs;
 
-				SeedSearcher.Set35Condition(
-					i,
-					ivs[i * 6],
-					ivs[i * 6 + 1],
-					ivs[i * 6 + 2],
-					ivs[i * 6 + 3],
-					ivs[i * 6 + 4],
-					ivs[i * 6 + 5],
-					ability, nature, characteristic, noGender, abilityFlag, flawlessIvs);
+				if (m_Preferences.IsUseGpu)
+				{
+					SeedSearcher.SetCudaCondition(
+						i,
+						ivs[i * 6],
+						ivs[i * 6 + 1],
+						ivs[i * 6 + 2],
+						ivs[i * 6 + 3],
+						ivs[i * 6 + 4],
+						ivs[i * 6 + 5],
+						ability, nature, characteristic, noGender, abilityFlag, flawlessIvs);
+				}
+				else
+				{
+					SeedSearcher.Set35Condition(
+						i,
+						ivs[i * 6],
+						ivs[i * 6 + 1],
+						ivs[i * 6 + 2],
+						ivs[i * 6 + 3],
+						ivs[i * 6 + 4],
+						ivs[i * 6 + 5],
+						ability, nature, characteristic, noGender, abilityFlag, flawlessIvs);
+				}
 			}
 
 			// 遺伝箇所チェック
@@ -844,11 +908,27 @@ namespace OneStar
 
 				if (mode == Star35PanelMode.ModeType.From2V)
 				{
-					SeedSearcher.SetTargetCondition6(conditionIv[0], conditionIv[1], conditionIv[2], conditionIv[3], conditionIv[4], conditionIv[5]);
+					if (m_Preferences.IsUseGpu)
+					{
+						searcher.CudaLoopPartition = m_Preferences.GpuLoop + 1;
+						SeedSearcher.SetCudaTargetCondition6(conditionIv[0], conditionIv[1], conditionIv[2], conditionIv[3], conditionIv[4], conditionIv[5]);
+					}
+					else
+					{
+						SeedSearcher.SetTargetCondition6(conditionIv[0], conditionIv[1], conditionIv[2], conditionIv[3], conditionIv[4], conditionIv[5]);
+					}
 				}
 				else if (mode == Star35PanelMode.ModeType.From3V)
 				{
-					SeedSearcher.SetTargetCondition5(conditionIv[0], conditionIv[1], conditionIv[2], conditionIv[3], conditionIv[4]);
+					if (m_Preferences.IsUseGpu)
+					{
+						searcher.CudaLoopPartition = m_Preferences.GpuLoop;
+						SeedSearcher.SetCudaTargetCondition5(conditionIv[0], conditionIv[1], conditionIv[2], conditionIv[3], conditionIv[4]);
+					}
+					else
+					{
+						SeedSearcher.SetTargetCondition5(conditionIv[0], conditionIv[1], conditionIv[2], conditionIv[3], conditionIv[4]);
+					}
 				}
 			}
 
@@ -862,18 +942,26 @@ namespace OneStar
 		}
 
 		// 検索処理共通
-		async void SearchImpl(SeedSearcher searcher)
+		async void SearchImpl(SeedSearcher searcher, bool isTest = false, int testRerolls = 0, UInt64 testSeed = 0)
 		{
 			int minRerolls = 0;
 			int maxRerolls = 3;
-			try
+			if (isTest)
 			{
-				minRerolls = int.Parse(f_TextBoxRerollsLower.Text);
-				maxRerolls = int.Parse(f_TextBoxRerollsUpper.Text);
+				minRerolls = testRerolls;
+				maxRerolls = testRerolls;
 			}
-			catch (Exception)
-			{ }
-			bool isEnableStop = f_CheckBoxStop.Checked;
+			else
+			{
+				try
+				{
+					minRerolls = int.Parse(f_TextBoxRerollsLower.Text);
+					maxRerolls = int.Parse(f_TextBoxRerollsUpper.Text);
+				}
+				catch (Exception)
+				{ }
+			}
+			bool isEnableStop = (isTest ? false : f_CheckBoxStop.Checked);
 
 			// ボタンを無効化
 			f_ButtonStartSearch.Enabled = false;
@@ -883,7 +971,7 @@ namespace OneStar
 			// 時間計測
 			bool isShowResultTime = f_CheckBoxShowResultTime.Checked;
 			System.Diagnostics.Stopwatch stopWatch = null;
-			if (isShowResultTime)
+			if (isShowResultTime || isTest)
 			{
 				stopWatch = new System.Diagnostics.Stopwatch();
 				stopWatch.Start();
@@ -895,15 +983,36 @@ namespace OneStar
 				searcher.Calculate(isEnableStop, minRerolls, maxRerolls, p);
 			});
 
-			if (isShowResultTime && stopWatch != null)
+			if (stopWatch != null)
 			{
 				stopWatch.Stop();
-				MessageBox.Show($"{stopWatch.ElapsedMilliseconds}[ms]");
 			}
 
 			f_ButtonStartSearch.Enabled = true;
 			f_ButtonStartSearch.Text = Messages.Instance.SystemLabel["StartSearch"];
 			f_ButtonStartSearch.BackColor = System.Drawing.Color.GreenYellow;
+
+
+			// テストモード
+			if (isTest)
+			{
+				// 結果が一つかつ目的のseedだったら成功
+				if (searcher.Result.Count == 1 && searcher.Result[0] == testSeed)
+				{
+					MessageBox.Show($"{Messages.Instance.SystemMessage["GpuCheckSuccessed"]} {stopWatch.ElapsedMilliseconds}[ms]");
+				}
+				else
+				{
+					// エラー
+					CreateErrorDialog(Messages.Instance.ErrorMessage["GpuCheckFailed"]);
+				}
+				return;
+			}
+
+			if (isShowResultTime)
+			{
+				MessageBox.Show($"{stopWatch.ElapsedMilliseconds}[ms]");
+			}
 
 			// 結果が見つからなかったらエラー
 			if (searcher.Result.Count == 0)
@@ -976,12 +1085,14 @@ namespace OneStar
 			bool isShinyCheck = f_CheckBoxListShiny.Checked;
 
 			bool isShowSeed = f_CheckBoxShowSeed.Checked;
+			bool isShowEc = f_CheckBoxShowEC.Checked;
 
-			ListGenerator listGenerator = new ListGenerator(denSeed, maxFrameCount, vCount, isNoGender, abilityFlag, isShinyCheck, isShowSeed);
+			ListGenerator listGenerator = new ListGenerator(denSeed, maxFrameCount, vCount, isNoGender, abilityFlag, isShinyCheck, isShowSeed, isShowEc);
 			listGenerator.Generate();
 		}
 
-		private void f_MenuItemLanguageJp_Click(object sender, EventArgs e)
+        #region 言語設定変更
+        private void f_MenuItemLanguageJp_Click(object sender, EventArgs e)
 		{
 			if (!f_MenuItemLanguageJp.Checked)
 			{
@@ -1101,18 +1212,13 @@ namespace OneStar
 			f_MenuItemWindowSizeNormal.Text = Messages.Instance.SystemLabel["WindowSizeNormal"];
 			f_MenuItemWindowSizeSmall.Text = Messages.Instance.SystemLabel["WindowSizeSmall"];
 			f_StripMenuItemEventId.Text = Messages.Instance.SystemLabel["EventDen"];
+			f_StripMenuItemUpdateEventData.Text = Messages.Instance.SystemLabel["UpdateEventDen"];
+			f_StripMenuItemGpuSetting.Text = Messages.Instance.SystemLabel["GpuSettings"];
+			f_MenuItemUseGpu.Text = Messages.Instance.SystemLabel["UseGpu"];
+			f_MenuItemThreadCount.Text = Messages.Instance.SystemLabel["ThreadSetting"];
+			f_MenuItemGpuTest.Text = Messages.Instance.SystemLabel["GpuCheck"];
 
-            f_LabelDenName.Text = Messages.Instance.SystemLabel["Den"];
-            f_LabelGameVersion.Text = Messages.Instance.SystemLabel["GameVersion"];
-            f_LabelRarity.Text = Messages.Instance.SystemLabel["DenType"];
-            groupBox3.Text = Messages.Instance.SystemLabel["Attribute"];
-            groupBox5.Text = Messages.Instance.SystemLabel["Attribute"];
-            groupBox6.Text = Messages.Instance.SystemLabel["Attribute"];
-            groupBox7.Text = Messages.Instance.SystemLabel["Attribute"];
-            groupBox8.Text = Messages.Instance.SystemLabel["Attribute"];
-            groupBox9.Text = Messages.Instance.SystemLabel["Attribute"];
-
-            foreach (var pair in m_MultiLanguageControls)
+			foreach (var pair in m_MultiLanguageControls)
 			{
 				string str = Messages.Instance.SystemLabel[pair.Key];
 				foreach (var control in pair.Value)
@@ -1263,9 +1369,10 @@ namespace OneStar
 				}
             }
 		}
+        #endregion
 
-		#region 個体値計算ボタン イベント定義
-		private void f_ButtonIvsCalc_1_Click(object sender, EventArgs e)
+        #region 個体値計算ボタン イベント定義
+        private void f_ButtonIvsCalc_1_Click(object sender, EventArgs e)
 		{
 			IvsCalculate(0);
 		}
@@ -1647,10 +1754,10 @@ namespace OneStar
 			}
 		}
 
-        private void new_event_Click(object sender, EventArgs e)
+		// イベントレイドIDボタン
+        private void MenuItemEventIdSelect(object sender, EventArgs e)
         {
-            ToolStripMenuItem cur_event = (ToolStripMenuItem)sender;
-            m_Preferences.EventId = cur_event.Text;
+            m_Preferences.EventId = ((ToolStripMenuItem)sender).Text;
             RefreshEventId();
             if (m_CurrentDenIndex == -1)
             {
@@ -1681,8 +1788,149 @@ namespace OneStar
             stream.Close();
             responseStream.Close();
 
-            // comfirm close and reopen
-            MessageBox.Show("更新完成，请重启软件");
-        }
-    }
+			// comfirm close and reopen
+			MessageBox.Show(Messages.Instance.SystemMessage["UpdateEventDenSuccessed"]);
+		}
+
+		private void f_MenuItemUseGpu_Click(object sender, EventArgs e)
+		{
+			bool current = f_MenuItemUseGpu.Checked;
+			m_Preferences.IsUseGpu = !current;
+			f_MenuItemUseGpu.Checked = !current;
+		}
+
+		private void f_MenuItemGpuTest_Click(object sender, EventArgs e)
+		{
+			// テスト用データ
+			SeedSearcher searcher = new SeedSearcher(SeedSearcher.Mode.Cuda35);
+			SeedSearcher.CudaInitialize();
+			SeedSearcher.SetCudaCondition(0, 31, 27, 3, 19, 18, 31, 1, 15, 3, false, 3, 2);
+			SeedSearcher.SetCudaCondition(1, 31, 9, 31, 31, 15, 31, 1, 18, 2, false, 3, 4);
+			SeedSearcher.SetCudaCondition(2, 31, 31, 31, 1, 31, 27, 1, 6, 2, true, 4, 4);
+			SeedSearcher.SetCudaCondition(3, 31, 2, 23, 31, 31, 31, 1, 15, 2, true, 4, 4);
+			SeedSearcher.SetCudaTargetCondition6(27, 3, 19, 18, 9, 15);
+			searcher.CudaLoopPartition = m_Preferences.GpuLoop + 1;
+
+			SearchImpl(searcher, true, 0, 0xFA13E146EABEE283ul);
+		}
+
+		#region GPUスレッド分割数設定
+		private void f_MenuItemGpuLoop21_Click(object sender, EventArgs e)
+		{
+			if (f_MenuItemGpuLoop21.Checked == false)
+			{
+				foreach (var menuItem in m_MenuItemGpuLoopList)
+				{
+					menuItem.Checked = false;
+				}
+				m_Preferences.GpuLoop = 8;
+				f_MenuItemGpuLoop21.Checked = true;
+			}
+		}
+
+		private void f_MenuItemGpuLoop22_Click(object sender, EventArgs e)
+		{
+			if (f_MenuItemGpuLoop22.Checked == false)
+			{
+				foreach (var menuItem in m_MenuItemGpuLoopList)
+				{
+					menuItem.Checked = false;
+				}
+				m_Preferences.GpuLoop = 7;
+				f_MenuItemGpuLoop22.Checked = true;
+			}
+		}
+
+		private void f_MenuItemGpuLoop23_Click(object sender, EventArgs e)
+		{
+			if (f_MenuItemGpuLoop23.Checked == false)
+			{
+				foreach (var menuItem in m_MenuItemGpuLoopList)
+				{
+					menuItem.Checked = false;
+				}
+				m_Preferences.GpuLoop = 6;
+				f_MenuItemGpuLoop23.Checked = true;
+			}
+		}
+
+		private void f_MenuItemGpuLoop24_Click(object sender, EventArgs e)
+		{
+			if (f_MenuItemGpuLoop24.Checked == false)
+			{
+				foreach (var menuItem in m_MenuItemGpuLoopList)
+				{
+					menuItem.Checked = false;
+				}
+				m_Preferences.GpuLoop = 5;
+				f_MenuItemGpuLoop24.Checked = true;
+			}
+		}
+
+		private void f_MenuItemGpuLoop25_Click(object sender, EventArgs e)
+		{
+			if (f_MenuItemGpuLoop25.Checked == false)
+			{
+				foreach (var menuItem in m_MenuItemGpuLoopList)
+				{
+					menuItem.Checked = false;
+				}
+				m_Preferences.GpuLoop = 4;
+				f_MenuItemGpuLoop25.Checked = true;
+			}
+		}
+
+		private void f_MenuItemGpuLoop26_Click(object sender, EventArgs e)
+		{
+			if (f_MenuItemGpuLoop26.Checked == false)
+			{
+				foreach (var menuItem in m_MenuItemGpuLoopList)
+				{
+					menuItem.Checked = false;
+				}
+				m_Preferences.GpuLoop = 3;
+				f_MenuItemGpuLoop26.Checked = true;
+			}
+		}
+
+		private void f_MenuItemGpuLoop27_Click(object sender, EventArgs e)
+		{
+			if (f_MenuItemGpuLoop27.Checked == false)
+			{
+				foreach (var menuItem in m_MenuItemGpuLoopList)
+				{
+					menuItem.Checked = false;
+				}
+				m_Preferences.GpuLoop = 2;
+				f_MenuItemGpuLoop27.Checked = true;
+			}
+		}
+
+		private void f_MenuItemGpuLoop28_Click(object sender, EventArgs e)
+		{
+			if (f_MenuItemGpuLoop28.Checked == false)
+			{
+				foreach (var menuItem in m_MenuItemGpuLoopList)
+				{
+					menuItem.Checked = false;
+				}
+				m_Preferences.GpuLoop = 1;
+				f_MenuItemGpuLoop28.Checked = true;
+			}
+		}
+
+		private void f_MenuItemGpuLoop29_Click(object sender, EventArgs e)
+		{
+			if (f_MenuItemGpuLoop29.Checked == false)
+			{
+				foreach (var menuItem in m_MenuItemGpuLoopList)
+				{
+					menuItem.Checked = false;
+				}
+				m_Preferences.GpuLoop = 0;
+				f_MenuItemGpuLoop29.Checked = true;
+			}
+		}
+		#endregion
+	}
 }

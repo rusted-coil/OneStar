@@ -9,28 +9,14 @@ namespace OneStarCUI
 		{
 			// 適当に計算したりするテスト用コンソールです
 
-
-			SeedSearcher searcher = new SeedSearcher(SeedSearcher.Mode.Star35_6);
-
-			// パラメータを設定
-			/*
-			Console.WriteLine("1匹目: ");
-			string[] str = Console.ReadLine().Split(' ');
-			SeedSearcher.SetFirstCondition(int.Parse(str[0]), int.Parse(str[1]), int.Parse(str[2]), int.Parse(str[3]), int.Parse(str[4]), int.Parse(str[5]), int.Parse(str[6]), int.Parse(str[7]));
-
-			Console.WriteLine("2匹目: ");
-			string[] str2 = Console.ReadLine().Split(' ');
-			SeedSearcher.SetNextCondition(int.Parse(str2[0]), int.Parse(str2[1]), int.Parse(str2[2]), int.Parse(str2[3]), int.Parse(str2[4]), int.Parse(str2[5]), int.Parse(str2[6]), int.Parse(str2[7]), false);
-
-			Console.WriteLine("計算中...");
-
-	*/
-			Console.WriteLine("1匹目: ");
-			string[] str = Console.ReadLine().Split(' ');
-//			SeedSearcher.SetSixCondition(int.Parse(str[0]), int.Parse(str[1]), int.Parse(str[2]), int.Parse(str[3]), int.Parse(str[4]), int.Parse(str[5]), int.Parse(str[6]), int.Parse(str[7]), int.Parse(str[8]));
-
-			Console.WriteLine("2匹目: ");
-			string[] str2 = Console.ReadLine().Split(' ');
+			SeedSearcher searcher = new SeedSearcher(SeedSearcher.Mode.Cuda35);
+			SeedSearcher.CudaInitialize();
+			SeedSearcher.SetCudaCondition(0, 31, 27, 3, 19, 18, 31, 1, 15, 3, false, 3, 2);
+			SeedSearcher.SetCudaCondition(1, 31, 9, 31, 31, 15, 31, 1, 18, 2, false, 3, 4);
+			SeedSearcher.SetCudaCondition(2, 31, 31, 31, 1, 31, 27, 1, 6, 2, true, 4, 4);
+			SeedSearcher.SetCudaCondition(3, 31, 2, 23, 31, 31, 31, 1, 15, 2, true, 4, 4);
+			SeedSearcher.SetCudaTargetCondition6(27, 3, 19, 18, 9, 15);
+			searcher.CudaLoopPartition = 8;
 
 			Console.WriteLine("計算中...");
 
@@ -39,7 +25,7 @@ namespace OneStarCUI
 			sw.Start();
 
 			// 計算
-//			searcher.CalculateSix();
+			searcher.Calculate(false, 0, 0, null);
 
 			sw.Stop();
 

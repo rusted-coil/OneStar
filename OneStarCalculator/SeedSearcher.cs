@@ -11,14 +11,15 @@ namespace OneStarCalculator
 		public enum Mode {
 			Star12,
 			Star35_5,
-			Star35_6
+			Star35_6,
+			Cuda35,
 		};
 		Mode m_Mode;
 
 		// 結果
 		public List<ulong> Result { get; } = new List<ulong>();
 
-		// ★1～2検索
+		#region ★1～2検索設定
 		[DllImport("OneStarCalculatorLib.dll")]
 		static extern void Prepare(int rerolls);
 
@@ -27,8 +28,9 @@ namespace OneStarCalculator
 
 		[DllImport("OneStarCalculatorLib.dll")]
 		static extern ulong Search(ulong ivs);
+		#endregion
 
-		// ★3～5検索
+		#region ★3～5検索設定
 		[DllImport("OneStarCalculatorLib.dll")]
 		static extern void PrepareSix(int ivOffset);
 
@@ -43,6 +45,44 @@ namespace OneStarCalculator
 
 		[DllImport("OneStarCalculatorLib.dll")]
 		static extern ulong SearchSix(ulong ivs);
+		#endregion
+
+		#region CUDA計算設定
+		[DllImport("OneStarCalculatorLib.dll")]
+		public static extern void CudaInitialize();
+
+		[DllImport("OneStarCalculatorLib.dll")]
+		public static extern void SetCudaCondition(int index, int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, int characteristic, bool noGender, int abilityFlag, int flawlessIvs);
+
+		[DllImport("OneStarCalculatorLib.dll")]
+		public static extern void SetCudaTargetCondition6(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6);
+
+		[DllImport("OneStarCalculatorLib.dll")]
+		public static extern void SetCudaTargetCondition5(int iv1, int iv2, int iv3, int iv4, int iv5);
+
+		[DllImport("OneStarCalculatorLib.dll")]
+		static extern void CudaCalcInitialize();
+
+		[DllImport("OneStarCalculatorLib.dll")]
+		static extern void PrepareCuda(int ivOffset);
+
+		[DllImport("OneStarCalculatorLib.dll")]
+		static extern void SearchCuda(uint ivs, int partitionBit);
+
+		[DllImport("OneStarCalculatorLib.dll")]
+		static extern int GetResultCount();
+
+		[DllImport("OneStarCalculatorLib.dll")]
+		static extern ulong GetResult(int index);
+
+		[DllImport("OneStarCalculatorLib.dll")]
+		static extern void CudaCalcFinalize();
+
+		[DllImport("OneStarCalculatorLib.dll")]
+		public static extern void CudaFinalize();
+
+		public int CudaLoopPartition { get; set; } = 0;
+		#endregion
 
 		public SeedSearcher(Mode mode)
 		{
@@ -54,7 +94,71 @@ namespace OneStarCalculator
 		{
 			Result.Clear();
 
-			if (m_Mode == Mode.Star12)
+			if (m_Mode == Mode.Cuda35)
+			{
+				// 分割bit数
+				int partitionBit = CudaLoopPartition;
+
+				// 探索範囲
+				int searchLower = 0;
+				int searchUpper = (1 << partitionBit) - 1;
+
+				// 途中経過
+				int progress = 0;
+				int progressMax = (1 << partitionBit) * (maxRerolls - minRerolls + 1);
+
+				p?.Report(0);
+
+				// 計算前のCUDA初期化
+				CudaCalcInitialize();
+
+				for (int i = minRerolls; i <= maxRerolls; ++i)
+				{
+					// C++ライブラリ側の事前計算
+					PrepareCuda(i);
+
+					for (int ivs = searchLower; ivs <= searchUpper; ++ivs)
+					{
+						SearchCuda((uint)ivs, partitionBit);
+						int resultCount = GetResultCount();
+						if (resultCount > 0)
+						{
+							for (int a = 0; a < resultCount; ++a)
+							{
+								Result.Add(GetResult(a));
+								if (isEnableStop)
+								{
+									break;
+								}
+							}
+							if (Result.Count > 0 && isEnableStop)
+							{
+								break;
+							}
+						}
+						++progress;
+						p?.Report(progress * 1000 / progressMax);
+					}
+
+					if (Result.Count > 0 && isEnableStop)
+					{
+						break;
+					}
+				}
+
+				// 計算が終わったのでCUDA終了
+				CudaCalcFinalize();
+
+				// 結果を加工（[-3]にする）
+				for (int i = 0; i < Result.Count; ++i)
+				{
+					for (int a = 0; a < 3; ++a)
+					{
+						Result[i] = Result[i] + 0x7d5d4e8add6295a5ul;
+					}
+				}
+			}
+			else if (m_Mode == Mode.Star12)
 			{
 				// 探索範囲
 				int searchLower = 0;
@@ -68,7 +172,7 @@ namespace OneStarCalculator
 				int chunkMax = chunkPart * (maxRerolls - minRerolls + 1);
 				int chunkCount = 1;
 
-				p.Report(0);
+				p?.Report(0);
 
 				for (int i = minRerolls; i <= maxRerolls; ++i)
 				{
@@ -99,7 +203,7 @@ namespace OneStarCalculator
 								{
 									if (progress >= chunkCount * chunkSize)
 									{
-										p.Report((chunkCount + chunkOffset) * 1000 / chunkMax);
+										p?.Report((chunkCount + chunkOffset) * 1000 / chunkMax);
 										++chunkCount;
 									}
 								}
@@ -127,7 +231,7 @@ namespace OneStarCalculator
 								{
 									if (progress >= chunkCount * chunkSize)
 									{
-										p.Report((chunkCount + chunkOffset) * 1000 / chunkMax);
+										p?.Report((chunkCount + chunkOffset) * 1000 / chunkMax);
 										++chunkCount;
 									}
 								}
@@ -150,7 +254,7 @@ namespace OneStarCalculator
 				int chunkMax = chunkPart * (maxRerolls - minRerolls + 1);
 				int chunkCount = 1;
 
-				p.Report(0);
+				p?.Report(0);
 
 				for (int i = minRerolls; i <= maxRerolls; ++i)
 				{
@@ -166,7 +270,8 @@ namespace OneStarCalculator
 					if (isEnableStop)
 					{
 						// 中断あり
-						Parallel.For(searchLower, searchUpper, (ivs, state) => {
+						Parallel.For(searchLower, searchUpper, (ivs, state) =>
+						{
 							ulong result = SearchSix((ulong)ivs);
 							if (result != 0)
 							{
@@ -180,7 +285,7 @@ namespace OneStarCalculator
 								{
 									if (progress >= chunkCount * chunkSize)
 									{
-										p.Report((chunkCount + chunkOffset) * 1000 / chunkMax);
+										p?.Report((chunkCount + chunkOffset) * 1000 / chunkMax);
 										++chunkCount;
 									}
 								}
@@ -194,7 +299,8 @@ namespace OneStarCalculator
 					else
 					{
 						// 中断なし
-						Parallel.For(searchLower, searchUpper, (ivs) => {
+						Parallel.For(searchLower, searchUpper, (ivs) =>
+						{
 							ulong result = SearchSix((ulong)ivs);
 							if (result != 0)
 							{
@@ -207,7 +313,7 @@ namespace OneStarCalculator
 								{
 									if (progress >= chunkCount * chunkSize)
 									{
-										p.Report((chunkCount + chunkOffset) * 1000 / chunkMax);
+										p?.Report((chunkCount + chunkOffset) * 1000 / chunkMax);
 										++chunkCount;
 									}
 								}
