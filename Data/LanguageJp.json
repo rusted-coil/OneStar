@@ -126,6 +126,7 @@
         "StatErrorTitle": "ステータスエラー",
         "InvalidPokemon": "ポケモン名の入力が不正です。",
         "UpdateEventDenFailed": "データの取得に失敗しました。",
+        "GpuCheckFailed": "テストに失敗しました。GPU計算が正しく機能していません。\n（スレッド数を変更すると動くかもしれません。）",
     },
     "SystemMessage": {
         "ResultDialogTitle": "結果",
@@ -133,6 +134,7 @@
         "FindManyIvs": "個体値を絞り込めなかったステータスがあります。\n他のレベルで計算してみてください。",
         "EncounterInfoDialogTitle": "レイド情報",
         "UpdateEventDenSuccessed": "イベントレイドのデータを更新しました。",
+        "GpuCheckSuccessed": "テストに成功しました。GPU計算が使用できます。\nベンチマーク：",
     },
     "ListLabel": {
         "Frame": "消費数",

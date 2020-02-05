@@ -19,6 +19,9 @@ namespace OneStar
 		// GPU使用
 		[JsonProperty] bool m_isUseGpu = false;
 
+		// GPU設定
+		[JsonProperty] int m_GpuLoop = 0;
+
 		[JsonIgnore]
 		public Language Language {
 			get { return m_Language; }
@@ -51,6 +54,14 @@ namespace OneStar
 				Serialize();
 			}
 		}
+		[JsonIgnore]
+		public int GpuLoop {
+			get { return m_GpuLoop; }
+			set {
+				m_GpuLoop = value;
+				Serialize();
+			}
+		}
 
 		// 初期設定
 		public void Initialize()
@@ -59,6 +70,7 @@ namespace OneStar
 			m_GameVersion = 0;
 			m_EventId = "20200131";
 			m_isUseGpu = false;
+			m_GpuLoop = 0;
 		}
 
 		// コピー
@@ -68,6 +80,7 @@ namespace OneStar
 			m_GameVersion = src.m_GameVersion;
 			m_EventId = src.m_EventId;
 			m_isUseGpu = src.m_isUseGpu;
+			m_GpuLoop = src.m_GpuLoop;
 		}
 
 		// 設定をファイルに保存

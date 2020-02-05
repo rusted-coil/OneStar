@@ -72,12 +72,18 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)OneStar\bin\$(Configuration)\x64\</OutDir>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(CUDA_INC_PATH);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)OneStar\bin\$(Configuration)\x64\</OutDir>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(CUDA_INC_PATH);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)OneStar\bin\$(Configuration)\x86\</OutDir>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(CUDA_INC_PATH);</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(CUDA_INC_PATH);</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -142,6 +148,8 @@
     <ClInclude Include="Const.h" />
     <ClInclude Include="CudaCalculator.h" />
     <ClInclude Include="CudaProcess.cuh" />
+    <ClInclude Include="CudaProcess5.cuh" />
+    <ClInclude Include="CudaProcess6.cuh" />
     <ClInclude Include="Data.h" />
     <ClInclude Include="SixivCalculator.h" />
     <ClInclude Include="Type.h" />
@@ -150,6 +158,8 @@
   </ItemGroup>
   <ItemGroup>
     <CudaCompile Include="CudaProcess.cu" />
+    <CudaCompile Include="CudaProcess5.cu" />
+    <CudaCompile Include="CudaProcess6.cu" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

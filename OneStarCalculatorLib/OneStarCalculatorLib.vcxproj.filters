@@ -50,16 +50,26 @@
     <ClInclude Include="Data.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CudaProcess.cuh">
+    <ClInclude Include="CudaCalculator.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CudaCalculator.h">
+    <ClInclude Include="CudaProcess6.cuh">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CudaProcess5.cuh">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CudaProcess.cuh">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CudaCompile Include="CudaProcess.cu">
+    <CudaCompile Include="CudaProcess6.cu">
       <Filter>ソース ファイル</Filter>
     </CudaCompile>
+    <CudaCompile Include="CudaProcess5.cu">
+      <Filter>ソース ファイル</Filter>
+    </CudaCompile>
+    <CudaCompile Include="CudaProcess.cu" />
   </ItemGroup>
 </Project>

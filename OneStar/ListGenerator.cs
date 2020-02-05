@@ -13,8 +13,9 @@ namespace OneStar
 		int m_AbilityFlag;
 		bool m_isShinyCheck;
 		bool m_isShowSeed;
+		bool m_isShowEc;
 
-		public ListGenerator(UInt64 denSeed, int maxCount, int vCount, bool isNoGender, int abilityFlag, bool isShinyCheck, bool isShowSeed)
+		public ListGenerator(UInt64 denSeed, int maxCount, int vCount, bool isNoGender, int abilityFlag, bool isShinyCheck, bool isShowSeed, bool isShowEc)
 		{
 			m_DenSeed = denSeed;
 			m_MaxCount = maxCount;
@@ -23,6 +24,7 @@ namespace OneStar
 			m_AbilityFlag = abilityFlag;
 			m_isShinyCheck = isShinyCheck;
 			m_isShowSeed = isShowSeed;
+			m_isShowEc = isShowEc;
 		}
 
 		public void Generate()
@@ -42,6 +44,10 @@ namespace OneStar
 				if (m_isShowSeed)
 				{
 					sw.Write("Seed,");
+				}
+				if (m_isShowEc)
+				{
+					sw.Write("EC,");
 				}
 				for (int i = 0; i < 6; ++i)
 				{
@@ -137,6 +143,10 @@ namespace OneStar
 					if (m_isShowSeed)
 					{
 						sw.Write($"{seed:X16},");
+					}
+					if (m_isShowEc)
+					{
+						sw.Write($"{ec:X8},");
 					}
 					sw.Write($"{ivs[0]},{ivs[1]},{ivs[2]},{ivs[3]},{ivs[4]},{ivs[5]},");
 					sw.Write(ability == 2 ? $"{Messages.Instance.ListLabel["HiddenAbility"]}," : $"{ability + 1},");

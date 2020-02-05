@@ -12,14 +12,14 @@ namespace OneStarCalculator
 			Star12,
 			Star35_5,
 			Star35_6,
-			CudaTest,
+			Cuda35,
 		};
 		Mode m_Mode;
 
 		// 結果
 		public List<ulong> Result { get; } = new List<ulong>();
 
-		// ★1～2検索
+		#region ★1～2検索設定
 		[DllImport("OneStarCalculatorLib.dll")]
 		static extern void Prepare(int rerolls);
 
@@ -28,8 +28,9 @@ namespace OneStarCalculator
 
 		[DllImport("OneStarCalculatorLib.dll")]
 		static extern ulong Search(ulong ivs);
+		#endregion
 
-		// ★3～5検索
+		#region ★3～5検索設定
 		[DllImport("OneStarCalculatorLib.dll")]
 		static extern void PrepareSix(int ivOffset);
 
@@ -44,8 +45,9 @@ namespace OneStarCalculator
 
 		[DllImport("OneStarCalculatorLib.dll")]
 		static extern ulong SearchSix(ulong ivs);
+		#endregion
 
-		// CUDAテスト
+		#region CUDA計算設定
 		[DllImport("OneStarCalculatorLib.dll")]
 		public static extern void CudaInitialize();
 
@@ -59,14 +61,28 @@ namespace OneStarCalculator
 		public static extern void SetCudaTargetCondition5(int iv1, int iv2, int iv3, int iv4, int iv5);
 
 		[DllImport("OneStarCalculatorLib.dll")]
+		static extern void CudaCalcInitialize();
+
+		[DllImport("OneStarCalculatorLib.dll")]
 		static extern void PrepareCuda(int ivOffset);
 
 		[DllImport("OneStarCalculatorLib.dll")]
-		static extern void PreCalc(uint ivs, int partitionBit);
+		static extern void SearchCuda(uint ivs, int partitionBit);
 
 		[DllImport("OneStarCalculatorLib.dll")]
-		static extern ulong SearchCuda(int threadId);
+		static extern int GetResultCount();
 
+		[DllImport("OneStarCalculatorLib.dll")]
+		static extern ulong GetResult(int index);
+
+		[DllImport("OneStarCalculatorLib.dll")]
+		static extern void CudaCalcFinalize();
+
+		[DllImport("OneStarCalculatorLib.dll")]
+		public static extern void CudaFinalize();
+
+		public int CudaLoopPartition { get; set; } = 0;
+		#endregion
 
 		public SeedSearcher(Mode mode)
 		{
@@ -78,29 +94,70 @@ namespace OneStarCalculator
 		{
 			Result.Clear();
 
-			if (m_Mode == Mode.CudaTest)
+			if (m_Mode == Mode.Cuda35)
 			{
 				// 分割bit数
-				int partitionBit = 7;
+				int partitionBit = CudaLoopPartition;
 
 				// 探索範囲
 				int searchLower = 0;
 				int searchUpper = (1 << partitionBit) - 1;
 
-				// C++ライブラリ側の事前計算
-				PrepareCuda(minRerolls);
+				// 途中経過
+				int progress = 0;
+				int progressMax = (1 << partitionBit) * (maxRerolls - minRerolls + 1);
 
-				for (int i = searchLower; i <= searchUpper; ++i)
+				p?.Report(0);
+
+				// 計算前のCUDA初期化
+				CudaCalcInitialize();
+
+				for (int i = minRerolls; i <= maxRerolls; ++i)
 				{
-					PreCalc((uint)i, partitionBit);
-					ulong result = SearchCuda(0);
-					if (result != 0)
+					// C++ライブラリ側の事前計算
+					PrepareCuda(i);
+
+					for (int ivs = searchLower; ivs <= searchUpper; ++ivs)
 					{
-						Result.Add(result);
+						SearchCuda((uint)ivs, partitionBit);
+						int resultCount = GetResultCount();
+						if (resultCount > 0)
+						{
+							for (int a = 0; a < resultCount; ++a)
+							{
+								Result.Add(GetResult(a));
+								if (isEnableStop)
+								{
+									break;
+								}
+							}
+							if (Result.Count > 0 && isEnableStop)
+							{
+								break;
+							}
+						}
+						++progress;
+						p?.Report(progress * 1000 / progressMax);
+					}
+
+					if (Result.Count > 0 && isEnableStop)
+					{
+						break;
+					}
+				}
+
+				// 計算が終わったのでCUDA終了
+				CudaCalcFinalize();
+
+				// 結果を加工（[-3]にする）
+				for (int i = 0; i < Result.Count; ++i)
+				{
+					for (int a = 0; a < 3; ++a)
+					{
+						Result[i] = Result[i] + 0x7d5d4e8add6295a5ul;
 					}
 				}
 			}
-
 			else if (m_Mode == Mode.Star12)
 			{
 				// 探索範囲

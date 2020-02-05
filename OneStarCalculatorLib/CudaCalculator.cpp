@@ -4,21 +4,13 @@
 #include "Const.h"
 #include "XoroshiroState.h"
 #include "Data.h"
-#include "CudaProcess.cuh"
+#include "CudaProcess5.cuh"
+#include "CudaProcess6.cuh"
 
 // 検索条件設定
 static int g_CudaFixedIvs;
-static int g_CudaIvOffset;
-//static int g_CudaIvs[6];
 
-
-/*
-inline bool IsEnableECBit()
-{
-	return g_CudaECbit >= 0;
-}
-*/
-
+// 条件設定前の初期化
 void CudaInitialize()
 {
 	CudaInitializeImpl();
@@ -31,7 +23,7 @@ void SetCudaCondition(int index, int iv0, int iv1, int iv2, int iv3, int iv4, in
 		return;
 	}
 
-	PokemonData* pokemon = &cu_HostMaster->pokemon[index];
+	PokemonData* pokemon = &cu_HostInputMaster->pokemon[index];
 
 	pokemon->ivs[0] = iv0;
 	pokemon->ivs[1] = iv1;
@@ -47,7 +39,7 @@ void SetCudaCondition(int index, int iv0, int iv1, int iv2, int iv3, int iv4, in
 	pokemon->flawlessIvs = flawlessIvs;
 
 	// ECbitが利用できるか？
-	if(cu_HostMaster->ecBit == -1)
+	if(cu_HostInputMaster->ecBit == -1)
 	{
 		int target = (characteristic == 0 ? 5 : characteristic - 1);
 		if(pokemon->IsCharacterized(target))
@@ -55,28 +47,28 @@ void SetCudaCondition(int index, int iv0, int iv1, int iv2, int iv3, int iv4, in
 			// EC mod6 がcharacteristicで確定
 			if(index != 2) // SeedのECbitなので反転させる
 			{
-				cu_HostMaster->ecBit = 1 - characteristic % 2;
+				cu_HostInputMaster->ecBit = 1 - characteristic % 2;
 			}
 			else // Nextなのでさらに反転されてそのまま
 			{
-				cu_HostMaster->ecBit = characteristic % 2;
+				cu_HostInputMaster->ecBit = characteristic % 2;
 			}
 		}
 	}
 
 	// EC mod6として考えられるもののフラグを立てる
 	bool flag = true;
-	cu_HostMaster->ecMod[index][characteristic] = true;
+	cu_HostInputMaster->ecMod[index][characteristic] = true;
 	for(int i = 1; i < 6; ++i)
 	{
 		int target = (characteristic + 6 - i) % 6;
 		if(flag && pokemon->IsCharacterized(target) == false)
 		{
-			cu_HostMaster->ecMod[index][target] = true;
+			cu_HostInputMaster->ecMod[index][target] = true;
 		}
 		else
 		{
-			cu_HostMaster->ecMod[index][target] = false;
+			cu_HostInputMaster->ecMod[index][target] = false;
 			flag = false;
 		}
 	}
@@ -85,30 +77,42 @@ void SetCudaCondition(int index, int iv0, int iv1, int iv2, int iv3, int iv4, in
 void SetCudaTargetCondition6(int iv1, int iv2, int iv3, int iv4, int iv5, int iv6)
 {
 	g_CudaFixedIvs = 6;
-	cu_HostMaster->ivs[0] = iv1;
-	cu_HostMaster->ivs[1] = iv2;
-	cu_HostMaster->ivs[2] = iv3;
-	cu_HostMaster->ivs[3] = iv4;
-	cu_HostMaster->ivs[4] = iv5;
-	cu_HostMaster->ivs[5] = iv6;
+	cu_HostInputMaster->ivs[0] = iv1;
+	cu_HostInputMaster->ivs[1] = iv2;
+	cu_HostInputMaster->ivs[2] = iv3;
+	cu_HostInputMaster->ivs[3] = iv4;
+	cu_HostInputMaster->ivs[4] = iv5;
+	cu_HostInputMaster->ivs[5] = iv6;
 }
 
 void SetCudaTargetCondition5(int iv1, int iv2, int iv3, int iv4, int iv5)
 {
 	g_CudaFixedIvs = 5;
-	cu_HostMaster->ivs[0] = iv1;
-	cu_HostMaster->ivs[1] = iv2;
-	cu_HostMaster->ivs[2] = iv3;
-	cu_HostMaster->ivs[3] = iv4;
-	cu_HostMaster->ivs[4] = iv5;
-	cu_HostMaster->ivs[5] = 0;
+	cu_HostInputMaster->ivs[0] = iv1;
+	cu_HostInputMaster->ivs[1] = iv2;
+	cu_HostInputMaster->ivs[2] = iv3;
+	cu_HostInputMaster->ivs[3] = iv4;
+	cu_HostInputMaster->ivs[4] = iv5;
+	cu_HostInputMaster->ivs[5] = 0;
 }
 
+// 計算ループ前の初期化
+void CudaCalcInitialize()
+{
+	if(g_CudaFixedIvs == 5)
+	{
+		Cuda5Initialize();
+	}
+	else
+	{
+		Cuda6Initialize();
+	}
+}
+
+// 計算前の事前計算
 void PrepareCuda(int ivOffset)
 {
 	const int length = g_CudaFixedIvs * 10;
-
-	g_CudaIvOffset = ivOffset;
 
 	// 使用する行列値をセット
 	// 使用する定数ベクトルをセット
@@ -119,7 +123,7 @@ void PrepareCuda(int ivOffset)
 
 	// 変換行列を計算
 	InitializeTransformationMatrix(); // r[1]が得られる変換行列がセットされる
-	for(int i = 0; i <= 9 - g_CudaFixedIvs + ivOffset - 1; ++i)
+	for(int i = 0; i <= 9 - g_CudaFixedIvs + ivOffset; ++i)
 	{
 		ProceedTransformationMatrix(); // r[2 + i]が得られる
 	}
@@ -146,14 +150,46 @@ void PrepareCuda(int ivOffset)
 	CalculateCoefficientData(length);
 
 	// Cuda初期化
-	CudaSetMasterData(length);
+	if(g_CudaFixedIvs == 5)
+	{
+		Cuda5SetMasterData();
+	}
+	else
+	{
+		Cuda6SetMasterData();
+	}
 }
 
-void PreCalc(_u32 ivs, int partitionBit)
+void SearchCuda(_u32 ivs, int partitionBit)
 {
-	CudaProcess(ivs << (25 - partitionBit), 1 << partitionBit);
+	if(g_CudaFixedIvs == 5)
+	{
+		Cuda5Process(ivs << (25 - partitionBit), 1 << partitionBit);
+	}
+	else
+	{
+		Cuda6Process(ivs << (30 - partitionBit), 1 << (partitionBit - 1));
+	}
 }
-_u64 SearchCuda(int threadId)
+int GetResultCount()
 {
-	return cu_HostResult[0];
+	return *cu_HostResultCount;
+}
+_u64 GetResult(int index)
+{
+	return cu_HostResult[index];
+}
+
+// 計算ループ後の処理
+void CudaCalcFinalize()
+{
+	if(g_CudaFixedIvs == 5)
+	{
+		Cuda5Finalize();
+	}
+	else
+	{
+		Cuda6Finalize();
+	}
+	CudaFinalizeImpl();
 }
