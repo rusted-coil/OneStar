@@ -78,7 +78,7 @@
         "MaxFrame": "最大幀數：",
         "OnlyShiny": "只列色違",
         "ShowSeed": "顯示種子數值",
-	"ShowEC": "顯示EC數值"
+        "ShowEC": "顯示EC數值",
         "ListButton": "列表輸出",
         "ShowDuration": "顯示計算時間",
         "StartSearch": "檢索開始",
