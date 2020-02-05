@@ -124,6 +124,7 @@ __global__ static void kernel_calc(
 	_u32 next[7]; // S0Upper、S0Lower、S1Upper、S1Lower
 	_u64 temp64;
 	_u32 temp32;
+	_u32 temp32_2;
 	for(int i = 0; i < 1024; ++i)
 	{
 		seeds[0] = processedTargetUpper ^ coefficientData[i * 2];
@@ -176,40 +177,43 @@ __global__ static void kernel_calc(
 		CudaNext(next); // PID
 
 		{
-			int ivs[6] = { -1, -1, -1, -1, -1, -1 };
+			// 個体値
+			int ivs[8] = { -1, -1, -1, -1, -1, -1, 31, 31 };
+
 			temp32 = 0;
 			do {
-				int fixedIndex = 0;
 				do {
-					fixedIndex = CudaNext(next, 7); // V箇所
-				} while(fixedIndex >= 6);
+					temp32_2 = CudaNext(next, 7);
+				} while(ivs[temp32_2] == 31);
 
-				if(ivs[fixedIndex] == -1)
+				if(pokemon[2].ivs[temp32_2] != 31)
 				{
-					ivs[fixedIndex] = 31;
-					++temp32;
+					temp32 = 10;
+					break;
 				}
+
+				ivs[temp32_2] = 31;
+				++temp32;
 			} while(temp32 < pokemon[2].flawlessIvs);
 
-			// 個体値
-			temp32 = 1;
+			if(temp32 == 10)
+			{
+				continue;
+			}
+
 			for(int i = 0; i < 6; ++i)
 			{
-				if(ivs[i] == 31)
+				if(ivs[i] != 31)
 				{
-					if(pokemon[2].ivs[i] != 31)
+					if(pokemon[2].ivs[i] != CudaNext(next, 0x1F))
 					{
-						temp32 = 0;
+						temp32 = 10;
 						break;
 					}
 				}
-				else if(pokemon[2].ivs[i] != CudaNext(next, 0x1F))
-				{
-					temp32 = 0;
-					break;
-				}
 			}
-			if(temp32 == 0)
+			
+			if(temp32 == 10)
 			{
 				continue;
 			}
@@ -264,79 +268,85 @@ __global__ static void kernel_calc(
 			next[3] = seeds[3];
 
 			{
-				int ivs[6] = { -1, -1, -1, -1, -1, -1 };
+				// 個体値
+				int ivs[8] = { -1, -1, -1, -1, -1, -1, 31, 31 };
+
 				temp32 = 0;
 				do {
-					int fixedIndex = 0;
 					do {
-						fixedIndex = CudaNext(seeds, 7); // V箇所
-					} while(fixedIndex >= 6);
+						temp32_2 = CudaNext(seeds, 7);
+					} while(ivs[temp32_2] == 31);
 
-					if(ivs[fixedIndex] == -1)
+					if(pokemon[0].ivs[temp32_2] != 31)
 					{
-						ivs[fixedIndex] = 31;
-						++temp32;
+						temp32 = 10;
+						break;
 					}
+
+					ivs[temp32_2] = 31;
+					++temp32;
 				} while(temp32 < pokemon[0].flawlessIvs);
 
-				// 個体値
-				temp32 = 1;
+				if(temp32 == 10)
+				{
+					continue;
+				}
+
 				for(int i = 0; i < 6; ++i)
 				{
-					if(ivs[i] == 31)
+					if(ivs[i] != 31)
 					{
-						if(pokemon[0].ivs[i] != 31)
+						if(pokemon[0].ivs[i] != CudaNext(seeds, 0x1F))
 						{
-							temp32 = 0;
+							temp32 = 10;
 							break;
 						}
 					}
-					else if(pokemon[0].ivs[i] != CudaNext(seeds, 0x1F))
-					{
-						temp32 = 0;
-						break;
-					}
 				}
-				if(temp32 == 0)
+
+				if(temp32 == 10)
 				{
 					continue;
 				}
 			}
 			{
-				int ivs[6] = { -1, -1, -1, -1, -1, -1 };
+				// 個体値
+				int ivs[8] = { -1, -1, -1, -1, -1, -1, 31, 31 };
+
 				temp32 = 0;
 				do {
-					int fixedIndex = 0;
 					do {
-						fixedIndex = CudaNext(next, 7); // V箇所
-					} while(fixedIndex >= 6);
+						temp32_2 = CudaNext(next, 7);
+					} while(ivs[temp32_2] == 31);
 
-					if(ivs[fixedIndex] == -1)
+					if(pokemon[1].ivs[temp32_2] != 31)
 					{
-						ivs[fixedIndex] = 31;
-						++temp32;
+						temp32 = 10;
+						break;
 					}
+
+					ivs[temp32_2] = 31;
+					++temp32;
 				} while(temp32 < pokemon[1].flawlessIvs);
 
-				// 個体値
-				temp32 = 1;
+				if(temp32 == 10)
+				{
+					continue;
+				}
+
 				for(int i = 0; i < 6; ++i)
 				{
-					if(ivs[i] == 31)
+					if(ivs[i] != 31)
 					{
-						if(pokemon[1].ivs[i] != 31)
+						if(pokemon[1].ivs[i] != CudaNext(next, 0x1F))
 						{
-							temp32 = 0;
+							temp32 = 10;
 							break;
 						}
 					}
-					else if(pokemon[1].ivs[i] != CudaNext(next, 0x1F))
-					{
-						temp32 = 0;
-						break;
-					}
 				}
-				if(temp32 == 0)
+
+				if(temp32 == 10)
 				{
 					continue;
 				}
