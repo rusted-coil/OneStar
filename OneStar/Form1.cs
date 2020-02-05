@@ -55,7 +55,8 @@ namespace OneStar
 			public TextBox TextBoxLevel { get; set; } = null;
 			public TextBox[] TextBoxIvs { get; set; } = new TextBox[6];
 			public TextBox[] TextBoxStatus { get; set; } = new TextBox[6];
-			public ComboBox ComboBoxNature { get; set; } = null;
+            public CheckBox[] CheckBoxStatus { get; set; } = new CheckBox[6];
+            public ComboBox ComboBoxNature { get; set; } = null;
 			public ComboBox ComboBoxCharacteristic { get; set; } = null;
 			public ComboBox ComboBoxAbility { get; set; } = null;
 		};
@@ -221,7 +222,13 @@ namespace OneStar
 			m_PokemonInfo[0].TextBoxStatus[3] = f_TextBoxStatus3_1;
 			m_PokemonInfo[0].TextBoxStatus[4] = f_TextBoxStatus4_1;
 			m_PokemonInfo[0].TextBoxStatus[5] = f_TextBoxStatus5_1;
-			m_PokemonInfo[0].ComboBoxNature = f_ComboBoxNature_1;
+            m_PokemonInfo[0].CheckBoxStatus[0] = checkBox21;
+            m_PokemonInfo[0].CheckBoxStatus[1] = checkBox20;
+            m_PokemonInfo[0].CheckBoxStatus[2] = checkBox19;
+            m_PokemonInfo[0].CheckBoxStatus[3] = checkBox24;
+            m_PokemonInfo[0].CheckBoxStatus[4] = checkBox23;
+            m_PokemonInfo[0].CheckBoxStatus[5] = checkBox22;
+            m_PokemonInfo[0].ComboBoxNature = f_ComboBoxNature_1;
 			m_PokemonInfo[0].ComboBoxCharacteristic = f_ComboBoxCharacteristic_1;
 			m_PokemonInfo[0].ComboBoxAbility = f_ComboBoxAbility_1;
 			m_PokemonInfo[1] = new PokemonInfoForm();
@@ -239,7 +246,13 @@ namespace OneStar
 			m_PokemonInfo[1].TextBoxStatus[3] = f_TextBoxStatus3_2;
 			m_PokemonInfo[1].TextBoxStatus[4] = f_TextBoxStatus4_2;
 			m_PokemonInfo[1].TextBoxStatus[5] = f_TextBoxStatus5_2;
-			m_PokemonInfo[1].ComboBoxNature = f_ComboBoxNature_2;
+            m_PokemonInfo[1].CheckBoxStatus[0] = checkBox27;
+            m_PokemonInfo[1].CheckBoxStatus[1] = checkBox26;
+            m_PokemonInfo[1].CheckBoxStatus[2] = checkBox25;
+            m_PokemonInfo[1].CheckBoxStatus[3] = checkBox30;
+            m_PokemonInfo[1].CheckBoxStatus[4] = checkBox29;
+            m_PokemonInfo[1].CheckBoxStatus[5] = checkBox28;
+            m_PokemonInfo[1].ComboBoxNature = f_ComboBoxNature_2;
 			m_PokemonInfo[1].ComboBoxCharacteristic = f_ComboBoxCharacteristic_2;
 			m_PokemonInfo[1].ComboBoxAbility = f_ComboBoxAbility_2;
 			m_PokemonInfo[2] = new PokemonInfoForm();
@@ -257,7 +270,13 @@ namespace OneStar
 			m_PokemonInfo[2].TextBoxStatus[3] = f_TextBoxStatus3_3;
 			m_PokemonInfo[2].TextBoxStatus[4] = f_TextBoxStatus4_3;
 			m_PokemonInfo[2].TextBoxStatus[5] = f_TextBoxStatus5_3;
-			m_PokemonInfo[2].ComboBoxNature = f_ComboBoxNature_3;
+            m_PokemonInfo[2].CheckBoxStatus[0] = checkBox33;
+            m_PokemonInfo[2].CheckBoxStatus[1] = checkBox32;
+            m_PokemonInfo[2].CheckBoxStatus[2] = checkBox31;
+            m_PokemonInfo[2].CheckBoxStatus[3] = checkBox36;
+            m_PokemonInfo[2].CheckBoxStatus[4] = checkBox35;
+            m_PokemonInfo[2].CheckBoxStatus[5] = checkBox34;
+            m_PokemonInfo[2].ComboBoxNature = f_ComboBoxNature_3;
 			m_PokemonInfo[2].ComboBoxCharacteristic = f_ComboBoxCharacteristic_3;
 			m_PokemonInfo[2].ComboBoxAbility = f_ComboBoxAbility_3;
 			m_PokemonInfo[3] = new PokemonInfoForm();
@@ -275,7 +294,13 @@ namespace OneStar
 			m_PokemonInfo[3].TextBoxStatus[3] = f_TextBoxStatus3_351;
 			m_PokemonInfo[3].TextBoxStatus[4] = f_TextBoxStatus4_351;
 			m_PokemonInfo[3].TextBoxStatus[5] = f_TextBoxStatus5_351;
-			m_PokemonInfo[3].ComboBoxNature = f_ComboBoxNature_351;
+            m_PokemonInfo[3].CheckBoxStatus[0] = checkBox1;
+            m_PokemonInfo[3].CheckBoxStatus[1] = checkBox2;
+            m_PokemonInfo[3].CheckBoxStatus[2] = checkBox3;
+            m_PokemonInfo[3].CheckBoxStatus[3] = checkBox6;
+            m_PokemonInfo[3].CheckBoxStatus[4] = checkBox5;
+            m_PokemonInfo[3].CheckBoxStatus[5] = checkBox4;
+            m_PokemonInfo[3].ComboBoxNature = f_ComboBoxNature_351;
 			m_PokemonInfo[3].ComboBoxCharacteristic = f_ComboBoxCharacteristic_351;
 			m_PokemonInfo[3].ComboBoxAbility = f_ComboBoxAbility_351;
 			m_PokemonInfo[4] = new PokemonInfoForm();
@@ -293,7 +318,13 @@ namespace OneStar
 			m_PokemonInfo[4].TextBoxStatus[3] = f_TextBoxStatus3_352;
 			m_PokemonInfo[4].TextBoxStatus[4] = f_TextBoxStatus4_352;
 			m_PokemonInfo[4].TextBoxStatus[5] = f_TextBoxStatus5_352;
-			m_PokemonInfo[4].ComboBoxNature = f_ComboBoxNature_352;
+            m_PokemonInfo[4].CheckBoxStatus[0] = checkBox9;
+            m_PokemonInfo[4].CheckBoxStatus[1] = checkBox8;
+            m_PokemonInfo[4].CheckBoxStatus[2] = checkBox7;
+            m_PokemonInfo[4].CheckBoxStatus[3] = checkBox12;
+            m_PokemonInfo[4].CheckBoxStatus[4] = checkBox11;
+            m_PokemonInfo[4].CheckBoxStatus[5] = checkBox10;
+            m_PokemonInfo[4].ComboBoxNature = f_ComboBoxNature_352;
 			m_PokemonInfo[4].ComboBoxCharacteristic = f_ComboBoxCharacteristic_352;
 			m_PokemonInfo[4].ComboBoxAbility = f_ComboBoxAbility_352;
 			m_PokemonInfo[5] = new PokemonInfoForm();
@@ -311,7 +342,13 @@ namespace OneStar
 			m_PokemonInfo[5].TextBoxStatus[3] = f_TextBoxStatus3_353;
 			m_PokemonInfo[5].TextBoxStatus[4] = f_TextBoxStatus4_353;
 			m_PokemonInfo[5].TextBoxStatus[5] = f_TextBoxStatus5_353;
-			m_PokemonInfo[5].ComboBoxNature = f_ComboBoxNature_353;
+            m_PokemonInfo[5].CheckBoxStatus[0] = checkBox15;
+            m_PokemonInfo[5].CheckBoxStatus[1] = checkBox14;
+            m_PokemonInfo[5].CheckBoxStatus[2] = checkBox13;
+            m_PokemonInfo[5].CheckBoxStatus[3] = checkBox18;
+            m_PokemonInfo[5].CheckBoxStatus[4] = checkBox17;
+            m_PokemonInfo[5].CheckBoxStatus[5] = checkBox16;
+            m_PokemonInfo[5].ComboBoxNature = f_ComboBoxNature_353;
 			m_PokemonInfo[5].ComboBoxCharacteristic = f_ComboBoxCharacteristic_353;
 			m_PokemonInfo[5].ComboBoxAbility = f_ComboBoxAbility_353;
 			// コールバックをセット
@@ -379,7 +416,8 @@ namespace OneStar
 			m_MultiLanguageControls["CheckIvsResultTitle"] = new Control[] { f_LabelCheckResultTitle };
 			m_MultiLanguageControls["MaxFrame"] = new Control[] { f_LabelMaxFrame };
 			m_MultiLanguageControls["OnlyShiny"] = new Control[] { f_CheckBoxListShiny };
-			m_MultiLanguageControls["ShowSeed"] = new Control[] { f_CheckBoxShowSeed };
+            m_MultiLanguageControls["ShowEC"] = new Control[] { f_CheckBoxShowEC };
+            m_MultiLanguageControls["ShowSeed"] = new Control[] { f_CheckBoxShowSeed };
 			m_MultiLanguageControls["ListButton"] = new Control[] { f_ButtonListGenerate };
 			m_MultiLanguageControls["ShowDuration"] = new Control[] { f_CheckBoxShowResultTime };
 			m_MultiLanguageControls["StartSearch"] = new Control[] { f_ButtonStartSearch };
@@ -1181,7 +1219,8 @@ namespace OneStar
 			f_MenuItemThreadCount.Text = Messages.Instance.SystemLabel["ThreadSetting"];
 			f_MenuItemGpuTest.Text = Messages.Instance.SystemLabel["GpuCheck"];
 
-			foreach (var pair in m_MultiLanguageControls)
+
+            foreach (var pair in m_MultiLanguageControls)
 			{
 				string str = Messages.Instance.SystemLabel[pair.Key];
 				foreach (var control in pair.Value)
@@ -1398,9 +1437,21 @@ namespace OneStar
 					int nature = Messages.Instance.Nature[pokemonInfo.ComboBoxNature.Text];
 					int characteristic = Messages.Instance.Characteristic[pokemonInfo.ComboBoxCharacteristic.Text];
 
-					var IVs = IVCalculator.getIVs(pokemonID, lv, nature, characteristic, new List<int>() { HP, Atk, Def, SpAtk, SpDef, Spd }, null);
+                    List<int> Evs = new List<int>();
 
-					bool uncertain = false;
+                    foreach (CheckBox Ev in pokemonInfo.CheckBoxStatus)
+                    {
+                        if (Ev.Checked)
+                        {
+                            Evs.Add(10);
+                        }
+                        else
+                        {
+                            Evs.Add(0);
+                        }
+                    }
+
+					var IVs = IVCalculator.getIVs(pokemonID, lv, nature, characteristic, new List<int>() { HP, Atk, Def, SpAtk, SpDef, Spd }, Evs);
 
 					for (int i = 0; i < 6; ++i)
 					{
@@ -1410,16 +1461,11 @@ namespace OneStar
 						}
 						else
 						{
-							uncertain = true;
 							pokemonInfo.TextBoxIvs[i].Text = "";
-						}
-					}
-
-					if (uncertain)
-					{
-						MessageBox.Show(Messages.Instance.SystemMessage["FindManyIvs"], Messages.Instance.SystemMessage["ResultDialogTitle"], MessageBoxButtons.OK, MessageBoxIcon.Information);
-					}
-				}
+                            MessageBox.Show(Messages.Instance.SystemMessage["FindManyIvs"]+ Messages.Instance.Status[i]+ IVs[i][0].ToString()+"/"+IVs[i][1].ToString(), Messages.Instance.SystemMessage["ResultDialogTitle"], MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
 				catch (FormatException)
 				{
 					CreateErrorDialog(Messages.Instance.ErrorMessage["VFormat"]);

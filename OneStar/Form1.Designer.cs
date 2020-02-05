@@ -32,6 +32,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.f_GroupBoxPokemon_1 = new System.Windows.Forms.GroupBox();
             this.f_GroupBoxStatus1 = new System.Windows.Forms.GroupBox();
+            this.checkBox22 = new System.Windows.Forms.CheckBox();
+            this.checkBox23 = new System.Windows.Forms.CheckBox();
+            this.checkBox24 = new System.Windows.Forms.CheckBox();
+            this.checkBox19 = new System.Windows.Forms.CheckBox();
+            this.checkBox20 = new System.Windows.Forms.CheckBox();
+            this.checkBox21 = new System.Windows.Forms.CheckBox();
             this.f_ButtonIvsCalc_1 = new System.Windows.Forms.Button();
             this.f_TextBoxStatus5_1 = new System.Windows.Forms.TextBox();
             this.f_LabelStatus20_1 = new System.Windows.Forms.Label();
@@ -68,6 +74,12 @@
             this.f_GroupBoxPokemon_2 = new System.Windows.Forms.GroupBox();
             this.f_ButtonEncounterInfo_2 = new System.Windows.Forms.Button();
             this.f_GroupBoxStatus2 = new System.Windows.Forms.GroupBox();
+            this.checkBox28 = new System.Windows.Forms.CheckBox();
+            this.checkBox29 = new System.Windows.Forms.CheckBox();
+            this.checkBox30 = new System.Windows.Forms.CheckBox();
+            this.checkBox25 = new System.Windows.Forms.CheckBox();
+            this.checkBox26 = new System.Windows.Forms.CheckBox();
+            this.checkBox27 = new System.Windows.Forms.CheckBox();
             this.f_ButtonIvsCalc_2 = new System.Windows.Forms.Button();
             this.f_TextBoxStatus5_2 = new System.Windows.Forms.TextBox();
             this.f_LabelLevel_2 = new System.Windows.Forms.Label();
@@ -118,6 +130,12 @@
             this.f_GroupBoxPokemon_352 = new System.Windows.Forms.GroupBox();
             this.f_ButtonEncounterInfo_352 = new System.Windows.Forms.Button();
             this.f_GroupBoxStatus352 = new System.Windows.Forms.GroupBox();
+            this.checkBox10 = new System.Windows.Forms.CheckBox();
+            this.checkBox11 = new System.Windows.Forms.CheckBox();
+            this.checkBox12 = new System.Windows.Forms.CheckBox();
+            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.checkBox8 = new System.Windows.Forms.CheckBox();
+            this.checkBox9 = new System.Windows.Forms.CheckBox();
             this.f_LabelStatus20_352 = new System.Windows.Forms.Label();
             this.f_LabelLevel_352 = new System.Windows.Forms.Label();
             this.f_TextBoxLevel_352 = new System.Windows.Forms.TextBox();
@@ -155,6 +173,12 @@
             this.f_ButtonIvsCheck = new System.Windows.Forms.Button();
             this.f_LabelCheckResult = new System.Windows.Forms.Label();
             this.f_GroupBoxStatus351 = new System.Windows.Forms.GroupBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.f_ButtonIvsCalc_351 = new System.Windows.Forms.Button();
             this.f_LabelLevel_351 = new System.Windows.Forms.Label();
             this.f_TextBoxLevel_351 = new System.Windows.Forms.TextBox();
@@ -192,6 +216,12 @@
             this.f_GroupBoxPokemon_353 = new System.Windows.Forms.GroupBox();
             this.f_ButtonEncounterInfo_353 = new System.Windows.Forms.Button();
             this.f_GroupBoxStatus353 = new System.Windows.Forms.GroupBox();
+            this.checkBox16 = new System.Windows.Forms.CheckBox();
+            this.checkBox17 = new System.Windows.Forms.CheckBox();
+            this.checkBox18 = new System.Windows.Forms.CheckBox();
+            this.checkBox13 = new System.Windows.Forms.CheckBox();
+            this.checkBox14 = new System.Windows.Forms.CheckBox();
+            this.checkBox15 = new System.Windows.Forms.CheckBox();
             this.f_ButtonIvsCalc_353 = new System.Windows.Forms.Button();
             this.f_LabelLevel_353 = new System.Windows.Forms.Label();
             this.f_TextBoxLevel_353 = new System.Windows.Forms.TextBox();
@@ -229,6 +259,12 @@
             this.f_GroupBoxPokemon_3 = new System.Windows.Forms.GroupBox();
             this.f_ButtonEncounterInfo_3 = new System.Windows.Forms.Button();
             this.f_GroupBoxStatus3 = new System.Windows.Forms.GroupBox();
+            this.checkBox34 = new System.Windows.Forms.CheckBox();
+            this.checkBox35 = new System.Windows.Forms.CheckBox();
+            this.checkBox36 = new System.Windows.Forms.CheckBox();
+            this.checkBox31 = new System.Windows.Forms.CheckBox();
+            this.checkBox32 = new System.Windows.Forms.CheckBox();
+            this.checkBox33 = new System.Windows.Forms.CheckBox();
             this.f_ButtonIvsCalc_3 = new System.Windows.Forms.Button();
             this.f_TextBoxStatus5_3 = new System.Windows.Forms.TextBox();
             this.f_LabelStatus20_3 = new System.Windows.Forms.Label();
@@ -350,7 +386,7 @@
             this.f_GroupBoxPokemon_1.Controls.Add(this.f_LabelIvs_1);
             this.f_GroupBoxPokemon_1.Location = new System.Drawing.Point(12, 6);
             this.f_GroupBoxPokemon_1.Name = "f_GroupBoxPokemon_1";
-            this.f_GroupBoxPokemon_1.Size = new System.Drawing.Size(497, 185);
+            this.f_GroupBoxPokemon_1.Size = new System.Drawing.Size(575, 186);
             this.f_GroupBoxPokemon_1.TabIndex = 0;
             this.f_GroupBoxPokemon_1.TabStop = false;
             this.f_GroupBoxPokemon_1.Text = "1匹目";
@@ -358,6 +394,12 @@
             // f_GroupBoxStatus1
             // 
             this.f_GroupBoxStatus1.BackColor = System.Drawing.Color.LightCyan;
+            this.f_GroupBoxStatus1.Controls.Add(this.checkBox22);
+            this.f_GroupBoxStatus1.Controls.Add(this.checkBox23);
+            this.f_GroupBoxStatus1.Controls.Add(this.checkBox24);
+            this.f_GroupBoxStatus1.Controls.Add(this.checkBox19);
+            this.f_GroupBoxStatus1.Controls.Add(this.checkBox20);
+            this.f_GroupBoxStatus1.Controls.Add(this.checkBox21);
             this.f_GroupBoxStatus1.Controls.Add(this.f_ButtonIvsCalc_1);
             this.f_GroupBoxStatus1.Controls.Add(this.f_TextBoxStatus5_1);
             this.f_GroupBoxStatus1.Controls.Add(this.f_LabelStatus20_1);
@@ -375,10 +417,76 @@
             this.f_GroupBoxStatus1.Controls.Add(this.f_TextBoxStatus3_1);
             this.f_GroupBoxStatus1.Location = new System.Drawing.Point(228, 77);
             this.f_GroupBoxStatus1.Name = "f_GroupBoxStatus1";
-            this.f_GroupBoxStatus1.Size = new System.Drawing.Size(260, 100);
+            this.f_GroupBoxStatus1.Size = new System.Drawing.Size(322, 100);
             this.f_GroupBoxStatus1.TabIndex = 11;
             this.f_GroupBoxStatus1.TabStop = false;
             this.f_GroupBoxStatus1.Text = "ステータス";
+            // 
+            // checkBox22
+            // 
+            this.checkBox22.AutoSize = true;
+            this.checkBox22.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox22.Location = new System.Drawing.Point(280, 73);
+            this.checkBox22.Name = "checkBox22";
+            this.checkBox22.Size = new System.Drawing.Size(42, 16);
+            this.checkBox22.TabIndex = 83;
+            this.checkBox22.Text = "+10";
+            this.checkBox22.UseVisualStyleBackColor = true;
+            // 
+            // checkBox23
+            // 
+            this.checkBox23.AutoSize = true;
+            this.checkBox23.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox23.Location = new System.Drawing.Point(280, 48);
+            this.checkBox23.Name = "checkBox23";
+            this.checkBox23.Size = new System.Drawing.Size(42, 16);
+            this.checkBox23.TabIndex = 82;
+            this.checkBox23.Text = "+10";
+            this.checkBox23.UseVisualStyleBackColor = true;
+            // 
+            // checkBox24
+            // 
+            this.checkBox24.AutoSize = true;
+            this.checkBox24.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox24.Location = new System.Drawing.Point(280, 22);
+            this.checkBox24.Name = "checkBox24";
+            this.checkBox24.Size = new System.Drawing.Size(42, 16);
+            this.checkBox24.TabIndex = 81;
+            this.checkBox24.Text = "+10";
+            this.checkBox24.UseVisualStyleBackColor = true;
+            // 
+            // checkBox19
+            // 
+            this.checkBox19.AutoSize = true;
+            this.checkBox19.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox19.Location = new System.Drawing.Point(166, 73);
+            this.checkBox19.Name = "checkBox19";
+            this.checkBox19.Size = new System.Drawing.Size(42, 16);
+            this.checkBox19.TabIndex = 80;
+            this.checkBox19.Text = "+10";
+            this.checkBox19.UseVisualStyleBackColor = true;
+            // 
+            // checkBox20
+            // 
+            this.checkBox20.AutoSize = true;
+            this.checkBox20.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox20.Location = new System.Drawing.Point(166, 48);
+            this.checkBox20.Name = "checkBox20";
+            this.checkBox20.Size = new System.Drawing.Size(42, 16);
+            this.checkBox20.TabIndex = 79;
+            this.checkBox20.Text = "+10";
+            this.checkBox20.UseVisualStyleBackColor = true;
+            // 
+            // checkBox21
+            // 
+            this.checkBox21.AutoSize = true;
+            this.checkBox21.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox21.Location = new System.Drawing.Point(166, 22);
+            this.checkBox21.Name = "checkBox21";
+            this.checkBox21.Size = new System.Drawing.Size(42, 16);
+            this.checkBox21.TabIndex = 78;
+            this.checkBox21.Text = "+10";
+            this.checkBox21.UseVisualStyleBackColor = true;
             // 
             // f_ButtonIvsCalc_1
             // 
@@ -394,10 +502,10 @@
             // 
             // f_TextBoxStatus5_1
             // 
-            this.f_TextBoxStatus5_1.Location = new System.Drawing.Point(203, 69);
+            this.f_TextBoxStatus5_1.Location = new System.Drawing.Point(240, 69);
             this.f_TextBoxStatus5_1.MaxLength = 3;
             this.f_TextBoxStatus5_1.Name = "f_TextBoxStatus5_1";
-            this.f_TextBoxStatus5_1.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus5_1.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus5_1.TabIndex = 6;
             // 
             // f_LabelStatus20_1
@@ -416,14 +524,14 @@
             this.f_TextBoxStatus0_1.Location = new System.Drawing.Point(123, 19);
             this.f_TextBoxStatus0_1.MaxLength = 3;
             this.f_TextBoxStatus0_1.Name = "f_TextBoxStatus0_1";
-            this.f_TextBoxStatus0_1.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus0_1.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus0_1.TabIndex = 1;
             // 
             // f_LabelStatus25_1
             // 
             this.f_LabelStatus25_1.BackColor = System.Drawing.Color.LightCyan;
             this.f_LabelStatus25_1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.f_LabelStatus25_1.Location = new System.Drawing.Point(171, 72);
+            this.f_LabelStatus25_1.Location = new System.Drawing.Point(210, 72);
             this.f_LabelStatus25_1.Name = "f_LabelStatus25_1";
             this.f_LabelStatus25_1.Size = new System.Drawing.Size(30, 12);
             this.f_LabelStatus25_1.TabIndex = 77;
@@ -443,10 +551,10 @@
             // 
             // f_TextBoxStatus4_1
             // 
-            this.f_TextBoxStatus4_1.Location = new System.Drawing.Point(203, 44);
+            this.f_TextBoxStatus4_1.Location = new System.Drawing.Point(240, 44);
             this.f_TextBoxStatus4_1.MaxLength = 3;
             this.f_TextBoxStatus4_1.Name = "f_TextBoxStatus4_1";
-            this.f_TextBoxStatus4_1.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus4_1.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus4_1.TabIndex = 5;
             // 
             // f_TextBoxStatus1_1
@@ -454,7 +562,7 @@
             this.f_TextBoxStatus1_1.Location = new System.Drawing.Point(123, 44);
             this.f_TextBoxStatus1_1.MaxLength = 3;
             this.f_TextBoxStatus1_1.Name = "f_TextBoxStatus1_1";
-            this.f_TextBoxStatus1_1.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus1_1.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus1_1.TabIndex = 2;
             // 
             // f_LabelLevel_1
@@ -483,7 +591,7 @@
             // 
             this.f_LabelStatus24_1.BackColor = System.Drawing.Color.LightCyan;
             this.f_LabelStatus24_1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.f_LabelStatus24_1.Location = new System.Drawing.Point(171, 47);
+            this.f_LabelStatus24_1.Location = new System.Drawing.Point(210, 47);
             this.f_LabelStatus24_1.Name = "f_LabelStatus24_1";
             this.f_LabelStatus24_1.Size = new System.Drawing.Size(30, 12);
             this.f_LabelStatus24_1.TabIndex = 76;
@@ -495,7 +603,7 @@
             this.f_TextBoxStatus2_1.Location = new System.Drawing.Point(123, 69);
             this.f_TextBoxStatus2_1.MaxLength = 3;
             this.f_TextBoxStatus2_1.Name = "f_TextBoxStatus2_1";
-            this.f_TextBoxStatus2_1.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus2_1.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus2_1.TabIndex = 3;
             // 
             // f_TextBoxLevel_1
@@ -503,14 +611,14 @@
             this.f_TextBoxLevel_1.Location = new System.Drawing.Point(46, 19);
             this.f_TextBoxLevel_1.MaxLength = 3;
             this.f_TextBoxLevel_1.Name = "f_TextBoxLevel_1";
-            this.f_TextBoxLevel_1.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxLevel_1.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxLevel_1.TabIndex = 0;
             // 
             // f_LabelStatus23_1
             // 
             this.f_LabelStatus23_1.BackColor = System.Drawing.Color.LightCyan;
             this.f_LabelStatus23_1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.f_LabelStatus23_1.Location = new System.Drawing.Point(171, 22);
+            this.f_LabelStatus23_1.Location = new System.Drawing.Point(210, 22);
             this.f_LabelStatus23_1.Name = "f_LabelStatus23_1";
             this.f_LabelStatus23_1.Size = new System.Drawing.Size(30, 12);
             this.f_LabelStatus23_1.TabIndex = 75;
@@ -519,10 +627,10 @@
             // 
             // f_TextBoxStatus3_1
             // 
-            this.f_TextBoxStatus3_1.Location = new System.Drawing.Point(203, 19);
+            this.f_TextBoxStatus3_1.Location = new System.Drawing.Point(240, 19);
             this.f_TextBoxStatus3_1.MaxLength = 3;
             this.f_TextBoxStatus3_1.Name = "f_TextBoxStatus3_1";
-            this.f_TextBoxStatus3_1.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus3_1.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus3_1.TabIndex = 4;
             // 
             // f_ButtonEncounterInfo_1
@@ -530,7 +638,7 @@
             this.f_ButtonEncounterInfo_1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.f_ButtonEncounterInfo_1.Location = new System.Drawing.Point(210, 18);
             this.f_ButtonEncounterInfo_1.Name = "f_ButtonEncounterInfo_1";
-            this.f_ButtonEncounterInfo_1.Size = new System.Drawing.Size(54, 22);
+            this.f_ButtonEncounterInfo_1.Size = new System.Drawing.Size(61, 22);
             this.f_ButtonEncounterInfo_1.TabIndex = 1;
             this.f_ButtonEncounterInfo_1.Text = "情報";
             this.f_ButtonEncounterInfo_1.UseVisualStyleBackColor = true;
@@ -570,7 +678,7 @@
             this.f_TextBoxIv5_1.Location = new System.Drawing.Point(170, 146);
             this.f_TextBoxIv5_1.MaxLength = 2;
             this.f_TextBoxIv5_1.Name = "f_TextBoxIv5_1";
-            this.f_TextBoxIv5_1.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv5_1.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv5_1.TabIndex = 10;
             // 
             // f_ComboBoxPokemon_1
@@ -598,7 +706,7 @@
             this.f_TextBoxIv4_1.Location = new System.Drawing.Point(170, 121);
             this.f_TextBoxIv4_1.MaxLength = 2;
             this.f_TextBoxIv4_1.Name = "f_TextBoxIv4_1";
-            this.f_TextBoxIv4_1.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv4_1.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv4_1.TabIndex = 9;
             // 
             // f_LabelStatus4_1
@@ -616,7 +724,7 @@
             this.f_TextBoxIv3_1.Location = new System.Drawing.Point(170, 96);
             this.f_TextBoxIv3_1.MaxLength = 2;
             this.f_TextBoxIv3_1.Name = "f_TextBoxIv3_1";
-            this.f_TextBoxIv3_1.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv3_1.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv3_1.TabIndex = 8;
             // 
             // f_LabelStatus3_1
@@ -634,7 +742,7 @@
             this.f_TextBoxIv2_1.Location = new System.Drawing.Point(90, 146);
             this.f_TextBoxIv2_1.MaxLength = 2;
             this.f_TextBoxIv2_1.Name = "f_TextBoxIv2_1";
-            this.f_TextBoxIv2_1.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv2_1.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv2_1.TabIndex = 7;
             // 
             // f_LabelStatus2_1
@@ -652,7 +760,7 @@
             this.f_TextBoxIv1_1.Location = new System.Drawing.Point(90, 121);
             this.f_TextBoxIv1_1.MaxLength = 2;
             this.f_TextBoxIv1_1.Name = "f_TextBoxIv1_1";
-            this.f_TextBoxIv1_1.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv1_1.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv1_1.TabIndex = 6;
             // 
             // f_LabelStatus1_1
@@ -670,7 +778,7 @@
             this.f_TextBoxIv0_1.Location = new System.Drawing.Point(90, 96);
             this.f_TextBoxIv0_1.MaxLength = 2;
             this.f_TextBoxIv0_1.Name = "f_TextBoxIv0_1";
-            this.f_TextBoxIv0_1.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv0_1.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv0_1.TabIndex = 5;
             // 
             // f_LabelStatus0_1
@@ -689,7 +797,7 @@
             this.f_LabelIvs_1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.f_LabelIvs_1.Location = new System.Drawing.Point(13, 124);
             this.f_LabelIvs_1.Name = "f_LabelIvs_1";
-            this.f_LabelIvs_1.Size = new System.Drawing.Size(47, 12);
+            this.f_LabelIvs_1.Size = new System.Drawing.Size(53, 12);
             this.f_LabelIvs_1.TabIndex = 0;
             this.f_LabelIvs_1.Text = "個体値：";
             // 
@@ -716,7 +824,7 @@
             this.f_GroupBoxPokemon_2.Controls.Add(this.f_LabelIvs_2);
             this.f_GroupBoxPokemon_2.Location = new System.Drawing.Point(12, 197);
             this.f_GroupBoxPokemon_2.Name = "f_GroupBoxPokemon_2";
-            this.f_GroupBoxPokemon_2.Size = new System.Drawing.Size(497, 185);
+            this.f_GroupBoxPokemon_2.Size = new System.Drawing.Size(575, 186);
             this.f_GroupBoxPokemon_2.TabIndex = 1;
             this.f_GroupBoxPokemon_2.TabStop = false;
             this.f_GroupBoxPokemon_2.Text = "2匹目";
@@ -726,7 +834,7 @@
             this.f_ButtonEncounterInfo_2.ForeColor = System.Drawing.SystemColors.ControlText;
             this.f_ButtonEncounterInfo_2.Location = new System.Drawing.Point(210, 18);
             this.f_ButtonEncounterInfo_2.Name = "f_ButtonEncounterInfo_2";
-            this.f_ButtonEncounterInfo_2.Size = new System.Drawing.Size(54, 22);
+            this.f_ButtonEncounterInfo_2.Size = new System.Drawing.Size(61, 22);
             this.f_ButtonEncounterInfo_2.TabIndex = 1;
             this.f_ButtonEncounterInfo_2.Text = "情報";
             this.f_ButtonEncounterInfo_2.UseVisualStyleBackColor = true;
@@ -735,6 +843,12 @@
             // f_GroupBoxStatus2
             // 
             this.f_GroupBoxStatus2.BackColor = System.Drawing.Color.LightCyan;
+            this.f_GroupBoxStatus2.Controls.Add(this.checkBox28);
+            this.f_GroupBoxStatus2.Controls.Add(this.checkBox29);
+            this.f_GroupBoxStatus2.Controls.Add(this.checkBox30);
+            this.f_GroupBoxStatus2.Controls.Add(this.checkBox25);
+            this.f_GroupBoxStatus2.Controls.Add(this.checkBox26);
+            this.f_GroupBoxStatus2.Controls.Add(this.checkBox27);
             this.f_GroupBoxStatus2.Controls.Add(this.f_ButtonIvsCalc_2);
             this.f_GroupBoxStatus2.Controls.Add(this.f_TextBoxStatus5_2);
             this.f_GroupBoxStatus2.Controls.Add(this.f_LabelLevel_2);
@@ -752,10 +866,76 @@
             this.f_GroupBoxStatus2.Controls.Add(this.f_LabelStatus23_2);
             this.f_GroupBoxStatus2.Location = new System.Drawing.Point(228, 77);
             this.f_GroupBoxStatus2.Name = "f_GroupBoxStatus2";
-            this.f_GroupBoxStatus2.Size = new System.Drawing.Size(260, 100);
+            this.f_GroupBoxStatus2.Size = new System.Drawing.Size(322, 100);
             this.f_GroupBoxStatus2.TabIndex = 11;
             this.f_GroupBoxStatus2.TabStop = false;
             this.f_GroupBoxStatus2.Text = "ステータス";
+            // 
+            // checkBox28
+            // 
+            this.checkBox28.AutoSize = true;
+            this.checkBox28.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox28.Location = new System.Drawing.Point(280, 73);
+            this.checkBox28.Name = "checkBox28";
+            this.checkBox28.Size = new System.Drawing.Size(42, 16);
+            this.checkBox28.TabIndex = 86;
+            this.checkBox28.Text = "+10";
+            this.checkBox28.UseVisualStyleBackColor = true;
+            // 
+            // checkBox29
+            // 
+            this.checkBox29.AutoSize = true;
+            this.checkBox29.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox29.Location = new System.Drawing.Point(280, 48);
+            this.checkBox29.Name = "checkBox29";
+            this.checkBox29.Size = new System.Drawing.Size(42, 16);
+            this.checkBox29.TabIndex = 85;
+            this.checkBox29.Text = "+10";
+            this.checkBox29.UseVisualStyleBackColor = true;
+            // 
+            // checkBox30
+            // 
+            this.checkBox30.AutoSize = true;
+            this.checkBox30.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox30.Location = new System.Drawing.Point(280, 22);
+            this.checkBox30.Name = "checkBox30";
+            this.checkBox30.Size = new System.Drawing.Size(42, 16);
+            this.checkBox30.TabIndex = 84;
+            this.checkBox30.Text = "+10";
+            this.checkBox30.UseVisualStyleBackColor = true;
+            // 
+            // checkBox25
+            // 
+            this.checkBox25.AutoSize = true;
+            this.checkBox25.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox25.Location = new System.Drawing.Point(166, 73);
+            this.checkBox25.Name = "checkBox25";
+            this.checkBox25.Size = new System.Drawing.Size(42, 16);
+            this.checkBox25.TabIndex = 83;
+            this.checkBox25.Text = "+10";
+            this.checkBox25.UseVisualStyleBackColor = true;
+            // 
+            // checkBox26
+            // 
+            this.checkBox26.AutoSize = true;
+            this.checkBox26.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox26.Location = new System.Drawing.Point(166, 48);
+            this.checkBox26.Name = "checkBox26";
+            this.checkBox26.Size = new System.Drawing.Size(42, 16);
+            this.checkBox26.TabIndex = 82;
+            this.checkBox26.Text = "+10";
+            this.checkBox26.UseVisualStyleBackColor = true;
+            // 
+            // checkBox27
+            // 
+            this.checkBox27.AutoSize = true;
+            this.checkBox27.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox27.Location = new System.Drawing.Point(166, 22);
+            this.checkBox27.Name = "checkBox27";
+            this.checkBox27.Size = new System.Drawing.Size(42, 16);
+            this.checkBox27.TabIndex = 81;
+            this.checkBox27.Text = "+10";
+            this.checkBox27.UseVisualStyleBackColor = true;
             // 
             // f_ButtonIvsCalc_2
             // 
@@ -771,10 +951,10 @@
             // 
             // f_TextBoxStatus5_2
             // 
-            this.f_TextBoxStatus5_2.Location = new System.Drawing.Point(203, 69);
+            this.f_TextBoxStatus5_2.Location = new System.Drawing.Point(240, 69);
             this.f_TextBoxStatus5_2.MaxLength = 3;
             this.f_TextBoxStatus5_2.Name = "f_TextBoxStatus5_2";
-            this.f_TextBoxStatus5_2.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus5_2.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus5_2.TabIndex = 6;
             // 
             // f_LabelLevel_2
@@ -793,14 +973,14 @@
             this.f_TextBoxLevel_2.Location = new System.Drawing.Point(46, 19);
             this.f_TextBoxLevel_2.MaxLength = 3;
             this.f_TextBoxLevel_2.Name = "f_TextBoxLevel_2";
-            this.f_TextBoxLevel_2.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxLevel_2.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxLevel_2.TabIndex = 0;
             // 
             // f_LabelStatus25_2
             // 
             this.f_LabelStatus25_2.BackColor = System.Drawing.Color.LightCyan;
             this.f_LabelStatus25_2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.f_LabelStatus25_2.Location = new System.Drawing.Point(171, 72);
+            this.f_LabelStatus25_2.Location = new System.Drawing.Point(208, 72);
             this.f_LabelStatus25_2.Name = "f_LabelStatus25_2";
             this.f_LabelStatus25_2.Size = new System.Drawing.Size(30, 12);
             this.f_LabelStatus25_2.TabIndex = 77;
@@ -820,10 +1000,10 @@
             // 
             // f_TextBoxStatus4_2
             // 
-            this.f_TextBoxStatus4_2.Location = new System.Drawing.Point(203, 44);
+            this.f_TextBoxStatus4_2.Location = new System.Drawing.Point(240, 44);
             this.f_TextBoxStatus4_2.MaxLength = 3;
             this.f_TextBoxStatus4_2.Name = "f_TextBoxStatus4_2";
-            this.f_TextBoxStatus4_2.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus4_2.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus4_2.TabIndex = 5;
             // 
             // f_TextBoxStatus2_2
@@ -831,7 +1011,7 @@
             this.f_TextBoxStatus2_2.Location = new System.Drawing.Point(123, 69);
             this.f_TextBoxStatus2_2.MaxLength = 3;
             this.f_TextBoxStatus2_2.Name = "f_TextBoxStatus2_2";
-            this.f_TextBoxStatus2_2.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus2_2.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus2_2.TabIndex = 3;
             // 
             // f_TextBoxStatus0_2
@@ -839,14 +1019,14 @@
             this.f_TextBoxStatus0_2.Location = new System.Drawing.Point(123, 19);
             this.f_TextBoxStatus0_2.MaxLength = 3;
             this.f_TextBoxStatus0_2.Name = "f_TextBoxStatus0_2";
-            this.f_TextBoxStatus0_2.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus0_2.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus0_2.TabIndex = 1;
             // 
             // f_LabelStatus24_2
             // 
             this.f_LabelStatus24_2.BackColor = System.Drawing.Color.LightCyan;
             this.f_LabelStatus24_2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.f_LabelStatus24_2.Location = new System.Drawing.Point(171, 47);
+            this.f_LabelStatus24_2.Location = new System.Drawing.Point(208, 47);
             this.f_LabelStatus24_2.Name = "f_LabelStatus24_2";
             this.f_LabelStatus24_2.Size = new System.Drawing.Size(30, 12);
             this.f_LabelStatus24_2.TabIndex = 76;
@@ -877,10 +1057,10 @@
             // 
             // f_TextBoxStatus3_2
             // 
-            this.f_TextBoxStatus3_2.Location = new System.Drawing.Point(203, 19);
+            this.f_TextBoxStatus3_2.Location = new System.Drawing.Point(240, 19);
             this.f_TextBoxStatus3_2.MaxLength = 3;
             this.f_TextBoxStatus3_2.Name = "f_TextBoxStatus3_2";
-            this.f_TextBoxStatus3_2.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus3_2.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus3_2.TabIndex = 4;
             // 
             // f_TextBoxStatus1_2
@@ -888,14 +1068,14 @@
             this.f_TextBoxStatus1_2.Location = new System.Drawing.Point(123, 44);
             this.f_TextBoxStatus1_2.MaxLength = 3;
             this.f_TextBoxStatus1_2.Name = "f_TextBoxStatus1_2";
-            this.f_TextBoxStatus1_2.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus1_2.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus1_2.TabIndex = 2;
             // 
             // f_LabelStatus23_2
             // 
             this.f_LabelStatus23_2.BackColor = System.Drawing.Color.LightCyan;
             this.f_LabelStatus23_2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.f_LabelStatus23_2.Location = new System.Drawing.Point(171, 22);
+            this.f_LabelStatus23_2.Location = new System.Drawing.Point(208, 22);
             this.f_LabelStatus23_2.Name = "f_LabelStatus23_2";
             this.f_LabelStatus23_2.Size = new System.Drawing.Size(30, 12);
             this.f_LabelStatus23_2.TabIndex = 75;
@@ -936,7 +1116,7 @@
             this.f_TextBoxIv5_2.Location = new System.Drawing.Point(170, 146);
             this.f_TextBoxIv5_2.MaxLength = 2;
             this.f_TextBoxIv5_2.Name = "f_TextBoxIv5_2";
-            this.f_TextBoxIv5_2.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv5_2.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv5_2.TabIndex = 10;
             // 
             // f_LabelStatus5_2
@@ -954,7 +1134,7 @@
             this.f_TextBoxIv4_2.Location = new System.Drawing.Point(170, 121);
             this.f_TextBoxIv4_2.MaxLength = 2;
             this.f_TextBoxIv4_2.Name = "f_TextBoxIv4_2";
-            this.f_TextBoxIv4_2.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv4_2.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv4_2.TabIndex = 9;
             // 
             // f_LabelStatus4_2
@@ -982,7 +1162,7 @@
             this.f_TextBoxIv3_2.Location = new System.Drawing.Point(170, 96);
             this.f_TextBoxIv3_2.MaxLength = 2;
             this.f_TextBoxIv3_2.Name = "f_TextBoxIv3_2";
-            this.f_TextBoxIv3_2.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv3_2.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv3_2.TabIndex = 8;
             // 
             // f_LabelStatus3_2
@@ -1000,7 +1180,7 @@
             this.f_TextBoxIv2_2.Location = new System.Drawing.Point(90, 146);
             this.f_TextBoxIv2_2.MaxLength = 2;
             this.f_TextBoxIv2_2.Name = "f_TextBoxIv2_2";
-            this.f_TextBoxIv2_2.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv2_2.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv2_2.TabIndex = 7;
             // 
             // f_LabelStatus2_2
@@ -1018,7 +1198,7 @@
             this.f_TextBoxIv1_2.Location = new System.Drawing.Point(90, 121);
             this.f_TextBoxIv1_2.MaxLength = 2;
             this.f_TextBoxIv1_2.Name = "f_TextBoxIv1_2";
-            this.f_TextBoxIv1_2.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv1_2.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv1_2.TabIndex = 6;
             // 
             // f_LabelStatus1_2
@@ -1036,7 +1216,7 @@
             this.f_TextBoxIv0_2.Location = new System.Drawing.Point(90, 96);
             this.f_TextBoxIv0_2.MaxLength = 2;
             this.f_TextBoxIv0_2.Name = "f_TextBoxIv0_2";
-            this.f_TextBoxIv0_2.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv0_2.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv0_2.TabIndex = 5;
             // 
             // f_LabelStatus0_2
@@ -1055,7 +1235,7 @@
             this.f_LabelIvs_2.ForeColor = System.Drawing.SystemColors.ControlText;
             this.f_LabelIvs_2.Location = new System.Drawing.Point(13, 124);
             this.f_LabelIvs_2.Name = "f_LabelIvs_2";
-            this.f_LabelIvs_2.Size = new System.Drawing.Size(47, 12);
+            this.f_LabelIvs_2.Size = new System.Drawing.Size(53, 12);
             this.f_LabelIvs_2.TabIndex = 0;
             this.f_LabelIvs_2.Text = "個体値：";
             // 
@@ -1077,7 +1257,7 @@
             this.label17.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label17.Location = new System.Drawing.Point(14, 23);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(72, 12);
+            this.label17.Size = new System.Drawing.Size(77, 12);
             this.label17.TabIndex = 0;
             this.label17.Text = "Den Seed：0x";
             // 
@@ -1085,7 +1265,7 @@
             // 
             this.f_TextBoxResultSeed.Location = new System.Drawing.Point(91, 18);
             this.f_TextBoxResultSeed.Name = "f_TextBoxResultSeed";
-            this.f_TextBoxResultSeed.Size = new System.Drawing.Size(138, 19);
+            this.f_TextBoxResultSeed.Size = new System.Drawing.Size(138, 21);
             this.f_TextBoxResultSeed.TabIndex = 0;
             // 
             // f_ButtonListGenerate
@@ -1122,7 +1302,7 @@
             this.f_CheckBoxShowEC.ForeColor = System.Drawing.SystemColors.ControlText;
             this.f_CheckBoxShowEC.Location = new System.Drawing.Point(16, 152);
             this.f_CheckBoxShowEC.Name = "f_CheckBoxShowEC";
-            this.f_CheckBoxShowEC.Size = new System.Drawing.Size(91, 16);
+            this.f_CheckBoxShowEC.Size = new System.Drawing.Size(96, 16);
             this.f_CheckBoxShowEC.TabIndex = 5;
             this.f_CheckBoxShowEC.Text = "ECを表示する";
             this.f_CheckBoxShowEC.UseVisualStyleBackColor = true;
@@ -1143,7 +1323,7 @@
             this.f_CheckBoxShowSeed.ForeColor = System.Drawing.SystemColors.ControlText;
             this.f_CheckBoxShowSeed.Location = new System.Drawing.Point(16, 122);
             this.f_CheckBoxShowSeed.Name = "f_CheckBoxShowSeed";
-            this.f_CheckBoxShowSeed.Size = new System.Drawing.Size(123, 16);
+            this.f_CheckBoxShowSeed.Size = new System.Drawing.Size(132, 16);
             this.f_CheckBoxShowSeed.TabIndex = 4;
             this.f_CheckBoxShowSeed.Text = "Seedの値を表示する";
             this.f_CheckBoxShowSeed.UseVisualStyleBackColor = true;
@@ -1154,7 +1334,7 @@
             this.f_CheckBoxListShiny.ForeColor = System.Drawing.SystemColors.ControlText;
             this.f_CheckBoxListShiny.Location = new System.Drawing.Point(16, 92);
             this.f_CheckBoxListShiny.Name = "f_CheckBoxListShiny";
-            this.f_CheckBoxListShiny.Size = new System.Drawing.Size(79, 16);
+            this.f_CheckBoxListShiny.Size = new System.Drawing.Size(84, 16);
             this.f_CheckBoxListShiny.TabIndex = 3;
             this.f_CheckBoxListShiny.Text = "色違いのみ";
             this.f_CheckBoxListShiny.UseVisualStyleBackColor = true;
@@ -1163,7 +1343,7 @@
             // 
             this.f_TextBoxMaxFrame.Location = new System.Drawing.Point(84, 54);
             this.f_TextBoxMaxFrame.Name = "f_TextBoxMaxFrame";
-            this.f_TextBoxMaxFrame.Size = new System.Drawing.Size(67, 19);
+            this.f_TextBoxMaxFrame.Size = new System.Drawing.Size(67, 21);
             this.f_TextBoxMaxFrame.TabIndex = 2;
             // 
             // f_LabelMaxFrame
@@ -1172,7 +1352,7 @@
             this.f_LabelMaxFrame.ForeColor = System.Drawing.SystemColors.ControlText;
             this.f_LabelMaxFrame.Location = new System.Drawing.Point(14, 57);
             this.f_LabelMaxFrame.Name = "f_LabelMaxFrame";
-            this.f_LabelMaxFrame.Size = new System.Drawing.Size(71, 12);
+            this.f_LabelMaxFrame.Size = new System.Drawing.Size(77, 12);
             this.f_LabelMaxFrame.TabIndex = 6;
             this.f_LabelMaxFrame.Text = "最大消費数：";
             this.f_LabelMaxFrame.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1184,7 +1364,7 @@
             this.f_CheckBoxStop.ForeColor = System.Drawing.SystemColors.ControlText;
             this.f_CheckBoxStop.Location = new System.Drawing.Point(627, 718);
             this.f_CheckBoxStop.Name = "f_CheckBoxStop";
-            this.f_CheckBoxStop.Size = new System.Drawing.Size(111, 16);
+            this.f_CheckBoxStop.Size = new System.Drawing.Size(126, 16);
             this.f_CheckBoxStop.TabIndex = 6;
             this.f_CheckBoxStop.Text = "1つ見つけたら終了";
             this.f_CheckBoxStop.UseVisualStyleBackColor = false;
@@ -1201,7 +1381,7 @@
             this.f_TabControlMain.Location = new System.Drawing.Point(294, 27);
             this.f_TabControlMain.Name = "f_TabControlMain";
             this.f_TabControlMain.SelectedIndex = 0;
-            this.f_TabControlMain.Size = new System.Drawing.Size(523, 653);
+            this.f_TabControlMain.Size = new System.Drawing.Size(601, 653);
             this.f_TabControlMain.TabIndex = 1;
             // 
             // f_TabPage1
@@ -1212,7 +1392,7 @@
             this.f_TabPage1.Location = new System.Drawing.Point(4, 22);
             this.f_TabPage1.Name = "f_TabPage1";
             this.f_TabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.f_TabPage1.Size = new System.Drawing.Size(515, 627);
+            this.f_TabPage1.Size = new System.Drawing.Size(593, 627);
             this.f_TabPage1.TabIndex = 0;
             this.f_TabPage1.Text = "★3～5";
             this.f_TabPage1.UseVisualStyleBackColor = true;
@@ -1240,7 +1420,7 @@
             this.f_GroupBoxPokemon_352.Controls.Add(this.f_LabelIvs_352);
             this.f_GroupBoxPokemon_352.Location = new System.Drawing.Point(11, 238);
             this.f_GroupBoxPokemon_352.Name = "f_GroupBoxPokemon_352";
-            this.f_GroupBoxPokemon_352.Size = new System.Drawing.Size(497, 185);
+            this.f_GroupBoxPokemon_352.Size = new System.Drawing.Size(576, 185);
             this.f_GroupBoxPokemon_352.TabIndex = 1;
             this.f_GroupBoxPokemon_352.TabStop = false;
             this.f_GroupBoxPokemon_352.Text = "4匹目-3V～4V";
@@ -1250,7 +1430,7 @@
             this.f_ButtonEncounterInfo_352.ForeColor = System.Drawing.SystemColors.ControlText;
             this.f_ButtonEncounterInfo_352.Location = new System.Drawing.Point(210, 18);
             this.f_ButtonEncounterInfo_352.Name = "f_ButtonEncounterInfo_352";
-            this.f_ButtonEncounterInfo_352.Size = new System.Drawing.Size(54, 22);
+            this.f_ButtonEncounterInfo_352.Size = new System.Drawing.Size(62, 22);
             this.f_ButtonEncounterInfo_352.TabIndex = 1;
             this.f_ButtonEncounterInfo_352.Text = "情報";
             this.f_ButtonEncounterInfo_352.UseVisualStyleBackColor = true;
@@ -1259,6 +1439,12 @@
             // f_GroupBoxStatus352
             // 
             this.f_GroupBoxStatus352.BackColor = System.Drawing.Color.LightCyan;
+            this.f_GroupBoxStatus352.Controls.Add(this.checkBox10);
+            this.f_GroupBoxStatus352.Controls.Add(this.checkBox11);
+            this.f_GroupBoxStatus352.Controls.Add(this.checkBox12);
+            this.f_GroupBoxStatus352.Controls.Add(this.checkBox7);
+            this.f_GroupBoxStatus352.Controls.Add(this.checkBox8);
+            this.f_GroupBoxStatus352.Controls.Add(this.checkBox9);
             this.f_GroupBoxStatus352.Controls.Add(this.f_LabelStatus20_352);
             this.f_GroupBoxStatus352.Controls.Add(this.f_LabelLevel_352);
             this.f_GroupBoxStatus352.Controls.Add(this.f_TextBoxLevel_352);
@@ -1276,10 +1462,76 @@
             this.f_GroupBoxStatus352.Controls.Add(this.f_TextBoxStatus3_352);
             this.f_GroupBoxStatus352.Location = new System.Drawing.Point(228, 77);
             this.f_GroupBoxStatus352.Name = "f_GroupBoxStatus352";
-            this.f_GroupBoxStatus352.Size = new System.Drawing.Size(260, 100);
+            this.f_GroupBoxStatus352.Size = new System.Drawing.Size(327, 100);
             this.f_GroupBoxStatus352.TabIndex = 11;
             this.f_GroupBoxStatus352.TabStop = false;
             this.f_GroupBoxStatus352.Text = "ステータス";
+            // 
+            // checkBox10
+            // 
+            this.checkBox10.AutoSize = true;
+            this.checkBox10.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox10.Location = new System.Drawing.Point(285, 75);
+            this.checkBox10.Name = "checkBox10";
+            this.checkBox10.Size = new System.Drawing.Size(42, 16);
+            this.checkBox10.TabIndex = 71;
+            this.checkBox10.Text = "+10";
+            this.checkBox10.UseVisualStyleBackColor = true;
+            // 
+            // checkBox11
+            // 
+            this.checkBox11.AutoSize = true;
+            this.checkBox11.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox11.Location = new System.Drawing.Point(285, 50);
+            this.checkBox11.Name = "checkBox11";
+            this.checkBox11.Size = new System.Drawing.Size(42, 16);
+            this.checkBox11.TabIndex = 70;
+            this.checkBox11.Text = "+10";
+            this.checkBox11.UseVisualStyleBackColor = true;
+            // 
+            // checkBox12
+            // 
+            this.checkBox12.AutoSize = true;
+            this.checkBox12.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox12.Location = new System.Drawing.Point(285, 24);
+            this.checkBox12.Name = "checkBox12";
+            this.checkBox12.Size = new System.Drawing.Size(42, 16);
+            this.checkBox12.TabIndex = 69;
+            this.checkBox12.Text = "+10";
+            this.checkBox12.UseVisualStyleBackColor = true;
+            // 
+            // checkBox7
+            // 
+            this.checkBox7.AutoSize = true;
+            this.checkBox7.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox7.Location = new System.Drawing.Point(168, 74);
+            this.checkBox7.Name = "checkBox7";
+            this.checkBox7.Size = new System.Drawing.Size(42, 16);
+            this.checkBox7.TabIndex = 68;
+            this.checkBox7.Text = "+10";
+            this.checkBox7.UseVisualStyleBackColor = true;
+            // 
+            // checkBox8
+            // 
+            this.checkBox8.AutoSize = true;
+            this.checkBox8.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox8.Location = new System.Drawing.Point(168, 49);
+            this.checkBox8.Name = "checkBox8";
+            this.checkBox8.Size = new System.Drawing.Size(42, 16);
+            this.checkBox8.TabIndex = 67;
+            this.checkBox8.Text = "+10";
+            this.checkBox8.UseVisualStyleBackColor = true;
+            // 
+            // checkBox9
+            // 
+            this.checkBox9.AutoSize = true;
+            this.checkBox9.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox9.Location = new System.Drawing.Point(168, 23);
+            this.checkBox9.Name = "checkBox9";
+            this.checkBox9.Size = new System.Drawing.Size(42, 16);
+            this.checkBox9.TabIndex = 66;
+            this.checkBox9.Text = "+10";
+            this.checkBox9.UseVisualStyleBackColor = true;
             // 
             // f_LabelStatus20_352
             // 
@@ -1308,7 +1560,7 @@
             this.f_TextBoxLevel_352.Location = new System.Drawing.Point(46, 19);
             this.f_TextBoxLevel_352.MaxLength = 3;
             this.f_TextBoxLevel_352.Name = "f_TextBoxLevel_352";
-            this.f_TextBoxLevel_352.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxLevel_352.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxLevel_352.TabIndex = 0;
             // 
             // f_ButtonIvsCalc_352
@@ -1325,10 +1577,10 @@
             // 
             // f_TextBoxStatus5_352
             // 
-            this.f_TextBoxStatus5_352.Location = new System.Drawing.Point(203, 69);
+            this.f_TextBoxStatus5_352.Location = new System.Drawing.Point(242, 72);
             this.f_TextBoxStatus5_352.MaxLength = 3;
             this.f_TextBoxStatus5_352.Name = "f_TextBoxStatus5_352";
-            this.f_TextBoxStatus5_352.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus5_352.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus5_352.TabIndex = 6;
             // 
             // f_TextBoxStatus0_352
@@ -1336,7 +1588,7 @@
             this.f_TextBoxStatus0_352.Location = new System.Drawing.Point(123, 19);
             this.f_TextBoxStatus0_352.MaxLength = 3;
             this.f_TextBoxStatus0_352.Name = "f_TextBoxStatus0_352";
-            this.f_TextBoxStatus0_352.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus0_352.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus0_352.TabIndex = 1;
             // 
             // f_LabelStatus21_352
@@ -1354,7 +1606,7 @@
             // 
             this.f_LabelStatus25_352.BackColor = System.Drawing.Color.LightCyan;
             this.f_LabelStatus25_352.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.f_LabelStatus25_352.Location = new System.Drawing.Point(171, 72);
+            this.f_LabelStatus25_352.Location = new System.Drawing.Point(210, 75);
             this.f_LabelStatus25_352.Name = "f_LabelStatus25_352";
             this.f_LabelStatus25_352.Size = new System.Drawing.Size(30, 12);
             this.f_LabelStatus25_352.TabIndex = 46;
@@ -1366,15 +1618,15 @@
             this.f_TextBoxStatus1_352.Location = new System.Drawing.Point(123, 44);
             this.f_TextBoxStatus1_352.MaxLength = 3;
             this.f_TextBoxStatus1_352.Name = "f_TextBoxStatus1_352";
-            this.f_TextBoxStatus1_352.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus1_352.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus1_352.TabIndex = 2;
             // 
             // f_TextBoxStatus4_352
             // 
-            this.f_TextBoxStatus4_352.Location = new System.Drawing.Point(203, 44);
+            this.f_TextBoxStatus4_352.Location = new System.Drawing.Point(242, 47);
             this.f_TextBoxStatus4_352.MaxLength = 3;
             this.f_TextBoxStatus4_352.Name = "f_TextBoxStatus4_352";
-            this.f_TextBoxStatus4_352.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus4_352.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus4_352.TabIndex = 5;
             // 
             // f_LabelStatus22_352
@@ -1393,14 +1645,14 @@
             this.f_TextBoxStatus2_352.Location = new System.Drawing.Point(123, 69);
             this.f_TextBoxStatus2_352.MaxLength = 3;
             this.f_TextBoxStatus2_352.Name = "f_TextBoxStatus2_352";
-            this.f_TextBoxStatus2_352.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus2_352.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus2_352.TabIndex = 3;
             // 
             // f_LabelStatus24_352
             // 
             this.f_LabelStatus24_352.BackColor = System.Drawing.Color.LightCyan;
             this.f_LabelStatus24_352.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.f_LabelStatus24_352.Location = new System.Drawing.Point(171, 47);
+            this.f_LabelStatus24_352.Location = new System.Drawing.Point(210, 50);
             this.f_LabelStatus24_352.Name = "f_LabelStatus24_352";
             this.f_LabelStatus24_352.Size = new System.Drawing.Size(30, 12);
             this.f_LabelStatus24_352.TabIndex = 45;
@@ -1411,7 +1663,7 @@
             // 
             this.f_LabelStatus23_352.BackColor = System.Drawing.Color.LightCyan;
             this.f_LabelStatus23_352.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.f_LabelStatus23_352.Location = new System.Drawing.Point(171, 22);
+            this.f_LabelStatus23_352.Location = new System.Drawing.Point(210, 25);
             this.f_LabelStatus23_352.Name = "f_LabelStatus23_352";
             this.f_LabelStatus23_352.Size = new System.Drawing.Size(30, 12);
             this.f_LabelStatus23_352.TabIndex = 44;
@@ -1420,10 +1672,10 @@
             // 
             // f_TextBoxStatus3_352
             // 
-            this.f_TextBoxStatus3_352.Location = new System.Drawing.Point(203, 19);
+            this.f_TextBoxStatus3_352.Location = new System.Drawing.Point(242, 22);
             this.f_TextBoxStatus3_352.MaxLength = 3;
             this.f_TextBoxStatus3_352.Name = "f_TextBoxStatus3_352";
-            this.f_TextBoxStatus3_352.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus3_352.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus3_352.TabIndex = 4;
             // 
             // f_ComboBoxPokemon_352
@@ -1470,7 +1722,7 @@
             this.f_TextBoxIv5_352.Location = new System.Drawing.Point(169, 146);
             this.f_TextBoxIv5_352.MaxLength = 2;
             this.f_TextBoxIv5_352.Name = "f_TextBoxIv5_352";
-            this.f_TextBoxIv5_352.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv5_352.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv5_352.TabIndex = 10;
             // 
             // f_LabelStatus5_352
@@ -1488,7 +1740,7 @@
             this.f_TextBoxIv4_352.Location = new System.Drawing.Point(169, 121);
             this.f_TextBoxIv4_352.MaxLength = 2;
             this.f_TextBoxIv4_352.Name = "f_TextBoxIv4_352";
-            this.f_TextBoxIv4_352.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv4_352.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv4_352.TabIndex = 9;
             // 
             // f_LabelStatus4_352
@@ -1506,7 +1758,7 @@
             this.f_TextBoxIv3_352.Location = new System.Drawing.Point(169, 96);
             this.f_TextBoxIv3_352.MaxLength = 2;
             this.f_TextBoxIv3_352.Name = "f_TextBoxIv3_352";
-            this.f_TextBoxIv3_352.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv3_352.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv3_352.TabIndex = 8;
             // 
             // f_LabelStatus3_352
@@ -1524,7 +1776,7 @@
             this.f_TextBoxIv2_352.Location = new System.Drawing.Point(90, 146);
             this.f_TextBoxIv2_352.MaxLength = 2;
             this.f_TextBoxIv2_352.Name = "f_TextBoxIv2_352";
-            this.f_TextBoxIv2_352.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv2_352.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv2_352.TabIndex = 7;
             // 
             // f_LabelStatus2_352
@@ -1542,7 +1794,7 @@
             this.f_TextBoxIv1_352.Location = new System.Drawing.Point(90, 121);
             this.f_TextBoxIv1_352.MaxLength = 2;
             this.f_TextBoxIv1_352.Name = "f_TextBoxIv1_352";
-            this.f_TextBoxIv1_352.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv1_352.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv1_352.TabIndex = 6;
             // 
             // f_LabelStatus1_352
@@ -1560,7 +1812,7 @@
             this.f_TextBoxIv0_352.Location = new System.Drawing.Point(90, 96);
             this.f_TextBoxIv0_352.MaxLength = 2;
             this.f_TextBoxIv0_352.Name = "f_TextBoxIv0_352";
-            this.f_TextBoxIv0_352.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv0_352.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv0_352.TabIndex = 5;
             // 
             // f_LabelStatus0_352
@@ -1579,7 +1831,7 @@
             this.f_LabelIvs_352.ForeColor = System.Drawing.SystemColors.ControlText;
             this.f_LabelIvs_352.Location = new System.Drawing.Point(13, 124);
             this.f_LabelIvs_352.Name = "f_LabelIvs_352";
-            this.f_LabelIvs_352.Size = new System.Drawing.Size(47, 12);
+            this.f_LabelIvs_352.Size = new System.Drawing.Size(53, 12);
             this.f_LabelIvs_352.TabIndex = 0;
             this.f_LabelIvs_352.Text = "個体値：";
             // 
@@ -1610,7 +1862,7 @@
             this.groupBox4.Controls.Add(this.f_LabelIvs_351);
             this.groupBox4.Location = new System.Drawing.Point(12, 6);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(497, 226);
+            this.groupBox4.Size = new System.Drawing.Size(575, 226);
             this.groupBox4.TabIndex = 0;
             this.groupBox4.TabStop = false;
             // 
@@ -1619,7 +1871,7 @@
             this.f_ButtonEncounterInfo_351.ForeColor = System.Drawing.SystemColors.ControlText;
             this.f_ButtonEncounterInfo_351.Location = new System.Drawing.Point(210, 30);
             this.f_ButtonEncounterInfo_351.Name = "f_ButtonEncounterInfo_351";
-            this.f_ButtonEncounterInfo_351.Size = new System.Drawing.Size(54, 22);
+            this.f_ButtonEncounterInfo_351.Size = new System.Drawing.Size(61, 22);
             this.f_ButtonEncounterInfo_351.TabIndex = 2;
             this.f_ButtonEncounterInfo_351.Text = "情報";
             this.f_ButtonEncounterInfo_351.UseVisualStyleBackColor = true;
@@ -1642,13 +1894,19 @@
             this.f_LabelCheckResult.ForeColor = System.Drawing.Color.Blue;
             this.f_LabelCheckResult.Location = new System.Drawing.Point(292, 201);
             this.f_LabelCheckResult.Name = "f_LabelCheckResult";
-            this.f_LabelCheckResult.Size = new System.Drawing.Size(94, 12);
+            this.f_LabelCheckResult.Size = new System.Drawing.Size(95, 12);
             this.f_LabelCheckResult.TabIndex = 29;
             this.f_LabelCheckResult.Text = "OK！ Next -> 4V";
             // 
             // f_GroupBoxStatus351
             // 
             this.f_GroupBoxStatus351.BackColor = System.Drawing.Color.LightCyan;
+            this.f_GroupBoxStatus351.Controls.Add(this.checkBox4);
+            this.f_GroupBoxStatus351.Controls.Add(this.checkBox5);
+            this.f_GroupBoxStatus351.Controls.Add(this.checkBox6);
+            this.f_GroupBoxStatus351.Controls.Add(this.checkBox3);
+            this.f_GroupBoxStatus351.Controls.Add(this.checkBox2);
+            this.f_GroupBoxStatus351.Controls.Add(this.checkBox1);
             this.f_GroupBoxStatus351.Controls.Add(this.f_ButtonIvsCalc_351);
             this.f_GroupBoxStatus351.Controls.Add(this.f_LabelLevel_351);
             this.f_GroupBoxStatus351.Controls.Add(this.f_TextBoxLevel_351);
@@ -1666,10 +1924,76 @@
             this.f_GroupBoxStatus351.Controls.Add(this.f_LabelStatus23_351);
             this.f_GroupBoxStatus351.Location = new System.Drawing.Point(228, 89);
             this.f_GroupBoxStatus351.Name = "f_GroupBoxStatus351";
-            this.f_GroupBoxStatus351.Size = new System.Drawing.Size(260, 100);
+            this.f_GroupBoxStatus351.Size = new System.Drawing.Size(326, 100);
             this.f_GroupBoxStatus351.TabIndex = 13;
             this.f_GroupBoxStatus351.TabStop = false;
             this.f_GroupBoxStatus351.Text = "ステータス";
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox4.Location = new System.Drawing.Point(284, 73);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(42, 16);
+            this.checkBox4.TabIndex = 65;
+            this.checkBox4.Text = "+10";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox5.Location = new System.Drawing.Point(284, 48);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(42, 16);
+            this.checkBox5.TabIndex = 64;
+            this.checkBox5.Text = "+10";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            // 
+            // checkBox6
+            // 
+            this.checkBox6.AutoSize = true;
+            this.checkBox6.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox6.Location = new System.Drawing.Point(284, 22);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(42, 16);
+            this.checkBox6.TabIndex = 63;
+            this.checkBox6.Text = "+10";
+            this.checkBox6.UseVisualStyleBackColor = true;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox3.Location = new System.Drawing.Point(167, 73);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(42, 16);
+            this.checkBox3.TabIndex = 62;
+            this.checkBox3.Text = "+10";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox2.Location = new System.Drawing.Point(167, 48);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(42, 16);
+            this.checkBox2.TabIndex = 61;
+            this.checkBox2.Text = "+10";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox1.Location = new System.Drawing.Point(167, 22);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(42, 16);
+            this.checkBox1.TabIndex = 60;
+            this.checkBox1.Text = "+10";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // f_ButtonIvsCalc_351
             // 
@@ -1699,15 +2023,15 @@
             this.f_TextBoxLevel_351.Location = new System.Drawing.Point(46, 19);
             this.f_TextBoxLevel_351.MaxLength = 3;
             this.f_TextBoxLevel_351.Name = "f_TextBoxLevel_351";
-            this.f_TextBoxLevel_351.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxLevel_351.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxLevel_351.TabIndex = 0;
             // 
             // f_TextBoxStatus5_351
             // 
-            this.f_TextBoxStatus5_351.Location = new System.Drawing.Point(203, 69);
+            this.f_TextBoxStatus5_351.Location = new System.Drawing.Point(240, 69);
             this.f_TextBoxStatus5_351.MaxLength = 3;
             this.f_TextBoxStatus5_351.Name = "f_TextBoxStatus5_351";
-            this.f_TextBoxStatus5_351.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus5_351.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus5_351.TabIndex = 6;
             // 
             // f_LabelStatus20_351
@@ -1725,7 +2049,7 @@
             // 
             this.f_LabelStatus25_351.BackColor = System.Drawing.Color.LightCyan;
             this.f_LabelStatus25_351.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.f_LabelStatus25_351.Location = new System.Drawing.Point(171, 72);
+            this.f_LabelStatus25_351.Location = new System.Drawing.Point(208, 72);
             this.f_LabelStatus25_351.Name = "f_LabelStatus25_351";
             this.f_LabelStatus25_351.Size = new System.Drawing.Size(30, 12);
             this.f_LabelStatus25_351.TabIndex = 59;
@@ -1737,15 +2061,15 @@
             this.f_TextBoxStatus0_351.Location = new System.Drawing.Point(123, 19);
             this.f_TextBoxStatus0_351.MaxLength = 3;
             this.f_TextBoxStatus0_351.Name = "f_TextBoxStatus0_351";
-            this.f_TextBoxStatus0_351.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus0_351.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus0_351.TabIndex = 1;
             // 
             // f_TextBoxStatus4_351
             // 
-            this.f_TextBoxStatus4_351.Location = new System.Drawing.Point(203, 44);
+            this.f_TextBoxStatus4_351.Location = new System.Drawing.Point(240, 44);
             this.f_TextBoxStatus4_351.MaxLength = 3;
             this.f_TextBoxStatus4_351.Name = "f_TextBoxStatus4_351";
-            this.f_TextBoxStatus4_351.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus4_351.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus4_351.TabIndex = 5;
             // 
             // f_LabelStatus21_351
@@ -1764,14 +2088,14 @@
             this.f_TextBoxStatus1_351.Location = new System.Drawing.Point(123, 44);
             this.f_TextBoxStatus1_351.MaxLength = 3;
             this.f_TextBoxStatus1_351.Name = "f_TextBoxStatus1_351";
-            this.f_TextBoxStatus1_351.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus1_351.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus1_351.TabIndex = 2;
             // 
             // f_LabelStatus24_351
             // 
             this.f_LabelStatus24_351.BackColor = System.Drawing.Color.LightCyan;
             this.f_LabelStatus24_351.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.f_LabelStatus24_351.Location = new System.Drawing.Point(171, 47);
+            this.f_LabelStatus24_351.Location = new System.Drawing.Point(208, 47);
             this.f_LabelStatus24_351.Name = "f_LabelStatus24_351";
             this.f_LabelStatus24_351.Size = new System.Drawing.Size(30, 12);
             this.f_LabelStatus24_351.TabIndex = 58;
@@ -1794,22 +2118,22 @@
             this.f_TextBoxStatus2_351.Location = new System.Drawing.Point(123, 69);
             this.f_TextBoxStatus2_351.MaxLength = 3;
             this.f_TextBoxStatus2_351.Name = "f_TextBoxStatus2_351";
-            this.f_TextBoxStatus2_351.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus2_351.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus2_351.TabIndex = 3;
             // 
             // f_TextBoxStatus3_351
             // 
-            this.f_TextBoxStatus3_351.Location = new System.Drawing.Point(203, 19);
+            this.f_TextBoxStatus3_351.Location = new System.Drawing.Point(240, 19);
             this.f_TextBoxStatus3_351.MaxLength = 3;
             this.f_TextBoxStatus3_351.Name = "f_TextBoxStatus3_351";
-            this.f_TextBoxStatus3_351.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus3_351.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus3_351.TabIndex = 4;
             // 
             // f_LabelStatus23_351
             // 
             this.f_LabelStatus23_351.BackColor = System.Drawing.Color.LightCyan;
             this.f_LabelStatus23_351.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.f_LabelStatus23_351.Location = new System.Drawing.Point(171, 22);
+            this.f_LabelStatus23_351.Location = new System.Drawing.Point(208, 22);
             this.f_LabelStatus23_351.Name = "f_LabelStatus23_351";
             this.f_LabelStatus23_351.Size = new System.Drawing.Size(30, 12);
             this.f_LabelStatus23_351.TabIndex = 57;
@@ -1822,7 +2146,7 @@
             this.f_LabelCheckResultTitle.ForeColor = System.Drawing.SystemColors.ControlText;
             this.f_LabelCheckResultTitle.Location = new System.Drawing.Point(260, 201);
             this.f_LabelCheckResultTitle.Name = "f_LabelCheckResultTitle";
-            this.f_LabelCheckResultTitle.Size = new System.Drawing.Size(35, 12);
+            this.f_LabelCheckResultTitle.Size = new System.Drawing.Size(41, 12);
             this.f_LabelCheckResultTitle.TabIndex = 28;
             this.f_LabelCheckResultTitle.Text = "結果：";
             // 
@@ -1881,7 +2205,7 @@
             this.f_TextBoxIv5_351.Location = new System.Drawing.Point(169, 158);
             this.f_TextBoxIv5_351.MaxLength = 2;
             this.f_TextBoxIv5_351.Name = "f_TextBoxIv5_351";
-            this.f_TextBoxIv5_351.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv5_351.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv5_351.TabIndex = 11;
             // 
             // f_LabelStatus5_351
@@ -1899,7 +2223,7 @@
             this.f_TextBoxIv4_351.Location = new System.Drawing.Point(169, 133);
             this.f_TextBoxIv4_351.MaxLength = 2;
             this.f_TextBoxIv4_351.Name = "f_TextBoxIv4_351";
-            this.f_TextBoxIv4_351.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv4_351.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv4_351.TabIndex = 10;
             // 
             // f_LabelStatus4_351
@@ -1917,7 +2241,7 @@
             this.f_TextBoxIv3_351.Location = new System.Drawing.Point(169, 108);
             this.f_TextBoxIv3_351.MaxLength = 2;
             this.f_TextBoxIv3_351.Name = "f_TextBoxIv3_351";
-            this.f_TextBoxIv3_351.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv3_351.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv3_351.TabIndex = 9;
             // 
             // f_LabelStatus3_351
@@ -1935,7 +2259,7 @@
             this.f_TextBoxIv2_351.Location = new System.Drawing.Point(90, 158);
             this.f_TextBoxIv2_351.MaxLength = 2;
             this.f_TextBoxIv2_351.Name = "f_TextBoxIv2_351";
-            this.f_TextBoxIv2_351.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv2_351.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv2_351.TabIndex = 8;
             // 
             // f_LabelStatus2_351
@@ -1953,7 +2277,7 @@
             this.f_TextBoxIv1_351.Location = new System.Drawing.Point(90, 134);
             this.f_TextBoxIv1_351.MaxLength = 2;
             this.f_TextBoxIv1_351.Name = "f_TextBoxIv1_351";
-            this.f_TextBoxIv1_351.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv1_351.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv1_351.TabIndex = 7;
             // 
             // f_LabelStatus1_351
@@ -1971,7 +2295,7 @@
             this.f_TextBoxIv0_351.Location = new System.Drawing.Point(90, 108);
             this.f_TextBoxIv0_351.MaxLength = 2;
             this.f_TextBoxIv0_351.Name = "f_TextBoxIv0_351";
-            this.f_TextBoxIv0_351.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv0_351.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv0_351.TabIndex = 6;
             // 
             // f_LabelStatus0_351
@@ -1990,7 +2314,7 @@
             this.f_LabelIvs_351.ForeColor = System.Drawing.SystemColors.ControlText;
             this.f_LabelIvs_351.Location = new System.Drawing.Point(13, 136);
             this.f_LabelIvs_351.Name = "f_LabelIvs_351";
-            this.f_LabelIvs_351.Size = new System.Drawing.Size(47, 12);
+            this.f_LabelIvs_351.Size = new System.Drawing.Size(53, 12);
             this.f_LabelIvs_351.TabIndex = 0;
             this.f_LabelIvs_351.Text = "個体値：";
             // 
@@ -2017,7 +2341,7 @@
             this.f_GroupBoxPokemon_353.Controls.Add(this.f_LabelIvs_353);
             this.f_GroupBoxPokemon_353.Location = new System.Drawing.Point(11, 429);
             this.f_GroupBoxPokemon_353.Name = "f_GroupBoxPokemon_353";
-            this.f_GroupBoxPokemon_353.Size = new System.Drawing.Size(497, 185);
+            this.f_GroupBoxPokemon_353.Size = new System.Drawing.Size(576, 185);
             this.f_GroupBoxPokemon_353.TabIndex = 2;
             this.f_GroupBoxPokemon_353.TabStop = false;
             this.f_GroupBoxPokemon_353.Text = "5匹目";
@@ -2027,7 +2351,7 @@
             this.f_ButtonEncounterInfo_353.ForeColor = System.Drawing.SystemColors.ControlText;
             this.f_ButtonEncounterInfo_353.Location = new System.Drawing.Point(210, 18);
             this.f_ButtonEncounterInfo_353.Name = "f_ButtonEncounterInfo_353";
-            this.f_ButtonEncounterInfo_353.Size = new System.Drawing.Size(54, 22);
+            this.f_ButtonEncounterInfo_353.Size = new System.Drawing.Size(62, 22);
             this.f_ButtonEncounterInfo_353.TabIndex = 1;
             this.f_ButtonEncounterInfo_353.Text = "情報";
             this.f_ButtonEncounterInfo_353.UseVisualStyleBackColor = true;
@@ -2036,6 +2360,12 @@
             // f_GroupBoxStatus353
             // 
             this.f_GroupBoxStatus353.BackColor = System.Drawing.Color.LightCyan;
+            this.f_GroupBoxStatus353.Controls.Add(this.checkBox16);
+            this.f_GroupBoxStatus353.Controls.Add(this.checkBox17);
+            this.f_GroupBoxStatus353.Controls.Add(this.checkBox18);
+            this.f_GroupBoxStatus353.Controls.Add(this.checkBox13);
+            this.f_GroupBoxStatus353.Controls.Add(this.checkBox14);
+            this.f_GroupBoxStatus353.Controls.Add(this.checkBox15);
             this.f_GroupBoxStatus353.Controls.Add(this.f_ButtonIvsCalc_353);
             this.f_GroupBoxStatus353.Controls.Add(this.f_LabelLevel_353);
             this.f_GroupBoxStatus353.Controls.Add(this.f_TextBoxLevel_353);
@@ -2053,10 +2383,76 @@
             this.f_GroupBoxStatus353.Controls.Add(this.f_LabelStatus23_353);
             this.f_GroupBoxStatus353.Location = new System.Drawing.Point(228, 77);
             this.f_GroupBoxStatus353.Name = "f_GroupBoxStatus353";
-            this.f_GroupBoxStatus353.Size = new System.Drawing.Size(260, 100);
+            this.f_GroupBoxStatus353.Size = new System.Drawing.Size(327, 100);
             this.f_GroupBoxStatus353.TabIndex = 11;
             this.f_GroupBoxStatus353.TabStop = false;
             this.f_GroupBoxStatus353.Text = "ステータス";
+            // 
+            // checkBox16
+            // 
+            this.checkBox16.AutoSize = true;
+            this.checkBox16.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox16.Location = new System.Drawing.Point(285, 72);
+            this.checkBox16.Name = "checkBox16";
+            this.checkBox16.Size = new System.Drawing.Size(42, 16);
+            this.checkBox16.TabIndex = 71;
+            this.checkBox16.Text = "+10";
+            this.checkBox16.UseVisualStyleBackColor = true;
+            // 
+            // checkBox17
+            // 
+            this.checkBox17.AutoSize = true;
+            this.checkBox17.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox17.Location = new System.Drawing.Point(285, 47);
+            this.checkBox17.Name = "checkBox17";
+            this.checkBox17.Size = new System.Drawing.Size(42, 16);
+            this.checkBox17.TabIndex = 70;
+            this.checkBox17.Text = "+10";
+            this.checkBox17.UseVisualStyleBackColor = true;
+            // 
+            // checkBox18
+            // 
+            this.checkBox18.AutoSize = true;
+            this.checkBox18.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox18.Location = new System.Drawing.Point(285, 21);
+            this.checkBox18.Name = "checkBox18";
+            this.checkBox18.Size = new System.Drawing.Size(42, 16);
+            this.checkBox18.TabIndex = 69;
+            this.checkBox18.Text = "+10";
+            this.checkBox18.UseVisualStyleBackColor = true;
+            // 
+            // checkBox13
+            // 
+            this.checkBox13.AutoSize = true;
+            this.checkBox13.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox13.Location = new System.Drawing.Point(168, 72);
+            this.checkBox13.Name = "checkBox13";
+            this.checkBox13.Size = new System.Drawing.Size(42, 16);
+            this.checkBox13.TabIndex = 68;
+            this.checkBox13.Text = "+10";
+            this.checkBox13.UseVisualStyleBackColor = true;
+            // 
+            // checkBox14
+            // 
+            this.checkBox14.AutoSize = true;
+            this.checkBox14.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox14.Location = new System.Drawing.Point(168, 47);
+            this.checkBox14.Name = "checkBox14";
+            this.checkBox14.Size = new System.Drawing.Size(42, 16);
+            this.checkBox14.TabIndex = 67;
+            this.checkBox14.Text = "+10";
+            this.checkBox14.UseVisualStyleBackColor = true;
+            // 
+            // checkBox15
+            // 
+            this.checkBox15.AutoSize = true;
+            this.checkBox15.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox15.Location = new System.Drawing.Point(168, 21);
+            this.checkBox15.Name = "checkBox15";
+            this.checkBox15.Size = new System.Drawing.Size(42, 16);
+            this.checkBox15.TabIndex = 66;
+            this.checkBox15.Text = "+10";
+            this.checkBox15.UseVisualStyleBackColor = true;
             // 
             // f_ButtonIvsCalc_353
             // 
@@ -2086,7 +2482,7 @@
             this.f_TextBoxLevel_353.Location = new System.Drawing.Point(46, 19);
             this.f_TextBoxLevel_353.MaxLength = 3;
             this.f_TextBoxLevel_353.Name = "f_TextBoxLevel_353";
-            this.f_TextBoxLevel_353.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxLevel_353.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxLevel_353.TabIndex = 0;
             // 
             // f_LabelStatus20_353
@@ -2102,10 +2498,10 @@
             // 
             // f_TextBoxStatus5_353
             // 
-            this.f_TextBoxStatus5_353.Location = new System.Drawing.Point(203, 69);
+            this.f_TextBoxStatus5_353.Location = new System.Drawing.Point(241, 69);
             this.f_TextBoxStatus5_353.MaxLength = 3;
             this.f_TextBoxStatus5_353.Name = "f_TextBoxStatus5_353";
-            this.f_TextBoxStatus5_353.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus5_353.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus5_353.TabIndex = 6;
             // 
             // f_TextBoxStatus0_353
@@ -2113,14 +2509,14 @@
             this.f_TextBoxStatus0_353.Location = new System.Drawing.Point(123, 19);
             this.f_TextBoxStatus0_353.MaxLength = 3;
             this.f_TextBoxStatus0_353.Name = "f_TextBoxStatus0_353";
-            this.f_TextBoxStatus0_353.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus0_353.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus0_353.TabIndex = 1;
             // 
             // f_LabelStatus25_353
             // 
             this.f_LabelStatus25_353.BackColor = System.Drawing.Color.LightCyan;
             this.f_LabelStatus25_353.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.f_LabelStatus25_353.Location = new System.Drawing.Point(171, 72);
+            this.f_LabelStatus25_353.Location = new System.Drawing.Point(209, 72);
             this.f_LabelStatus25_353.Name = "f_LabelStatus25_353";
             this.f_LabelStatus25_353.Size = new System.Drawing.Size(30, 12);
             this.f_LabelStatus25_353.TabIndex = 31;
@@ -2140,10 +2536,10 @@
             // 
             // f_TextBoxStatus4_353
             // 
-            this.f_TextBoxStatus4_353.Location = new System.Drawing.Point(203, 44);
+            this.f_TextBoxStatus4_353.Location = new System.Drawing.Point(241, 44);
             this.f_TextBoxStatus4_353.MaxLength = 3;
             this.f_TextBoxStatus4_353.Name = "f_TextBoxStatus4_353";
-            this.f_TextBoxStatus4_353.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus4_353.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus4_353.TabIndex = 5;
             // 
             // f_TextBoxStatus1_353
@@ -2151,14 +2547,14 @@
             this.f_TextBoxStatus1_353.Location = new System.Drawing.Point(123, 44);
             this.f_TextBoxStatus1_353.MaxLength = 3;
             this.f_TextBoxStatus1_353.Name = "f_TextBoxStatus1_353";
-            this.f_TextBoxStatus1_353.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus1_353.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus1_353.TabIndex = 2;
             // 
             // f_LabelStatus24_353
             // 
             this.f_LabelStatus24_353.BackColor = System.Drawing.Color.LightCyan;
             this.f_LabelStatus24_353.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.f_LabelStatus24_353.Location = new System.Drawing.Point(171, 47);
+            this.f_LabelStatus24_353.Location = new System.Drawing.Point(209, 47);
             this.f_LabelStatus24_353.Name = "f_LabelStatus24_353";
             this.f_LabelStatus24_353.Size = new System.Drawing.Size(30, 12);
             this.f_LabelStatus24_353.TabIndex = 30;
@@ -2178,10 +2574,10 @@
             // 
             // f_TextBoxStatus3_353
             // 
-            this.f_TextBoxStatus3_353.Location = new System.Drawing.Point(203, 19);
+            this.f_TextBoxStatus3_353.Location = new System.Drawing.Point(241, 19);
             this.f_TextBoxStatus3_353.MaxLength = 3;
             this.f_TextBoxStatus3_353.Name = "f_TextBoxStatus3_353";
-            this.f_TextBoxStatus3_353.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus3_353.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus3_353.TabIndex = 4;
             // 
             // f_TextBoxStatus2_353
@@ -2189,14 +2585,14 @@
             this.f_TextBoxStatus2_353.Location = new System.Drawing.Point(123, 69);
             this.f_TextBoxStatus2_353.MaxLength = 3;
             this.f_TextBoxStatus2_353.Name = "f_TextBoxStatus2_353";
-            this.f_TextBoxStatus2_353.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus2_353.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus2_353.TabIndex = 3;
             // 
             // f_LabelStatus23_353
             // 
             this.f_LabelStatus23_353.BackColor = System.Drawing.Color.LightCyan;
             this.f_LabelStatus23_353.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.f_LabelStatus23_353.Location = new System.Drawing.Point(171, 22);
+            this.f_LabelStatus23_353.Location = new System.Drawing.Point(209, 22);
             this.f_LabelStatus23_353.Name = "f_LabelStatus23_353";
             this.f_LabelStatus23_353.Size = new System.Drawing.Size(30, 12);
             this.f_LabelStatus23_353.TabIndex = 29;
@@ -2247,7 +2643,7 @@
             this.f_TextBoxIv5_353.Location = new System.Drawing.Point(169, 146);
             this.f_TextBoxIv5_353.MaxLength = 2;
             this.f_TextBoxIv5_353.Name = "f_TextBoxIv5_353";
-            this.f_TextBoxIv5_353.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv5_353.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv5_353.TabIndex = 10;
             // 
             // f_LabelStatus5_353
@@ -2265,7 +2661,7 @@
             this.f_TextBoxIv4_353.Location = new System.Drawing.Point(169, 121);
             this.f_TextBoxIv4_353.MaxLength = 2;
             this.f_TextBoxIv4_353.Name = "f_TextBoxIv4_353";
-            this.f_TextBoxIv4_353.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv4_353.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv4_353.TabIndex = 9;
             // 
             // f_LabelStatus4_353
@@ -2283,7 +2679,7 @@
             this.f_TextBoxIv3_353.Location = new System.Drawing.Point(169, 96);
             this.f_TextBoxIv3_353.MaxLength = 2;
             this.f_TextBoxIv3_353.Name = "f_TextBoxIv3_353";
-            this.f_TextBoxIv3_353.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv3_353.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv3_353.TabIndex = 8;
             // 
             // f_LabelStatus3_353
@@ -2301,7 +2697,7 @@
             this.f_TextBoxIv2_353.Location = new System.Drawing.Point(90, 146);
             this.f_TextBoxIv2_353.MaxLength = 2;
             this.f_TextBoxIv2_353.Name = "f_TextBoxIv2_353";
-            this.f_TextBoxIv2_353.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv2_353.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv2_353.TabIndex = 7;
             // 
             // f_LabelStatus2_353
@@ -2319,7 +2715,7 @@
             this.f_TextBoxIv1_353.Location = new System.Drawing.Point(90, 121);
             this.f_TextBoxIv1_353.MaxLength = 2;
             this.f_TextBoxIv1_353.Name = "f_TextBoxIv1_353";
-            this.f_TextBoxIv1_353.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv1_353.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv1_353.TabIndex = 6;
             // 
             // f_LabelStatus1_353
@@ -2337,7 +2733,7 @@
             this.f_TextBoxIv0_353.Location = new System.Drawing.Point(90, 96);
             this.f_TextBoxIv0_353.MaxLength = 2;
             this.f_TextBoxIv0_353.Name = "f_TextBoxIv0_353";
-            this.f_TextBoxIv0_353.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv0_353.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv0_353.TabIndex = 5;
             // 
             // f_LabelStatus0_353
@@ -2356,7 +2752,7 @@
             this.f_LabelIvs_353.ForeColor = System.Drawing.SystemColors.ControlText;
             this.f_LabelIvs_353.Location = new System.Drawing.Point(13, 124);
             this.f_LabelIvs_353.Name = "f_LabelIvs_353";
-            this.f_LabelIvs_353.Size = new System.Drawing.Size(47, 12);
+            this.f_LabelIvs_353.Size = new System.Drawing.Size(53, 12);
             this.f_LabelIvs_353.TabIndex = 0;
             this.f_LabelIvs_353.Text = "個体値：";
             // 
@@ -2369,7 +2765,7 @@
             this.f_TabPage2.Location = new System.Drawing.Point(4, 22);
             this.f_TabPage2.Name = "f_TabPage2";
             this.f_TabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.f_TabPage2.Size = new System.Drawing.Size(515, 627);
+            this.f_TabPage2.Size = new System.Drawing.Size(593, 627);
             this.f_TabPage2.TabIndex = 1;
             this.f_TabPage2.Text = "★1～2";
             this.f_TabPage2.UseVisualStyleBackColor = true;
@@ -2411,7 +2807,7 @@
             this.f_GroupBoxPokemon_3.Enabled = false;
             this.f_GroupBoxPokemon_3.Location = new System.Drawing.Point(12, 388);
             this.f_GroupBoxPokemon_3.Name = "f_GroupBoxPokemon_3";
-            this.f_GroupBoxPokemon_3.Size = new System.Drawing.Size(497, 185);
+            this.f_GroupBoxPokemon_3.Size = new System.Drawing.Size(575, 226);
             this.f_GroupBoxPokemon_3.TabIndex = 2;
             this.f_GroupBoxPokemon_3.TabStop = false;
             // 
@@ -2420,7 +2816,7 @@
             this.f_ButtonEncounterInfo_3.ForeColor = System.Drawing.SystemColors.ControlText;
             this.f_ButtonEncounterInfo_3.Location = new System.Drawing.Point(210, 18);
             this.f_ButtonEncounterInfo_3.Name = "f_ButtonEncounterInfo_3";
-            this.f_ButtonEncounterInfo_3.Size = new System.Drawing.Size(54, 22);
+            this.f_ButtonEncounterInfo_3.Size = new System.Drawing.Size(61, 22);
             this.f_ButtonEncounterInfo_3.TabIndex = 1;
             this.f_ButtonEncounterInfo_3.Text = "情報";
             this.f_ButtonEncounterInfo_3.UseVisualStyleBackColor = true;
@@ -2429,6 +2825,12 @@
             // f_GroupBoxStatus3
             // 
             this.f_GroupBoxStatus3.BackColor = System.Drawing.Color.LightCyan;
+            this.f_GroupBoxStatus3.Controls.Add(this.checkBox34);
+            this.f_GroupBoxStatus3.Controls.Add(this.checkBox35);
+            this.f_GroupBoxStatus3.Controls.Add(this.checkBox36);
+            this.f_GroupBoxStatus3.Controls.Add(this.checkBox31);
+            this.f_GroupBoxStatus3.Controls.Add(this.checkBox32);
+            this.f_GroupBoxStatus3.Controls.Add(this.checkBox33);
             this.f_GroupBoxStatus3.Controls.Add(this.f_ButtonIvsCalc_3);
             this.f_GroupBoxStatus3.Controls.Add(this.f_TextBoxStatus5_3);
             this.f_GroupBoxStatus3.Controls.Add(this.f_LabelStatus20_3);
@@ -2446,10 +2848,76 @@
             this.f_GroupBoxStatus3.Controls.Add(this.f_TextBoxLevel_3);
             this.f_GroupBoxStatus3.Location = new System.Drawing.Point(228, 77);
             this.f_GroupBoxStatus3.Name = "f_GroupBoxStatus3";
-            this.f_GroupBoxStatus3.Size = new System.Drawing.Size(260, 100);
+            this.f_GroupBoxStatus3.Size = new System.Drawing.Size(322, 100);
             this.f_GroupBoxStatus3.TabIndex = 11;
             this.f_GroupBoxStatus3.TabStop = false;
             this.f_GroupBoxStatus3.Text = "ステータス";
+            // 
+            // checkBox34
+            // 
+            this.checkBox34.AutoSize = true;
+            this.checkBox34.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox34.Location = new System.Drawing.Point(280, 75);
+            this.checkBox34.Name = "checkBox34";
+            this.checkBox34.Size = new System.Drawing.Size(42, 16);
+            this.checkBox34.TabIndex = 86;
+            this.checkBox34.Text = "+10";
+            this.checkBox34.UseVisualStyleBackColor = true;
+            // 
+            // checkBox35
+            // 
+            this.checkBox35.AutoSize = true;
+            this.checkBox35.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox35.Location = new System.Drawing.Point(280, 50);
+            this.checkBox35.Name = "checkBox35";
+            this.checkBox35.Size = new System.Drawing.Size(42, 16);
+            this.checkBox35.TabIndex = 85;
+            this.checkBox35.Text = "+10";
+            this.checkBox35.UseVisualStyleBackColor = true;
+            // 
+            // checkBox36
+            // 
+            this.checkBox36.AutoSize = true;
+            this.checkBox36.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox36.Location = new System.Drawing.Point(280, 24);
+            this.checkBox36.Name = "checkBox36";
+            this.checkBox36.Size = new System.Drawing.Size(42, 16);
+            this.checkBox36.TabIndex = 84;
+            this.checkBox36.Text = "+10";
+            this.checkBox36.UseVisualStyleBackColor = true;
+            // 
+            // checkBox31
+            // 
+            this.checkBox31.AutoSize = true;
+            this.checkBox31.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox31.Location = new System.Drawing.Point(166, 73);
+            this.checkBox31.Name = "checkBox31";
+            this.checkBox31.Size = new System.Drawing.Size(42, 16);
+            this.checkBox31.TabIndex = 83;
+            this.checkBox31.Text = "+10";
+            this.checkBox31.UseVisualStyleBackColor = true;
+            // 
+            // checkBox32
+            // 
+            this.checkBox32.AutoSize = true;
+            this.checkBox32.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox32.Location = new System.Drawing.Point(166, 48);
+            this.checkBox32.Name = "checkBox32";
+            this.checkBox32.Size = new System.Drawing.Size(42, 16);
+            this.checkBox32.TabIndex = 82;
+            this.checkBox32.Text = "+10";
+            this.checkBox32.UseVisualStyleBackColor = true;
+            // 
+            // checkBox33
+            // 
+            this.checkBox33.AutoSize = true;
+            this.checkBox33.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox33.Location = new System.Drawing.Point(166, 22);
+            this.checkBox33.Name = "checkBox33";
+            this.checkBox33.Size = new System.Drawing.Size(42, 16);
+            this.checkBox33.TabIndex = 81;
+            this.checkBox33.Text = "+10";
+            this.checkBox33.UseVisualStyleBackColor = true;
             // 
             // f_ButtonIvsCalc_3
             // 
@@ -2465,10 +2933,10 @@
             // 
             // f_TextBoxStatus5_3
             // 
-            this.f_TextBoxStatus5_3.Location = new System.Drawing.Point(203, 69);
+            this.f_TextBoxStatus5_3.Location = new System.Drawing.Point(240, 72);
             this.f_TextBoxStatus5_3.MaxLength = 3;
             this.f_TextBoxStatus5_3.Name = "f_TextBoxStatus5_3";
-            this.f_TextBoxStatus5_3.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus5_3.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus5_3.TabIndex = 6;
             // 
             // f_LabelStatus20_3
@@ -2487,7 +2955,7 @@
             this.f_TextBoxStatus0_3.Location = new System.Drawing.Point(123, 19);
             this.f_TextBoxStatus0_3.MaxLength = 3;
             this.f_TextBoxStatus0_3.Name = "f_TextBoxStatus0_3";
-            this.f_TextBoxStatus0_3.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus0_3.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus0_3.TabIndex = 1;
             // 
             // f_LabelStatus21_3
@@ -2505,7 +2973,7 @@
             // 
             this.f_LabelStatus25_3.BackColor = System.Drawing.Color.LightCyan;
             this.f_LabelStatus25_3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.f_LabelStatus25_3.Location = new System.Drawing.Point(171, 72);
+            this.f_LabelStatus25_3.Location = new System.Drawing.Point(208, 75);
             this.f_LabelStatus25_3.Name = "f_LabelStatus25_3";
             this.f_LabelStatus25_3.Size = new System.Drawing.Size(30, 12);
             this.f_LabelStatus25_3.TabIndex = 77;
@@ -2517,15 +2985,15 @@
             this.f_TextBoxStatus1_3.Location = new System.Drawing.Point(123, 44);
             this.f_TextBoxStatus1_3.MaxLength = 3;
             this.f_TextBoxStatus1_3.Name = "f_TextBoxStatus1_3";
-            this.f_TextBoxStatus1_3.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus1_3.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus1_3.TabIndex = 2;
             // 
             // f_TextBoxStatus4_3
             // 
-            this.f_TextBoxStatus4_3.Location = new System.Drawing.Point(203, 44);
+            this.f_TextBoxStatus4_3.Location = new System.Drawing.Point(240, 47);
             this.f_TextBoxStatus4_3.MaxLength = 3;
             this.f_TextBoxStatus4_3.Name = "f_TextBoxStatus4_3";
-            this.f_TextBoxStatus4_3.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus4_3.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus4_3.TabIndex = 5;
             // 
             // f_LabelStatus22_3
@@ -2544,7 +3012,7 @@
             this.f_TextBoxStatus2_3.Location = new System.Drawing.Point(123, 69);
             this.f_TextBoxStatus2_3.MaxLength = 3;
             this.f_TextBoxStatus2_3.Name = "f_TextBoxStatus2_3";
-            this.f_TextBoxStatus2_3.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus2_3.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus2_3.TabIndex = 3;
             // 
             // f_LabelLevel_3
@@ -2562,7 +3030,7 @@
             // 
             this.f_LabelStatus23_3.BackColor = System.Drawing.Color.LightCyan;
             this.f_LabelStatus23_3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.f_LabelStatus23_3.Location = new System.Drawing.Point(171, 22);
+            this.f_LabelStatus23_3.Location = new System.Drawing.Point(208, 25);
             this.f_LabelStatus23_3.Name = "f_LabelStatus23_3";
             this.f_LabelStatus23_3.Size = new System.Drawing.Size(30, 12);
             this.f_LabelStatus23_3.TabIndex = 75;
@@ -2571,17 +3039,17 @@
             // 
             // f_TextBoxStatus3_3
             // 
-            this.f_TextBoxStatus3_3.Location = new System.Drawing.Point(203, 19);
+            this.f_TextBoxStatus3_3.Location = new System.Drawing.Point(240, 22);
             this.f_TextBoxStatus3_3.MaxLength = 3;
             this.f_TextBoxStatus3_3.Name = "f_TextBoxStatus3_3";
-            this.f_TextBoxStatus3_3.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxStatus3_3.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxStatus3_3.TabIndex = 4;
             // 
             // f_LabelStatus24_3
             // 
             this.f_LabelStatus24_3.BackColor = System.Drawing.Color.LightCyan;
             this.f_LabelStatus24_3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.f_LabelStatus24_3.Location = new System.Drawing.Point(171, 47);
+            this.f_LabelStatus24_3.Location = new System.Drawing.Point(208, 50);
             this.f_LabelStatus24_3.Name = "f_LabelStatus24_3";
             this.f_LabelStatus24_3.Size = new System.Drawing.Size(30, 12);
             this.f_LabelStatus24_3.TabIndex = 76;
@@ -2593,7 +3061,7 @@
             this.f_TextBoxLevel_3.Location = new System.Drawing.Point(46, 19);
             this.f_TextBoxLevel_3.MaxLength = 3;
             this.f_TextBoxLevel_3.Name = "f_TextBoxLevel_3";
-            this.f_TextBoxLevel_3.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxLevel_3.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxLevel_3.TabIndex = 0;
             // 
             // f_ComboBoxCharacteristic_3
@@ -2630,7 +3098,7 @@
             this.f_TextBoxIv5_3.Location = new System.Drawing.Point(170, 146);
             this.f_TextBoxIv5_3.MaxLength = 2;
             this.f_TextBoxIv5_3.Name = "f_TextBoxIv5_3";
-            this.f_TextBoxIv5_3.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv5_3.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv5_3.TabIndex = 10;
             // 
             // f_LabelStatus5_3
@@ -2648,7 +3116,7 @@
             this.f_TextBoxIv4_3.Location = new System.Drawing.Point(170, 121);
             this.f_TextBoxIv4_3.MaxLength = 2;
             this.f_TextBoxIv4_3.Name = "f_TextBoxIv4_3";
-            this.f_TextBoxIv4_3.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv4_3.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv4_3.TabIndex = 9;
             // 
             // f_ComboBoxPokemon_3
@@ -2676,7 +3144,7 @@
             this.f_TextBoxIv3_3.Location = new System.Drawing.Point(170, 96);
             this.f_TextBoxIv3_3.MaxLength = 2;
             this.f_TextBoxIv3_3.Name = "f_TextBoxIv3_3";
-            this.f_TextBoxIv3_3.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv3_3.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv3_3.TabIndex = 8;
             // 
             // f_LabelStatus3_3
@@ -2694,7 +3162,7 @@
             this.f_TextBoxIv2_3.Location = new System.Drawing.Point(90, 146);
             this.f_TextBoxIv2_3.MaxLength = 2;
             this.f_TextBoxIv2_3.Name = "f_TextBoxIv2_3";
-            this.f_TextBoxIv2_3.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv2_3.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv2_3.TabIndex = 7;
             // 
             // f_LabelStatus2_3
@@ -2712,7 +3180,7 @@
             this.f_TextBoxIv1_3.Location = new System.Drawing.Point(90, 121);
             this.f_TextBoxIv1_3.MaxLength = 2;
             this.f_TextBoxIv1_3.Name = "f_TextBoxIv1_3";
-            this.f_TextBoxIv1_3.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv1_3.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv1_3.TabIndex = 6;
             // 
             // f_LabelStatus1_3
@@ -2730,7 +3198,7 @@
             this.f_TextBoxIv0_3.Location = new System.Drawing.Point(90, 96);
             this.f_TextBoxIv0_3.MaxLength = 2;
             this.f_TextBoxIv0_3.Name = "f_TextBoxIv0_3";
-            this.f_TextBoxIv0_3.Size = new System.Drawing.Size(34, 19);
+            this.f_TextBoxIv0_3.Size = new System.Drawing.Size(34, 21);
             this.f_TextBoxIv0_3.TabIndex = 5;
             // 
             // f_LabelStatus0_3
@@ -2749,7 +3217,7 @@
             this.f_LabelIvs_3.ForeColor = System.Drawing.SystemColors.ControlText;
             this.f_LabelIvs_3.Location = new System.Drawing.Point(13, 124);
             this.f_LabelIvs_3.Name = "f_LabelIvs_3";
-            this.f_LabelIvs_3.Size = new System.Drawing.Size(47, 12);
+            this.f_LabelIvs_3.Size = new System.Drawing.Size(53, 12);
             this.f_LabelIvs_3.TabIndex = 0;
             this.f_LabelIvs_3.Text = "個体値：";
             // 
@@ -2758,7 +3226,7 @@
             this.f_TabPage3.Controls.Add(this.groupBox2);
             this.f_TabPage3.Location = new System.Drawing.Point(4, 22);
             this.f_TabPage3.Name = "f_TabPage3";
-            this.f_TabPage3.Size = new System.Drawing.Size(515, 627);
+            this.f_TabPage3.Size = new System.Drawing.Size(593, 627);
             this.f_TabPage3.TabIndex = 2;
             this.f_TabPage3.Text = "リスト出力";
             this.f_TabPage3.UseVisualStyleBackColor = true;
@@ -2769,7 +3237,7 @@
             this.f_LabelRerolls.ForeColor = System.Drawing.SystemColors.ControlText;
             this.f_LabelRerolls.Location = new System.Drawing.Point(627, 696);
             this.f_LabelRerolls.Name = "f_LabelRerolls";
-            this.f_LabelRerolls.Size = new System.Drawing.Size(121, 12);
+            this.f_LabelRerolls.Size = new System.Drawing.Size(119, 12);
             this.f_LabelRerolls.TabIndex = 25;
             this.f_LabelRerolls.Text = "V箇所再抽選考慮回数";
             // 
@@ -2777,7 +3245,7 @@
             // 
             this.f_TextBoxRerollsLower.Location = new System.Drawing.Point(748, 693);
             this.f_TextBoxRerollsLower.Name = "f_TextBoxRerollsLower";
-            this.f_TextBoxRerollsLower.Size = new System.Drawing.Size(24, 19);
+            this.f_TextBoxRerollsLower.Size = new System.Drawing.Size(24, 21);
             this.f_TextBoxRerollsLower.TabIndex = 4;
             // 
             // f_CheckBoxShowResultTime
@@ -2786,7 +3254,7 @@
             this.f_CheckBoxShowResultTime.ForeColor = System.Drawing.SystemColors.ControlText;
             this.f_CheckBoxShowResultTime.Location = new System.Drawing.Point(297, 704);
             this.f_CheckBoxShowResultTime.Name = "f_CheckBoxShowResultTime";
-            this.f_CheckBoxShowResultTime.Size = new System.Drawing.Size(105, 16);
+            this.f_CheckBoxShowResultTime.Size = new System.Drawing.Size(108, 16);
             this.f_CheckBoxShowResultTime.TabIndex = 2;
             this.f_CheckBoxShowResultTime.Text = "計算時間を表示";
             this.f_CheckBoxShowResultTime.UseVisualStyleBackColor = true;
@@ -2801,7 +3269,7 @@
             this.f_StripMenuItemGpuSetting});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(829, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(909, 25);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -2814,34 +3282,34 @@
             this.f_MenuItemLanguageZh_TW});
             this.f_StripMenuItemLanguage.ForeColor = System.Drawing.SystemColors.ControlText;
             this.f_StripMenuItemLanguage.Name = "f_StripMenuItemLanguage";
-            this.f_StripMenuItemLanguage.Size = new System.Drawing.Size(71, 20);
+            this.f_StripMenuItemLanguage.Size = new System.Drawing.Size(77, 21);
             this.f_StripMenuItemLanguage.Text = "Language";
             // 
             // f_MenuItemLanguageJp
             // 
             this.f_MenuItemLanguageJp.Name = "f_MenuItemLanguageJp";
-            this.f_MenuItemLanguageJp.Size = new System.Drawing.Size(122, 22);
+            this.f_MenuItemLanguageJp.Size = new System.Drawing.Size(124, 22);
             this.f_MenuItemLanguageJp.Text = "日本語";
             this.f_MenuItemLanguageJp.Click += new System.EventHandler(this.f_MenuItemLanguageJp_Click);
             // 
             // f_MenuItemLanguageEn
             // 
             this.f_MenuItemLanguageEn.Name = "f_MenuItemLanguageEn";
-            this.f_MenuItemLanguageEn.Size = new System.Drawing.Size(122, 22);
+            this.f_MenuItemLanguageEn.Size = new System.Drawing.Size(124, 22);
             this.f_MenuItemLanguageEn.Text = "English";
             this.f_MenuItemLanguageEn.Click += new System.EventHandler(this.f_MenuItemLanguageEn_Click);
             // 
             // f_MenuItemLanguageZh
             // 
             this.f_MenuItemLanguageZh.Name = "f_MenuItemLanguageZh";
-            this.f_MenuItemLanguageZh.Size = new System.Drawing.Size(122, 22);
+            this.f_MenuItemLanguageZh.Size = new System.Drawing.Size(124, 22);
             this.f_MenuItemLanguageZh.Text = "简体中文";
             this.f_MenuItemLanguageZh.Click += new System.EventHandler(this.f_MenuItemLanguageZh_Click);
             // 
             // f_MenuItemLanguageZh_TW
             // 
             this.f_MenuItemLanguageZh_TW.Name = "f_MenuItemLanguageZh_TW";
-            this.f_MenuItemLanguageZh_TW.Size = new System.Drawing.Size(122, 22);
+            this.f_MenuItemLanguageZh_TW.Size = new System.Drawing.Size(124, 22);
             this.f_MenuItemLanguageZh_TW.Text = "正體字";
             this.f_MenuItemLanguageZh_TW.Click += new System.EventHandler(this.f_MenuItemLanguageZh_TW_Click);
             // 
@@ -2852,20 +3320,20 @@
             this.f_MenuItemWindowSizeSmall});
             this.f_StripMenuItemWindowSize.ForeColor = System.Drawing.SystemColors.ControlText;
             this.f_StripMenuItemWindowSize.Name = "f_StripMenuItemWindowSize";
-            this.f_StripMenuItemWindowSize.Size = new System.Drawing.Size(89, 20);
+            this.f_StripMenuItemWindowSize.Size = new System.Drawing.Size(116, 21);
             this.f_StripMenuItemWindowSize.Text = "ウィンドウサイズ";
             // 
             // f_MenuItemWindowSizeNormal
             // 
             this.f_MenuItemWindowSizeNormal.Name = "f_MenuItemWindowSizeNormal";
-            this.f_MenuItemWindowSizeNormal.Size = new System.Drawing.Size(98, 22);
+            this.f_MenuItemWindowSizeNormal.Size = new System.Drawing.Size(100, 22);
             this.f_MenuItemWindowSizeNormal.Text = "標準";
             this.f_MenuItemWindowSizeNormal.Click += new System.EventHandler(this.f_MenuItemWindowSizeNormal_Click);
             // 
             // f_MenuItemWindowSizeSmall
             // 
             this.f_MenuItemWindowSizeSmall.Name = "f_MenuItemWindowSizeSmall";
-            this.f_MenuItemWindowSizeSmall.Size = new System.Drawing.Size(98, 22);
+            this.f_MenuItemWindowSizeSmall.Size = new System.Drawing.Size(100, 22);
             this.f_MenuItemWindowSizeSmall.Text = "小";
             this.f_MenuItemWindowSizeSmall.Click += new System.EventHandler(this.f_MenuItemWindowSizeSmall_Click);
             // 
@@ -2873,14 +3341,14 @@
             // 
             this.f_StripMenuItemEventId.ForeColor = System.Drawing.SystemColors.ControlText;
             this.f_StripMenuItemEventId.Name = "f_StripMenuItemEventId";
-            this.f_StripMenuItemEventId.Size = new System.Drawing.Size(81, 20);
+            this.f_StripMenuItemEventId.Size = new System.Drawing.Size(104, 21);
             this.f_StripMenuItemEventId.Text = "イベントレイド";
             // 
             // f_StripMenuItemUpdateEventData
             // 
             this.f_StripMenuItemUpdateEventData.ForeColor = System.Drawing.SystemColors.ControlText;
             this.f_StripMenuItemUpdateEventData.Name = "f_StripMenuItemUpdateEventData";
-            this.f_StripMenuItemUpdateEventData.Size = new System.Drawing.Size(69, 20);
+            this.f_StripMenuItemUpdateEventData.Size = new System.Drawing.Size(80, 21);
             this.f_StripMenuItemUpdateEventData.Text = "データ更新";
             this.f_StripMenuItemUpdateEventData.Click += new System.EventHandler(this.UpdateEventToolStripMenuItem_Click);
             // 
@@ -2892,13 +3360,13 @@
             this.f_MenuItemGpuTest});
             this.f_StripMenuItemGpuSetting.ForeColor = System.Drawing.SystemColors.ControlText;
             this.f_StripMenuItemGpuSetting.Name = "f_StripMenuItemGpuSetting";
-            this.f_StripMenuItemGpuSetting.Size = new System.Drawing.Size(66, 20);
+            this.f_StripMenuItemGpuSetting.Size = new System.Drawing.Size(69, 21);
             this.f_StripMenuItemGpuSetting.Text = "GPU設定";
             // 
             // f_MenuItemUseGpu
             // 
             this.f_MenuItemUseGpu.Name = "f_MenuItemUseGpu";
-            this.f_MenuItemUseGpu.Size = new System.Drawing.Size(182, 22);
+            this.f_MenuItemUseGpu.Size = new System.Drawing.Size(197, 22);
             this.f_MenuItemUseGpu.Text = "GPUを計算に使用する";
             this.f_MenuItemUseGpu.Click += new System.EventHandler(this.f_MenuItemUseGpu_Click);
             // 
@@ -2915,76 +3383,76 @@
             this.f_MenuItemGpuLoop28,
             this.f_MenuItemGpuLoop29});
             this.f_MenuItemThreadCount.Name = "f_MenuItemThreadCount";
-            this.f_MenuItemThreadCount.Size = new System.Drawing.Size(182, 22);
+            this.f_MenuItemThreadCount.Size = new System.Drawing.Size(197, 22);
             this.f_MenuItemThreadCount.Text = "スレッド数";
             // 
             // f_MenuItemGpuLoop21
             // 
             this.f_MenuItemGpuLoop21.Name = "f_MenuItemGpuLoop21";
-            this.f_MenuItemGpuLoop21.Size = new System.Drawing.Size(180, 22);
+            this.f_MenuItemGpuLoop21.Size = new System.Drawing.Size(106, 22);
             this.f_MenuItemGpuLoop21.Text = "2^21";
             this.f_MenuItemGpuLoop21.Click += new System.EventHandler(this.f_MenuItemGpuLoop21_Click);
             // 
             // f_MenuItemGpuLoop22
             // 
             this.f_MenuItemGpuLoop22.Name = "f_MenuItemGpuLoop22";
-            this.f_MenuItemGpuLoop22.Size = new System.Drawing.Size(180, 22);
+            this.f_MenuItemGpuLoop22.Size = new System.Drawing.Size(106, 22);
             this.f_MenuItemGpuLoop22.Text = "2^22";
             this.f_MenuItemGpuLoop22.Click += new System.EventHandler(this.f_MenuItemGpuLoop22_Click);
             // 
             // f_MenuItemGpuLoop23
             // 
             this.f_MenuItemGpuLoop23.Name = "f_MenuItemGpuLoop23";
-            this.f_MenuItemGpuLoop23.Size = new System.Drawing.Size(180, 22);
+            this.f_MenuItemGpuLoop23.Size = new System.Drawing.Size(106, 22);
             this.f_MenuItemGpuLoop23.Text = "2^23";
             this.f_MenuItemGpuLoop23.Click += new System.EventHandler(this.f_MenuItemGpuLoop23_Click);
             // 
             // f_MenuItemGpuLoop24
             // 
             this.f_MenuItemGpuLoop24.Name = "f_MenuItemGpuLoop24";
-            this.f_MenuItemGpuLoop24.Size = new System.Drawing.Size(180, 22);
+            this.f_MenuItemGpuLoop24.Size = new System.Drawing.Size(106, 22);
             this.f_MenuItemGpuLoop24.Text = "2^24";
             this.f_MenuItemGpuLoop24.Click += new System.EventHandler(this.f_MenuItemGpuLoop24_Click);
             // 
             // f_MenuItemGpuLoop25
             // 
             this.f_MenuItemGpuLoop25.Name = "f_MenuItemGpuLoop25";
-            this.f_MenuItemGpuLoop25.Size = new System.Drawing.Size(180, 22);
+            this.f_MenuItemGpuLoop25.Size = new System.Drawing.Size(106, 22);
             this.f_MenuItemGpuLoop25.Text = "2^25";
             this.f_MenuItemGpuLoop25.Click += new System.EventHandler(this.f_MenuItemGpuLoop25_Click);
             // 
             // f_MenuItemGpuLoop26
             // 
             this.f_MenuItemGpuLoop26.Name = "f_MenuItemGpuLoop26";
-            this.f_MenuItemGpuLoop26.Size = new System.Drawing.Size(180, 22);
+            this.f_MenuItemGpuLoop26.Size = new System.Drawing.Size(106, 22);
             this.f_MenuItemGpuLoop26.Text = "2^26";
             this.f_MenuItemGpuLoop26.Click += new System.EventHandler(this.f_MenuItemGpuLoop26_Click);
             // 
             // f_MenuItemGpuLoop27
             // 
             this.f_MenuItemGpuLoop27.Name = "f_MenuItemGpuLoop27";
-            this.f_MenuItemGpuLoop27.Size = new System.Drawing.Size(180, 22);
+            this.f_MenuItemGpuLoop27.Size = new System.Drawing.Size(106, 22);
             this.f_MenuItemGpuLoop27.Text = "2^27";
             this.f_MenuItemGpuLoop27.Click += new System.EventHandler(this.f_MenuItemGpuLoop27_Click);
             // 
             // f_MenuItemGpuLoop28
             // 
             this.f_MenuItemGpuLoop28.Name = "f_MenuItemGpuLoop28";
-            this.f_MenuItemGpuLoop28.Size = new System.Drawing.Size(180, 22);
+            this.f_MenuItemGpuLoop28.Size = new System.Drawing.Size(106, 22);
             this.f_MenuItemGpuLoop28.Text = "2^28";
             this.f_MenuItemGpuLoop28.Click += new System.EventHandler(this.f_MenuItemGpuLoop28_Click);
             // 
             // f_MenuItemGpuLoop29
             // 
             this.f_MenuItemGpuLoop29.Name = "f_MenuItemGpuLoop29";
-            this.f_MenuItemGpuLoop29.Size = new System.Drawing.Size(180, 22);
+            this.f_MenuItemGpuLoop29.Size = new System.Drawing.Size(106, 22);
             this.f_MenuItemGpuLoop29.Text = "2^29";
             this.f_MenuItemGpuLoop29.Click += new System.EventHandler(this.f_MenuItemGpuLoop29_Click);
             // 
             // f_MenuItemGpuTest
             // 
             this.f_MenuItemGpuTest.Name = "f_MenuItemGpuTest";
-            this.f_MenuItemGpuTest.Size = new System.Drawing.Size(182, 22);
+            this.f_MenuItemGpuTest.Size = new System.Drawing.Size(197, 22);
             this.f_MenuItemGpuTest.Text = "テストを実行";
             this.f_MenuItemGpuTest.Click += new System.EventHandler(this.f_MenuItemGpuTest_Click);
             // 
@@ -3002,7 +3470,7 @@
             // 
             this.f_TextBoxRerollsUpper.Location = new System.Drawing.Point(792, 693);
             this.f_TextBoxRerollsUpper.Name = "f_TextBoxRerollsUpper";
-            this.f_TextBoxRerollsUpper.Size = new System.Drawing.Size(24, 19);
+            this.f_TextBoxRerollsUpper.Size = new System.Drawing.Size(24, 21);
             this.f_TextBoxRerollsUpper.TabIndex = 5;
             // 
             // groupBox1
@@ -3061,7 +3529,7 @@
             this.f_LabelRarity.Location = new System.Drawing.Point(5, 92);
             this.f_LabelRarity.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.f_LabelRarity.Name = "f_LabelRarity";
-            this.f_LabelRarity.Size = new System.Drawing.Size(51, 12);
+            this.f_LabelRarity.Size = new System.Drawing.Size(53, 12);
             this.f_LabelRarity.TabIndex = 26;
             this.f_LabelRarity.Text = "柱の種類";
             // 
@@ -3106,7 +3574,7 @@
             this.f_LabelGameVersion.Location = new System.Drawing.Point(5, 58);
             this.f_LabelGameVersion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.f_LabelGameVersion.Name = "f_LabelGameVersion";
-            this.f_LabelGameVersion.Size = new System.Drawing.Size(50, 12);
+            this.f_LabelGameVersion.Size = new System.Drawing.Size(65, 12);
             this.f_LabelGameVersion.TabIndex = 1;
             this.f_LabelGameVersion.Text = "バージョン";
             // 
@@ -3119,7 +3587,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(829, 757);
+            this.ClientSize = new System.Drawing.Size(909, 757);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.f_TextBoxRerollsUpper);
             this.Controls.Add(this.f_LabelRerollsRange);
@@ -3135,7 +3603,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "1-Star Seed Search v1.06";
+            this.Text = "1sss-1.06a";
             this.f_GroupBoxPokemon_1.ResumeLayout(false);
             this.f_GroupBoxPokemon_1.PerformLayout();
             this.f_GroupBoxStatus1.ResumeLayout(false);
@@ -3439,9 +3907,45 @@
 		private System.Windows.Forms.ToolStripMenuItem f_MenuItemWindowSizeNormal;
 		private System.Windows.Forms.ToolStripMenuItem f_MenuItemWindowSizeSmall;
 		private System.Windows.Forms.ToolStripMenuItem f_StripMenuItemEventId;
+        private System.Windows.Forms.CheckBox checkBox10;
+        private System.Windows.Forms.CheckBox checkBox11;
+        private System.Windows.Forms.CheckBox checkBox12;
+        private System.Windows.Forms.CheckBox checkBox7;
+        private System.Windows.Forms.CheckBox checkBox8;
+        private System.Windows.Forms.CheckBox checkBox9;
+        private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.CheckBox checkBox6;
+        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox16;
+        private System.Windows.Forms.CheckBox checkBox17;
+        private System.Windows.Forms.CheckBox checkBox18;
+        private System.Windows.Forms.CheckBox checkBox13;
+        private System.Windows.Forms.CheckBox checkBox14;
+        private System.Windows.Forms.CheckBox checkBox15;
+        private System.Windows.Forms.CheckBox checkBox22;
+        private System.Windows.Forms.CheckBox checkBox23;
+        private System.Windows.Forms.CheckBox checkBox24;
+        private System.Windows.Forms.CheckBox checkBox19;
+        private System.Windows.Forms.CheckBox checkBox20;
+        private System.Windows.Forms.CheckBox checkBox21;
+        private System.Windows.Forms.CheckBox checkBox28;
+        private System.Windows.Forms.CheckBox checkBox29;
+        private System.Windows.Forms.CheckBox checkBox30;
+        private System.Windows.Forms.CheckBox checkBox25;
+        private System.Windows.Forms.CheckBox checkBox26;
+        private System.Windows.Forms.CheckBox checkBox27;
+        private System.Windows.Forms.CheckBox checkBox34;
+        private System.Windows.Forms.CheckBox checkBox35;
+        private System.Windows.Forms.CheckBox checkBox36;
+        private System.Windows.Forms.CheckBox checkBox31;
+        private System.Windows.Forms.CheckBox checkBox32;
+        private System.Windows.Forms.CheckBox checkBox33;
         private System.Windows.Forms.ToolStripMenuItem f_StripMenuItemUpdateEventData;
-		private System.Windows.Forms.ToolStripMenuItem f_StripMenuItemGpuSetting;
-		private System.Windows.Forms.ToolStripMenuItem f_MenuItemUseGpu;
+        private System.Windows.Forms.ToolStripMenuItem f_StripMenuItemGpuSetting;
+        private System.Windows.Forms.ToolStripMenuItem f_MenuItemUseGpu;
         private System.Windows.Forms.ToolStripMenuItem f_MenuItemThreadCount;
         private System.Windows.Forms.ToolStripMenuItem f_MenuItemGpuLoop21;
         private System.Windows.Forms.ToolStripMenuItem f_MenuItemGpuLoop22;
@@ -3453,6 +3957,6 @@
         private System.Windows.Forms.ToolStripMenuItem f_MenuItemGpuLoop28;
         private System.Windows.Forms.ToolStripMenuItem f_MenuItemGpuLoop29;
         private System.Windows.Forms.ToolStripMenuItem f_MenuItemGpuTest;
-		private System.Windows.Forms.CheckBox f_CheckBoxShowEC;
-	}
+        private System.Windows.Forms.CheckBox f_CheckBoxShowEC;
+    }
 }
