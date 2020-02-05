@@ -16,7 +16,7 @@ namespace OneStarCUI
 			SeedSearcher.SetCudaCondition(2, 31, 31, 31, 1, 31, 27, 1, 6, 2, true, 4, 4);
 			SeedSearcher.SetCudaCondition(3, 31, 2, 23, 31, 31, 31, 1, 15, 2, true, 4, 4);
 			SeedSearcher.SetCudaTargetCondition6(27, 3, 19, 18, 9, 15);
-			searcher.CudaLoopPartition = 2;
+			searcher.CudaLoopPartition = 8;
 
 			Console.WriteLine("計算中...");
 

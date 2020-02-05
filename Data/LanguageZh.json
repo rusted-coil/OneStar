@@ -100,6 +100,10 @@
         "DenType": "坑类型",
         "Attribute": "属性",
         "UpdateEventDen": "更新活动事件",
+        "GpuSettings": "GPU Settings",
+        "UseGpu": "Use GPU Calculation",
+        "ThreadSetting": "Thread Count",
+        "GpuCheck": "Run Test",
     },
     "CheckIvsResult": [
         "失败!",
@@ -126,6 +130,7 @@
         "StatErrorTitle": "能力值错误",
         "InvalidPokemon": "请选择一个宝可梦",
         "UpdateEventDenFailed": "更新活动坑数据失败",
+        "GpuCheckFailed": "Test failed.",
     },
     "SystemMessage": {
         "ResultDialogTitle": "结果",
@@ -133,6 +138,7 @@
         "FindManyIvs": "个体值存在误差，请尝试提升等级(Lv)",
         "EncounterInfoDialogTitle": "遇敌信息",
         "UpdateEventDenSuccessed": "更新完成，请重启软件",
+        "GpuCheckSuccessed": "Test successed.\nTime:",
     },
     "ListLabel": {
         "Frame": "帧数",

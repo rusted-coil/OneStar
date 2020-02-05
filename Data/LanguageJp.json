@@ -100,6 +100,10 @@
         "DenType": "柱の種類",
         "Attribute": "ステータス",
         "UpdateEventDen": "データ更新",
+        "GpuSettings": "GPU設定",
+        "UseGpu": "GPUを計算に使用する",
+        "ThreadSetting": "スレッド数",
+        "GpuCheck": "テストを実行",
     },
     "CheckIvsResult": [
         "NG！",

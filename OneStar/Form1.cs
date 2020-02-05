@@ -924,7 +924,7 @@ namespace OneStar
 				catch (Exception)
 				{ }
 			}
-			bool isEnableStop = f_CheckBoxStop.Checked;
+			bool isEnableStop = (isTest ? false : f_CheckBoxStop.Checked);
 
 			// ボタンを無効化
 			f_ButtonStartSearch.Enabled = false;
@@ -1176,8 +1176,12 @@ namespace OneStar
 			f_MenuItemWindowSizeSmall.Text = Messages.Instance.SystemLabel["WindowSizeSmall"];
 			f_StripMenuItemEventId.Text = Messages.Instance.SystemLabel["EventDen"];
 			f_StripMenuItemUpdateEventData.Text = Messages.Instance.SystemLabel["UpdateEventDen"];
+			f_StripMenuItemGpuSetting.Text = Messages.Instance.SystemLabel["GpuSettings"];
+			f_MenuItemUseGpu.Text = Messages.Instance.SystemLabel["UseGpu"];
+			f_MenuItemThreadCount.Text = Messages.Instance.SystemLabel["ThreadSetting"];
+			f_MenuItemGpuTest.Text = Messages.Instance.SystemLabel["GpuCheck"];
 
-            foreach (var pair in m_MultiLanguageControls)
+			foreach (var pair in m_MultiLanguageControls)
 			{
 				string str = Messages.Instance.SystemLabel[pair.Key];
 				foreach (var control in pair.Value)

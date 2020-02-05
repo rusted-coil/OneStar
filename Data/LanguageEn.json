@@ -100,6 +100,10 @@
         "DenType": "Den Type",
         "Attribute": "Attribute",
         "UpdateEventDen": "Update Data",
+        "GpuSettings": "GPU Settings",
+        "UseGpu": "Use GPU Calculation",
+        "ThreadSetting": "Thread Count",
+        "GpuCheck": "Run Test",
     },
     "CheckIvsResult": [
         "No Good!",
@@ -126,6 +130,7 @@
         "StatErrorTitle": "Stat Error",
         "InvalidPokemon": "Please select a valid Pokemon",
         "UpdateEventDenFailed": "Update Data Failed.",
+        "GpuCheckFailed": "Test failed.",
     },
     "SystemMessage": {
         "ResultDialogTitle": "Results",
@@ -133,6 +138,7 @@
         "FindManyIvs": "Multiple possible Ivs were found. Try another level.",
         "EncounterInfoDialogTitle": "Encounter Info",
         "UpdateEventDenSuccessed": "Update Data Successed.",
+        "GpuCheckSuccessed": "Test successed.\nTime:",
     },
     "ListLabel": {
         "Frame": "Frames",
