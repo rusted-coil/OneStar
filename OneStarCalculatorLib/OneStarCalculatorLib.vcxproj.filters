@@ -70,6 +70,8 @@
     <CudaCompile Include="CudaProcess5.cu">
       <Filter>ソース ファイル</Filter>
     </CudaCompile>
-    <CudaCompile Include="CudaProcess.cu" />
+    <CudaCompile Include="CudaProcess.cu">
+      <Filter>ソース ファイル</Filter>
+    </CudaCompile>
   </ItemGroup>
 </Project>

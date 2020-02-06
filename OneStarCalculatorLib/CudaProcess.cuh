@@ -50,6 +50,10 @@ __device__ __forceinline__ void CudaNext(_u32* seeds)
 }
 
 // “ü—Í—p\‘¢‘Ì
+struct CudaConst
+{
+	NatureTable natureTable[2];
+};
 struct CudaInputMaster
 {
 	// seedŒvZ’è”
@@ -65,6 +69,7 @@ struct CudaInputMaster
 };
 
 // “ü—Í‹¤’Ê
+extern CudaConst* cu_DeviceConstData;
 extern CudaInputMaster* cu_HostInputMaster;
 extern _u32* cu_HostInputCoefficientData;
 extern _u32* cu_HostInputSearchPattern;

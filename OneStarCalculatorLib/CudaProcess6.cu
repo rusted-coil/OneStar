@@ -15,6 +15,7 @@ const int c_SizeResult = 32;
 
 // 計算するカーネル
 __global__ static void kernel_calc(
+	CudaConst* pConst,
 	CudaInputMaster* pSrc,
 	_u32* pCoefficient,
 	_u32* pSearchPattern,
@@ -52,6 +53,7 @@ __global__ static void kernel_calc(
 
 	// 検索条件キャッシュ
 
+	__shared__ CudaConst constData;
 	__shared__ _u32 answerFlag[128];
 	__shared__ PokemonData pokemon[4];
 	__shared__ int ecBit;
@@ -80,6 +82,7 @@ __global__ static void kernel_calc(
 	else if(threadIdx.x % 8 == 5)
 	{
 		ecBit = pSrc->ecBit;
+		constData = *pConst;
 	}
 	else if(threadIdx.x % 8 == 6)
 	{
@@ -471,7 +474,7 @@ void Cuda6Process(_u32 param, int partition)
 	//カーネル
 	dim3 block(c_SizeBlockX, 1, 1);
 	dim3 grid(c_SizeGridX / partition, 1, 1);
-	kernel_calc << < grid, block >> > (pDeviceInput, pDeviceCoefficientData, pDeviceSearchPattern, pDeviceResultCount, pDeviceResult, param);
+	kernel_calc << < grid, block >> > (cu_DeviceConstData, pDeviceInput, pDeviceCoefficientData, pDeviceSearchPattern, pDeviceResultCount, pDeviceResult, param);
 
 	//デバイス->ホストへ結果を転送
 	cudaMemcpy(cu_HostResult, pDeviceResult, sizeof(_u64) * c_SizeResult, cudaMemcpyDeviceToHost);

@@ -16,6 +16,7 @@ struct PokemonData
 	int ivs[6];
 	int ability;
 	int nature;
+	int natureTableId;
 	int characteristic;
 	bool isNoGender;
 	int abilityFlag;
@@ -34,4 +35,11 @@ struct PokemonData
 			default: return true;
 		}
 	}
+};
+
+struct NatureTable
+{
+	_u32 randMax;
+	_u32 patternCount;
+	_u32 natureId[25];
 };
