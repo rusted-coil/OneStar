@@ -4,7 +4,7 @@
 #include "Util.h"
 
 // GPUƒR[ƒh
-__device__ inline _u32 CudaGetSignature(_u32 value)
+__device__ __forceinline__ _u32 CudaGetSignature(_u32 value)
 {
 	value ^= (value >> 16);
 	value ^= (value >> 8);
@@ -12,7 +12,7 @@ __device__ inline _u32 CudaGetSignature(_u32 value)
 	value ^= (value >> 2);
 	return (value ^ (value >> 1)) & 1;
 }
-__device__ inline _u32 CudaNext(_u32* seeds, _u32 mask)
+__device__ __forceinline__ _u32 CudaNext(_u32* seeds, _u32 mask)
 {
 	_u32 value = (seeds[1] + seeds[3]) & mask;
 
@@ -32,7 +32,7 @@ __device__ inline _u32 CudaNext(_u32* seeds, _u32 mask)
 
 	return value;
 }
-__device__ inline void CudaNext(_u32* seeds)
+__device__ __forceinline__ void CudaNext(_u32* seeds)
 {
 	// m_S1 = m_S0 ^ m_S1;
 	seeds[4] = seeds[0] ^ seeds[2];
@@ -60,6 +60,7 @@ struct CudaInputMaster
 	int ecBit;
 	bool ecMod[3][6];
 	int ivs[6];
+	int ivsOffset;
 	PokemonData pokemon[4];
 };
 
