@@ -157,6 +157,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>cd $(SolutionDir)Data
-copy /Y *.json $(TargetDir)</PreBuildEvent>
+mkdir $(TargetDir)data
+copy /Y *.json $(TargetDir)data\</PreBuildEvent>
   </PropertyGroup>
 </Project>

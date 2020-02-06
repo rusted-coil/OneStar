@@ -88,7 +88,7 @@ namespace OneStar
 		{
 			try
 			{
-				using (StreamWriter sw = new StreamWriter("config.json"))
+				using (StreamWriter sw = new StreamWriter("data/config.json"))
 				{
 					string str = JsonConvert.SerializeObject(this);
 					sw.Write(str);
@@ -105,7 +105,7 @@ namespace OneStar
 			string str;
 			try
 			{
-				using (StreamReader sr = new StreamReader("config.json"))
+				using (StreamReader sr = new StreamReader("data/config.json"))
 				{
 					str = sr.ReadToEnd();
 				}

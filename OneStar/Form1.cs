@@ -1725,7 +1725,7 @@ namespace OneStar
         private void UpdateEventToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string url = "https://raw.githubusercontent.com/rusted-coil/OneStar/master/Data/EventDen.json";
-            string path = Directory.GetCurrentDirectory() + "//EventDen.json";
+            string path = Directory.GetCurrentDirectory() + "//data/EventDen.json";
 
             // 设置参数
             HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;

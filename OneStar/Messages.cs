@@ -40,7 +40,7 @@ namespace OneStar
 			}
 			try
 			{
-				using (StreamReader sr = new StreamReader(fileName))
+				using (StreamReader sr = new StreamReader("data/" + fileName))
 				{
 					str = sr.ReadToEnd();
 				}

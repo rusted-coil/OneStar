@@ -71,7 +71,7 @@ namespace OneStar
 			string str;
 			try
 			{
-				using (StreamReader sr = new StreamReader("EventDen.json"))
+				using (StreamReader sr = new StreamReader("data/EventDen.json"))
 				{
 					str = sr.ReadToEnd();
 				}
@@ -98,20 +98,6 @@ namespace OneStar
 				EventList = new Dictionary<string, EventDen>(tmp.EventList);
 
 				IsValid = true;
-			}
-		}
-
-		// でばっぐよう出力
-		public void GenerateTemplate()
-		{
-			EventList = new Dictionary<string, EventDen>();
-			EventList.Add("20200109", new EventDen());
-			EventList.Add("20200131", new EventDen());
-
-			using (StreamWriter sw = new StreamWriter("test.json"))
-			{
-				string str = JsonConvert.SerializeObject(this);
-				sw.Write(str);
 			}
 		}
 	}
