@@ -180,7 +180,7 @@ __global__ static void kernel_calc(
 			temp32 = 0;
 			do {
 				do {
-					temp32_2 = CudaNext(next, 7);
+					temp32_2 = CudaNext(next, 7u);
 				} while(ivs[temp32_2] == 31);
 
 				if(pokemon[2].ivs[temp32_2] != 31)
@@ -202,7 +202,7 @@ __global__ static void kernel_calc(
 			{
 				if(ivs[i] != 31)
 				{
-					if(pokemon[2].ivs[i] != CudaNext(next, 0x1F))
+					if(pokemon[2].ivs[i] != CudaNext(next, 0x1Fu))
 					{
 						temp32 = 10;
 						break;
@@ -219,12 +219,12 @@ __global__ static void kernel_calc(
 			temp32 = 0;
 			if(pokemon[2].abilityFlag == 3)
 			{
-				temp32 = CudaNext(next, 1);
+				temp32 = CudaNext(next, 1u);
 			}
 			else
 			{
 				do {
-					temp32 = CudaNext(next, 3);
+					temp32 = CudaNext(next, 3u);
 				} while(temp32 >= 3);
 			}
 			if((pokemon[2].ability >= 0 && pokemon[2].ability != temp32) || (pokemon[2].ability == -1 && temp32 >= 2))
@@ -237,7 +237,7 @@ __global__ static void kernel_calc(
 			{
 				temp32 = 0;
 				do {
-					temp32 = CudaNext(next, 0xFF);
+					temp32 = CudaNext(next, 0xFFu);
 				} while(temp32 >= 253);
 			}
 
@@ -271,7 +271,7 @@ __global__ static void kernel_calc(
 				temp32 = 0;
 				do {
 					do {
-						temp32_2 = CudaNext(seeds, 7);
+						temp32_2 = CudaNext(seeds, 7u);
 					} while(ivs[temp32_2] == 31);
 
 					if(pokemon[0].ivs[temp32_2] != 31)
@@ -293,7 +293,7 @@ __global__ static void kernel_calc(
 				{
 					if(ivs[i] != 31)
 					{
-						if(pokemon[0].ivs[i] != CudaNext(seeds, 0x1F))
+						if(pokemon[0].ivs[i] != CudaNext(seeds, 0x1Fu))
 						{
 							temp32 = 10;
 							break;
@@ -313,7 +313,7 @@ __global__ static void kernel_calc(
 				temp32 = 0;
 				do {
 					do {
-						temp32_2 = CudaNext(next, 7);
+						temp32_2 = CudaNext(next, 7u);
 					} while(ivs[temp32_2] == 31);
 
 					if(pokemon[1].ivs[temp32_2] != 31)
@@ -335,7 +335,7 @@ __global__ static void kernel_calc(
 				{
 					if(ivs[i] != 31)
 					{
-						if(pokemon[1].ivs[i] != CudaNext(next, 0x1F))
+						if(pokemon[1].ivs[i] != CudaNext(next, 0x1Fu))
 						{
 							temp32 = 10;
 							break;
@@ -353,12 +353,12 @@ __global__ static void kernel_calc(
 			temp32 = 0;
 			if(pokemon[0].abilityFlag == 3)
 			{
-				temp32 = CudaNext(seeds, 1);
+				temp32 = CudaNext(seeds, 1u);
 			}
 			else
 			{
 				do {
-					temp32 = CudaNext(seeds, 3);
+					temp32 = CudaNext(seeds, 3u);
 				} while(temp32 >= 3);
 			}
 			if((pokemon[0].ability >= 0 && pokemon[0].ability != temp32) || (pokemon[0].ability == -1 && temp32 >= 2))
@@ -368,12 +368,12 @@ __global__ static void kernel_calc(
 			temp32 = 0;
 			if(pokemon[1].abilityFlag == 3)
 			{
-				temp32 = CudaNext(next, 1);
+				temp32 = CudaNext(next, 1u);
 			}
 			else
 			{
 				do {
-					temp32 = CudaNext(next, 3);
+					temp32 = CudaNext(next, 3u);
 				} while(temp32 >= 3);
 			}
 			if((pokemon[1].ability >= 0 && pokemon[1].ability != temp32) || (pokemon[1].ability == -1 && temp32 >= 2))
@@ -386,14 +386,14 @@ __global__ static void kernel_calc(
 			{
 				temp32 = 0;
 				do {
-					temp32 = CudaNext(seeds, 0xFF);
+					temp32 = CudaNext(seeds, 0xFFu);
 				} while(temp32 >= 253);
 			}
 			if(!pokemon[1].isNoGender)
 			{
 				temp32 = 0;
 				do {
-					temp32 = CudaNext(next, 0xFF);
+					temp32 = CudaNext(next, 0xFFu);
 				} while(temp32 >= 253);
 			}
 

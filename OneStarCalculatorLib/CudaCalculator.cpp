@@ -16,7 +16,11 @@ void CudaInitialize()
 	CudaInitializeImpl();
 }
 
-void SetCudaCondition(int index, int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, int characteristic, bool isNoGender, int abilityFlag, int flawlessIvs)
+void SetCudaCondition(
+	int index,
+	int iv0, int iv1, int iv2, int iv3, int iv4, int iv5,
+	int ability, int nature, int natureTableId,
+	int characteristic, bool isNoGender, int abilityFlag, int flawlessIvs)
 {
 	if(index < 0 || index >= 4)
 	{
@@ -33,7 +37,7 @@ void SetCudaCondition(int index, int iv0, int iv1, int iv2, int iv3, int iv4, in
 	pokemon->ivs[5] = iv5;
 	pokemon->ability = ability;
 	pokemon->nature = nature;
-	pokemon->natureTableId = 0;
+	pokemon->natureTableId = natureTableId;
 	pokemon->characteristic = characteristic;
 	pokemon->isNoGender = isNoGender;
 	pokemon->abilityFlag = abilityFlag;

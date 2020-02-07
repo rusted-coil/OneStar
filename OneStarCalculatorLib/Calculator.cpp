@@ -33,7 +33,11 @@ inline bool IsEnableAbilityBit()
 	return (l_Pokemon[0].ability == 1) || (l_Pokemon[0].abilityFlag == 3 && l_Pokemon[0].ability >= 0);
 }
 
-void Set12Condition(int index, int iv0, int iv1, int iv2, int iv3, int iv4, int iv5, int ability, int nature, int characteristic, bool isNoGender, int abilityFlag, int flawlessIvs)
+void Set12Condition(
+	int index,
+	int iv0, int iv1, int iv2, int iv3, int iv4, int iv5,
+	int ability, int nature, int natureTableId,
+	int characteristic, bool isNoGender, int abilityFlag, int flawlessIvs)
 {
 	if(index < 0 || index >= 3)
 	{
@@ -56,7 +60,7 @@ void Set12Condition(int index, int iv0, int iv1, int iv2, int iv3, int iv4, int 
 	l_Pokemon[index].ivs[5] = iv5;
 	l_Pokemon[index].ability = ability;
 	l_Pokemon[index].nature = nature;
-	l_Pokemon[index].natureTableId = 0;
+	l_Pokemon[index].natureTableId = natureTableId;
 	l_Pokemon[index].characteristic = characteristic;
 	l_Pokemon[index].isNoGender = isNoGender;
 	l_Pokemon[index].abilityFlag = abilityFlag;
@@ -228,14 +232,15 @@ _u64 Search(_u64 ivs)
 				{
 					int gender = 0;
 					do {
-						gender = xoroshiro.Next(0xFF); // «•Ê’l
+						gender = xoroshiro.Next(0xFFu); // «•Ê’l
 					} while(gender >= 253);
 				}
 
-				int nature = 0;
+				// «Ši
+				_u32 nature = 0;
 				do {
-					nature = xoroshiro.Next(0x1F); // «Ši
-				} while(nature >= 25);
+					nature = xoroshiro.Next(c_NatureTable[l_Pokemon[0].natureTableId].randMax);
+				} while(nature >= c_NatureTable[l_Pokemon[0].natureTableId].patternCount);
 
 				if(nature == l_Pokemon[0].nature)
 				{
@@ -274,10 +279,11 @@ _u64 Search(_u64 ivs)
 					} while(gender >= 253);
 				}
 
-				int nature = 0;
+				// «Ši
+				_u32 nature = 0;
 				do {
-					nature = xoroshiro.Next(0x1F); // «Ši
-				} while(nature >= 25);
+					nature = xoroshiro.Next(c_NatureTable[l_Pokemon[0].natureTableId].randMax);
+				} while(nature >= c_NatureTable[l_Pokemon[0].natureTableId].patternCount);
 
 				if(nature != l_Pokemon[0].nature)
 				{
@@ -352,10 +358,11 @@ _u64 Search(_u64 ivs)
 					} while(gender >= 253);
 				}
 
-				int nature = 0;
+				// «Ši
+				_u32 nature = 0;
 				do {
-					nature = xoroshiro.Next(0x1F); // «Ši
-				} while(nature >= 25);
+					nature = xoroshiro.Next(c_NatureTable[l_Pokemon[1].natureTableId].randMax);
+				} while(nature >= c_NatureTable[l_Pokemon[1].natureTableId].patternCount);
 
 				if(nature == l_Pokemon[1].nature)
 				{
@@ -393,10 +400,10 @@ _u64 Search(_u64 ivs)
 				}
 
 				// «Ši
-				int nature = 0;
+				_u32 nature = 0;
 				do {
-					nature = xoroshiro.Next(0x1F);
-				} while(nature >= 25);
+					nature = xoroshiro.Next(c_NatureTable[l_Pokemon[1].natureTableId].randMax);
+				} while(nature >= c_NatureTable[l_Pokemon[1].natureTableId].patternCount);
 
 				if(nature != l_Pokemon[1].nature)
 				{
@@ -472,10 +479,11 @@ _u64 Search(_u64 ivs)
 						} while(gender >= 253);
 					}
 
-					int nature = 0;
+					// «Ši
+					_u32 nature = 0;
 					do {
-						nature = xoroshiro.Next(0x1F); // «Ši
-					} while(nature >= 25);
+						nature = xoroshiro.Next(c_NatureTable[l_Pokemon[2].natureTableId].randMax);
+					} while(nature >= c_NatureTable[l_Pokemon[2].natureTableId].patternCount);
 
 					if(nature == l_Pokemon[2].nature)
 					{
@@ -513,10 +521,10 @@ _u64 Search(_u64 ivs)
 					}
 
 					// «Ši
-					int nature = 0;
+					_u32 nature = 0;
 					do {
-						nature = xoroshiro.Next(0x1F);
-					} while(nature >= 25);
+						nature = xoroshiro.Next(c_NatureTable[l_Pokemon[2].natureTableId].randMax);
+					} while(nature >= c_NatureTable[l_Pokemon[2].natureTableId].patternCount);
 
 					if(nature != l_Pokemon[2].nature)
 					{

@@ -674,6 +674,7 @@ namespace OneStar
 				int ability = pokemonInfo.ComboBoxAbility.SelectedIndex;
 				if (ability >= 2) { ability = ability * 3 - 7; }
 				int nature = Messages.Instance.Nature[pokemonInfo.ComboBoxNature.Text];
+				int natureTableId = pokemon.NatureTableId;
 				bool noGender = pokemon.IsFixedGender;
 				int abilityFlag = pokemon.Ability;
 				int characteristic = Messages.Instance.Characteristic[pokemonInfo.ComboBoxCharacteristic.Text];
@@ -687,7 +688,7 @@ namespace OneStar
 					ivs[i * 6 + 3],
 					ivs[i * 6 + 4],
 					ivs[i * 6 + 5],
-					ability, nature, characteristic, noGender, abilityFlag, flawlessIvs);
+					ability, nature, natureTableId, characteristic, noGender, abilityFlag, flawlessIvs);
 			}
 
 			// 計算開始
@@ -792,6 +793,7 @@ namespace OneStar
 				int ability = pokemonInfo.ComboBoxAbility.SelectedIndex;
 				if (ability >= 2) { ability = ability * 3 - 7; }
 				int nature = Messages.Instance.Nature[pokemonInfo.ComboBoxNature.Text];
+				int natureTableId = pokemon.NatureTableId;
 				bool noGender = pokemon.IsFixedGender;
 				int abilityFlag = pokemon.Ability;
 				int characteristic = Messages.Instance.Characteristic[pokemonInfo.ComboBoxCharacteristic.Text];
@@ -807,7 +809,7 @@ namespace OneStar
 						ivs[i * 6 + 3],
 						ivs[i * 6 + 4],
 						ivs[i * 6 + 5],
-						ability, nature, characteristic, noGender, abilityFlag, flawlessIvs);
+						ability, nature, natureTableId, characteristic, noGender, abilityFlag, flawlessIvs);
 				}
 				else
 				{
@@ -819,7 +821,7 @@ namespace OneStar
 						ivs[i * 6 + 3],
 						ivs[i * 6 + 4],
 						ivs[i * 6 + 5],
-						ability, nature, characteristic, noGender, abilityFlag, flawlessIvs);
+						ability, nature, natureTableId, characteristic, noGender, abilityFlag, flawlessIvs);
 				}
 			}
 
@@ -1757,10 +1759,10 @@ namespace OneStar
 			// テスト用データ
 			SeedSearcher searcher = new SeedSearcher(SeedSearcher.Mode.Cuda35);
 			SeedSearcher.CudaInitialize();
-			SeedSearcher.SetCudaCondition(0, 31, 27, 3, 19, 18, 31, 1, 15, 3, false, 3, 2);
-			SeedSearcher.SetCudaCondition(1, 31, 9, 31, 31, 15, 31, 1, 18, 2, false, 3, 4);
-			SeedSearcher.SetCudaCondition(2, 31, 31, 31, 1, 31, 27, 1, 6, 2, true, 4, 4);
-			SeedSearcher.SetCudaCondition(3, 31, 2, 23, 31, 31, 31, 1, 15, 2, true, 4, 4);
+			SeedSearcher.SetCudaCondition(0, 31, 27, 3, 19, 18, 31, 1, 15, 0, 3, false, 3, 2);
+			SeedSearcher.SetCudaCondition(1, 31, 9, 31, 31, 15, 31, 1, 18, 0, 2, false, 3, 4);
+			SeedSearcher.SetCudaCondition(2, 31, 31, 31, 1, 31, 27, 1,  6, 0, 2, true, 4, 4);
+			SeedSearcher.SetCudaCondition(3, 31, 2, 23, 31, 31, 31, 1, 15, 0, 2, true, 4, 4);
 			SeedSearcher.SetCudaTargetCondition6(27, 3, 19, 18, 9, 15);
 			searcher.CudaLoopPartition = m_Preferences.GpuLoop + 1;
 

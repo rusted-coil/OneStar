@@ -52,19 +52,15 @@ void InitializeConstData()
 	c_NatureTable[2].natureId[0] = 1;
 	c_NatureTable[2].natureId[1] = 5;
 	c_NatureTable[2].natureId[2] = 7;
-	c_NatureTable[2].natureId[3] = 8;
-	c_NatureTable[2].natureId[4] = 9;
-	c_NatureTable[2].natureId[5] = 19;
-	c_NatureTable[2].natureId[6] = 22;
-	c_NatureTable[2].natureId[7] = 11;
-	c_NatureTable[2].natureId[8] = 13;
-	c_NatureTable[2].natureId[9] = 14;
-	c_NatureTable[2].natureId[10] = 0;
-	c_NatureTable[2].natureId[11] = 6;
-	c_NatureTable[2].natureId[12] = 24;
-
-//	public static readonly int[] ToxtricityAmplifiedNatures = { 0x03, 0x04, 0x02, 0x08, 0x09, 0x13, 0x16, 0x0B, 0x0D, 0x0E, 0x00, 0x06, 0x18 };
-//	public static readonly int[] ToxtricityLowKeyNatures = { 0x01, 0x05, 0x07, 0x0A, 0x0C, 0x0F, 0x10, 0x11, 0x12, 0x14, 0x15, 0x17 };
+	c_NatureTable[2].natureId[3] = 10;
+	c_NatureTable[2].natureId[4] = 12;
+	c_NatureTable[2].natureId[5] = 15;
+	c_NatureTable[2].natureId[6] = 16;
+	c_NatureTable[2].natureId[7] = 17;
+	c_NatureTable[2].natureId[8] = 18;
+	c_NatureTable[2].natureId[9] = 20;
+	c_NatureTable[2].natureId[10] =21;
+	c_NatureTable[2].natureId[11] =23;
 }
 
 // •ÏŠ·s—ñŒvZ
