@@ -3135,7 +3135,7 @@
 			this.MainMenuStrip = this.menuStrip1;
 			this.MaximizeBox = false;
 			this.Name = "MainForm";
-			this.Text = "1-Star Seed Search v1.06b";
+			this.Text = "1-Star Seed Search v1.06c";
 			this.f_GroupBoxPokemon_1.ResumeLayout(false);
 			this.f_GroupBoxPokemon_1.PerformLayout();
 			this.f_GroupBoxStatus1.ResumeLayout(false);

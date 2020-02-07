@@ -52,7 +52,7 @@ __device__ __forceinline__ void CudaNext(_u32* seeds)
 // “ü—Í—p\‘¢‘Ì
 struct CudaConst
 {
-	NatureTable natureTable[2];
+	NatureTable natureTable[3];
 };
 struct CudaInputMaster
 {

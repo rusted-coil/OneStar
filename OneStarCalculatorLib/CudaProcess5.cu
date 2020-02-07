@@ -248,10 +248,10 @@ __global__ static void kernel_calc(
 			// «Ši
 			temp32 = 0;
 			do {
-				temp32 = CudaNext(next, 0x1F);
-			} while(temp32 >= 25);
+				temp32 = CudaNext(next, pConst->natureTable[pokemon[2].natureTableId].randMax);
+			} while(temp32 >= pConst->natureTable[pokemon[2].natureTableId].patternCount);
 
-			if(temp32 != pokemon[2].nature)
+			if(pConst->natureTable[pokemon[2].natureTableId].natureId[temp32] != pokemon[2].nature)
 			{
 				continue;
 			}
@@ -404,17 +404,20 @@ __global__ static void kernel_calc(
 			// «Ši
 			temp32 = 0;
 			do {
-				temp32 = CudaNext(seeds, 0x1F);
-			} while(temp32 >= 25);
-			if(temp32 != pokemon[0].nature)
+				temp32 = CudaNext(seeds, pConst->natureTable[pokemon[0].natureTableId].randMax);
+			} while(temp32 >= pConst->natureTable[pokemon[0].natureTableId].patternCount);
+
+			if(pConst->natureTable[pokemon[0].natureTableId].natureId[temp32] != pokemon[0].nature)
 			{
 				continue;
 			}
+
 			temp32 = 0;
 			do {
-				temp32 = CudaNext(next, 0x1F);
-			} while(temp32 >= 25);
-			if(temp32 != pokemon[1].nature)
+				temp32 = CudaNext(next, pConst->natureTable[pokemon[1].natureTableId].randMax);
+			} while(temp32 >= pConst->natureTable[pokemon[1].natureTableId].patternCount);
+
+			if(pConst->natureTable[pokemon[1].natureTableId].natureId[temp32] != pokemon[1].nature)
 			{
 				continue;
 			}

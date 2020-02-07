@@ -1,4 +1,5 @@
 #include "CudaProcess.cuh"
+#include "Data.h"
 
 // ’è”
 static CudaConst* cu_HostConstData;
@@ -32,8 +33,9 @@ void CudaInitializeImpl()
 	cu_HostInputMaster->ecBit = -1;
 
 	// ’è”ƒf[ƒ^‚ð“]‘—
-//	cu_HostConstData->natureTable[0].randMax = 0x1F;
-//	cu_HostConstData->natureTable[0].randMax = 0x1F;
+	cu_HostConstData->natureTable[0] = c_NatureTable[0];
+	cu_HostConstData->natureTable[1] = c_NatureTable[1];
+	cu_HostConstData->natureTable[2] = c_NatureTable[2];
 	cudaMemcpy(cu_DeviceConstData, cu_HostConstData, sizeof(CudaConst), cudaMemcpyHostToDevice);
 }
 

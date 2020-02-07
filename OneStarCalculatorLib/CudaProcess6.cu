@@ -53,7 +53,6 @@ __global__ static void kernel_calc(
 
 	// ŒŸõðŒƒLƒƒƒbƒVƒ…
 
-	__shared__ CudaConst constData;
 	__shared__ _u32 answerFlag[128];
 	__shared__ PokemonData pokemon[4];
 	__shared__ int ecBit;
@@ -82,7 +81,6 @@ __global__ static void kernel_calc(
 	else if(threadIdx.x % 8 == 5)
 	{
 		ecBit = pSrc->ecBit;
-		constData = *pConst;
 	}
 	else if(threadIdx.x % 8 == 6)
 	{
@@ -246,10 +244,10 @@ __global__ static void kernel_calc(
 			// «Ši
 			temp32 = 0;
 			do {
-				temp32 = CudaNext(next, 0x1F);
-			} while(temp32 >= 25);
+				temp32 = CudaNext(next, pConst->natureTable[pokemon[2].natureTableId].randMax);
+			} while(temp32 >= pConst->natureTable[pokemon[2].natureTableId].patternCount);
 
-			if(temp32 != pokemon[2].nature)
+			if(pConst->natureTable[pokemon[2].natureTableId].natureId[temp32] != pokemon[2].nature)
 			{
 				continue;
 			}
@@ -402,17 +400,20 @@ __global__ static void kernel_calc(
 			// «Ši
 			temp32 = 0;
 			do {
-				temp32 = CudaNext(seeds, 0x1F);
-			} while(temp32 >= 25);
-			if(temp32 != pokemon[0].nature)
+				temp32 = CudaNext(seeds, pConst->natureTable[pokemon[0].natureTableId].randMax);
+			} while(temp32 >= pConst->natureTable[pokemon[0].natureTableId].patternCount);
+
+			if(pConst->natureTable[pokemon[0].natureTableId].natureId[temp32] != pokemon[0].nature)
 			{
 				continue;
 			}
+
 			temp32 = 0;
 			do {
-				temp32 = CudaNext(next, 0x1F);
-			} while(temp32 >= 25);
-			if(temp32 != pokemon[1].nature)
+				temp32 = CudaNext(next, pConst->natureTable[pokemon[1].natureTableId].randMax);
+			} while(temp32 >= pConst->natureTable[pokemon[1].natureTableId].patternCount);
+
+			if(pConst->natureTable[pokemon[1].natureTableId].natureId[temp32] != pokemon[1].nature)
 			{
 				continue;
 			}
@@ -452,7 +453,7 @@ void Cuda6SetMasterData()
 	}
 	for(int i = 0; i < 16; ++i)
 	{
-		cu_HostInputCoefficientData[i * 2]     = (_u32)(g_CoefficientData[i] >> 32);
+		cu_HostInputCoefficientData[i * 2] = (_u32)(g_CoefficientData[i] >> 32);
 		cu_HostInputCoefficientData[i * 2 + 1] = (_u32)(g_CoefficientData[i] & 0xFFFFFFFFull);
 		cu_HostInputSearchPattern[i] = (_u32)g_SearchPattern[i];
 	}

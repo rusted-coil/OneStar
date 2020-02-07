@@ -1042,16 +1042,12 @@ namespace OneStar
 
 			var pokemon = f_ComboBoxPokemon_List.SelectedItem as RaidData.Pokemon;
 
-			int vCount = pokemon.FlawlessIvs;
-			bool isNoGender = pokemon.IsFixedGender;
-			int abilityFlag = pokemon.Ability;
-
 			bool isShinyCheck = f_CheckBoxListShiny.Checked;
 
 			bool isShowSeed = f_CheckBoxShowSeed.Checked;
 			bool isShowEc = f_CheckBoxShowEC.Checked;
 
-			ListGenerator listGenerator = new ListGenerator(denSeed, maxFrameCount, vCount, isNoGender, abilityFlag, isShinyCheck, isShowSeed, isShowEc);
+			ListGenerator listGenerator = new ListGenerator(denSeed, maxFrameCount, pokemon, isShinyCheck, isShowSeed, isShowEc);
 			listGenerator.Generate();
 		}
 

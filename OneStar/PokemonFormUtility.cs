@@ -85,5 +85,18 @@ namespace OneStar
 			}
 			return "";
 		}
+
+		// 性格テーブル
+		public class NatureTable
+		{
+			public uint Max { get; set; }
+			public uint Pattern { get; set; }
+			public int[] List { get; set; }
+		}
+		public static NatureTable[] NatureTableList = {
+			new NatureTable{ Max = 0x1F, Pattern = 25, List = new int[]{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ,17, 18, 19, 20, 21, 22, 23, 24 } },
+			new NatureTable{ Max = 0xF, Pattern = 13, List = new int[]{ 3, 4, 2, 8, 9, 19, 22, 11, 13, 14, 0, 6, 24 } },
+			new NatureTable{ Max = 0xF, Pattern = 12, List = new int[]{ 1, 5, 7, 10, 12, 15, 16, 17, 18, 20, 21, 23 } },
+		};
 	}
 }

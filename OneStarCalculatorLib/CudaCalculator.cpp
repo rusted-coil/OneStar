@@ -33,6 +33,7 @@ void SetCudaCondition(int index, int iv0, int iv1, int iv2, int iv3, int iv4, in
 	pokemon->ivs[5] = iv5;
 	pokemon->ability = ability;
 	pokemon->nature = nature;
+	pokemon->natureTableId = 0;
 	pokemon->characteristic = characteristic;
 	pokemon->isNoGender = isNoGender;
 	pokemon->abilityFlag = abilityFlag;

@@ -8,20 +8,16 @@ namespace OneStar
 	{
 		UInt64 m_DenSeed;
 		int m_MaxCount;
-		int m_VCount;
-		bool m_isNoGender;
-		int m_AbilityFlag;
+		RaidData.Pokemon m_Pokemon;
 		bool m_isShinyCheck;
 		bool m_isShowSeed;
 		bool m_isShowEc;
 
-		public ListGenerator(UInt64 denSeed, int maxCount, int vCount, bool isNoGender, int abilityFlag, bool isShinyCheck, bool isShowSeed, bool isShowEc)
+		public ListGenerator(UInt64 denSeed, int maxCount, RaidData.Pokemon pokemon, bool isShinyCheck, bool isShowSeed, bool isShowEc)
 		{
 			m_DenSeed = denSeed;
 			m_MaxCount = maxCount;
-			m_VCount = vCount;
-			m_isNoGender = isNoGender;
-			m_AbilityFlag = abilityFlag;
+			m_Pokemon = pokemon;
 			m_isShinyCheck = isShinyCheck;
 			m_isShowSeed = isShowSeed;
 			m_isShowEc = isShowEc;
@@ -95,7 +91,7 @@ namespace OneStar
 							ivs[fixedIndex] = 31;
 							++fixedCount;
 						}
-					} while (fixedCount < m_VCount);
+					} while (fixedCount < m_Pokemon.FlawlessIvs);
 
 					// 個体値を埋める
 					for (int i = 0; i < 6; ++i)
@@ -107,11 +103,11 @@ namespace OneStar
 					}
 
 					// 特性
-					if (m_AbilityFlag == 2)
+					if (m_Pokemon.Ability == 2)
 					{
 						ability = 2;
 					}
-					else if(m_AbilityFlag == 4)
+					else if(m_Pokemon.Ability == 4)
 					{
 						do
 						{
@@ -124,7 +120,7 @@ namespace OneStar
 					}
 
 					// 性別値
-					if (!m_isNoGender)
+					if (!m_Pokemon.IsFixedGender)
 					{
 						do
 						{
@@ -135,8 +131,8 @@ namespace OneStar
 					// 性格
 					do
 					{
-						nature = xoroshiro.Next(0x1F);
-					} while (nature >= 25);
+						nature = xoroshiro.Next(PokemonFormUtility.NatureTableList[m_Pokemon.NatureTableId].Max);
+					} while (nature >= PokemonFormUtility.NatureTableList[m_Pokemon.NatureTableId].Pattern);
 
 					// 出力
 					sw.Write($"{frame},");
@@ -150,7 +146,7 @@ namespace OneStar
 					}
 					sw.Write($"{ivs[0]},{ivs[1]},{ivs[2]},{ivs[3]},{ivs[4]},{ivs[5]},");
 					sw.Write(ability == 2 ? $"{Messages.Instance.ListLabel["HiddenAbility"]}," : $"{ability + 1},");
-					sw.Write($"{PokemonFormUtility.GetNatureString((int)nature)},");
+					sw.Write($"{PokemonFormUtility.GetNatureString(PokemonFormUtility.NatureTableList[m_Pokemon.NatureTableId].List[nature])},");
 					if (isShiny)
 					{
 						sw.WriteLine(isSquare ? Messages.Instance.ListLabel["SquareShiny"] : Messages.Instance.ListLabel["StarShiny"]);

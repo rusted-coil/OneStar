@@ -176,6 +176,22 @@ namespace OneStar
 
 			public override string ToString() { return Key; }
 
+			// データ取得
+			public int NatureTableId {
+				get {
+					// ストリンダー対応
+					if (DisplaySpecies == 849)
+					{
+						return 1; // ハイ
+					}
+					if (DisplaySpecies == 1154)
+					{
+						return 2; // ロー
+					}
+					return 0;
+				}
+			}
+
 			public Pokemon(RaidTemplate entry, int rank)
 			{
 				Rank = rank;
@@ -204,6 +220,11 @@ namespace OneStar
 				{
 					CalcSpecies = 993;
 				}
+				// ストリンダーは計算上は共通
+				else if (rawSpecies == 849)
+				{
+					CalcSpecies = 849;
+				}
 				else
 				{
 					CalcSpecies = rawSpecies + altForm / 10m;
@@ -213,6 +234,11 @@ namespace OneStar
 				if (c_GalarForms.ContainsKey(rawSpecies))
 				{
 					DisplaySpecies = rawSpecies;
+				}
+				// ストリンダー（ロー）
+				else if (rawSpecies == 849 && altForm == 1)
+				{
+					DisplaySpecies = 1154;
 				}
 				else
 				{

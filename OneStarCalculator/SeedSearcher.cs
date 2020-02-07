@@ -19,6 +19,10 @@ namespace OneStarCalculator
 		// 結果
 		public List<ulong> Result { get; } = new List<ulong>();
 
+		// 共通
+		[DllImport("OneStarCalculatorLib.dll")]
+		static extern void InitializeConstData();
+
 		#region ★1～2検索設定
 		[DllImport("OneStarCalculatorLib.dll")]
 		static extern void Prepare(int rerolls);
@@ -87,6 +91,7 @@ namespace OneStarCalculator
 		public SeedSearcher(Mode mode)
 		{
 			m_Mode = mode;
+			InitializeConstData();
 		}
 
 		private readonly object lockObj = new object();

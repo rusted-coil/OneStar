@@ -1,5 +1,8 @@
 #pragma once
 #include "Type.h"
+#include "Util.h"
+
+extern NatureTable c_NatureTable[3];
 
 extern _u64 g_TempMatrix[256];
 extern _u64 g_InputMatrix[64];
@@ -18,3 +21,8 @@ short GetMatrixConst(int index);
 
 void CalculateInverseMatrix(int length);
 void CalculateCoefficientData(int length);
+
+extern "C"
+{
+	__declspec(dllexport) void InitializeConstData();
+}

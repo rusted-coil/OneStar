@@ -56,6 +56,7 @@ void Set12Condition(int index, int iv0, int iv1, int iv2, int iv3, int iv4, int 
 	l_Pokemon[index].ivs[5] = iv5;
 	l_Pokemon[index].ability = ability;
 	l_Pokemon[index].nature = nature;
+	l_Pokemon[index].natureTableId = 0;
 	l_Pokemon[index].characteristic = characteristic;
 	l_Pokemon[index].isNoGender = isNoGender;
 	l_Pokemon[index].abilityFlag = abilityFlag;
