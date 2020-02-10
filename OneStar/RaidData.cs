@@ -11,7 +11,7 @@ namespace OneStar
 		readonly RaidTables c_RaidTables = new RaidTables();
 
 		// イベントレイドデータ
-		readonly EventDenList c_EventDenList;
+		EventDenList m_EventDenList;
 
 		// マップスケール
 		readonly float c_MapScale = 250.0f / 458.0f; // ビュー上の幅/画像の幅
@@ -90,8 +90,8 @@ namespace OneStar
 
 		public RaidData()
 		{
-			c_EventDenList = new EventDenList();
-			c_EventDenList.Load();
+			m_EventDenList = new EventDenList();
+			m_EventDenList.Load();
 		}
 
 		// 恒常レイド
@@ -142,9 +142,9 @@ namespace OneStar
 				id += "_Sh";
 			}
 
-			if (c_EventDenList.EventList.ContainsKey(id))
+			if (m_EventDenList.EventList.ContainsKey(id))
 			{
-				return c_EventDenList.EventList[id].RaidEntries;
+				return m_EventDenList.EventList[id].RaidEntries;
 			}
 			else
 			{
@@ -152,15 +152,28 @@ namespace OneStar
 			}
 		}
 
-        public List<string> GetAllEventRaidEntries()
+        public List<string> GetEventRaidIdList()
         {
-            List<string> ret_string = new List<string>();
-            foreach (string key in c_EventDenList.EventList.Keys)
+            List<string> list = new List<string>();
+			HashSet<string> existId = new HashSet<string>();
+            foreach (string key in m_EventDenList.EventList.Keys)
             {
-                ret_string.Add(key);
-            }
-            return ret_string;
+				// 末尾のバージョンを削除
+				string id = key.Substring(0, key.Length - 3);
+				if (!existId.Contains(id))
+				{
+					list.Add(id);
+					existId.Add(id);
+				}
+			}
+			list.Sort();
+			list.Reverse();
+            return list;
         }
+		public void LoadEventRaidData()
+		{
+			m_EventDenList.Load();
+		}
 
         // 1ランク1ポケモンごとに対応するデータ
         public class Pokemon

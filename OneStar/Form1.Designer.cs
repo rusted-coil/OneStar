@@ -274,8 +274,7 @@
             this.f_StripMenuItemWindowSize = new System.Windows.Forms.ToolStripMenuItem();
             this.f_MenuItemWindowSizeNormal = new System.Windows.Forms.ToolStripMenuItem();
             this.f_MenuItemWindowSizeSmall = new System.Windows.Forms.ToolStripMenuItem();
-            this.f_StripMenuItemEventId = new System.Windows.Forms.ToolStripMenuItem();
-            this.f_StripMenuItemUpdateEventData = new System.Windows.Forms.ToolStripMenuItem();
+            this.f_StripMenuItemEventRaid = new System.Windows.Forms.ToolStripMenuItem();
             this.f_StripMenuItemGpuSetting = new System.Windows.Forms.ToolStripMenuItem();
             this.f_MenuItemUseGpu = new System.Windows.Forms.ToolStripMenuItem();
             this.f_MenuItemThreadCount = new System.Windows.Forms.ToolStripMenuItem();
@@ -303,6 +302,7 @@
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.f_CheckBoxShowAbilityName = new System.Windows.Forms.CheckBox();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.f_GroupBoxPokemon_1.SuspendLayout();
             this.f_GroupBoxStatus1.SuspendLayout();
             this.f_GroupBoxPokemon_2.SuspendLayout();
@@ -2809,8 +2809,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.f_StripMenuItemLanguage,
             this.f_StripMenuItemWindowSize,
-            this.f_StripMenuItemEventId,
-            this.f_StripMenuItemUpdateEventData,
+            this.f_StripMenuItemEventRaid,
             this.f_StripMenuItemGpuSetting});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -2833,28 +2832,28 @@
             // f_MenuItemLanguageJp
             // 
             this.f_MenuItemLanguageJp.Name = "f_MenuItemLanguageJp";
-            this.f_MenuItemLanguageJp.Size = new System.Drawing.Size(122, 22);
+            this.f_MenuItemLanguageJp.Size = new System.Drawing.Size(180, 22);
             this.f_MenuItemLanguageJp.Text = "日本語";
             this.f_MenuItemLanguageJp.Click += new System.EventHandler(this.f_MenuItemLanguageJp_Click);
             // 
             // f_MenuItemLanguageEn
             // 
             this.f_MenuItemLanguageEn.Name = "f_MenuItemLanguageEn";
-            this.f_MenuItemLanguageEn.Size = new System.Drawing.Size(122, 22);
+            this.f_MenuItemLanguageEn.Size = new System.Drawing.Size(180, 22);
             this.f_MenuItemLanguageEn.Text = "English";
             this.f_MenuItemLanguageEn.Click += new System.EventHandler(this.f_MenuItemLanguageEn_Click);
             // 
             // f_MenuItemLanguageZh
             // 
             this.f_MenuItemLanguageZh.Name = "f_MenuItemLanguageZh";
-            this.f_MenuItemLanguageZh.Size = new System.Drawing.Size(122, 22);
+            this.f_MenuItemLanguageZh.Size = new System.Drawing.Size(180, 22);
             this.f_MenuItemLanguageZh.Text = "简体中文";
             this.f_MenuItemLanguageZh.Click += new System.EventHandler(this.f_MenuItemLanguageZh_Click);
             // 
             // f_MenuItemLanguageZh_TW
             // 
             this.f_MenuItemLanguageZh_TW.Name = "f_MenuItemLanguageZh_TW";
-            this.f_MenuItemLanguageZh_TW.Size = new System.Drawing.Size(122, 22);
+            this.f_MenuItemLanguageZh_TW.Size = new System.Drawing.Size(180, 22);
             this.f_MenuItemLanguageZh_TW.Text = "正體字";
             this.f_MenuItemLanguageZh_TW.Click += new System.EventHandler(this.f_MenuItemLanguageZh_TW_Click);
             // 
@@ -2871,31 +2870,25 @@
             // f_MenuItemWindowSizeNormal
             // 
             this.f_MenuItemWindowSizeNormal.Name = "f_MenuItemWindowSizeNormal";
-            this.f_MenuItemWindowSizeNormal.Size = new System.Drawing.Size(98, 22);
+            this.f_MenuItemWindowSizeNormal.Size = new System.Drawing.Size(180, 22);
             this.f_MenuItemWindowSizeNormal.Text = "標準";
             this.f_MenuItemWindowSizeNormal.Click += new System.EventHandler(this.f_MenuItemWindowSizeNormal_Click);
             // 
             // f_MenuItemWindowSizeSmall
             // 
             this.f_MenuItemWindowSizeSmall.Name = "f_MenuItemWindowSizeSmall";
-            this.f_MenuItemWindowSizeSmall.Size = new System.Drawing.Size(98, 22);
+            this.f_MenuItemWindowSizeSmall.Size = new System.Drawing.Size(180, 22);
             this.f_MenuItemWindowSizeSmall.Text = "小";
             this.f_MenuItemWindowSizeSmall.Click += new System.EventHandler(this.f_MenuItemWindowSizeSmall_Click);
             // 
-            // f_StripMenuItemEventId
+            // f_StripMenuItemEventRaid
             // 
-            this.f_StripMenuItemEventId.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.f_StripMenuItemEventId.Name = "f_StripMenuItemEventId";
-            this.f_StripMenuItemEventId.Size = new System.Drawing.Size(81, 20);
-            this.f_StripMenuItemEventId.Text = "イベントレイド";
-            // 
-            // f_StripMenuItemUpdateEventData
-            // 
-            this.f_StripMenuItemUpdateEventData.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.f_StripMenuItemUpdateEventData.Name = "f_StripMenuItemUpdateEventData";
-            this.f_StripMenuItemUpdateEventData.Size = new System.Drawing.Size(69, 20);
-            this.f_StripMenuItemUpdateEventData.Text = "データ更新";
-            this.f_StripMenuItemUpdateEventData.Click += new System.EventHandler(this.UpdateEventToolStripMenuItem_Click);
+            this.f_StripMenuItemEventRaid.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripSeparator1});
+            this.f_StripMenuItemEventRaid.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.f_StripMenuItemEventRaid.Name = "f_StripMenuItemEventRaid";
+            this.f_StripMenuItemEventRaid.Size = new System.Drawing.Size(81, 20);
+            this.f_StripMenuItemEventRaid.Text = "イベントレイド";
             // 
             // f_StripMenuItemGpuSetting
             // 
@@ -3139,6 +3132,11 @@
             this.f_CheckBoxShowAbilityName.UseVisualStyleBackColor = true;
             this.f_CheckBoxShowAbilityName.CheckedChanged += new System.EventHandler(this.f_CheckBoxShowAbilityName_CheckedChanged);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -3160,7 +3158,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "1-Star Seed Search v1.06c";
+            this.Text = "1-Star Seed Search v1.07";
             this.f_GroupBoxPokemon_1.ResumeLayout(false);
             this.f_GroupBoxPokemon_1.PerformLayout();
             this.f_GroupBoxStatus1.ResumeLayout(false);
@@ -3463,8 +3461,7 @@
 		private System.Windows.Forms.ToolStripMenuItem f_StripMenuItemWindowSize;
 		private System.Windows.Forms.ToolStripMenuItem f_MenuItemWindowSizeNormal;
 		private System.Windows.Forms.ToolStripMenuItem f_MenuItemWindowSizeSmall;
-		private System.Windows.Forms.ToolStripMenuItem f_StripMenuItemEventId;
-        private System.Windows.Forms.ToolStripMenuItem f_StripMenuItemUpdateEventData;
+		private System.Windows.Forms.ToolStripMenuItem f_StripMenuItemEventRaid;
 		private System.Windows.Forms.ToolStripMenuItem f_StripMenuItemGpuSetting;
 		private System.Windows.Forms.ToolStripMenuItem f_MenuItemUseGpu;
         private System.Windows.Forms.ToolStripMenuItem f_MenuItemThreadCount;
@@ -3480,5 +3477,6 @@
         private System.Windows.Forms.ToolStripMenuItem f_MenuItemGpuTest;
 		private System.Windows.Forms.CheckBox f_CheckBoxShowEC;
         private System.Windows.Forms.CheckBox f_CheckBoxShowAbilityName;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }

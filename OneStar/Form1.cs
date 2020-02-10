@@ -44,8 +44,9 @@ namespace OneStar
 		int m_CurrentRarity = -1;
 		List<RaidData.Pokemon> m_EncounterList = new List<RaidData.Pokemon>();
 
-		// イベントレイドIDボタン
-		List<ToolStripMenuItem> m_MenuItemEventIdList = new List<ToolStripMenuItem>();
+		// イベントレイド関連
+		ToolStripMenuItem m_MenuItemEventUpdate = null; // 更新ボタン
+		List<ToolStripMenuItem> m_MenuItemEventIdList = new List<ToolStripMenuItem>(); // IDボタン
 
 		// GPUスレッド数ボタン
 		ToolStripMenuItem[] m_MenuItemGpuLoopList;
@@ -175,7 +176,7 @@ namespace OneStar
 
 			// 設定をセット
 			f_MenuItemUseGpu.Checked = m_Preferences.IsUseGpu;
-			m_MenuItemGpuLoopList = new ToolStripMenuItem[]{ 
+			m_MenuItemGpuLoopList = new ToolStripMenuItem[]{
 				f_MenuItemGpuLoop29,
 				f_MenuItemGpuLoop28,
 				f_MenuItemGpuLoop27,
@@ -327,34 +328,10 @@ namespace OneStar
 				var tb3 = m_PokemonInfo[a].TextBoxLevel;
 				m_PokemonInfo[a].TextBoxLevel.Enter += new System.EventHandler((object sender, EventArgs e) => { EnterTextBoxAllSelect(tb3); });
 			}
-            #endregion
+			#endregion
 
-            // イベントレイドID
-            // first clear all items
-            f_StripMenuItemEventId.DropDownItems.Clear();
-
-            List<string> event_strings = c_RaidData.GetAllEventRaidEntries();
-            List<string> event_strings_distinct = new List<string>();
-
-            foreach (string event_id in event_strings)
-            {
-                event_strings_distinct.Add(event_id.Substring(0, event_id.Length - 3));
-            }
-            event_strings_distinct = event_strings_distinct.Distinct().ToList();
-
-            foreach (string event_id in event_strings_distinct)
-            {
-                // add new one
-                ToolStripMenuItem new_event = new ToolStripMenuItem();
-                new_event.Name = event_id;
-                new_event.Size = new System.Drawing.Size(152, 22);
-                new_event.Text = event_id;
-                new_event.Click += new System.EventHandler(this.MenuItemEventIdSelect);
-                f_StripMenuItemEventId.DropDownItems.Add(new_event);
-                m_MenuItemEventIdList.Add(new_event);
-            }
-
-            RefreshEventId();
+			// イベントレイドデータ
+			RefreshEventRaidData();
 
 			// 言語設定用コントロールをセット
 			m_MultiLanguageControls = new Dictionary<string, Control[]>();
@@ -1180,8 +1157,8 @@ namespace OneStar
 			f_StripMenuItemWindowSize.Text = Messages.Instance.SystemLabel["WindowSize"];
 			f_MenuItemWindowSizeNormal.Text = Messages.Instance.SystemLabel["WindowSizeNormal"];
 			f_MenuItemWindowSizeSmall.Text = Messages.Instance.SystemLabel["WindowSizeSmall"];
-			f_StripMenuItemEventId.Text = Messages.Instance.SystemLabel["EventDen"];
-			f_StripMenuItemUpdateEventData.Text = Messages.Instance.SystemLabel["UpdateEventDen"];
+			m_MenuItemEventUpdate.Text = Messages.Instance.SystemLabel["UpdateEventDen"];
+			f_StripMenuItemEventRaid.Text = Messages.Instance.SystemLabel["EventDen"];
 			f_StripMenuItemGpuSetting.Text = Messages.Instance.SystemLabel["GpuSettings"];
 			f_MenuItemUseGpu.Text = Messages.Instance.SystemLabel["UseGpu"];
 			f_MenuItemThreadCount.Text = Messages.Instance.SystemLabel["ThreadSetting"];
@@ -1781,6 +1758,38 @@ namespace OneStar
 
 			// comfirm close and reopen
 			MessageBox.Show(Messages.Instance.SystemMessage["UpdateEventDenSuccessed"]);
+
+			c_RaidData.LoadEventRaidData();
+			RefreshEventRaidData();
+		}
+		void RefreshEventRaidData()
+		{
+			f_StripMenuItemEventRaid.DropDownItems.Clear();
+			m_MenuItemEventIdList.Clear();
+			List<string> eventIdList = c_RaidData.GetEventRaidIdList();
+			foreach (var id in eventIdList)
+			{
+				ToolStripMenuItem newEvent = new ToolStripMenuItem();
+				newEvent.Name = id;
+				newEvent.Size = new System.Drawing.Size(177, 22);
+				newEvent.Text = id;
+				newEvent.Click += new System.EventHandler(this.MenuItemEventIdSelect);
+
+				f_StripMenuItemEventRaid.DropDownItems.Add(newEvent);
+				m_MenuItemEventIdList.Add(newEvent);
+			}
+			f_StripMenuItemEventRaid.DropDownItems.Add(new ToolStripSeparator());
+			// 更新ボタン
+			if (m_MenuItemEventUpdate == null)
+			{
+				m_MenuItemEventUpdate = new ToolStripMenuItem();
+				m_MenuItemEventUpdate.Name = "f_StripMenuItemUpdateEventData";
+				m_MenuItemEventUpdate.Size = new System.Drawing.Size(177, 22);
+				m_MenuItemEventUpdate.Click += new System.EventHandler(this.UpdateEventToolStripMenuItem_Click);
+			}
+			f_StripMenuItemEventRaid.DropDownItems.Add(m_MenuItemEventUpdate);
+
+			RefreshEventId();
 		}
 
 		private void f_MenuItemGpuTest_Click(object sender, EventArgs e)
