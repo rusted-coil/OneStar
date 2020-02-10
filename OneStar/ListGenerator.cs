@@ -13,8 +13,9 @@ namespace OneStar
 		bool m_isShinyCheck;
 		bool m_isShowSeed;
 		bool m_isShowEc;
+		bool m_isShowAbilityName;
 
-		public ListGenerator(UInt64 denSeed, int maxCount, RaidData.Pokemon pokemon, bool isShinyCheck, bool isShowSeed, bool isShowEc)
+		public ListGenerator(UInt64 denSeed, int maxCount, RaidData.Pokemon pokemon, bool isShinyCheck, bool isShowSeed, bool isShowEc, bool isShowAbilityName)
 		{
 			m_DenSeed = denSeed;
 			m_MaxCount = maxCount;
@@ -22,11 +23,13 @@ namespace OneStar
 			m_isShinyCheck = isShinyCheck;
 			m_isShowSeed = isShowSeed;
 			m_isShowEc = isShowEc;
+			m_isShowAbilityName = isShowAbilityName;
 		}
 
 		public void Generate()
 		{
 			PersonalInfo personalInfo = PersonalTable.SWSH[m_Pokemon.DataSpecies];
+			var abilityList = PKHeX.Core.Util.GetAbilitiesList(Messages.Instance.LangCode);
 
 			UInt64 seed = m_DenSeed; // 消費数0のDen Seed
 
@@ -163,7 +166,14 @@ namespace OneStar
 							sw.Write($"{Messages.Instance.Gender[1]},");
 						}
 					}
-					sw.Write(ability == 2 ? $"{Messages.Instance.ListLabel["HiddenAbility"]}," : $"{ability + 1},");
+					if (m_isShowAbilityName)
+					{
+						sw.Write($"{abilityList[personalInfo.Abilities[ability]]},");
+					}
+					else
+					{
+						sw.Write(ability == 2 ? $"{Messages.Instance.ListLabel["HiddenAbility"]}," : $"{ability + 1},");
+					}
 					sw.Write($"{PokemonFormUtility.GetNatureString(PokemonFormUtility.NatureTableList[m_Pokemon.NatureTableId].List[nature])},");
 					if (isShiny)
 					{

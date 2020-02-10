@@ -1,4 +1,5 @@
 {
+    "LangCode": "en",
     "Nature": {
         "Hardy"     :"0",
         "Lonely"    :"1",
@@ -84,6 +85,7 @@
         "OnlyShiny": "Only list Shiny Pokemon",
         "ShowSeed": "Include the seed",
         "ShowEC": "Show EC",
+        "ShowAbilityName": "Show Ability name",
         "ListButton": "Generate List",
         "ShowDuration": "Show calculation time",
         "StartSearch": "Start Search",

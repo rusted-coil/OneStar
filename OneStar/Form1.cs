@@ -151,9 +151,6 @@ namespace OneStar
 			PokemonFormUtility.SetCharacteristicComboBox(f_ComboBoxCharacteristic_351);
 			PokemonFormUtility.SetCharacteristicComboBox(f_ComboBoxCharacteristic_352);
 			PokemonFormUtility.SetCharacteristicComboBox(f_ComboBoxCharacteristic_353);
-			PokemonFormUtility.SetAbilityComboBox(f_ComboBoxAbility_351, 4);
-			PokemonFormUtility.SetAbilityComboBox(f_ComboBoxAbility_352, 4);
-			PokemonFormUtility.SetAbilityComboBox(f_ComboBoxAbility_353, 4);
 
 			// ★1～2パネル
 			PokemonFormUtility.SetNatureComboBox(f_ComboBoxNature_1);
@@ -162,9 +159,6 @@ namespace OneStar
 			PokemonFormUtility.SetCharacteristicComboBox(f_ComboBoxCharacteristic_1);
 			PokemonFormUtility.SetCharacteristicComboBox(f_ComboBoxCharacteristic_2);
 			PokemonFormUtility.SetCharacteristicComboBox(f_ComboBoxCharacteristic_3);
-			PokemonFormUtility.SetAbilityComboBox(f_ComboBoxAbility_1, 4);
-			PokemonFormUtility.SetAbilityComboBox(f_ComboBoxAbility_2, 4);
-			PokemonFormUtility.SetAbilityComboBox(f_ComboBoxAbility_3, 4);
 		}
 
 		void InitializeView()
@@ -671,9 +665,8 @@ namespace OneStar
 			{
 				var pokemonInfo = m_PokemonInfo[i];
 				var pokemon = pokemonData[i];
-				
-				int ability = pokemonInfo.ComboBoxAbility.SelectedIndex;
-				if (ability >= 2) { ability = ability * 3 - 7; }
+
+				int ability = (pokemonInfo.ComboBoxAbility.SelectedItem as PokemonFormUtility.AbilityItem).Type;
 				int nature = Messages.Instance.Nature[pokemonInfo.ComboBoxNature.Text];
 				int natureTableId = pokemon.NatureTableId;
 				bool noGender = pokemon.IsFixedGender;
@@ -791,8 +784,7 @@ namespace OneStar
 				var pokemonInfo = m_PokemonInfo[3 + i];
 				var pokemon = pokemonData[i];
 
-				int ability = pokemonInfo.ComboBoxAbility.SelectedIndex;
-				if (ability >= 2) { ability = ability * 3 - 7; }
+				int ability = (pokemonInfo.ComboBoxAbility.SelectedItem as PokemonFormUtility.AbilityItem).Type;
 				int nature = Messages.Instance.Nature[pokemonInfo.ComboBoxNature.Text];
 				int natureTableId = pokemon.NatureTableId;
 				bool noGender = pokemon.IsFixedGender;
@@ -1049,8 +1041,9 @@ namespace OneStar
 
 			bool isShowSeed = f_CheckBoxShowSeed.Checked;
 			bool isShowEc = f_CheckBoxShowEC.Checked;
+			bool isShowAbilityName = f_CheckBoxShowAbilityName.Checked;
 
-			ListGenerator listGenerator = new ListGenerator(denSeed, maxFrameCount, pokemon, isShinyCheck, isShowSeed, isShowEc);
+			ListGenerator listGenerator = new ListGenerator(denSeed, maxFrameCount, pokemon, isShinyCheck, isShowSeed, isShowEc, isShowAbilityName);
 			listGenerator.Generate();
 		}
 
@@ -1720,7 +1713,6 @@ namespace OneStar
 			{
 				str += $"\n性別比率: {info.Gender}";
 			}
-//			str += $"\n{info.HP},{info.ATK},{info.DEF},{info.SPA},{info.SPD},{info.SPE}";
 
 			MessageBox.Show(str, Messages.Instance.SystemMessage["EncounterInfoDialogTitle"], MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
@@ -1928,5 +1920,70 @@ namespace OneStar
 			}
 		}
 		#endregion
+
+		// ポケモン変更
+		#region ポケモンComboBox イベント定義
+		private void f_ComboBoxPokemon_1_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			RefreshAbility(0);
+		}
+
+		private void f_ComboBoxPokemon_2_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			RefreshAbility(1);
+		}
+
+		private void f_ComboBoxPokemon_3_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			RefreshAbility(2);
+		}
+
+		private void f_ComboBoxPokemon_351_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			RefreshAbility(3);
+		}
+
+		private void f_ComboBoxPokemon_352_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			RefreshAbility(4);
+		}
+
+		private void f_ComboBoxPokemon_353_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			RefreshAbility(5);
+		}
+		#endregion
+
+		void RefreshAbility(int index)
+		{
+			RaidData.Pokemon pokemon = m_PokemonInfo[index].ComboBoxName.SelectedItem as RaidData.Pokemon;
+			PersonalInfo info = PersonalTable.SWSH[pokemon.DataSpecies];
+			var list = PKHeX.Core.Util.GetAbilitiesList(Messages.Instance.LangCode);
+
+			m_PokemonInfo[index].ComboBoxAbility.Items.Clear();
+			// 特性1=2
+			if (info.Abilities[0] == info.Abilities[1])
+			{
+				m_PokemonInfo[index].ComboBoxAbility.Items.Add(new PokemonFormUtility.AbilityItem(-1, info.Abilities[0], list[info.Abilities[0]]));
+
+				// 夢特性
+				if (pokemon.Ability != 3 && info.Abilities[2] != info.Abilities[0])
+				{
+					m_PokemonInfo[index].ComboBoxAbility.Items.Add(new PokemonFormUtility.AbilityItem(2, info.Abilities[2], list[info.Abilities[2]]));
+				}
+			}
+			else
+			{
+				m_PokemonInfo[index].ComboBoxAbility.Items.Add(new PokemonFormUtility.AbilityItem(0, info.Abilities[0], list[info.Abilities[0]]));
+				m_PokemonInfo[index].ComboBoxAbility.Items.Add(new PokemonFormUtility.AbilityItem(1, info.Abilities[1], list[info.Abilities[1]]));
+
+				// 夢特性
+				if (pokemon.Ability != 3 && info.Abilities[2] != info.Abilities[0] && info.Abilities[2] != info.Abilities[1])
+				{
+					m_PokemonInfo[index].ComboBoxAbility.Items.Add(new PokemonFormUtility.AbilityItem(2, info.Abilities[2], list[info.Abilities[2]]));
+				}
+			}
+			m_PokemonInfo[index].ComboBoxAbility.SelectedIndex = 0;
+		}
 	}
 }

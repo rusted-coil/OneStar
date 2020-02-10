@@ -16,6 +16,7 @@ Please edit Data/Language**.json and give a pull request.
   * "GpuCheck": "Run Test",
   * "GpuCheckFailed": "Test failed.",
   * "GpuCheckSuccessed": "Test successed.\nTime:",
+  * "ShowAbilityName": "Show Ability name",
 * 簡体字: Data/LanguageZh.json
   * Genders
   * "Gender": "Gender",
@@ -27,6 +28,7 @@ Please edit Data/Language**.json and give a pull request.
   * "GenderMF11": "M:F=1:1",
   * "GenderMF13": "M:F=1:3",
   * "GenderMF17": "M:F=1:7",
+  * "ShowAbilityName": "Show Ability name",
 * 繁体字: Data/LanguageZh_TW.json
   * "NoHidden": "Only Normal Abil.",
   * "HiddenFixed": "Hidden Abil. Fixed",
@@ -66,3 +68,4 @@ Please edit Data/Language**.json and give a pull request.
   * "GenderMF11": "M:F=1:1",
   * "GenderMF13": "M:F=1:3",
   * "GenderMF17": "M:F=1:7",
+  * "ShowAbilityName": "Show Ability name",

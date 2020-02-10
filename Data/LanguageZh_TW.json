@@ -1,4 +1,5 @@
 {
+    "LangCode": "zh",
 	"Nature": {
 		"勤奮"	    :"0",
 		"怕寂寞"	:"1",
@@ -84,6 +85,7 @@
         "OnlyShiny": "只列色違",
         "ShowSeed": "顯示種子數值",
         "ShowEC": "顯示EC數值",
+        "ShowAbilityName": "Show Ability name",
         "ListButton": "列表輸出",
         "ShowDuration": "顯示計算時間",
         "StartSearch": "檢索開始",

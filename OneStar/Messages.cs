@@ -8,6 +8,7 @@ namespace OneStar
 	public class Messages
 	{
 		// データ
+		public string LangCode;
 		public Dictionary<string, int> Nature;
 		public Dictionary<string, int> Characteristic;
 		public List<string> Gender;

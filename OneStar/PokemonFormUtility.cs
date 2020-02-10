@@ -6,6 +6,23 @@ namespace OneStar
 {
 	class PokemonFormUtility
 	{
+		// 特性コンボボックスアイテムクラス
+		public class AbilityItem
+		{
+			public int Type { get; private set; }
+			public int Id { get; private set; }
+			public string Name { get; private set; }
+
+			public override string ToString() { return Name; }
+
+			public AbilityItem(int type, int id, string name)
+			{
+				Type = type;
+				Id = id;
+				Name = name;
+			}
+		}
+
 		// 性格リストをコンボボックスにセット
 		public static void SetNatureComboBox(ComboBox comboBox)
 		{
