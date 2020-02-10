@@ -8,6 +8,7 @@ using IVCalcNetFramework;
 using System.Linq;
 using PKHeX_Raid_Plugin;
 using System.Net;
+using PKHeX.Core;
 
 namespace OneStar
 {
@@ -1660,9 +1661,13 @@ namespace OneStar
 		void ShowEncounterInfo(int index)
 		{
 			RaidData.Pokemon pokemon = m_PokemonInfo[index].ComboBoxName.SelectedItem as RaidData.Pokemon;
+			PersonalInfo info = PersonalTable.SWSH[pokemon.DataSpecies];
 
+			// ポケモンの種類
 			string str = pokemon.Key;
 			str += "\n-----";
+
+			// レイドの情報
 			str += $"\n{Messages.Instance.SystemLabel["ListVCount"]} {pokemon.FlawlessIvs}";
 			if (pokemon.Ability == 2)
 			{
@@ -1676,10 +1681,46 @@ namespace OneStar
 			{
 				str += $"\n{Messages.Instance.SystemLabel["HiddenPossible"]}";
 			}
-			if (pokemon.IsFixedGender)
+			str += "\n-----";
+
+			// ポケモンの情報
+			if (info.Genderless)
 			{
-				str += $"\n{Messages.Instance.SystemLabel["GenderFixed"]}";
+				str += $"\n{Messages.Instance.SystemLabel["GenderNone"]}";
 			}
+			else if (info.OnlyFemale)
+			{
+				str += $"\n{Messages.Instance.SystemLabel["GenderFemale"]}";
+			}
+			else if (info.OnlyMale)
+			{
+				str += $"\n{Messages.Instance.SystemLabel["GenderMale"]}";
+			}
+			else if (info.Gender == 31)
+			{
+				str += $"\n{Messages.Instance.SystemLabel["GenderMF71"]}";
+			}
+			else if (info.Gender == 63)
+			{
+				str += $"\n{Messages.Instance.SystemLabel["GenderMF31"]}";
+			}
+			else if (info.Gender == 127)
+			{
+				str += $"\n{Messages.Instance.SystemLabel["GenderMF11"]}";
+			}
+			else if (info.Gender == 191)
+			{
+				str += $"\n{Messages.Instance.SystemLabel["GenderMF13"]}";
+			}
+			else if (info.Gender == 225)
+			{
+				str += $"\n{Messages.Instance.SystemLabel["GenderMF17"]}";
+			}
+			else
+			{
+				str += $"\n性別比率: {info.Gender}";
+			}
+//			str += $"\n{info.HP},{info.ATK},{info.DEF},{info.SPA},{info.SPD},{info.SPE}";
 
 			MessageBox.Show(str, Messages.Instance.SystemMessage["EncounterInfoDialogTitle"], MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}

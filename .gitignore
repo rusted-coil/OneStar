@@ -32,3 +32,5 @@ IVCalcNetFramework/obj/Release/IVCalcNetFramework.csproj.FileListAbsolute.txt
 IVCalcNetFramework/obj/Release/IVCalcNetFramework.csprojAssemblyReference.cache
 IVCalcNetFramework/obj/Release/IVCalcNetFramework.dll
 IVCalcNetFramework/obj/Release/IVCalcNetFramework.pdb
+/packages/PKHeX.Core.20.1.26
+/packages/PKHeX.Core.20.2.9

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Diagnostics;
+using PKHeX.Core;
 
 namespace OneStar
 {
@@ -25,13 +26,15 @@ namespace OneStar
 
 		public void Generate()
 		{
+			PersonalInfo personalInfo = PersonalTable.SWSH[m_Pokemon.DataSpecies];
+
 			UInt64 seed = m_DenSeed; // 消費数0のDen Seed
 
 			UInt32 ec, otid, pid;
 			int[] ivs = new int[6];
 			UInt32 fixedIndex;
 			UInt32 ability;
-			UInt32 gender;
+			UInt32 gender = 0;
 			UInt32 nature;
 
 			using (StreamWriter sw = new StreamWriter("list.txt"))
@@ -48,6 +51,10 @@ namespace OneStar
 				for (int i = 0; i < 6; ++i)
 				{
 					sw.Write($"{Messages.Instance.Status[i]},");
+				}
+				if (!m_Pokemon.IsFixedGender)
+				{
+					sw.Write($"{Messages.Instance.SystemLabel["Gender"]},");
 				}
 				sw.Write($"{Messages.Instance.ListLabel["Ability"]},");
 				sw.Write($"{Messages.Instance.ListLabel["Nature"]},");
@@ -145,6 +152,17 @@ namespace OneStar
 						sw.Write($"{ec:X8},");
 					}
 					sw.Write($"{ivs[0]},{ivs[1]},{ivs[2]},{ivs[3]},{ivs[4]},{ivs[5]},");
+					if (!m_Pokemon.IsFixedGender)
+					{
+						if (gender + 1 < personalInfo.Gender)
+						{
+							sw.Write($"{Messages.Instance.Gender[0]},");
+						}
+						else
+						{
+							sw.Write($"{Messages.Instance.Gender[1]},");
+						}
+					}
 					sw.Write(ability == 2 ? $"{Messages.Instance.ListLabel["HiddenAbility"]}," : $"{ability + 1},");
 					sw.Write($"{PokemonFormUtility.GetNatureString(PokemonFormUtility.NatureTableList[m_Pokemon.NatureTableId].List[nature])},");
 					if (isShiny)

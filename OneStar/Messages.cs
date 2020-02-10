@@ -10,6 +10,7 @@ namespace OneStar
 		// データ
 		public Dictionary<string, int> Nature;
 		public Dictionary<string, int> Characteristic;
+		public List<string> Gender;
 		public List<string> Ability;
 		public List<string> Status;
 		public List<string> RankPrefix;

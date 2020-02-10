@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using PKHeX_Raid_Plugin;
+using PKHeX.Core;
 
 namespace OneStar
 {
@@ -169,6 +170,7 @@ namespace OneStar
 
 			public decimal CalcSpecies { get; private set; } // 個体値計算上の種族
 			public decimal DisplaySpecies { get; private set; } // 名前表示上の種族
+			public int DataSpecies { get; private set; } // PKHeXデータ上のインデックス
 
 			public int FlawlessIvs { get; private set; }
 			public bool IsGigantamax { get; private set; }
@@ -245,6 +247,16 @@ namespace OneStar
 				{
 					DisplaySpecies = rawSpecies + altForm / 10m;
 				}
+
+				// PKHeX上のindexを取得
+				if (altForm != 0)
+				{
+					DataSpecies = PersonalTable.SWSH[rawSpecies].FormeIndex(rawSpecies, entry.AltForm);
+				}
+				else
+				{
+					DataSpecies = rawSpecies;
+				}				
 
 				FlawlessIvs = entry.FlawlessIVs;
 				IsGigantamax = entry.IsGigantamax;

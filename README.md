@@ -16,7 +16,18 @@ Please edit Data/Language**.json and give a pull request.
   * "GpuCheck": "Run Test",
   * "GpuCheckFailed": "Test failed.",
   * "GpuCheckSuccessed": "Test successed.\nTime:",
-* 繁体字: Data/LanguageZn_TW.json
+* 簡体字: Data/LanguageZh.json
+  * Genders
+  * "Gender": "Gender",
+  * "GenderNone": "Genderless",
+  * "GenderMale": "Only Male",
+  * "GenderFemale": "Only Female",
+  * "GenderMF71": "M:F=7:1",
+  * "GenderMF31": "M:F=3:1",
+  * "GenderMF11": "M:F=1:1",
+  * "GenderMF13": "M:F=1:3",
+  * "GenderMF17": "M:F=1:7",
+* 繁体字: Data/LanguageZh_TW.json
   * "NoHidden": "Only Normal Abil.",
   * "HiddenFixed": "Hidden Abil. Fixed",
   * "Pokemon": "Pokemon",
@@ -45,3 +56,13 @@ Please edit Data/Language**.json and give a pull request.
   * "GpuCheck": "Run Test",
   * "GpuCheckFailed": "Test failed.",
   * "GpuCheckSuccessed": "Test successed.\nTime:",
+  * Genders
+  * "Gender": "Gender",
+  * "GenderNone": "Genderless",
+  * "GenderMale": "Only Male",
+  * "GenderFemale": "Only Female",
+  * "GenderMF71": "M:F=7:1",
+  * "GenderMF31": "M:F=3:1",
+  * "GenderMF11": "M:F=1:1",
+  * "GenderMF13": "M:F=1:3",
+  * "GenderMF17": "M:F=1:7",

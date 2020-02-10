@@ -34,6 +34,11 @@
         "喜欢恶作剧": "4",
         "有一点点爱慕虚荣": "5",
     },
+    "Gender": [
+        "Male",
+        "Female",
+        "Genderless",
+    ],
     "Ability": [
         "特性1",
         "特性2",
@@ -105,6 +110,15 @@
         "UseGpu": "使用GPU计算",
         "ThreadSetting": "线程数",
         "GpuCheck": "运行测试",
+        "Gender": "Gender",
+        "GenderNone": "Genderless",
+        "GenderMale": "Only Male",
+        "GenderFemale": "Only Female",
+        "GenderMF71": "M:F=7:1",
+        "GenderMF31": "M:F=3:1",
+        "GenderMF11": "M:F=1:1",
+        "GenderMF13": "M:F=1:3",
+        "GenderMF17": "M:F=1:7",
     },
     "CheckIvsResult": [
         "失败!",
