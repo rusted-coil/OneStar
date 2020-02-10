@@ -1669,6 +1669,7 @@ namespace OneStar
 		{
 			RaidData.Pokemon pokemon = m_PokemonInfo[index].ComboBoxName.SelectedItem as RaidData.Pokemon;
 			PersonalInfo info = PersonalTable.SWSH[pokemon.DataSpecies];
+			var abilityList = PKHeX.Core.Util.GetAbilitiesList(Messages.Instance.LangCode);
 
 			// ポケモンの種類
 			string str = pokemon.Key;
@@ -1726,6 +1727,27 @@ namespace OneStar
 			else
 			{
 				str += $"\n性別比率: {info.Gender}";
+			}
+			if (info.Abilities[0] == info.Abilities[1])
+			{
+				str += $"\n{Messages.Instance.Ability[2]}: {abilityList[info.Abilities[0]]}";
+
+				// 夢特性
+				if (pokemon.Ability != 3 && info.Abilities[2] != info.Abilities[0])
+				{
+					str += $"\n{Messages.Instance.Ability[3]}: {abilityList[info.Abilities[2]]}";
+				}
+			}
+			else
+			{
+				str += $"\n{Messages.Instance.Ability[0]}: {abilityList[info.Abilities[0]]}";
+				str += $"\n{Messages.Instance.Ability[1]}: {abilityList[info.Abilities[1]]}";
+
+				// 夢特性
+				if (pokemon.Ability != 3 && info.Abilities[2] != info.Abilities[0] && info.Abilities[2] != info.Abilities[1])
+				{
+					str += $"\n{Messages.Instance.Ability[3]}: {abilityList[info.Abilities[2]]}";
+				}
 			}
 
 			MessageBox.Show(str, Messages.Instance.SystemMessage["EncounterInfoDialogTitle"], MessageBoxButtons.OK, MessageBoxIcon.Information);
