@@ -129,6 +129,22 @@ namespace OneStar
             IsInitialized = true;
 		}
 
+		bool IsGpuAvailable()
+		{
+			// 32bit版は不可
+#if _X86
+			CreateErrorDialog(Messages.Instance.ErrorMessage["GpuError32bit"]);
+			return false;
+#endif
+			// CUDAに使用できるデバイス
+			if (SeedSearcher.GetCudaDeviceCount() <= 0)
+			{
+				CreateErrorDialog(Messages.Instance.ErrorMessage["NoCudaDevice"]);
+				return false;
+			}
+			return true;
+		}
+
 		void InitializeComboBox()
 		{
 			// 巣穴
@@ -177,10 +193,9 @@ namespace OneStar
 			// 設定をセット
 			if (m_Preferences.IsUseGpu)
 			{
-				// オンだった場合は使用可能なデバイスチェック
-				if (SeedSearcher.GetCudaDeviceCount() <= 0)
+				// 使用不可
+				if (!IsGpuAvailable())
 				{
-					CreateErrorDialog(Messages.Instance.ErrorMessage["NoCudaDevice"]);
 					m_Preferences.IsUseGpu = false;
 				}
 			}
@@ -213,7 +228,7 @@ namespace OneStar
 			f_CheckBoxShowEC.Checked = m_Preferences.ListShowEC;
 			f_CheckBoxShowAbilityName.Checked = m_Preferences.ListShowAbilityName;
 
-			#region ポケモンフォーム情報キャッシュ
+#region ポケモンフォーム情報キャッシュ
 			// 扱いやすいようにキャッシュ
 			m_PokemonInfo[0] = new PokemonInfoForm();
 			m_PokemonInfo[0].ComboBoxName = f_ComboBoxPokemon_1;
@@ -337,7 +352,7 @@ namespace OneStar
 				var tb3 = m_PokemonInfo[a].TextBoxLevel;
 				m_PokemonInfo[a].TextBoxLevel.Enter += new System.EventHandler((object sender, EventArgs e) => { EnterTextBoxAllSelect(tb3); });
 			}
-			#endregion
+#endregion
 
 			// イベントレイドデータ
 			RefreshEventRaidData();
@@ -1046,7 +1061,7 @@ namespace OneStar
 			listGenerator.Generate();
 		}
 
-        #region 言語設定変更
+#region 言語設定変更
         private void f_MenuItemLanguageJp_Click(object sender, EventArgs e)
 		{
 			if (!f_MenuItemLanguageJp.Checked)
@@ -1182,7 +1197,7 @@ namespace OneStar
 				}
 			}
 
-			#region パラメータラベル
+#region パラメータラベル
 			// パラメータラベル
 			f_LabelStatus0_1.Text = Messages.Instance.Status[0];
 			f_LabelStatus1_1.Text = Messages.Instance.Status[1];
@@ -1268,7 +1283,7 @@ namespace OneStar
 			f_ButtonIvsCalc_351.Text = Messages.Instance.SystemLabel["CalculateIVs"];
 			f_ButtonIvsCalc_352.Text = Messages.Instance.SystemLabel["CalculateIVs"];
 			f_ButtonIvsCalc_353.Text = Messages.Instance.SystemLabel["CalculateIVs"];
-			#endregion
+#endregion
 
 			// コンボボックス再初期化
 			InitializeComboBox();
@@ -1324,9 +1339,9 @@ namespace OneStar
 				}
             }
 		}
-        #endregion
+#endregion
 
-        #region 個体値計算ボタン イベント定義
+#region 個体値計算ボタン イベント定義
         private void f_ButtonIvsCalc_1_Click(object sender, EventArgs e)
 		{
 			IvsCalculate(0);
@@ -1356,7 +1371,7 @@ namespace OneStar
 		{
 			IvsCalculate(5);
 		}
-		#endregion
+#endregion
 
 		// 個体値計算
 		void IvsCalculate(int index)
@@ -1439,7 +1454,7 @@ namespace OneStar
 			f_GroupBoxPokemon_3.Enabled = f_CheckBoxThirdEnable.Checked;
 		}
 
-		#region 巣穴選択変更イベント定義
+#region 巣穴選択変更イベント定義
         private void f_ComboBoxDenName_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			// 選択情報を取得
@@ -1474,7 +1489,7 @@ namespace OneStar
 			}
 		}
 
-		#endregion
+#endregion
 
 		// 巣穴情報変更
 		void RefreshDen()
@@ -1618,7 +1633,7 @@ namespace OneStar
 			f_ComboBoxPokemon_List.SelectedIndex = 0;
 		}
 
-		#region レイド情報ボタン イベント定義
+#region レイド情報ボタン イベント定義
 		private void f_ButtonEncounterInfo_1_Click(object sender, EventArgs e)
 		{
 			ShowEncounterInfo(0);
@@ -1648,7 +1663,7 @@ namespace OneStar
 		{
 			ShowEncounterInfo(5);
 		}
-		#endregion
+#endregion
 
 		void ShowEncounterInfo(int index)
 		{
@@ -1803,6 +1818,10 @@ namespace OneStar
 
 		private void f_MenuItemGpuTest_Click(object sender, EventArgs e)
 		{
+			if (!IsGpuAvailable())
+			{
+				return;
+			}
 			// テスト用データ
 			SeedSearcher searcher = new SeedSearcher(SeedSearcher.Mode.Cuda35);
 			SeedSearcher.CudaInitialize();
@@ -1816,7 +1835,7 @@ namespace OneStar
 			SearchImpl(searcher, true, 0, 0xFA13E146EABEE283ul);
 		}
 
-		#region GPUスレッド分割数設定
+#region GPUスレッド分割数設定
 		private void f_MenuItemGpuLoop21_Click(object sender, EventArgs e)
 		{
 			if (f_MenuItemGpuLoop21.Checked == false)
@@ -1933,10 +1952,10 @@ namespace OneStar
 				f_MenuItemGpuLoop29.Checked = true;
 			}
 		}
-		#endregion
+#endregion
 
 		// ポケモン変更
-		#region ポケモンComboBox イベント定義
+#region ポケモンComboBox イベント定義
 		private void f_ComboBoxPokemon_1_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			RefreshAbility(0);
@@ -1966,7 +1985,7 @@ namespace OneStar
 		{
 			RefreshAbility(5);
 		}
-		#endregion
+#endregion
 
 		void RefreshAbility(int index)
 		{
@@ -2000,7 +2019,7 @@ namespace OneStar
 			m_PokemonInfo[index].ComboBoxAbility.SelectedIndex = 0;
 		}
 
-		#region 設定変更イベント
+#region 設定変更イベント
 		private void f_MenuItemWindowSizeNormal_Click(object sender, EventArgs e)
 		{
 			MainForm.ActiveForm.Size = new System.Drawing.Size(845, 796);
@@ -2016,10 +2035,9 @@ namespace OneStar
 			bool current = f_MenuItemUseGpu.Checked;
 			if (current == false)
 			{
-				// オンにする場合は使用可能なデバイスチェック
-				if (SeedSearcher.GetCudaDeviceCount() <= 0)
+				// オンにする場合は使用可能チェック
+				if (!IsGpuAvailable())
 				{
-					CreateErrorDialog(Messages.Instance.ErrorMessage["NoCudaDevice"]);
 					return;
 				}
 			}
@@ -2079,7 +2097,7 @@ namespace OneStar
 				m_Preferences.ListShowAbilityName = current;
 			}
 		}
-		#endregion
+#endregion
 
 	}
 }

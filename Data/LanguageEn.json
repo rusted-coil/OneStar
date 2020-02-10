@@ -149,6 +149,7 @@
         "UpdateEventDenFailed": "Update Data Failed.",
         "GpuCheckFailed": "Test failed.",
         "NoCudaDevice": "No CUDA device is available.",
+        "GpuError32bit": "GPU calculation is supported by only 64bit version.",
     },
     "SystemMessage": {
         "ResultDialogTitle": "Results",

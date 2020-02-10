@@ -149,6 +149,7 @@
         "UpdateEventDenFailed": "更新活动坑数据失败",
         "GpuCheckFailed": "测试失败",
         "NoCudaDevice": "No CUDA device is available.",
+        "GpuError32bit": "GPU calculation is supported by only 64bit version.",
     },
     "SystemMessage": {
         "ResultDialogTitle": "结果",

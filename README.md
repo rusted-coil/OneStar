@@ -30,6 +30,7 @@ Please edit Data/Language**.json and give a pull request.
   * "GenderMF17": "M:F=1:7",
   * "ShowAbilityName": "Show Ability name",
   * "NoCudaDevice": "No CUDA device is available.",
+  * "GpuError32bit": "GPU calculation is supported by only 64bit version.",
 * 繁体字: Data/LanguageZh_TW.json
   * "NoHidden": "Only Normal Abil.",
   * "HiddenFixed": "Hidden Abil. Fixed",
@@ -71,3 +72,4 @@ Please edit Data/Language**.json and give a pull request.
   * "GenderMF17": "M:F=1:7",
   * "ShowAbilityName": "Show Ability name",
   * "NoCudaDevice": "No CUDA device is available.",
+  * "GpuError32bit": "GPU calculation is supported by only 64bit version.",

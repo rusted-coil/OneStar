@@ -157,6 +157,7 @@
         "EncounterInfoDialogTitle": "Encounter Info",
         "UpdateEventDenSuccessed": "Update Data Successed.",
         "GpuCheckSuccessed": "Test successed.\nTime:",
+        "GpuError32bit": "GPU calculation is supported by only 64bit version.",
 	},
 	"ListLabel": {
 		"Frame": "幀數",

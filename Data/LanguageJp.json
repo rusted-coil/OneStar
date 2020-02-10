@@ -149,6 +149,7 @@
         "UpdateEventDenFailed": "データの取得に失敗しました。",
         "GpuCheckFailed": "テストに失敗しました。GPU計算が正しく機能していません。\n（スレッド数を変更すると動くかもしれません。）",
         "NoCudaDevice": "CUDA GPU計算が使用可能なデバイスがありません。",
+        "GpuError32bit": "GPU計算機能は32bit版では使用できません。",
     },
     "SystemMessage": {
         "ResultDialogTitle": "結果",
