@@ -29,6 +29,7 @@ Please edit Data/Language**.json and give a pull request.
   * "GenderMF13": "M:F=1:3",
   * "GenderMF17": "M:F=1:7",
   * "ShowAbilityName": "Show Ability name",
+  * "NoCudaDevice": "No CUDA device is available.",
 * 繁体字: Data/LanguageZh_TW.json
   * "NoHidden": "Only Normal Abil.",
   * "HiddenFixed": "Hidden Abil. Fixed",
@@ -69,3 +70,4 @@ Please edit Data/Language**.json and give a pull request.
   * "GenderMF13": "M:F=1:3",
   * "GenderMF17": "M:F=1:7",
   * "ShowAbilityName": "Show Ability name",
+  * "NoCudaDevice": "No CUDA device is available.",

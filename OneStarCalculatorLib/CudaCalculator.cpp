@@ -10,6 +10,13 @@
 // ŒŸõğŒİ’è
 static int g_CudaFixedIvs;
 
+int GetCudaDeviceCount()
+{
+	int count;
+	cudaGetDeviceCount(&count);
+	return count;
+}
+
 // ğŒİ’è‘O‚Ì‰Šú‰»
 void CudaInitialize()
 {

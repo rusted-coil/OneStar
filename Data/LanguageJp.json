@@ -148,6 +148,7 @@
         "InvalidPokemon": "ポケモン名の入力が不正です。",
         "UpdateEventDenFailed": "データの取得に失敗しました。",
         "GpuCheckFailed": "テストに失敗しました。GPU計算が正しく機能していません。\n（スレッド数を変更すると動くかもしれません。）",
+        "NoCudaDevice": "CUDA GPU計算が使用可能なデバイスがありません。",
     },
     "SystemMessage": {
         "ResultDialogTitle": "結果",

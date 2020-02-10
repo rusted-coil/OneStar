@@ -175,6 +175,15 @@ namespace OneStar
 			f_TextBoxRerollsUpper.Text = "3";
 
 			// 設定をセット
+			if (m_Preferences.IsUseGpu)
+			{
+				// オンだった場合は使用可能なデバイスチェック
+				if (SeedSearcher.GetCudaDeviceCount() <= 0)
+				{
+					CreateErrorDialog(Messages.Instance.ErrorMessage["NoCudaDevice"]);
+					m_Preferences.IsUseGpu = false;
+				}
+			}
 			f_MenuItemUseGpu.Checked = m_Preferences.IsUseGpu;
 			m_MenuItemGpuLoopList = new ToolStripMenuItem[]{
 				f_MenuItemGpuLoop29,
@@ -2005,6 +2014,15 @@ namespace OneStar
 		private void f_MenuItemUseGpu_Click(object sender, EventArgs e)
 		{
 			bool current = f_MenuItemUseGpu.Checked;
+			if (current == false)
+			{
+				// オンにする場合は使用可能なデバイスチェック
+				if (SeedSearcher.GetCudaDeviceCount() <= 0)
+				{
+					CreateErrorDialog(Messages.Instance.ErrorMessage["NoCudaDevice"]);
+					return;
+				}
+			}
 			m_Preferences.IsUseGpu = !current;
 			f_MenuItemUseGpu.Checked = !current;
 		}

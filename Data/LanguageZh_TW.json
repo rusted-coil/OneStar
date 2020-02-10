@@ -148,6 +148,7 @@
 		"InvalidPokemon": "Please select a valid Pokemon",
         "UpdateEventDenFailed": "Update Data Failed.",
         "GpuCheckFailed": "Test failed.",
+        "NoCudaDevice": "No CUDA device is available.",
 	},
 	"SystemMessage": {
 		"ResultDialogTitle": "結果",

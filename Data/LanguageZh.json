@@ -148,6 +148,7 @@
         "InvalidPokemon": "请选择一个宝可梦",
         "UpdateEventDenFailed": "更新活动坑数据失败",
         "GpuCheckFailed": "测试失败",
+        "NoCudaDevice": "No CUDA device is available.",
     },
     "SystemMessage": {
         "ResultDialogTitle": "结果",

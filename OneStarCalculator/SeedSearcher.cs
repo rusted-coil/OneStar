@@ -53,6 +53,9 @@ namespace OneStarCalculator
 
 		#region CUDA計算設定
 		[DllImport("OneStarCalculatorLib.dll")]
+		public static extern int GetCudaDeviceCount();
+
+		[DllImport("OneStarCalculatorLib.dll")]
 		public static extern void CudaInitialize();
 
 		[DllImport("OneStarCalculatorLib.dll")]
