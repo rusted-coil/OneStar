@@ -139,7 +139,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Calculator.cpp" />
-    <ClCompile Include="CudaCalculator.cpp" />
+    <ClCompile Include="CudaCalculator.cpp" Condition="'$(Platform)'=='x64'" />
     <ClCompile Include="Data.cpp" />
     <ClCompile Include="SixivCalculator.cpp" />
   </ItemGroup>
@@ -147,9 +147,9 @@
     <ClInclude Include="Calculator.h" />
     <ClInclude Include="Const.h" />
     <ClInclude Include="CudaCalculator.h" />
-    <ClInclude Include="CudaProcess.cuh" />
-    <ClInclude Include="CudaProcess5.cuh" />
-    <ClInclude Include="CudaProcess6.cuh" />
+    <ClInclude Include="CudaProcess.cuh" Condition="'$(Platform)'=='x64'" />
+    <ClInclude Include="CudaProcess5.cuh" Condition="'$(Platform)'=='x64'" />
+    <ClInclude Include="CudaProcess6.cuh" Condition="'$(Platform)'=='x64'" />
     <ClInclude Include="Data.h" />
     <ClInclude Include="SixivCalculator.h" />
     <ClInclude Include="Type.h" />
@@ -157,9 +157,9 @@
     <ClInclude Include="XoroshiroState.h" />
   </ItemGroup>
   <ItemGroup>
-    <CudaCompile Include="CudaProcess.cu" />
-    <CudaCompile Include="CudaProcess5.cu" />
-    <CudaCompile Include="CudaProcess6.cu" />
+    <CudaCompile Include="CudaProcess.cu" Condition="'$(Platform)'=='x64'" />
+    <CudaCompile Include="CudaProcess5.cu" Condition="'$(Platform)'=='x64'" />
+    <CudaCompile Include="CudaProcess6.cu" Condition="'$(Platform)'=='x64'" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
