@@ -22,7 +22,19 @@ namespace OneStar
 		// GPU設定
 		[JsonProperty] int m_GpuLoop = 0;
 
-		[JsonIgnore]
+		// 検索設定
+		[JsonProperty] bool m_SearchShowDuration = false;
+		[JsonProperty] bool m_SearchStop = true;
+
+		// リスト設定
+		[JsonProperty] int m_ListMaxFrame = 5000;
+		[JsonProperty] bool m_ListOnlyShiny = false;
+		[JsonProperty] bool m_ListShowSeed = false;
+		[JsonProperty] bool m_ListShowEC = false;
+		[JsonProperty] bool m_ListShowAbilityName = false;
+
+        #region 取得
+        [JsonIgnore]
 		public Language Language {
 			get { return m_Language; }
 			set {
@@ -62,15 +74,91 @@ namespace OneStar
 				Serialize();
 			}
 		}
+		[JsonIgnore]
+		public bool SearchShowDuration
+		{
+			get { return m_SearchShowDuration; }
+			set
+			{
+				m_SearchShowDuration = value;
+				Serialize();
+			}
+		}
+		[JsonIgnore]
+		public bool SearchStop
+		{
+			get { return m_SearchStop; }
+			set
+			{
+				m_SearchStop = value;
+				Serialize();
+			}
+		}
+		[JsonIgnore]
+		public int ListMaxFrame { 
+			get { return m_ListMaxFrame; }
+			set {
+				m_ListMaxFrame = value;
+				Serialize();
+			}
+		}
+		[JsonIgnore]
+		public bool ListOnlyShiny
+		{
+			get { return m_ListOnlyShiny; }
+			set
+			{
+				m_ListOnlyShiny = value;
+				Serialize();
+			}
+		}
+		[JsonIgnore]
+		public bool ListShowSeed
+		{
+			get { return m_ListShowSeed; }
+			set
+			{
+				m_ListShowSeed = value;
+				Serialize();
+			}
+		}
+		[JsonIgnore]
+		public bool ListShowEC
+		{
+			get { return m_ListShowEC; }
+			set
+			{
+				m_ListShowEC = value;
+				Serialize();
+			}
+		}
+		[JsonIgnore]
+		public bool ListShowAbilityName
+		{
+			get { return m_ListShowAbilityName; }
+			set
+			{
+				m_ListShowAbilityName = value;
+				Serialize();
+			}
+		}
+        #endregion
 
-		// 初期設定
-		public void Initialize()
+        // 初期設定
+        public void Initialize()
 		{
 			m_Language = Language.Japanese;
 			m_GameVersion = 0;
 			m_EventId = "20200207";
 			m_isUseGpu = false;
 			m_GpuLoop = 0;
+			m_SearchShowDuration = false;
+			m_SearchStop = true;
+			m_ListMaxFrame = 5000;
+			m_ListOnlyShiny = false;
+			m_ListShowSeed = false;
+			m_ListShowEC = false;
+			m_ListShowAbilityName = false;
 		}
 
 		// コピー
@@ -81,6 +169,13 @@ namespace OneStar
 			m_EventId = src.m_EventId;
 			m_isUseGpu = src.m_isUseGpu;
 			m_GpuLoop = src.m_GpuLoop;
+			m_SearchShowDuration = src.m_SearchShowDuration;
+			m_SearchStop = src.m_SearchStop;
+			m_ListMaxFrame = src.m_ListMaxFrame;
+			m_ListOnlyShiny = src.m_ListOnlyShiny;
+			m_ListShowSeed = src.m_ListShowSeed;
+			m_ListShowEC = src.m_ListShowEC;
+			m_ListShowAbilityName = src.m_ListShowAbilityName;
 		}
 
 		// 設定をファイルに保存

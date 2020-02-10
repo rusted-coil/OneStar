@@ -170,11 +170,8 @@ namespace OneStar
 			SetCheckResult(-1);
 
 			// 共通
-			f_TextBoxMaxFrame.Text = "5000";
-
 			f_TextBoxRerollsLower.Text = "0";
 			f_TextBoxRerollsUpper.Text = "3";
-			f_CheckBoxStop.Checked = true;
 
 			// 設定をセット
 			f_MenuItemUseGpu.Checked = m_Preferences.IsUseGpu;
@@ -198,6 +195,13 @@ namespace OneStar
 				m_Preferences.GpuLoop = 8;
 			}
 			m_MenuItemGpuLoopList[m_Preferences.GpuLoop].Checked = true;
+			f_CheckBoxStop.Checked = m_Preferences.SearchStop;
+			f_CheckBoxShowResultTime.Checked = m_Preferences.SearchShowDuration;
+			f_TextBoxMaxFrame.Text = m_Preferences.ListMaxFrame.ToString();
+			f_CheckBoxListShiny.Checked = m_Preferences.ListOnlyShiny;
+			f_CheckBoxShowSeed.Checked = m_Preferences.ListShowSeed;
+			f_CheckBoxShowEC.Checked = m_Preferences.ListShowEC;
+			f_CheckBoxShowAbilityName.Checked = m_Preferences.ListShowAbilityName;
 
 			#region ポケモンフォーム情報キャッシュ
 			// 扱いやすいようにキャッシュ
@@ -440,6 +444,12 @@ namespace OneStar
 					f_LabelCheckResult.ForeColor = System.Drawing.Color.Blue;
 					break;
 			}
+		}
+
+		// モード選択変更イベント
+		private void f_ComboBoxModeSelector_35_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			RefreshPokemonComboBox();
 		}
 
 		// 個体値チェックボタン
@@ -1035,6 +1045,9 @@ namespace OneStar
 				return;
 			}
 
+			// 設定を保存
+			m_Preferences.ListMaxFrame = maxFrameCount;
+
 			var pokemon = f_ComboBoxPokemon_List.SelectedItem as RaidData.Pokemon;
 
 			bool isShinyCheck = f_CheckBoxListShiny.Checked;
@@ -1359,6 +1372,7 @@ namespace OneStar
 		}
 		#endregion
 
+		// 個体値計算
 		void IvsCalculate(int index)
 		{
 			var pokemonInfo = m_PokemonInfo[index];
@@ -1433,12 +1447,14 @@ namespace OneStar
 			textBox.SelectAll();
 		}
 
+		// ★1～2検索 3匹目有効化
 		private void f_CheckBoxThirdEnable_CheckedChanged(object sender, EventArgs e)
 		{
 			f_GroupBoxPokemon_3.Enabled = f_CheckBoxThirdEnable.Checked;
 		}
 
-		private void f_ComboBoxDenName_SelectedIndexChanged(object sender, EventArgs e)
+		#region 巣穴選択変更イベント定義
+        private void f_ComboBoxDenName_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			// 選択情報を取得
 			int denIndex = Messages.Instance.Den[f_ComboBoxDenName.Text];
@@ -1472,10 +1488,7 @@ namespace OneStar
 			}
 		}
 
-		private void f_ComboBoxModeSelector_35_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			RefreshPokemonComboBox();
-		}
+		#endregion
 
 		// 巣穴情報変更
 		void RefreshDen()
@@ -1717,16 +1730,6 @@ namespace OneStar
 			MessageBox.Show(str, Messages.Instance.SystemMessage["EncounterInfoDialogTitle"], MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
-		private void f_MenuItemWindowSizeNormal_Click(object sender, EventArgs e)
-		{
-			MainForm.ActiveForm.Size = new System.Drawing.Size(845, 796);
-		}
-
-		private void f_MenuItemWindowSizeSmall_Click(object sender, EventArgs e)
-		{
-			MainForm.ActiveForm.Size = new System.Drawing.Size(860, 640);
-		}
-
 		void RefreshEventId()
 		{
 			foreach (var menuItem in m_MenuItemEventIdList)
@@ -1778,13 +1781,6 @@ namespace OneStar
 
 			// comfirm close and reopen
 			MessageBox.Show(Messages.Instance.SystemMessage["UpdateEventDenSuccessed"]);
-		}
-
-		private void f_MenuItemUseGpu_Click(object sender, EventArgs e)
-		{
-			bool current = f_MenuItemUseGpu.Checked;
-			m_Preferences.IsUseGpu = !current;
-			f_MenuItemUseGpu.Checked = !current;
 		}
 
 		private void f_MenuItemGpuTest_Click(object sender, EventArgs e)
@@ -1985,5 +1981,78 @@ namespace OneStar
 			}
 			m_PokemonInfo[index].ComboBoxAbility.SelectedIndex = 0;
 		}
+
+		#region 設定変更イベント
+		private void f_MenuItemWindowSizeNormal_Click(object sender, EventArgs e)
+		{
+			MainForm.ActiveForm.Size = new System.Drawing.Size(845, 796);
+		}
+
+		private void f_MenuItemWindowSizeSmall_Click(object sender, EventArgs e)
+		{
+			MainForm.ActiveForm.Size = new System.Drawing.Size(860, 640);
+		}
+
+		private void f_MenuItemUseGpu_Click(object sender, EventArgs e)
+		{
+			bool current = f_MenuItemUseGpu.Checked;
+			m_Preferences.IsUseGpu = !current;
+			f_MenuItemUseGpu.Checked = !current;
+		}
+
+		private void f_CheckBoxShowResultTime_CheckedChanged(object sender, EventArgs e)
+		{
+			bool current = f_CheckBoxShowResultTime.Checked;
+			if (m_Preferences.SearchShowDuration != current)
+			{
+				m_Preferences.SearchShowDuration = current;
+			}
+		}
+		private void f_CheckBoxStop_CheckedChanged(object sender, EventArgs e)
+		{
+			bool current = f_CheckBoxStop.Checked;
+			if (m_Preferences.SearchStop != current)
+			{
+				m_Preferences.SearchStop = current;
+			}
+		}
+
+		private void f_CheckBoxListShiny_CheckedChanged(object sender, EventArgs e)
+		{
+			bool current = f_CheckBoxListShiny.Checked;
+			if (m_Preferences.ListOnlyShiny != current)
+			{
+				m_Preferences.ListOnlyShiny = current;
+			}
+		}
+
+		private void f_CheckBoxShowSeed_CheckedChanged(object sender, EventArgs e)
+		{
+			bool current = f_CheckBoxShowSeed.Checked;
+			if (m_Preferences.ListShowSeed != current)
+			{
+				m_Preferences.ListShowSeed = current;
+			}
+		}
+
+		private void f_CheckBoxShowEC_CheckedChanged(object sender, EventArgs e)
+		{
+			bool current = f_CheckBoxShowEC.Checked;
+			if (m_Preferences.ListShowEC != current)
+			{
+				m_Preferences.ListShowEC = current;
+			}
+		}
+
+		private void f_CheckBoxShowAbilityName_CheckedChanged(object sender, EventArgs e)
+		{
+			bool current = f_CheckBoxShowAbilityName.Checked;
+			if (m_Preferences.ListShowAbilityName != current)
+			{
+				m_Preferences.ListShowAbilityName = current;
+			}
+		}
+		#endregion
+
 	}
 }

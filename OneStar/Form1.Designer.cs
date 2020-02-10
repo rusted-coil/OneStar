@@ -1130,6 +1130,7 @@
             this.f_CheckBoxShowEC.TabIndex = 5;
             this.f_CheckBoxShowEC.Text = "ECを表示する";
             this.f_CheckBoxShowEC.UseVisualStyleBackColor = true;
+            this.f_CheckBoxShowEC.CheckedChanged += new System.EventHandler(this.f_CheckBoxShowEC_CheckedChanged);
             // 
             // f_ComboBoxPokemon_List
             // 
@@ -1151,6 +1152,7 @@
             this.f_CheckBoxShowSeed.TabIndex = 4;
             this.f_CheckBoxShowSeed.Text = "Seedの値を表示する";
             this.f_CheckBoxShowSeed.UseVisualStyleBackColor = true;
+            this.f_CheckBoxShowSeed.CheckedChanged += new System.EventHandler(this.f_CheckBoxShowSeed_CheckedChanged);
             // 
             // f_CheckBoxListShiny
             // 
@@ -1162,6 +1164,7 @@
             this.f_CheckBoxListShiny.TabIndex = 3;
             this.f_CheckBoxListShiny.Text = "色違いのみ";
             this.f_CheckBoxListShiny.UseVisualStyleBackColor = true;
+            this.f_CheckBoxListShiny.CheckedChanged += new System.EventHandler(this.f_CheckBoxListShiny_CheckedChanged);
             // 
             // f_TextBoxMaxFrame
             // 
@@ -1192,6 +1195,7 @@
             this.f_CheckBoxStop.TabIndex = 6;
             this.f_CheckBoxStop.Text = "1つ見つけたら終了";
             this.f_CheckBoxStop.UseVisualStyleBackColor = false;
+            this.f_CheckBoxStop.CheckedChanged += new System.EventHandler(this.f_CheckBoxStop_CheckedChanged);
             // 
             // eventLog1
             // 
@@ -2798,6 +2802,7 @@
             this.f_CheckBoxShowResultTime.TabIndex = 2;
             this.f_CheckBoxShowResultTime.Text = "計算時間を表示";
             this.f_CheckBoxShowResultTime.UseVisualStyleBackColor = true;
+            this.f_CheckBoxShowResultTime.CheckedChanged += new System.EventHandler(this.f_CheckBoxShowResultTime_CheckedChanged);
             // 
             // menuStrip1
             // 
@@ -3132,6 +3137,7 @@
             this.f_CheckBoxShowAbilityName.TabIndex = 6;
             this.f_CheckBoxShowAbilityName.Text = "特性を名前で表示する";
             this.f_CheckBoxShowAbilityName.UseVisualStyleBackColor = true;
+            this.f_CheckBoxShowAbilityName.CheckedChanged += new System.EventHandler(this.f_CheckBoxShowAbilityName_CheckedChanged);
             // 
             // MainForm
             // 
