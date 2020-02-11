@@ -159,11 +159,11 @@ namespace OneStar
 					{
 						if (gender + 1 < personalInfo.Gender)
 						{
-							sw.Write($"{Messages.Instance.Gender[0]},");
+							sw.Write($"{Messages.Instance.Gender[1]},");
 						}
 						else
 						{
-							sw.Write($"{Messages.Instance.Gender[1]},");
+							sw.Write($"{Messages.Instance.Gender[0]},");
 						}
 					}
 					if (m_isShowAbilityName)
