@@ -135,9 +135,16 @@ short GetMatrixConst(int index)
 void CalculateInverseMatrix(int length)
 {
 	// ‰Šúó‘Ô‚ğƒZƒbƒg
-	for (int i = 0; i < length; ++i)
+	for (int i = 0; i < 64; ++i)
 	{
-		g_AnswerFlag[i] = (1ull << (length - 1 - i));
+		if(i < length)
+		{
+			g_AnswerFlag[i] = (1ull << (length - 1 - i));
+		}
+		else
+		{
+			g_AnswerFlag[i] = 0;
+		}
 	}
 
 	int skip = 0;
