@@ -170,7 +170,7 @@ namespace OneStarCalculator
 			{
 				// 探索範囲
 				int searchLower = 0;
-				int searchUpper = 0xFFFFFFF;
+				int searchUpper = 0x10000000;
 
 				// 途中経過
 				int chunkPart = 16;
@@ -252,7 +252,7 @@ namespace OneStarCalculator
 			{
 				// 探索範囲
 				int searchLower = 0;
-				int searchUpper = (m_Mode == Mode.Star35_5 ? 0x1FFFFFF : 0x3FFFFFFF);
+				int searchUpper = (m_Mode == Mode.Star35_5 ? 0x2000000 : 0x40000000);
 
 				// 途中経過
 				int chunkPart = 32;
