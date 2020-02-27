@@ -302,14 +302,22 @@ namespace OneStar
 			{
 				// キーを作成
 				string key = Messages.Instance.RankPrefix[Rank];
+				bool isExist = false;
 				foreach (var pokemon in Messages.Instance.Pokemon)
 				{
 					if (pokemon.Value == DisplaySpecies)
 					{
 						key += pokemon.Key;
+						isExist = true;
 						break;
 					}
 				}
+				// 存在しない場合はPKHeXから取ってくる
+				if (!isExist)
+				{
+					key += PKHeX.Core.Util.GetSpeciesList(Messages.Instance.LangCode)[DataSpecies];
+				}
+
 				if (IsGigantamax)
 				{
 					key += Messages.Instance.SystemLabel["Gigantamax"];
