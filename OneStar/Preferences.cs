@@ -14,7 +14,7 @@ namespace OneStar
 		[JsonProperty] int m_GameVersion = 0;
 
 		// イベントレイド
-		[JsonProperty] string m_EventId = "20200227";
+		[JsonProperty] string m_EventId = "20200217";
 
 		// GPU使用
 		[JsonProperty] bool m_isUseGpu = false;
@@ -149,7 +149,7 @@ namespace OneStar
 		{
 			m_Language = Language.Japanese;
 			m_GameVersion = 0;
-			m_EventId = "20200227";
+			m_EventId = "20200217";
 			m_isUseGpu = false;
 			m_GpuLoop = 0;
 			m_SearchShowDuration = false;

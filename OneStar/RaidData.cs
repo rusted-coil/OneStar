@@ -315,7 +315,12 @@ namespace OneStar
 				// 存在しない場合はPKHeXから取ってくる
 				if (!isExist)
 				{
-					key += PKHeX.Core.Util.GetSpeciesList(Messages.Instance.LangCode)[DataSpecies];
+					var list = PKHeX.Core.Util.GetSpeciesList(Messages.Instance.LangCode);
+					int listId = (int)DisplaySpecies;
+					if (listId < list.Length)
+					{
+						key += list[listId];
+					}
 				}
 
 				if (IsGigantamax)
