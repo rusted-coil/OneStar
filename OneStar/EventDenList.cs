@@ -66,12 +66,12 @@ namespace OneStar
 		public bool IsValid = false;
 		public Dictionary<string, EventDen> EventList;
 
-		public void Load()
+		public void Load(string path)
 		{
 			string str;
 			try
 			{
-				using (StreamReader sr = new StreamReader("data/EventDen.json"))
+				using (StreamReader sr = new StreamReader(path))
 				{
 					str = sr.ReadToEnd();
 				}

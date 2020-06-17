@@ -97,6 +97,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbilityType.cs" />
     <Compile Include="EventDenList.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

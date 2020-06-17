@@ -21,13 +21,6 @@ namespace OneStar
 		ChineseZh_TW
 	}
 
-	public enum AbilityType
-	{
-		First,
-		Second,
-		Num
-	}
-
 	public partial class MainForm : Form
 	{
 		public bool IsInitialized { get; private set; }
@@ -152,6 +145,7 @@ namespace OneStar
 			{
 				f_ComboBoxDenName.Items.Add(key);
 			}
+
 			foreach (var version in Messages.Instance.Version)
 			{
 				f_ComboBoxGameVersion.Items.Add(version);
@@ -1498,11 +1492,23 @@ namespace OneStar
 			{
 				return;
 			}
-			RaidTemplate[] raidEntries = (
-				m_CurrentDenIndex < 0
-				? c_RaidData.GetEventRaidEntries(m_Preferences.EventId, m_CurrentGameVersion)
-				: c_RaidData.GetRaidEntries(m_CurrentDenIndex, m_CurrentGameVersion, m_CurrentRarity)
-				);				
+			RaidTemplate[] raidEntries = null;
+
+			// イベントレイド
+			if (m_CurrentDenIndex < 0)
+			{
+				raidEntries = c_RaidData.GetEventRaidEntries(m_Preferences.EventId, m_CurrentGameVersion);
+			}
+			// 本編レイド
+			else
+			{
+				raidEntries = c_RaidData.GetRaidEntries(m_CurrentDenIndex, m_CurrentGameVersion, m_CurrentRarity);
+			}
+
+			if (raidEntries == null)
+			{
+				return;
+			}
 
 			if (m_CurrentDenIndex >= 0)
 			{

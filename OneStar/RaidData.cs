@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using PKHeX_Raid_Plugin;
 using PKHeX.Core;
+using System.Runtime.CompilerServices;
 
 namespace OneStar
 {
@@ -12,6 +13,9 @@ namespace OneStar
 
 		// イベントレイドデータ
 		EventDenList m_EventDenList;
+
+		// TODO DLCレイドデータ
+		EventDenList m_AdditionalDenList;
 
 		// マップスケール
 		readonly float c_MapScale = 250.0f / 458.0f; // ビュー上の幅/画像の幅
@@ -91,7 +95,11 @@ namespace OneStar
 		public RaidData()
 		{
 			m_EventDenList = new EventDenList();
-			m_EventDenList.Load();
+			m_EventDenList.Load("data/EventDen.json");
+
+			// TODO DLCレイドデータ読み込み
+			m_AdditionalDenList = new EventDenList();
+			m_AdditionalDenList.Load("data/AdditionalDen.json");
 		}
 
 		// 恒常レイド
@@ -103,7 +111,8 @@ namespace OneStar
 				RaidTemplateTable[] raidTables = (version == 0 ? c_RaidTables.SwordNestsEvent : c_RaidTables.ShieldNestsEvent);
 				return Array.Find(raidTables, table => table.TableID == NestLocations.EventHash).Entries;
 			}
-			else
+			// 本編レイド
+			else if(raidIndex < NestLocations.Nests.Length)
 			{
 				var detail = NestLocations.Nests[raidIndex];
 				RaidTemplateTable[] raidTables = (version == 0 ? c_RaidTables.SwordNests : c_RaidTables.ShieldNests);
@@ -116,17 +125,51 @@ namespace OneStar
 					return Array.Find(raidTables, table => table.TableID == detail.RareHash).Entries;
 				}
 			}
+			// TODO DLCレイド
+			else
+			{
+				return GetAdditionalRaidEntries(raidIndex, version, rarity);
+			}
 		}
 		public System.Drawing.Point GetRaidLocation(int raidIndex)
 		{
-			if (raidIndex == -1)
-			{
-				return System.Drawing.Point.Empty;
-			}
-			else
+			if (raidIndex >= 0 && raidIndex < NestLocations.Nests.Length)
 			{
 				var detail = NestLocations.Nests[raidIndex];
 				return new System.Drawing.Point((int)(detail.MapX * c_MapScale), (int)(detail.MapY * c_MapScale));
+			}
+			else
+			{
+				return System.Drawing.Point.Empty;
+			}
+		}
+		RaidTemplate[] GetAdditionalRaidEntries(int raidIndex, int version, int rarity)
+		{
+			string id = raidIndex.ToString();
+			if (version == 0)
+			{
+				id += "_Sw";
+			}
+			else
+			{
+				id += "_Sh";
+			}
+			if (rarity == 0)
+			{
+				id += "_n";
+			}
+			else
+			{
+				id += "_r";
+			}
+
+			if (m_AdditionalDenList.EventList.ContainsKey(id))
+			{
+				return m_AdditionalDenList.EventList[id].RaidEntries;
+			}
+			else
+			{
+				return GetRaidEntries(-1, version, 0);
 			}
 		}
 
@@ -172,7 +215,7 @@ namespace OneStar
         }
 		public void LoadEventRaidData()
 		{
-			m_EventDenList.Load();
+			m_EventDenList.Load("data/EventDen.json");
 		}
 
         // 1ランク1ポケモンごとに対応するデータ
@@ -296,6 +339,7 @@ namespace OneStar
 				{
 					Ability = 2;
 				}
+				// 夢特性あり
 			}
 
 			public void RefreshKey()
