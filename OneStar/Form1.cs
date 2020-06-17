@@ -2019,6 +2019,10 @@ namespace OneStar
 		{
 			RaidData.Pokemon pokemon = m_PokemonInfo[index].ComboBoxName.SelectedItem as RaidData.Pokemon;
 			PersonalInfo info = PersonalTable.SWSH[pokemon.DataSpecies];
+			if (info.ATK == 0)
+			{
+				info = PersonalTable.USUM[pokemon.DataSpecies];
+			}
 			var list = PKHeX.Core.Util.GetAbilitiesList(Messages.Instance.LangCode);
 
 			m_PokemonInfo[index].ComboBoxAbility.Items.Clear();
