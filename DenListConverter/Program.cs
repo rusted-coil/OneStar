@@ -26,8 +26,6 @@ namespace DenListConverter
 				sw.WriteLine("{");
 				sw.WriteLine("    \"EventList\":{");
 
-				int tableCount = 0;
-
 				foreach (var pair in swordDen.NestDictionary)
 				{
 					Nest swordNest = pair.Value;
@@ -39,6 +37,17 @@ namespace DenListConverter
 				// フッタ出力
 				sw.WriteLine("    }");
 				sw.WriteLine("}");
+			}
+
+			using (StreamWriter sw = new StreamWriter("intermediate.txt", false, Encoding.GetEncoding("shift-jis")))
+			{
+				foreach (var pair in swordDen.NestDictionary)
+				{
+					Nest swordNest = pair.Value;
+					Nest shieldNest = shieldDen.NestDictionary[pair.Key];
+					swordNest.Intermediate(sw, "_Sw");
+					shieldNest.Intermediate(sw, "_Sh");
+				}
 			}
 
 			/*

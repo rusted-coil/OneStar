@@ -180,8 +180,28 @@ namespace DenListConverter
 
 			output += "],";
 
-			int[] flawlessIvsTable = { 0, 1, 2, 3, 4, 4 };
-			int flawlessIVs = flawlessIvsTable[Star - 1];
+			int flawlessIVs = 0;
+			if (max == 4)
+			{
+				flawlessIVs = 4;
+			}
+			else if (min == 0)
+			{
+				flawlessIVs = 1;
+			}
+			else if (min == 1)
+			{
+				flawlessIVs = 2;
+			}
+			else if (min == 2)
+			{
+				flawlessIVs = 3;
+			}
+			else if (min == 3)
+			{
+				// ?
+				flawlessIVs = 3;
+			}
 
 			output += $"\"FlawlessIvs\":{flawlessIVs},";
 			output += $"\"MinRank\":{min},\"MaxRank\":{max},";

@@ -122,5 +122,47 @@ namespace DenListConverter
 
 			sw.WriteLine("            ]},");
 		}
+
+		public void Intermediate(StreamWriter sw, string suffix)
+		{
+			sw.WriteLine($"====={Id + suffix}");
+
+			for (int i = 0; i < 5; ++i)
+			{
+				foreach (var entry in m_Entries)
+				{
+					if (entry.Probability[i] > 0)
+					{
+						int species = -1;
+						string name = entry.Name;
+						{
+							var list = PKHeX.Core.Util.GetSpeciesList("en");
+							for (int a = 0; a < list.Length; ++a)
+							{
+								if (name == list[a])
+								{
+									species = a;
+									break;
+								}
+							}
+						}
+						// 日本語ポケモン名検索
+						if(species != -1)
+						{
+							name = PKHeX.Core.Util.GetSpeciesList("ja")[species];
+						}
+
+						if (entry.Gigantamax)
+						{
+							sw.WriteLine($"★{i + 1}: {name}(キョダイ)");
+						}
+						else
+						{
+							sw.WriteLine($"★{i + 1}: {name}");
+						}
+					}
+				}
+			}
+		}
 	}
 }
