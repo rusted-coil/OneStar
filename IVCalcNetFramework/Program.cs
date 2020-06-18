@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using PKHeX.Core;
 
 namespace IVCalcNetFramework
 {
@@ -331,7 +332,12 @@ namespace IVCalcNetFramework
 
         static dynamic getBase(int forNum)
         {
-            var b = basePokemonData[forNum];
+            PersonalInfo info = PersonalTable.SWSH[forNum];
+            if (info.ATK == 0)
+            {
+                info = PersonalTable.USUM[forNum];
+            }
+            int[] b = { info.HP, info.ATK, info.DEF, info.SPA, info.SPD, info.SPE };
             return b;
         }
     }
