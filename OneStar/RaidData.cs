@@ -14,7 +14,7 @@ namespace OneStar
 		// イベントレイドデータ
 		EventDenList m_EventDenList;
 
-		// TODO DLCレイドデータ
+		// DLCレイドデータ
 		EventDenList m_AdditionalDenList;
 
 		// マップスケール
@@ -97,7 +97,7 @@ namespace OneStar
 			m_EventDenList = new EventDenList();
 			m_EventDenList.Load("data/EventDen.json");
 
-			// TODO DLCレイドデータ読み込み
+			// DLCレイドデータ読み込み
 			m_AdditionalDenList = new EventDenList();
 			m_AdditionalDenList.Load("data/AdditionalDen.json");
 		}
@@ -125,7 +125,7 @@ namespace OneStar
 					return Array.Find(raidTables, table => table.TableID == detail.RareHash).Entries;
 				}
 			}
-			// TODO DLCレイド
+			// DLCレイド
 			else
 			{
 				return GetAdditionalRaidEntries(raidIndex, version, rarity);
@@ -145,7 +145,7 @@ namespace OneStar
 		}
 		RaidTemplate[] GetAdditionalRaidEntries(int raidIndex, int version, int rarity)
 		{
-			string id = raidIndex.ToString();
+			string id = AdditionalNestIdTable.c_DLC1Table[raidIndex + rarity * 10000];
 			if (version == 0)
 			{
 				id += "_Sw";
@@ -153,14 +153,6 @@ namespace OneStar
 			else
 			{
 				id += "_Sh";
-			}
-			if (rarity == 0)
-			{
-				id += "_n";
-			}
-			else
-			{
-				id += "_r";
 			}
 
 			if (m_AdditionalDenList.EventList.ContainsKey(id))

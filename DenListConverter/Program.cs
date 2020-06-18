@@ -12,6 +12,36 @@ namespace DenListConverter
 	{
 		static void Main(string[] args)
 		{
+			DenSet shieldDen = new DenSet();
+			DenSet swordDen = new DenSet();
+
+			shieldDen.Load("ShieldDen.txt");
+			swordDen.Load("SwordDen.txt");
+
+			string outputPath = "output.json";
+
+			using (StreamWriter sw = new StreamWriter(outputPath))
+			{
+				// ヘッダ出力
+				sw.WriteLine("{");
+				sw.WriteLine("    \"EventList\":{");
+
+				int tableCount = 0;
+
+				foreach (var pair in swordDen.NestDictionary)
+				{
+					Nest swordNest = pair.Value;
+					Nest shieldNest = shieldDen.NestDictionary[pair.Key];
+					swordNest.Output(sw, "_Sw");
+					shieldNest.Output(sw, "_Sh");
+				}
+
+				// フッタ出力
+				sw.WriteLine("    }");
+				sw.WriteLine("}");
+			}
+
+			/*
 			string inputPath = "input.csv";
 			string outputPath = "output.json";
 
@@ -188,7 +218,7 @@ namespace DenListConverter
 					sw.WriteLine("    }");
 					sw.WriteLine("}");
 				}
-			}
+			}*/
 		}
 	}
 }
