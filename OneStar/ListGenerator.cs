@@ -29,6 +29,10 @@ namespace OneStar
 		public void Generate()
 		{
 			PersonalInfo personalInfo = PersonalTable.SWSH[m_Pokemon.DataSpecies];
+			if (personalInfo.ATK == 0)
+			{
+				personalInfo = PersonalTable.USUM[m_Pokemon.DataSpecies];
+			}
 			var abilityList = PKHeX.Core.Util.GetAbilitiesList(Messages.Instance.LangCode);
 
 			UInt64 seed = m_DenSeed; // 消費数0のDen Seed

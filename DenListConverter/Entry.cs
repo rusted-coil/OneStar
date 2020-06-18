@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DenListConverter
 {
-	class Entry
+	public class Entry
 	{
 		public int Star { get; }
 		public string Name { get; }

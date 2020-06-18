@@ -41,13 +41,25 @@ namespace DenListConverter
 
 			using (StreamWriter sw = new StreamWriter("intermediate.txt", false, Encoding.GetEncoding("shift-jis")))
 			{
+				int rareCountSw = 0;
+				int rareCountSh = 0;
 				foreach (var pair in swordDen.NestDictionary)
 				{
 					Nest swordNest = pair.Value;
 					Nest shieldNest = shieldDen.NestDictionary[pair.Key];
 					swordNest.Intermediate(sw, "_Sw");
 					shieldNest.Intermediate(sw, "_Sh");
+
+					foreach (var entry in swordNest.Entries)
+					{
+						if (entry.Ability == 2)
+						{
+							rareCountSw++;
+							break;
+						}
+					}
 				}
+				;
 			}
 
 			/*

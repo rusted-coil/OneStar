@@ -145,7 +145,7 @@ namespace OneStar
 		}
 		RaidTemplate[] GetAdditionalRaidEntries(int raidIndex, int version, int rarity)
 		{
-			string id = AdditionalNestIdTable.c_DLC1Table[raidIndex + rarity * 10000];
+			string id = (rarity == 0 ? AdditionalNestIdTable.c_DLC1Table[raidIndex].IdNormal : AdditionalNestIdTable.c_DLC1Table[raidIndex].IdRare);
 			if (version == 0)
 			{
 				id += "_Sw";
@@ -309,10 +309,17 @@ namespace OneStar
 				FlawlessIvs = entry.FlawlessIVs;
 				IsGigantamax = entry.IsGigantamax;
 				Ability = entry.Ability;
+
+				PersonalInfo info = PersonalTable.SWSH[DataSpecies];
+				if (info.ATK == 0)
+				{
+					info = PersonalTable.USUM[DataSpecies];
+				}
+
 				// レイドデータで固定されているのはイエッサン、ニャオニクス、エンニュートのみ
 				// ♂のみ：バルキー系、エルレイド、ナゲキ、ダゲキ、ウォーグル系、オーロンゲ系
 				// ♀のみ：ビークイン、ユキメノコ、バルジーナ系、アマージョ系、ブリムオン系、マホイップ系
-				if (c_FixedGender.ContainsKey(rawSpecies))
+				if(info.Genderless || info.OnlyFemale || info.OnlyMale)
 				{
 					IsFixedGender = true;
 				}

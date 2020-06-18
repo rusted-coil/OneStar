@@ -10,7 +10,7 @@ namespace DenListConverter
 	public class Nest
 	{
 		public string Id { get; }
-		List<Entry> m_Entries = new List<Entry>();
+		public List<Entry> Entries { get; } = new List<Entry>();
 
 		public Nest(string id)
 		{
@@ -31,7 +31,7 @@ namespace DenListConverter
 						if (entry != null)
 						{
 							entry.Load(entryLines);
-							m_Entries.Add(entry);
+							Entries.Add(entry);
 							entryLines.Clear();
 						}
 
@@ -100,7 +100,7 @@ namespace DenListConverter
 			if (entry != null)
 			{
 				entry.Load(entryLines);
-				m_Entries.Add(entry);
+				Entries.Add(entry);
 			}
 		}
 
@@ -111,7 +111,7 @@ namespace DenListConverter
 
 			for (int i = 1; i <= 5; ++i)
 			{
-				foreach (var entry in m_Entries)
+				foreach (var entry in Entries)
 				{
 					if (entry.Star == i)
 					{
@@ -129,7 +129,7 @@ namespace DenListConverter
 
 			for (int i = 0; i < 5; ++i)
 			{
-				foreach (var entry in m_Entries)
+				foreach (var entry in Entries)
 				{
 					if (entry.Probability[i] > 0)
 					{
@@ -152,14 +152,17 @@ namespace DenListConverter
 							name = PKHeX.Core.Util.GetSpeciesList("ja")[species];
 						}
 
+						string output = $"★{i + 1}: {name}";
 						if (entry.Gigantamax)
 						{
-							sw.WriteLine($"★{i + 1}: {name}(キョダイ)");
+							output += "(キョダイ)";
 						}
-						else
+						if (entry.Ability == 2)
 						{
-							sw.WriteLine($"★{i + 1}: {name}");
+							output += "[HA]";
 						}
+
+						sw.WriteLine(output);
 					}
 				}
 			}
