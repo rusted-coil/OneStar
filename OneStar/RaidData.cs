@@ -316,6 +316,8 @@ namespace OneStar
 
 				FlawlessIvs = entry.FlawlessIVs;
 				IsGigantamax = entry.IsGigantamax;
+
+				// 特性
 				Ability = entry.Ability;
 
 				PersonalInfo info = PersonalTable.SWSH[DataSpecies];
@@ -337,16 +339,6 @@ namespace OneStar
 				}
 
 				RefreshKey();
-			}
-
-			public void Merge(RaidTemplate entry)
-			{
-				// 夢特性固定があれば上書き
-				if (entry.Ability == 2)
-				{
-					Ability = 2;
-				}
-				// 夢特性あり
 			}
 
 			public void RefreshKey()

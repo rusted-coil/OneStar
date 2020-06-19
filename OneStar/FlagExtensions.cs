@@ -6,14 +6,11 @@ using System.Threading.Tasks;
 
 namespace OneStar
 {
-	public class AbilityType
+	public static class FlagExtensions
 	{
-		public enum Flag
+		public static bool TestBit(this int flag, int bit)
 		{
-			HiddenPossible = 0, // 夢特性あり
-			HiddenFixed = 1, // 夢特性固定あり
+			return (flag & (1 << bit)) > 0;
 		}
-
-		int m_Flag = 0;
 	}
 }

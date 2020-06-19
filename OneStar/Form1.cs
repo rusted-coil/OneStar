@@ -1555,10 +1555,27 @@ namespace OneStar
 						var pokemon = new RaidData.Pokemon(entry, c);
 						string key = pokemon.Key;
 
-						// 全く同じ見た目のポケモンの場合マージする
+						// 全く同じ見た目のポケモンの場合キーを変える
 						if (encounterIndex.ContainsKey(key))
 						{
-							m_EncounterList[encounterIndex[key]].Merge(entry);
+							if (pokemon.Ability == 2)
+							{
+								key = $"{key}({Messages.Instance.SystemLabel["HiddenFixed"]})";
+							}
+							else if (pokemon.Ability == 3)
+							{
+								key = $"{key}({Messages.Instance.SystemLabel["NoHidden"]})";
+							}
+							else if (pokemon.Ability == 4)
+							{
+								key = $"{key}({Messages.Instance.SystemLabel["HiddenPossible"]})";
+							}
+							else
+							{
+								key = $"{key}()";
+							}
+							encounterIndex.Add(key, m_EncounterList.Count);
+							m_EncounterList.Add(pokemon);
 						}
 						else
 						{
@@ -1760,7 +1777,7 @@ namespace OneStar
 			{
 				str += $"\n性別比率: {info.Gender}";
 			}
-			if (info.Abilities[0] == info.Abilities[1])
+			if (info.Abilities[0] == info.Abilities[1]) // 特性1=特性2
 			{
 				str += $"\n{Messages.Instance.Ability[2]}: {abilityList[info.Abilities[0]]}";
 
@@ -2052,24 +2069,27 @@ namespace OneStar
 			var list = PKHeX.Core.Util.GetAbilitiesList(Messages.Instance.LangCode);
 
 			m_PokemonInfo[index].ComboBoxAbility.Items.Clear();
-			// 特性1=2
-			if (info.Abilities[0] == info.Abilities[1])
+			// 夢特性固定
+			if (pokemon.Ability == 2)
 			{
-				m_PokemonInfo[index].ComboBoxAbility.Items.Add(new PokemonFormUtility.AbilityItem(-1, info.Abilities[0], list[info.Abilities[0]]));
-
-				// 夢特性
-				if (pokemon.Ability != 3 && info.Abilities[2] != info.Abilities[0])
-				{
-					m_PokemonInfo[index].ComboBoxAbility.Items.Add(new PokemonFormUtility.AbilityItem(2, info.Abilities[2], list[info.Abilities[2]]));
-				}
+				m_PokemonInfo[index].ComboBoxAbility.Items.Add(new PokemonFormUtility.AbilityItem(2, info.Abilities[2], list[info.Abilities[2]]));
 			}
 			else
 			{
-				m_PokemonInfo[index].ComboBoxAbility.Items.Add(new PokemonFormUtility.AbilityItem(0, info.Abilities[0], list[info.Abilities[0]]));
-				m_PokemonInfo[index].ComboBoxAbility.Items.Add(new PokemonFormUtility.AbilityItem(1, info.Abilities[1], list[info.Abilities[1]]));
+				// 特性1=2
+				// 特性1=2
+				if (info.Abilities[0] == info.Abilities[1])
+				{
+					m_PokemonInfo[index].ComboBoxAbility.Items.Add(new PokemonFormUtility.AbilityItem(-1, info.Abilities[0], list[info.Abilities[0]]));
+				}
+				else
+				{
+					m_PokemonInfo[index].ComboBoxAbility.Items.Add(new PokemonFormUtility.AbilityItem(0, info.Abilities[0], list[info.Abilities[0]]));
+					m_PokemonInfo[index].ComboBoxAbility.Items.Add(new PokemonFormUtility.AbilityItem(1, info.Abilities[1], list[info.Abilities[1]]));
+				}
 
-				// 夢特性
-				if (pokemon.Ability != 3 && info.Abilities[2] != info.Abilities[0] && info.Abilities[2] != info.Abilities[1])
+				// 夢特性あり
+				if (pokemon.Ability == 4)
 				{
 					m_PokemonInfo[index].ComboBoxAbility.Items.Add(new PokemonFormUtility.AbilityItem(2, info.Abilities[2], list[info.Abilities[2]]));
 				}
