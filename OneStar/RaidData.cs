@@ -131,6 +131,14 @@ namespace OneStar
 				return GetAdditionalRaidEntries(raidIndex, version, rarity);
 			}
 		}
+		public int GetRaidMap(int raidIndex)
+		{
+			if (raidIndex >= NestLocations.Nests.Length)
+			{
+				return 1;
+			}
+			return 0;
+		}
 		public System.Drawing.Point GetRaidLocation(int raidIndex)
 		{
 			if (raidIndex >= 0 && raidIndex < NestLocations.Nests.Length)

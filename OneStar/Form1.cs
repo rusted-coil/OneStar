@@ -59,6 +59,9 @@ namespace OneStar
 		// 言語設定可能コントロール
 		Dictionary<string, Control[]> m_MultiLanguageControls;
 
+		// DLCマップ用フォーム
+		Form2 m_MapForm = null;
+
 		class Star35PanelMode
 		{
 			public enum ModeType {
@@ -1510,11 +1513,30 @@ namespace OneStar
 				return;
 			}
 
+			// 本編レイド
 			if (m_CurrentDenIndex >= 0)
 			{
-				var location = c_RaidData.GetRaidLocation(m_CurrentDenIndex);
-				f_PicturePoint.Location = new System.Drawing.Point(location.X - 5, location.Y - 5);
-				f_PicturePoint.Visible = true;
+				if (c_RaidData.GetRaidMap(m_CurrentDenIndex) == 0)
+				{
+					var location = c_RaidData.GetRaidLocation(m_CurrentDenIndex);
+					f_PicturePoint.Location = new System.Drawing.Point(location.X - 5, location.Y - 5);
+					f_PicturePoint.Visible = true;
+				}
+				else
+				{
+					// フォームが閉じていたら開く
+					/*
+					if (m_MapForm == null)
+					{
+						m_MapForm = new Form2();
+						m_MapForm.FormClosed += new FormClosedEventHandler((x, y) => { m_MapForm = null; });
+						m_MapForm.Show();
+					}
+
+					var location = c_RaidData.GetRaidLocation(m_CurrentDenIndex);
+					m_MapForm.SetPoint(location);
+					*/
+				}
 			}
 			else
 			{
