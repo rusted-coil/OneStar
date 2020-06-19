@@ -12,57 +12,6 @@ namespace DenListConverter
 	{
 		static void Main(string[] args)
 		{
-			DenSet shieldDen = new DenSet();
-			DenSet swordDen = new DenSet();
-
-			shieldDen.Load("ShieldDen.txt");
-			swordDen.Load("SwordDen.txt");
-
-			string outputPath = "output.json";
-
-			using (StreamWriter sw = new StreamWriter(outputPath))
-			{
-				// ヘッダ出力
-				sw.WriteLine("{");
-				sw.WriteLine("    \"EventList\":{");
-
-				foreach (var pair in swordDen.NestDictionary)
-				{
-					Nest swordNest = pair.Value;
-					Nest shieldNest = shieldDen.NestDictionary[pair.Key];
-					swordNest.Output(sw, "_Sw");
-					shieldNest.Output(sw, "_Sh");
-				}
-
-				// フッタ出力
-				sw.WriteLine("    }");
-				sw.WriteLine("}");
-			}
-
-			using (StreamWriter sw = new StreamWriter("intermediate.txt", false, Encoding.GetEncoding("shift-jis")))
-			{
-				int rareCountSw = 0;
-				int rareCountSh = 0;
-				foreach (var pair in swordDen.NestDictionary)
-				{
-					Nest swordNest = pair.Value;
-					Nest shieldNest = shieldDen.NestDictionary[pair.Key];
-					swordNest.Intermediate(sw, "_Sw");
-					shieldNest.Intermediate(sw, "_Sh");
-
-					foreach (var entry in swordNest.Entries)
-					{
-						if (entry.Ability == 2)
-						{
-							rareCountSw++;
-							break;
-						}
-					}
-				}
-				;
-			}
-
-			/*
 			string inputPath = "input.csv";
 			string outputPath = "output.json";
 
@@ -111,7 +60,7 @@ namespace DenListConverter
 							{
 								tableId += "_Sw";
 							}
-							else
+							else if(version == "シールド")
 							{
 								tableId += "_Sh";
 							}
@@ -119,7 +68,7 @@ namespace DenListConverter
 							{
 								tableId += "_n";
 							}
-							else
+							else if(type == "レア")
 							{
 								tableId += "_r";
 							}
@@ -239,7 +188,7 @@ namespace DenListConverter
 					sw.WriteLine("    }");
 					sw.WriteLine("}");
 				}
-			}*/
+			}
 		}
 	}
 }
