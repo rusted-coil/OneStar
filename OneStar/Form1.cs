@@ -1587,8 +1587,11 @@ namespace OneStar
 								{
 									key = $"{key}()";
 								}
-								encounterIndex.Add(key, m_EncounterList.Count);
-								m_EncounterList.Add(pokemon);
+								if (!encounterIndex.ContainsKey(key))
+								{
+									encounterIndex.Add(key, m_EncounterList.Count);
+									m_EncounterList.Add(pokemon);
+								}
 							}
 						}
 						else
