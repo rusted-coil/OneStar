@@ -30,7 +30,7 @@ const int* g_IvsRef[30] = {
 // 夢特性あり→特性2の時のみAbilityBitが有効(1か3なので奇数)
 inline bool IsEnableAbilityBit()
 {
-	return (l_Pokemon[0].ability == 1) || (l_Pokemon[0].abilityFlag == 3 && l_Pokemon[0].ability >= 0);
+	return l_Pokemon[0].abilityFlag != 2 && ((l_Pokemon[0].ability == 1) || (l_Pokemon[0].abilityFlag == 3 && l_Pokemon[0].ability >= 0));
 }
 
 void Set12Condition(
@@ -219,76 +219,45 @@ _u64 Search(_u64 ivs)
 			xoroshiro.Next(); // 個体値4
 			xoroshiro.Next(); // 個体値5
 
-			// イベントレイドの夢特性強制モード
-			bool isPassed = false;
-			if(l_Pokemon[0].abilityFlag == 2 && l_Pokemon[0].ability == 2)
+			// 特性
+			int ability = 0;
+			if (l_Pokemon[0].abilityFlag == 2)
 			{
-				oshiroTemp2.Copy(&xoroshiro);
-
-				// 特性スキップ
-
-				// 性別値
-				if(!l_Pokemon[0].isNoGender)
-				{
-					int gender = 0;
-					do {
-						gender = xoroshiro.Next(0xFFu); // 性別値
-					} while(gender >= 253);
-				}
-
-				// 性格
-				_u32 nature = 0;
-				do {
-					nature = xoroshiro.Next(c_NatureTable[l_Pokemon[0].natureTableId].randMax);
-				} while(nature >= c_NatureTable[l_Pokemon[0].natureTableId].patternCount);
-
-				if(nature == l_Pokemon[0].nature)
-				{
-					isPassed = true;
-				}
-
-				xoroshiro.Copy(&oshiroTemp2);
+				ability = 2;
 			}
-			if(isPassed == false)
+			else if(l_Pokemon[0].abilityFlag == 3)
 			{
-				// 特性
-				{
-					int ability = 0;
-					if(l_Pokemon[0].abilityFlag == 3)
-					{
-						ability = xoroshiro.Next(1);
-					}
-					else
-					{
-						do {
-							ability = xoroshiro.Next(3);
-						} while(ability >= 3);
-					}
-					if((l_Pokemon[0].ability >= 0 && l_Pokemon[0].ability != ability) || (l_Pokemon[0].ability == -1 && ability >= 2))
-					{
-						continue;
-					}
-				}
-
-				// 性別値
-				if(!l_Pokemon[0].isNoGender)
-				{
-					int gender = 0;
-					do {
-						gender = xoroshiro.Next(0xFF); // 性別値
-					} while(gender >= 253);
-				}
-
-				// 性格
-				_u32 nature = 0;
+				ability = xoroshiro.Next(1);
+			}
+			else
+			{
 				do {
-					nature = xoroshiro.Next(c_NatureTable[l_Pokemon[0].natureTableId].randMax);
-				} while(nature >= c_NatureTable[l_Pokemon[0].natureTableId].patternCount);
+					ability = xoroshiro.Next(3);
+				} while(ability >= 3);
+			}
+			if((l_Pokemon[0].ability >= 0 && l_Pokemon[0].ability != ability) || (l_Pokemon[0].ability == -1 && ability >= 2))
+			{
+				continue;
+			}
 
-				if(nature != l_Pokemon[0].nature)
-				{
-					continue;
-				}
+			// 性別値
+			if(!l_Pokemon[0].isNoGender)
+			{
+				int gender = 0;
+				do {
+					gender = xoroshiro.Next(0xFF); // 性別値
+				} while(gender >= 253);
+			}
+
+			// 性格
+			_u32 nature = 0;
+			do {
+				nature = xoroshiro.Next(c_NatureTable[l_Pokemon[0].natureTableId].randMax);
+			} while(nature >= c_NatureTable[l_Pokemon[0].natureTableId].patternCount);
+
+			if(nature != l_Pokemon[0].nature)
+			{
+				continue;
 			}
 		}
 
@@ -341,74 +310,45 @@ _u64 Search(_u64 ivs)
 				continue;
 			}
 
-			// イベントレイドの夢特性強制モード
-			isPassed = false;
-			if(l_Pokemon[1].abilityFlag == 2 && l_Pokemon[1].ability == 2)
+			// 特性
+			int ability = 0;
+			if (l_Pokemon[1].abilityFlag == 2)
 			{
-				oshiroTemp2.Copy(&xoroshiro);
-
-				// 特性スキップ
-
-				// 性別値
-				if(!l_Pokemon[1].isNoGender)
-				{
-					int gender = 0;
-					do {
-						gender = xoroshiro.Next(0xFF); // 性別値
-					} while(gender >= 253);
-				}
-
-				// 性格
-				_u32 nature = 0;
-				do {
-					nature = xoroshiro.Next(c_NatureTable[l_Pokemon[1].natureTableId].randMax);
-				} while(nature >= c_NatureTable[l_Pokemon[1].natureTableId].patternCount);
-
-				if(nature == l_Pokemon[1].nature)
-				{
-					isPassed = true;
-				}
-
-				xoroshiro.Copy(&oshiroTemp2);
+				ability = 2;
 			}
-			if(isPassed == false)
+			else if (l_Pokemon[1].abilityFlag == 3)
 			{
-				// 特性
-				int ability = 0;
-				if(l_Pokemon[1].abilityFlag == 3)
-				{
-					ability = xoroshiro.Next(1);
-				}
-				else
-				{
-					do {
-						ability = xoroshiro.Next(3);
-					} while(ability >= 3);
-				}
-				if((l_Pokemon[1].ability >= 0 && l_Pokemon[1].ability != ability) || (l_Pokemon[1].ability == -1 && ability >= 2))
-				{
-					continue;
-				}
-
-				// 性別値
-				if(!l_Pokemon[1].isNoGender)
-				{
-					int gender = 0;
-					do {
-						gender = xoroshiro.Next(0xFF);
-					} while(gender >= 253);
-				}
-
-				// 性格
-				_u32 nature = 0;
+				ability = xoroshiro.Next(1);
+			}
+			else
+			{
 				do {
-					nature = xoroshiro.Next(c_NatureTable[l_Pokemon[1].natureTableId].randMax);
-				} while(nature >= c_NatureTable[l_Pokemon[1].natureTableId].patternCount);
+					ability = xoroshiro.Next(3);
+				} while(ability >= 3);
+			}
+			if((l_Pokemon[1].ability >= 0 && l_Pokemon[1].ability != ability) || (l_Pokemon[1].ability == -1 && ability >= 2))
+			{
+				continue;
+			}
 
-				if(nature != l_Pokemon[1].nature)
-				{
-					continue;
-				}
+			// 性別値
+			if(!l_Pokemon[1].isNoGender)
+			{
+				int gender = 0;
+				do {
+					gender = xoroshiro.Next(0xFF);
+				} while(gender >= 253);
+			}
+
+			// 性格
+			_u32 nature = 0;
+			do {
+				nature = xoroshiro.Next(c_NatureTable[l_Pokemon[1].natureTableId].randMax);
+			} while(nature >= c_NatureTable[l_Pokemon[1].natureTableId].patternCount);
+
+			if(nature != l_Pokemon[1].nature)
+			{
+				continue;
 			}
 		}
 		// 3匹目チェック
@@ -462,74 +402,45 @@ _u64 Search(_u64 ivs)
 					continue;
 				}
 
-				// イベントレイドの夢特性強制モード
-				isPassed = false;
-				if(l_Pokemon[2].abilityFlag == 2 && l_Pokemon[2].ability == 2)
+				// 特性
+				int ability = 0;
+				if (l_Pokemon[2].abilityFlag == 2)
 				{
-					oshiroTemp2.Copy(&xoroshiro);
-
-					// 特性スキップ
-
-					// 性別値
-					if(!l_Pokemon[2].isNoGender)
-					{
-						int gender = 0;
-						do {
-							gender = xoroshiro.Next(0xFF); // 性別値
-						} while(gender >= 253);
-					}
-
-					// 性格
-					_u32 nature = 0;
-					do {
-						nature = xoroshiro.Next(c_NatureTable[l_Pokemon[2].natureTableId].randMax);
-					} while(nature >= c_NatureTable[l_Pokemon[2].natureTableId].patternCount);
-
-					if(nature == l_Pokemon[2].nature)
-					{
-						isPassed = true;
-					}
-
-					xoroshiro.Copy(&oshiroTemp2);
+					ability = 2;
 				}
-				if(isPassed == false)
+				else if (l_Pokemon[2].abilityFlag == 3)
 				{
-					// 特性
-					int ability = 0;
-					if(l_Pokemon[2].abilityFlag == 3)
-					{
-						ability = xoroshiro.Next(1);
-					}
-					else
-					{
-						do {
-							ability = xoroshiro.Next(3);
-						} while(ability >= 3);
-					}
-					if((l_Pokemon[2].ability >= 0 && l_Pokemon[2].ability != ability) || (l_Pokemon[2].ability == -1 && ability >= 2))
-					{
-						continue;
-					}
-
-					// 性別値
-					if(!l_Pokemon[2].isNoGender)
-					{
-						int gender = 0;
-						do {
-							gender = xoroshiro.Next(0xFF);
-						} while(gender >= 253);
-					}
-
-					// 性格
-					_u32 nature = 0;
+					ability = xoroshiro.Next(1);
+				}
+				else
+				{
 					do {
-						nature = xoroshiro.Next(c_NatureTable[l_Pokemon[2].natureTableId].randMax);
-					} while(nature >= c_NatureTable[l_Pokemon[2].natureTableId].patternCount);
+						ability = xoroshiro.Next(3);
+					} while(ability >= 3);
+				}
+				if((l_Pokemon[2].ability >= 0 && l_Pokemon[2].ability != ability) || (l_Pokemon[2].ability == -1 && ability >= 2))
+				{
+					continue;
+				}
 
-					if(nature != l_Pokemon[2].nature)
-					{
-						continue;
-					}
+				// 性別値
+				if(!l_Pokemon[2].isNoGender)
+				{
+					int gender = 0;
+					do {
+						gender = xoroshiro.Next(0xFF);
+					} while(gender >= 253);
+				}
+
+				// 性格
+				_u32 nature = 0;
+				do {
+					nature = xoroshiro.Next(c_NatureTable[l_Pokemon[2].natureTableId].randMax);
+				} while(nature >= c_NatureTable[l_Pokemon[2].natureTableId].patternCount);
+
+				if(nature != l_Pokemon[2].nature)
+				{
+					continue;
 				}
 			}
 		}

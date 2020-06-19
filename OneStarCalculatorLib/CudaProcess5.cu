@@ -221,7 +221,11 @@ __global__ static void kernel_calc(
 
 			// ì¡ê´
 			temp32 = 0;
-			if(pokemon[2].abilityFlag == 3)
+			if (pokemon[2].abilityFlag == 2)
+			{
+				temp32 = 2;
+			}
+			else if(pokemon[2].abilityFlag == 3)
 			{
 				temp32 = CudaNext(next, 1u);
 			}
@@ -355,7 +359,11 @@ __global__ static void kernel_calc(
 
 			// ì¡ê´
 			temp32 = 0;
-			if(pokemon[0].abilityFlag == 3)
+			if (pokemon[0].abilityFlag == 2)
+			{			
+				temp32 = 2;
+			}
+			else if(pokemon[0].abilityFlag == 3)
 			{
 				temp32 = CudaNext(seeds, 1u);
 			}
@@ -370,7 +378,11 @@ __global__ static void kernel_calc(
 				continue;
 			}
 			temp32 = 0;
-			if(pokemon[1].abilityFlag == 3)
+			if (pokemon[1].abilityFlag == 2)
+			{
+				temp32 = 2;
+			}
+			if (pokemon[1].abilityFlag == 3)
 			{
 				temp32 = CudaNext(next, 1u);
 			}

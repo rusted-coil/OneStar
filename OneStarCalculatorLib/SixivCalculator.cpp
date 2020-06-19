@@ -309,7 +309,11 @@ _u64 SearchSix(_u64 ivs)
 
 		// ì¡ê´
 		_u32 ability = 0;
-		if(l_Pokemon[2].abilityFlag == 3)
+		if (l_Pokemon[2].abilityFlag == 2)
+		{
+			ability = 2;
+		}
+		else if(l_Pokemon[2].abilityFlag == 3)
 		{
 			ability = nextoshiro.Next(1u);
 		}
@@ -400,7 +404,11 @@ _u64 SearchSix(_u64 ivs)
 
 			// ì¡ê´
 			int ability = 0;
-			if (l_Pokemon[0].abilityFlag == 3)
+			if (l_Pokemon[0].abilityFlag == 2)
+			{
+				ability = 2;
+			}
+			else if (l_Pokemon[0].abilityFlag == 3)
 			{
 				ability = xoroshiro.Next(1u);
 			}
@@ -481,7 +489,11 @@ _u64 SearchSix(_u64 ivs)
 
 			// ì¡ê´
 			int ability = 0;
-			if (l_Pokemon[1].abilityFlag == 3)
+			if (l_Pokemon[1].abilityFlag == 2)
+			{
+				ability = 2;
+			}
+			else if (l_Pokemon[1].abilityFlag == 3)
 			{
 				ability = xoroshiro.Next(1u);
 			}
