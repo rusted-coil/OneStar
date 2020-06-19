@@ -224,7 +224,6 @@ namespace OneStar
 			public string Key { get; private set; }
 			public int Rank { get; private set; }
 
-			public decimal CalcSpecies { get; private set; } // 個体値計算上の種族
 			public decimal DisplaySpecies { get; private set; } // 名前表示上の種族
 			public int DataSpecies { get; private set; } // PKHeXデータ上のインデックス
 
@@ -274,21 +273,6 @@ namespace OneStar
 					}
 				}
 
-				// ダルマッカ
-				if (rawSpecies == 554)
-				{
-					CalcSpecies = 993;
-				}
-				// ストリンダーは計算上は共通
-				else if (rawSpecies == 849)
-				{
-					CalcSpecies = 849;
-				}
-				else
-				{
-					CalcSpecies = rawSpecies + altForm / 10m;
-				}
-
 				// ガラル表示は省略
 				if (c_GalarForms.ContainsKey(rawSpecies))
 				{
@@ -308,6 +292,15 @@ namespace OneStar
 				if (altForm != 0)
 				{
 					DataSpecies = PersonalTable.SWSH[rawSpecies].FormeIndex(rawSpecies, entry.AltForm);
+					// 存在しないものは以前のデータを使う
+					if (DataSpecies == rawSpecies)
+					{
+						PersonalInfo tempInfo = PersonalTable.SWSH[DataSpecies];
+						if (tempInfo.ATK == 0)
+						{
+							DataSpecies = PersonalTable.USUM[rawSpecies].FormeIndex(rawSpecies, entry.AltForm);
+						}
+					}
 				}
 				else
 				{

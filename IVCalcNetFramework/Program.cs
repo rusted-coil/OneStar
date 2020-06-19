@@ -77,20 +77,19 @@ namespace IVCalcNetFramework
             }
         }
 
-        static int calculateStat(int pokemonID, int level, int nature, int stat, int stativ, int statev)
+        static int calculateStat(int level, int nature, int stat, int stativ, int statev, int baseValue)
         {
-            int bstat = getBase(pokemonID)[stat];
             if (stat > 0 && stat < 6)
             {
                 var bonus = (double)natures[nature][stat - 1];
-                var result = (int)Math.Floor((Math.Floor(((bstat * 2 + (stativ / 1) + Math.Floor((double)(statev / 4))) * level) / 100) + 5) * bonus);
+                var result = (int)Math.Floor((Math.Floor(((baseValue * 2 + (stativ / 1) + Math.Floor((double)(statev / 4))) * level) / 100) + 5) * bonus);
                 return result;
             }
             else if (stat == 0)
             {
-                var result = (int)Math.Floor(((bstat * 2 + (stativ / 1) + Math.Floor((double)(statev / 4))) * level) / 100) + (level / 1) + 10;
+                var result = (int)Math.Floor(((baseValue * 2 + (stativ / 1) + Math.Floor((double)(statev / 4))) * level) / 100) + (level / 1) + 10;
 
-                if (pokemonID == 292) { return 1; } //Shedinja Case
+                if (baseValue == 1) { return 1; } //Shedinja Case
                 return result;
             }
             else
@@ -175,7 +174,7 @@ namespace IVCalcNetFramework
             }
         }
 
-        static List<int> calculateStatIV(int pokeID, int level, int nature, int stat, int statVal, int statEV, Tuple<int,int> chara)
+        static List<int> calculateStatIV(int level, int nature, int stat, int statVal, int statEV, int baseValue, Tuple<int,int> chara)
         {
             var charas = new List<List<int>>{
                 new List<int>{0, 5, 10, 15, 20, 25, 30 },
@@ -188,13 +187,13 @@ namespace IVCalcNetFramework
             var i = 31;
             do
             {
-                int fval = calculateStat(pokeID, level, nature, stat, i, statEV);
+                int fval = calculateStat(level, nature, stat, i, statEV, baseValue);
                 if (fval == statVal) {
                     ivs[stat].Insert(0,i);
                 }
             } while (i--!=0);
 
-            if (stat == 0 && pokeID == 292) {
+            if (stat == 0 && baseValue == 1) {
                 ivs[stat] = new List<int>();
                 for (var j = 0; j <= 31; j++)
                 {
@@ -239,12 +238,10 @@ namespace IVCalcNetFramework
             }
         }
 
-        public static List<List<int>> getIVs(decimal formID, int level, int oneStarNature, int character, List<int> stats, List<int> statEVs)
+        public static List<List<int>> getIVs(int level, int oneStarNature, int character, List<int> stats, List<int> statEVs, List<int> baseValues)
         {
-
             int nature = OneStarNatures[oneStarNature];
             Tuple<int,int> chrSmall = characteristic(character);
-            int pokeID = Math.Floor(formID) != formID ? forms[formID] : (int)formID;
 
             if (statEVs == null || statEVs.Count == 0)
             {
@@ -257,10 +254,10 @@ namespace IVCalcNetFramework
 
             //pstat == the statID
             //stat == the actual stat, I guess?
-            List<int> validate_iv(List<int> result, int pokemonID, int pstat, int stat, int statev, int pokelvl, int pnature)
+            List<int> validate_iv(List<int> result, int pstat, int stat, int statev, int pokelvl, int pnature, int baseValue)
             { // IV error handling
-                var max = calculateStat(pokemonID, pokelvl, pnature, pstat, 31, statev);
-                var min = calculateStat(pokemonID, pokelvl, pnature, pstat, 0, statev);
+                var max = calculateStat(pokelvl, pnature, pstat, 31, statev, baseValue);
+                var min = calculateStat(pokelvl, pnature, pstat, 0, statev, baseValue);
 
                 
 
@@ -298,7 +295,7 @@ namespace IVCalcNetFramework
             {
                 try
                 {
-                    ivs[j] = ivs[j].Intersect(calculateStatIV(pokeID, level, nature, j, stats[j], statEVs[j], chrSmall)).ToList();//, calc_stativ($('number-' + r).value, j,$('stat' + j + '-' + r).value,$('ep' + j + '-' + r).value,$('level-' + r).value,$('nat-' + r).value,$('char-' + r).value,$('pot1-' + r).value,$('pot2-' + r).value));
+                    ivs[j] = ivs[j].Intersect(calculateStatIV(level, nature, j, stats[j], statEVs[j], baseValues[j], chrSmall)).ToList();//, calc_stativ($('number-' + r).value, j,$('stat' + j + '-' + r).value,$('ep' + j + '-' + r).value,$('level-' + r).value,$('nat-' + r).value,$('char-' + r).value,$('pot1-' + r).value,$('pot2-' + r).value));
                 }
                 catch (Exception e)
                 {
@@ -311,7 +308,7 @@ namespace IVCalcNetFramework
             var k = 5;
             do
             {
-                ivs[k] = validate_iv(ivs[k],pokeID, k,stats[k],statEVs[k],level,nature);
+                ivs[k] = validate_iv(ivs[k], k,stats[k],statEVs[k],level,nature, baseValues[k]);
                 if (ivs[k].Count == 1) { c++; }
             } while (k--!=0);
 
@@ -330,6 +327,8 @@ namespace IVCalcNetFramework
             return idx - 1;
         }
 
+        // 種族値は外部から入力するように変更
+        /*
         static dynamic getBase(int forNum)
         {
             PersonalInfo info = PersonalTable.SWSH[forNum];
@@ -340,5 +339,6 @@ namespace IVCalcNetFramework
             int[] b = { info.HP, info.ATK, info.DEF, info.SPA, info.SPD, info.SPE };
             return b;
         }
+        */
     }
 }

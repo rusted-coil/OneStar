@@ -98,6 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdditionalNestIdTable.cs" />
+    <Compile Include="PersonalInfoProvider.cs" />
     <Compile Include="EventDenList.cs" />
     <Compile Include="FlagExtensions.cs" />
     <Compile Include="Form1.cs">

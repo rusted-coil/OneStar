@@ -1384,7 +1384,6 @@ namespace OneStar
 			else
 			{
 				string levelText = pokemonInfo.TextBoxLevel.Text;
-				decimal pokemonID = encounterData.CalcSpecies;
 				try
 				{
 					int lv = int.Parse(levelText);
@@ -1399,11 +1398,23 @@ namespace OneStar
 					int SpAtk = int.Parse(pokemonInfo.TextBoxStatus[3].Text);
 					int SpDef = int.Parse(pokemonInfo.TextBoxStatus[4].Text);
 					int Spd = int.Parse(pokemonInfo.TextBoxStatus[5].Text);
-				
+
+					// 種族値
+					List<int> baseValues = new List<int>();
+					{
+						PersonalInfo personalInfo = PersonalInfoProvider.GetPersonalInfo(encounterData);
+						baseValues.Add(personalInfo.HP);
+						baseValues.Add(personalInfo.ATK);
+						baseValues.Add(personalInfo.DEF);
+						baseValues.Add(personalInfo.SPA);
+						baseValues.Add(personalInfo.SPD);
+						baseValues.Add(personalInfo.SPE);
+					}
+
 					int nature = Messages.Instance.Nature[pokemonInfo.ComboBoxNature.Text];
 					int characteristic = Messages.Instance.Characteristic[pokemonInfo.ComboBoxCharacteristic.Text];
 
-					var IVs = IVCalculator.getIVs(pokemonID, lv, nature, characteristic, new List<int>() { HP, Atk, Def, SpAtk, SpDef, Spd }, null);
+					var IVs = IVCalculator.getIVs(lv, nature, characteristic, new List<int>() { HP, Atk, Def, SpAtk, SpDef, Spd }, null, baseValues);
 
 					bool uncertain = false;
 
@@ -1558,24 +1569,27 @@ namespace OneStar
 						// 全く同じ見た目のポケモンの場合キーを変える
 						if (encounterIndex.ContainsKey(key))
 						{
-							if (pokemon.Ability == 2)
+							if (m_EncounterList[encounterIndex[key]].Ability != pokemon.Ability)
 							{
-								key = $"{key}({Messages.Instance.SystemLabel["HiddenFixed"]})";
+								if (pokemon.Ability == 2)
+								{
+									key = $"{key}({Messages.Instance.SystemLabel["HiddenFixed"]})";
+								}
+								else if (pokemon.Ability == 3)
+								{
+									key = $"{key}({Messages.Instance.SystemLabel["NoHidden"]})";
+								}
+								else if (pokemon.Ability == 4)
+								{
+									key = $"{key}({Messages.Instance.SystemLabel["HiddenPossible"]})";
+								}
+								else
+								{
+									key = $"{key}()";
+								}
+								encounterIndex.Add(key, m_EncounterList.Count);
+								m_EncounterList.Add(pokemon);
 							}
-							else if (pokemon.Ability == 3)
-							{
-								key = $"{key}({Messages.Instance.SystemLabel["NoHidden"]})";
-							}
-							else if (pokemon.Ability == 4)
-							{
-								key = $"{key}({Messages.Instance.SystemLabel["HiddenPossible"]})";
-							}
-							else
-							{
-								key = $"{key}()";
-							}
-							encounterIndex.Add(key, m_EncounterList.Count);
-							m_EncounterList.Add(pokemon);
 						}
 						else
 						{
@@ -1713,11 +1727,7 @@ namespace OneStar
 		void ShowEncounterInfo(int index)
 		{
 			RaidData.Pokemon pokemon = m_PokemonInfo[index].ComboBoxName.SelectedItem as RaidData.Pokemon;
-			PersonalInfo info = PersonalTable.SWSH[pokemon.DataSpecies];
-			if (info.ATK == 0)
-			{
-				info = PersonalTable.USUM[pokemon.DataSpecies];
-			}
+			PersonalInfo info = PersonalInfoProvider.GetPersonalInfo(pokemon);
 			var abilityList = PKHeX.Core.Util.GetAbilitiesList(Messages.Instance.LangCode);
 
 			// ポケモンの種類
@@ -2061,11 +2071,7 @@ namespace OneStar
 		void RefreshAbility(int index)
 		{
 			RaidData.Pokemon pokemon = m_PokemonInfo[index].ComboBoxName.SelectedItem as RaidData.Pokemon;
-			PersonalInfo info = PersonalTable.SWSH[pokemon.DataSpecies];
-			if (info.ATK == 0)
-			{
-				info = PersonalTable.USUM[pokemon.DataSpecies];
-			}
+			PersonalInfo info = PersonalInfoProvider.GetPersonalInfo(pokemon);
 			var list = PKHeX.Core.Util.GetAbilitiesList(Messages.Instance.LangCode);
 
 			m_PokemonInfo[index].ComboBoxAbility.Items.Clear();
