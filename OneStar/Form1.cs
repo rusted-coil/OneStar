@@ -1528,6 +1528,12 @@ namespace OneStar
 				// 本編レイド
 				if (c_RaidData.GetRaidMap(m_CurrentDenIndex) == 0)
 				{
+					if (m_CurrentMapId != 0)
+					{
+						DenMap.BackgroundImage.Dispose();
+						DenMap.BackgroundImage = Properties.Resources.map;
+						m_CurrentMapId = 0;
+					}
 					var location = c_RaidData.GetRaidLocation(m_CurrentDenIndex);
 					f_PicturePoint.Location = new System.Drawing.Point(location.X - 5, location.Y - 5);
 					f_PicturePoint.Visible = true;
