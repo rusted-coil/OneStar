@@ -135,7 +135,7 @@ namespace OneStar
 		{
 			if (raidIndex >= NestLocations.Nests.Length)
 			{
-				return 1;
+				return AdditionalNestIdTable.c_DLC1Table[raidIndex].MapIndex;
 			}
 			return 0;
 		}
@@ -145,6 +145,10 @@ namespace OneStar
 			{
 				var detail = NestLocations.Nests[raidIndex];
 				return new System.Drawing.Point((int)(detail.MapX * c_MapScale), (int)(detail.MapY * c_MapScale));
+			}
+			else if (raidIndex >= NestLocations.Nests.Length)
+			{
+				return new System.Drawing.Point(AdditionalNestIdTable.c_DLC1Table[raidIndex].PosX, AdditionalNestIdTable.c_DLC1Table[raidIndex].PosY);
 			}
 			else
 			{

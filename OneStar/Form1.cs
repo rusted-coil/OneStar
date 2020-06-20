@@ -36,6 +36,7 @@ namespace OneStar
 		int m_CurrentGameVersion = -1;
 		int m_CurrentRarity = -1;
 		List<RaidData.Pokemon> m_EncounterList = new List<RaidData.Pokemon>();
+		int m_CurrentMapId = 0;
 
 		// イベントレイド関連
 		ToolStripMenuItem m_MenuItemEventUpdate = null; // 更新ボタン
@@ -58,9 +59,6 @@ namespace OneStar
 
 		// 言語設定可能コントロール
 		Dictionary<string, Control[]> m_MultiLanguageControls;
-
-		// DLCマップ用フォーム
-		Form2 m_MapForm = null;
 
 		class Star35PanelMode
 		{
@@ -122,7 +120,7 @@ namespace OneStar
 			// ビューの初期化
 			InitializeView();
 
-            IsInitialized = true;
+			IsInitialized = true;
 		}
 
 		bool IsGpuAvailable()
@@ -1524,29 +1522,41 @@ namespace OneStar
 				return;
 			}
 
-			// 本編レイド
+			// マップ更新
 			if (m_CurrentDenIndex >= 0)
 			{
+				// 本編レイド
 				if (c_RaidData.GetRaidMap(m_CurrentDenIndex) == 0)
 				{
 					var location = c_RaidData.GetRaidLocation(m_CurrentDenIndex);
 					f_PicturePoint.Location = new System.Drawing.Point(location.X - 5, location.Y - 5);
 					f_PicturePoint.Visible = true;
 				}
+				// DLCレイド
 				else
 				{
-					// フォームが閉じていたら開く
-					/*
-					if (m_MapForm == null)
+					int mapId = c_RaidData.GetRaidMap(m_CurrentDenIndex);
+					if (m_CurrentMapId != mapId)
 					{
-						m_MapForm = new Form2();
-						m_MapForm.FormClosed += new FormClosedEventHandler((x, y) => { m_MapForm = null; });
-						m_MapForm.Show();
+						DenMap.BackgroundImage.Dispose();
+						DenMap.BackgroundImage = null;
+						if (mapId == 1)
+						{
+							DenMap.BackgroundImage = Properties.Resources.map2_1;
+						}
+						else if (mapId == 2)
+						{
+							DenMap.BackgroundImage = Properties.Resources.map2_2;
+						}
+						else if (mapId == 3)
+						{
+							DenMap.BackgroundImage = Properties.Resources.map2_3;
+						}
+						m_CurrentMapId = mapId;
 					}
-
 					var location = c_RaidData.GetRaidLocation(m_CurrentDenIndex);
-					m_MapForm.SetPoint(location);
-					*/
+					f_PicturePoint.Location = new System.Drawing.Point(location.X - 5, location.Y - 5);
+					f_PicturePoint.Visible = true;
 				}
 			}
 			else

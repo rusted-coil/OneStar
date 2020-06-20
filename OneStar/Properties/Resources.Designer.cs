@@ -73,9 +73,29 @@ namespace OneStar.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap map2 {
+        internal static System.Drawing.Bitmap map2_1 {
             get {
-                object obj = ResourceManager.GetObject("map2", resourceCulture);
+                object obj = ResourceManager.GetObject("map2_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap map2_2 {
+            get {
+                object obj = ResourceManager.GetObject("map2_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap map2_3 {
+            get {
+                object obj = ResourceManager.GetObject("map2_3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
