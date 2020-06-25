@@ -529,7 +529,7 @@
 			// f_ButtonEncounterInfo_1
 			// 
 			this.f_ButtonEncounterInfo_1.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_ButtonEncounterInfo_1.Location = new System.Drawing.Point(210, 18);
+			this.f_ButtonEncounterInfo_1.Location = new System.Drawing.Point(306, 18);
 			this.f_ButtonEncounterInfo_1.Name = "f_ButtonEncounterInfo_1";
 			this.f_ButtonEncounterInfo_1.Size = new System.Drawing.Size(54, 22);
 			this.f_ButtonEncounterInfo_1.TabIndex = 1;
@@ -581,7 +581,8 @@
 			this.f_ComboBoxPokemon_1.FormattingEnabled = true;
 			this.f_ComboBoxPokemon_1.Location = new System.Drawing.Point(15, 19);
 			this.f_ComboBoxPokemon_1.Name = "f_ComboBoxPokemon_1";
-			this.f_ComboBoxPokemon_1.Size = new System.Drawing.Size(182, 20);
+			this.f_ComboBoxPokemon_1.Size = new System.Drawing.Size(281, 20);
+			this.f_ComboBoxPokemon_1.Sorted = true;
 			this.f_ComboBoxPokemon_1.TabIndex = 0;
 			this.f_ComboBoxPokemon_1.SelectedIndexChanged += new System.EventHandler(this.f_ComboBoxPokemon_1_SelectedIndexChanged);
 			// 
@@ -726,7 +727,7 @@
 			// f_ButtonEncounterInfo_2
 			// 
 			this.f_ButtonEncounterInfo_2.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_ButtonEncounterInfo_2.Location = new System.Drawing.Point(210, 18);
+			this.f_ButtonEncounterInfo_2.Location = new System.Drawing.Point(306, 18);
 			this.f_ButtonEncounterInfo_2.Name = "f_ButtonEncounterInfo_2";
 			this.f_ButtonEncounterInfo_2.Size = new System.Drawing.Size(54, 22);
 			this.f_ButtonEncounterInfo_2.TabIndex = 1;
@@ -976,7 +977,8 @@
 			this.f_ComboBoxPokemon_2.FormattingEnabled = true;
 			this.f_ComboBoxPokemon_2.Location = new System.Drawing.Point(15, 19);
 			this.f_ComboBoxPokemon_2.Name = "f_ComboBoxPokemon_2";
-			this.f_ComboBoxPokemon_2.Size = new System.Drawing.Size(182, 20);
+			this.f_ComboBoxPokemon_2.Size = new System.Drawing.Size(281, 20);
+			this.f_ComboBoxPokemon_2.Sorted = true;
 			this.f_ComboBoxPokemon_2.TabIndex = 0;
 			this.f_ComboBoxPokemon_2.SelectedIndexChanged += new System.EventHandler(this.f_ComboBoxPokemon_2_SelectedIndexChanged);
 			// 
@@ -1268,7 +1270,7 @@
 			// f_ButtonEncounterInfo_352
 			// 
 			this.f_ButtonEncounterInfo_352.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_ButtonEncounterInfo_352.Location = new System.Drawing.Point(210, 18);
+			this.f_ButtonEncounterInfo_352.Location = new System.Drawing.Point(306, 18);
 			this.f_ButtonEncounterInfo_352.Name = "f_ButtonEncounterInfo_352";
 			this.f_ButtonEncounterInfo_352.Size = new System.Drawing.Size(54, 22);
 			this.f_ButtonEncounterInfo_352.TabIndex = 1;
@@ -1453,7 +1455,8 @@
 			this.f_ComboBoxPokemon_352.FormattingEnabled = true;
 			this.f_ComboBoxPokemon_352.Location = new System.Drawing.Point(15, 19);
 			this.f_ComboBoxPokemon_352.Name = "f_ComboBoxPokemon_352";
-			this.f_ComboBoxPokemon_352.Size = new System.Drawing.Size(182, 20);
+			this.f_ComboBoxPokemon_352.Size = new System.Drawing.Size(281, 20);
+			this.f_ComboBoxPokemon_352.Sorted = true;
 			this.f_ComboBoxPokemon_352.TabIndex = 0;
 			this.f_ComboBoxPokemon_352.SelectedIndexChanged += new System.EventHandler(this.f_ComboBoxPokemon_352_SelectedIndexChanged);
 			// 
@@ -1638,7 +1641,7 @@
 			// f_ButtonEncounterInfo_351
 			// 
 			this.f_ButtonEncounterInfo_351.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_ButtonEncounterInfo_351.Location = new System.Drawing.Point(210, 30);
+			this.f_ButtonEncounterInfo_351.Location = new System.Drawing.Point(306, 30);
 			this.f_ButtonEncounterInfo_351.Name = "f_ButtonEncounterInfo_351";
 			this.f_ButtonEncounterInfo_351.Size = new System.Drawing.Size(54, 22);
 			this.f_ButtonEncounterInfo_351.TabIndex = 2;
@@ -1854,7 +1857,8 @@
 			this.f_ComboBoxPokemon_351.FormattingEnabled = true;
 			this.f_ComboBoxPokemon_351.Location = new System.Drawing.Point(15, 31);
 			this.f_ComboBoxPokemon_351.Name = "f_ComboBoxPokemon_351";
-			this.f_ComboBoxPokemon_351.Size = new System.Drawing.Size(182, 20);
+			this.f_ComboBoxPokemon_351.Size = new System.Drawing.Size(281, 20);
+			this.f_ComboBoxPokemon_351.Sorted = true;
 			this.f_ComboBoxPokemon_351.TabIndex = 1;
 			this.f_ComboBoxPokemon_351.SelectedIndexChanged += new System.EventHandler(this.f_ComboBoxPokemon_351_SelectedIndexChanged);
 			// 
@@ -2047,7 +2051,7 @@
 			// f_ButtonEncounterInfo_353
 			// 
 			this.f_ButtonEncounterInfo_353.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_ButtonEncounterInfo_353.Location = new System.Drawing.Point(210, 18);
+			this.f_ButtonEncounterInfo_353.Location = new System.Drawing.Point(306, 17);
 			this.f_ButtonEncounterInfo_353.Name = "f_ButtonEncounterInfo_353";
 			this.f_ButtonEncounterInfo_353.Size = new System.Drawing.Size(54, 22);
 			this.f_ButtonEncounterInfo_353.TabIndex = 1;
@@ -2232,7 +2236,8 @@
 			this.f_ComboBoxPokemon_353.FormattingEnabled = true;
 			this.f_ComboBoxPokemon_353.Location = new System.Drawing.Point(15, 19);
 			this.f_ComboBoxPokemon_353.Name = "f_ComboBoxPokemon_353";
-			this.f_ComboBoxPokemon_353.Size = new System.Drawing.Size(182, 20);
+			this.f_ComboBoxPokemon_353.Size = new System.Drawing.Size(281, 20);
+			this.f_ComboBoxPokemon_353.Sorted = true;
 			this.f_ComboBoxPokemon_353.TabIndex = 0;
 			this.f_ComboBoxPokemon_353.SelectedIndexChanged += new System.EventHandler(this.f_ComboBoxPokemon_353_SelectedIndexChanged);
 			// 
@@ -2441,7 +2446,7 @@
 			// f_ButtonEncounterInfo_3
 			// 
 			this.f_ButtonEncounterInfo_3.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.f_ButtonEncounterInfo_3.Location = new System.Drawing.Point(210, 18);
+			this.f_ButtonEncounterInfo_3.Location = new System.Drawing.Point(306, 18);
 			this.f_ButtonEncounterInfo_3.Name = "f_ButtonEncounterInfo_3";
 			this.f_ButtonEncounterInfo_3.Size = new System.Drawing.Size(54, 22);
 			this.f_ButtonEncounterInfo_3.TabIndex = 1;
@@ -2681,7 +2686,8 @@
 			this.f_ComboBoxPokemon_3.FormattingEnabled = true;
 			this.f_ComboBoxPokemon_3.Location = new System.Drawing.Point(15, 19);
 			this.f_ComboBoxPokemon_3.Name = "f_ComboBoxPokemon_3";
-			this.f_ComboBoxPokemon_3.Size = new System.Drawing.Size(182, 20);
+			this.f_ComboBoxPokemon_3.Size = new System.Drawing.Size(281, 20);
+			this.f_ComboBoxPokemon_3.Sorted = true;
 			this.f_ComboBoxPokemon_3.TabIndex = 0;
 			this.f_ComboBoxPokemon_3.SelectedIndexChanged += new System.EventHandler(this.f_ComboBoxPokemon_3_SelectedIndexChanged);
 			// 
@@ -3158,7 +3164,7 @@
 			this.MainMenuStrip = this.menuStrip1;
 			this.MaximizeBox = false;
 			this.Name = "MainForm";
-			this.Text = "1-Star Seed Search v1.08e";
+			this.Text = "1-Star Seed Search v1.08f";
 			this.f_GroupBoxPokemon_1.ResumeLayout(false);
 			this.f_GroupBoxPokemon_1.PerformLayout();
 			this.f_GroupBoxStatus1.ResumeLayout(false);

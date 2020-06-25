@@ -15,6 +15,7 @@ namespace OneStar
 		public List<string> Ability;
 		public List<string> Status;
 		public List<string> RankPrefix;
+		public List<string> IvsInfo;
 		public Dictionary<string, string> SystemLabel;
 		public List<string> CheckIvsResult;
 		public Dictionary<string, string> ErrorMessage;

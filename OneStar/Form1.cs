@@ -1572,7 +1572,7 @@ namespace OneStar
 
 			// データ構築
 			m_EncounterList.Clear();
-			Dictionary<string, int> encounterIndex = new Dictionary<string, int>();
+			HashSet<string> existKey = new HashSet<string>();
 			for (int c = 0; c < 5; ++c)
 			{
 				foreach (var entry in raidEntries)
@@ -1581,39 +1581,11 @@ namespace OneStar
 					{
 						var pokemon = new RaidData.Pokemon(entry, c);
 						string key = pokemon.Key;
-
-						// 全く同じ見た目のポケモンの場合キーを変える
-						if (encounterIndex.ContainsKey(key))
+						// 重複しているキーははじく
+						if (!existKey.Contains(key))
 						{
-							if (m_EncounterList[encounterIndex[key]].Ability != pokemon.Ability)
-							{
-								if (pokemon.Ability == 2)
-								{
-									key = $"{key}({Messages.Instance.SystemLabel["HiddenFixed"]})";
-								}
-								else if (pokemon.Ability == 3)
-								{
-									key = $"{key}({Messages.Instance.SystemLabel["NoHidden"]})";
-								}
-								else if (pokemon.Ability == 4)
-								{
-									key = $"{key}({Messages.Instance.SystemLabel["HiddenPossible"]})";
-								}
-								else
-								{
-									key = $"{key}()";
-								}
-								if (!encounterIndex.ContainsKey(key))
-								{
-									encounterIndex.Add(key, m_EncounterList.Count);
-									m_EncounterList.Add(pokemon);
-								}
-							}
-						}
-						else
-						{
-							encounterIndex.Add(key, m_EncounterList.Count);
 							m_EncounterList.Add(pokemon);
+							existKey.Add(key);
 						}
 					}
 				}

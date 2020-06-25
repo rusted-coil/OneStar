@@ -368,6 +368,27 @@ namespace OneStar
 					key += Messages.Instance.SystemLabel["Gigantamax"];
 				}
 
+				// V固定数のkeyを付与
+				key += $" [{Messages.Instance.IvsInfo[FlawlessIvs]} / ";
+
+				// 特性のkeyを付与
+				if (Ability == 2)
+				{
+					key += $"{Messages.Instance.SystemLabel["HiddenFixed"]}]";
+				}
+				else if (Ability == 3)
+				{
+					key += $"{Messages.Instance.SystemLabel["NoHidden"]}]";
+				}
+				else if (Ability == 4)
+				{
+					key += $"{Messages.Instance.SystemLabel["HiddenPossible"]}]";
+				}
+				else
+				{
+					key += $"]";
+				}
+
 				Key = key;
 			}
 		}
