@@ -230,6 +230,7 @@ namespace OneStar
 
 			public decimal DisplaySpecies { get; private set; } // 名前表示上の種族
 			public int DataSpecies { get; private set; } // PKHeXデータ上のインデックス
+			public bool IsDataSWSH { get; private set; }
 
 			public int FlawlessIvs { get; private set; }
 			public bool IsGigantamax { get; private set; }
@@ -262,6 +263,7 @@ namespace OneStar
 				decimal altForm = entry.AltForm;
 
 				DisplaySpecies = rawSpecies;
+				IsDataSWSH = true;
 
 				// マホイップ、カラナクシ、トリトドンは無視
 				if (rawSpecies == 869 || rawSpecies == 422 || rawSpecies == 423)
@@ -277,13 +279,8 @@ namespace OneStar
 					}
 				}
 
-				// ガラル表示は省略
-				if (c_GalarForms.ContainsKey(rawSpecies))
-				{
-					DisplaySpecies = rawSpecies;
-				}
 				// ストリンダー（ロー）
-				else if (rawSpecies == 849 && altForm == 1)
+				if (rawSpecies == 849 && altForm == 1)
 				{
 					DisplaySpecies = 1154;
 				}
@@ -303,6 +300,7 @@ namespace OneStar
 						if (tempInfo.ATK == 0)
 						{
 							DataSpecies = PersonalTable.USUM[rawSpecies].FormeIndex(rawSpecies, entry.AltForm);
+							IsDataSWSH = false;
 						}
 					}
 				}

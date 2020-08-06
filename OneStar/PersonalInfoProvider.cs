@@ -13,13 +13,15 @@ namespace OneStar
 				return PersonalTable.USUM[dataSpecies];
 			}
 
-			PersonalInfo info = PersonalTable.SWSH[pokemon.DataSpecies];
 			// 剣盾にデータが無いものはUSUMから取ってくる
-			if (info.ATK == 0)
+			if (pokemon.IsDataSWSH)
 			{
-				info = PersonalTable.USUM[pokemon.DataSpecies];
+				return PersonalTable.SWSH[pokemon.DataSpecies];
 			}
-			return info;
+			else
+			{
+				return PersonalTable.USUM[pokemon.DataSpecies];
+			}
 		}
 	}
 }
