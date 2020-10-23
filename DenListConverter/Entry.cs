@@ -181,29 +181,58 @@ namespace DenListConverter
 			output += "],";
 
 			int flawlessIVs = 0;
-			if (max == 4)
-			{
-				flawlessIVs = 4;
-			}
-			else if (min == 0)
-			{
-				flawlessIVs = 1;
-			}
-			else if (min == 1)
-			{
-				flawlessIVs = 2;
-			}
-			else if (min == 2)
-			{
-				flawlessIVs = 3;
-			}
-			else if (min == 3)
-			{
-				// ?
-				flawlessIVs = 3;
-			}
 
-			output += $"\"FlawlessIvs\":{flawlessIVs},";
+            if (Ability == 3) // レア判定
+            {
+                if (max == 4)
+                {
+                    flawlessIVs = 5;
+                }
+                else if (min == 0)
+                {
+                    flawlessIVs = 2;
+                }
+                else if (min == 1)
+                {
+                    flawlessIVs = 3;
+                }
+                else if (min == 2)
+                {
+                    flawlessIVs = 4;
+                }
+                else if (min == 3)
+                {
+                    // ?
+                    flawlessIVs = 4;
+                }
+            }
+            else
+            {
+                // 鎧の孤島、冠の雪原ノーマル
+			    if (max == 4)
+			    {
+				    flawlessIVs = 4;
+			    }
+			    else if (min == 0)
+			    {
+				    flawlessIVs = 1;
+			    }
+			    else if (min == 1)
+			    {
+				    flawlessIVs = 2;
+			    }
+			    else if (min == 2)
+			    {
+				    flawlessIVs = 3;
+			    }
+			    else if (min == 3)
+			    {
+				    // ?
+				    flawlessIVs = 3;
+			    }
+            }
+
+            output += $"\"FlawlessIvs\":{flawlessIVs},";
 			output += $"\"MinRank\":{min},\"MaxRank\":{max},";
 			output += $"\"AltForm\":{AltForm},";
 			output += $"\"Ability\":{Ability},";

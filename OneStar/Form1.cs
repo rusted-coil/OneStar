@@ -1530,7 +1530,7 @@ namespace OneStar
 				{
 					if (m_CurrentMapId != 0)
 					{
-						DenMap.BackgroundImage.Dispose();
+						DenMap.BackgroundImage?.Dispose();
 						DenMap.BackgroundImage = Properties.Resources.map;
 						m_CurrentMapId = 0;
 					}
@@ -1605,14 +1605,21 @@ namespace OneStar
 					isEnable3V = true;
 				}
 			}
+
+            // どっちもだめだったらとりあえず3Vを有効
+            if (isEnable2V == false && isEnable3V == false)
+            {
+                isEnable3V = true;
+            }
+
 			if (m_is2VEnable == -1 || (m_is2VEnable == 1) != isEnable2V
 				|| m_is3VEnable == -1 || (m_is3VEnable == 1) != isEnable3V)
 			{
 				m_is2VEnable = (isEnable2V ? 1 : 0);
 				m_is3VEnable = (isEnable3V ? 1 : 0);
 				RefreshModeComboBox();
-				f_ComboBoxModeSelector_35.SelectedIndex = 0;
-			}
+                f_ComboBoxModeSelector_35.SelectedIndex = 0;
+            }
 
 			RefreshPokemonComboBox();
 		}
