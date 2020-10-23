@@ -319,6 +319,7 @@ namespace OneStar
 				if (info.ATK == 0)
 				{
 					info = PersonalTable.USUM[DataSpecies];
+					IsDataSWSH = false;
 				}
 
 				// レイドデータで固定されているのはイエッサン、ニャオニクス、エンニュートのみ
