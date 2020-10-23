@@ -1678,8 +1678,11 @@ namespace OneStar
 
 			for (int i = 0; i < 6; ++i)
 			{
-				m_PokemonInfo[i].ComboBoxName.SelectedIndex = 0;
-			}
+                if (m_PokemonInfo[i].ComboBoxName.Items.Count > 0)
+                {
+                    m_PokemonInfo[i].ComboBoxName.SelectedIndex = 0;
+                }
+            }
 			f_ComboBoxPokemon_List.SelectedIndex = 0;
 		}
 
