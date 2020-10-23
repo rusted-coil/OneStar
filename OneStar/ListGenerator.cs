@@ -168,7 +168,7 @@ namespace OneStar
 					}
 					if (m_isShowAbilityName)
 					{
-						sw.Write($"{abilityList[personalInfo.Abilities[ability]]},");
+						sw.Write($"{abilityList[personalInfo.Abilities[(int)ability]]},");
 					}
 					else
 					{
