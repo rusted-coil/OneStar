@@ -1558,6 +1558,18 @@ namespace OneStar
 						{
 							DenMap.BackgroundImage = Properties.Resources.map2_3;
 						}
+						else if (mapId == 4)
+						{
+							DenMap.BackgroundImage = Properties.Resources.map3_1;
+						}
+						else if (mapId == 5)
+						{
+							DenMap.BackgroundImage = Properties.Resources.map3_2;
+						}
+						else if (mapId == 6)
+						{
+							DenMap.BackgroundImage = Properties.Resources.map3_3;
+						}
 						m_CurrentMapId = mapId;
 					}
 					var location = c_RaidData.GetRaidLocation(m_CurrentDenIndex);
