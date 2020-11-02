@@ -25,7 +25,7 @@ namespace DenListConverter
 					sw.WriteLine("    \"EventList\":{");
 
 					int tableCount = 0;
-
+                    
 					sr.ReadLine(); // 1行目は飛ばす
 					for (int c = 2; ; ++c)
 					{
