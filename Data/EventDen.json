@@ -1906,5 +1906,21 @@
                 {"Species":660,"Probabilities":[  0,  0,  0,  0, 25],"FlawlessIvs":5,"MinRank":4,"MaxRank":4,"AltForm":0,"Ability":4,"Gender":0,"Gigantamax":false,"ShinyType":0},
                 {"Species":815,"Probabilities":[  0,  0,  0,  0, 25],"FlawlessIvs":5,"MinRank":4,"MaxRank":4,"AltForm":0,"Ability":4,"Gender":0,"Gigantamax":true,"ShinyType":0},
             ]},
+        "20210423_Sw":{
+            "Entries":[
+                {"Species":875,"Probabilities":[100,  0,  0,  0,  0],"FlawlessIvs":1,"MinRank":0,"MaxRank":0,"AltForm":0,"Ability":4,"Gender":0,"Gigantamax":false,"ShinyType":0},
+                {"Species":875,"Probabilities":[  0,100,  0,  0,  0],"FlawlessIvs":2,"MinRank":1,"MaxRank":1,"AltForm":0,"Ability":4,"Gender":0,"Gigantamax":false,"ShinyType":0},
+                {"Species":875,"Probabilities":[  0,  0,100,  0,  0],"FlawlessIvs":3,"MinRank":2,"MaxRank":2,"AltForm":0,"Ability":4,"Gender":0,"Gigantamax":false,"ShinyType":0},
+                {"Species":875,"Probabilities":[  0,  0,  0,100,  0],"FlawlessIvs":4,"MinRank":3,"MaxRank":3,"AltForm":0,"Ability":4,"Gender":0,"Gigantamax":false,"ShinyType":0},
+                {"Species":875,"Probabilities":[  0,  0,  0,  0,100],"FlawlessIvs":5,"MinRank":4,"MaxRank":4,"AltForm":0,"Ability":4,"Gender":0,"Gigantamax":false,"ShinyType":0},
+            ]},
+        "20210401_Sh":{
+            "Entries":[
+                {"Species":875,"Probabilities":[100,  0,  0,  0,  0],"FlawlessIvs":1,"MinRank":0,"MaxRank":0,"AltForm":0,"Ability":4,"Gender":0,"Gigantamax":false,"ShinyType":0},
+                {"Species":875,"Probabilities":[  0,100,  0,  0,  0],"FlawlessIvs":2,"MinRank":1,"MaxRank":1,"AltForm":0,"Ability":4,"Gender":0,"Gigantamax":false,"ShinyType":0},
+                {"Species":875,"Probabilities":[  0,  0,100,  0,  0],"FlawlessIvs":3,"MinRank":2,"MaxRank":2,"AltForm":0,"Ability":4,"Gender":0,"Gigantamax":false,"ShinyType":0},
+                {"Species":875,"Probabilities":[  0,  0,  0,100,  0],"FlawlessIvs":4,"MinRank":3,"MaxRank":3,"AltForm":0,"Ability":4,"Gender":0,"Gigantamax":false,"ShinyType":0},
+                {"Species":875,"Probabilities":[  0,  0,  0,  0,100],"FlawlessIvs":5,"MinRank":4,"MaxRank":4,"AltForm":0,"Ability":4,"Gender":0,"Gigantamax":false,"ShinyType":0},
+            ]},
     }
 }
