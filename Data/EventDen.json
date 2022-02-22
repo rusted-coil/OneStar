@@ -2599,9 +2599,9 @@
                 {"Species":  3,"Probabilities":[  0,  0,  0, 33,  0],"FlawlessIvs":4,"MinRank":3,"MaxRank":3,"AltForm":0,"Ability":4,"Gender":0,"Gigantamax":true,"ShinyType":0},
                 {"Species":  6,"Probabilities":[  0,  0,  0, 34,  0],"FlawlessIvs":4,"MinRank":3,"MaxRank":3,"AltForm":0,"Ability":4,"Gender":0,"Gigantamax":true,"ShinyType":0},
                 {"Species":  9,"Probabilities":[  0,  0,  0, 33,  0],"FlawlessIvs":4,"MinRank":3,"MaxRank":3,"AltForm":0,"Ability":4,"Gender":0,"Gigantamax":true,"ShinyType":0},
-                {"Species":  3,"Probabilities":[  0,  0,  0, 33,  0],"FlawlessIvs":4,"MinRank":3,"MaxRank":3,"AltForm":0,"Ability":4,"Gender":0,"Gigantamax":true,"ShinyType":0},
-                {"Species":  6,"Probabilities":[  0,  0,  0, 34,  0],"FlawlessIvs":4,"MinRank":3,"MaxRank":3,"AltForm":0,"Ability":4,"Gender":0,"Gigantamax":true,"ShinyType":0},
-                {"Species":  9,"Probabilities":[  0,  0,  0, 33,  0],"FlawlessIvs":4,"MinRank":3,"MaxRank":3,"AltForm":0,"Ability":4,"Gender":0,"Gigantamax":true,"ShinyType":0},
+                {"Species":  3,"Probabilities":[  0,  0,  0, 33,  0],"FlawlessIvs":5,"MinRank":3,"MaxRank":3,"AltForm":0,"Ability":4,"Gender":0,"Gigantamax":true,"ShinyType":0},
+                {"Species":  6,"Probabilities":[  0,  0,  0, 34,  0],"FlawlessIvs":5,"MinRank":3,"MaxRank":3,"AltForm":0,"Ability":4,"Gender":0,"Gigantamax":true,"ShinyType":0},
+                {"Species":  9,"Probabilities":[  0,  0,  0, 33,  0],"FlawlessIvs":5,"MinRank":3,"MaxRank":3,"AltForm":0,"Ability":4,"Gender":0,"Gigantamax":true,"ShinyType":0},
             ]},
         "20220222_Sh":{
             "Entries":[
@@ -2626,9 +2626,9 @@
                 {"Species":  3,"Probabilities":[  0,  0,  0, 33,  0],"FlawlessIvs":4,"MinRank":3,"MaxRank":3,"AltForm":0,"Ability":4,"Gender":0,"Gigantamax":true,"ShinyType":0},
                 {"Species":  6,"Probabilities":[  0,  0,  0, 34,  0],"FlawlessIvs":4,"MinRank":3,"MaxRank":3,"AltForm":0,"Ability":4,"Gender":0,"Gigantamax":true,"ShinyType":0},
                 {"Species":  9,"Probabilities":[  0,  0,  0, 33,  0],"FlawlessIvs":4,"MinRank":3,"MaxRank":3,"AltForm":0,"Ability":4,"Gender":0,"Gigantamax":true,"ShinyType":0},
-                {"Species":  3,"Probabilities":[  0,  0,  0, 33,  0],"FlawlessIvs":4,"MinRank":3,"MaxRank":3,"AltForm":0,"Ability":4,"Gender":0,"Gigantamax":true,"ShinyType":0},
-                {"Species":  6,"Probabilities":[  0,  0,  0, 34,  0],"FlawlessIvs":4,"MinRank":3,"MaxRank":3,"AltForm":0,"Ability":4,"Gender":0,"Gigantamax":true,"ShinyType":0},
-                {"Species":  9,"Probabilities":[  0,  0,  0, 33,  0],"FlawlessIvs":4,"MinRank":3,"MaxRank":3,"AltForm":0,"Ability":4,"Gender":0,"Gigantamax":true,"ShinyType":0},
+                {"Species":  3,"Probabilities":[  0,  0,  0, 33,  0],"FlawlessIvs":5,"MinRank":3,"MaxRank":3,"AltForm":0,"Ability":4,"Gender":0,"Gigantamax":true,"ShinyType":0},
+                {"Species":  6,"Probabilities":[  0,  0,  0, 34,  0],"FlawlessIvs":5,"MinRank":3,"MaxRank":3,"AltForm":0,"Ability":4,"Gender":0,"Gigantamax":true,"ShinyType":0},
+                {"Species":  9,"Probabilities":[  0,  0,  0, 33,  0],"FlawlessIvs":5,"MinRank":3,"MaxRank":3,"AltForm":0,"Ability":4,"Gender":0,"Gigantamax":true,"ShinyType":0},
             ]},
     }
 }
